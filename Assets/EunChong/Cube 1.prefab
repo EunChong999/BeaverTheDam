@@ -94,9 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6816479095145547550}
   - component: {fileID: 6114131622667632696}
-  - component: {fileID: 4679084181495227708}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8130480951150777915}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.75, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139,20 +138,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4679084181495227708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8130480951150777915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1540c2462dc6b294ea91284852c03711, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fromMaterial: {fileID: 2100000, guid: 138160a6a5be4af46abc235d104dfc65, type: 2}
-  toMaterial: {fileID: 2100000, guid: 0ebe7403c6106ca479fea2c4ef86ea6d, type: 2}
-  targetRotation: 0
-  rotationSpeed: 180
-  isRotating: 0

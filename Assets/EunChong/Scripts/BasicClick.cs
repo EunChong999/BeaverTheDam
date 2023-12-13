@@ -50,7 +50,7 @@ public class BasicClick : MonoBehaviour
     /// </summary>
     private void ResetRotation()
     {
-        if (Mathf.CeilToInt(transform.eulerAngles.y) >= 360)
+        if (Mathf.CeilToInt(transform.eulerAngles.y) >= 355)
         {
             targetRotation = 0;
         }
