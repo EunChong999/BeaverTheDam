@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,30 +6,28 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BasicBuilding : MonoBehaviour
 {
-    [SerializeField] float targetRotation;
-    [SerializeField] float rotationSpeed;
-
-    [SerializeField] bool isRotating;
-
+    [SerializeField] float rotationTime;
+    [SerializeField] Ease moveEase;
+    [SerializeField] Ease scaleEase;
     [SerializeField] Sprite[] sprites = new Sprite[4];
+
+    bool isRotating;
+    int rotationCount;
 
     /// <summary>
     /// 카메라를 바라보는 함수
     /// </summary>
     public void LookCameraRotation()
     {
-        transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+        transform.Find("Sprite").LookAt(transform.Find("Sprite").position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
     }
 
     /// <summary>
-    /// 목표 회전값을 설정하는 함수
+    /// 회전시 트위닝 효과를 주는 함수
     /// </summary>
-    public void SetTargetRotation()
+    public void ShowEffect()
     {
-        if (!isRotating)
-        {
-            targetRotation += 90;
-        }
+
     }
 
     /// <summary>
@@ -36,36 +35,20 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ChangeSprite()
     {
-        switch(targetRotation)
+        switch(rotationCount)
         {
             case 0:
                 transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[0];
                 break;
-            case 90:
+            case 1:
                 transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[1];
                 break;
-            case 180:
+            case 2:
                 transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[2];
                 break;
-            case 270:
+            case 3:
                 transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[3];
                 break;
-            case 360:
-                transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[0];
-                break;
-        }
-    }
-
-    /// <summary>
-    /// Y축의 회전각이 360도를 넘었을 경우,
-    /// <br></br>
-    /// Y축의 회전각을 0도로 초기화하는 함수
-    /// </summary>
-    public void ResetRotation()
-    {
-        if (Mathf.CeilToInt(transform.eulerAngles.y) >= 355)
-        {
-            targetRotation = 0;
         }
     }
 
@@ -74,17 +57,29 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void RotateTransform()
     {
-        if (transform.eulerAngles.y >= targetRotation)
+        if (!isRotating)
         {
-            isRotating = false;
+            Vector3 targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
+            transform.DORotate(targetRotation, rotationTime).SetEase(moveEase);
 
-            transform.eulerAngles = new Vector3(0, targetRotation, 0);
-        }
-        else
-        {
+            Invoke(nameof(ApplyChangedValue), rotationTime);
+
             isRotating = true;
-
-            transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
         }
+    }
+
+    /// <summary>
+    /// 회전을 통해 변한 값을 적용하는 함수
+    /// </summary>
+    private void ApplyChangedValue()
+    {
+        rotationCount++;
+
+        if (rotationCount > 3)
+        {
+            rotationCount = 0;
+        }
+
+        isRotating = false;
     }
 }

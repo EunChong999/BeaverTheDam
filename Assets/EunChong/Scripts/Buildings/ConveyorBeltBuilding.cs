@@ -6,14 +6,13 @@ public class ConveyorBeltBuilding : BasicBuilding
 {
     private void OnMouseDown()
     {
-        SetTargetRotation();
+        RotateTransform();
+        ShowEffect();
     }
 
     private void Update()
     {
         ChangeSprite();
-        ResetRotation();
-        RotateTransform();
     }
 
     private void LateUpdate()
