@@ -5,13 +5,42 @@ using UnityEngine;
 
 public class BasicBuilding : MonoBehaviour
 {
-    [SerializeField] float rotationTime;
-    [SerializeField] Ease moveEase;
-    [SerializeField] Ease scaleEase;
+    public float rotationTime;
 
-    bool isRotating;
+    [SerializeField] Ease rotationEase;
+    [SerializeField] float startScaleTime;
+    [SerializeField] float endScaleTime;
+    [SerializeField] Ease startScaleEase;
+    [SerializeField] Ease endScaleEase;
+
+    [HideInInspector] public bool isRotating;
+    [HideInInspector] public Vector3 originScale;
+
     Sequence scaleSequence;
-    string str;
+
+    /// <summary>
+    /// 회전에 대한 전체적인 동작을 지시하는 함수
+    /// </summary>
+    public void DirectRotation()
+    {
+        if (!isRotating)
+        {
+            RotateTransform();
+            ShowEffect();
+
+            Invoke(nameof(ApplyChangedValue), rotationTime);
+
+            isRotating = true;
+        }
+    }
+
+    /// <summary>
+    /// 트랜스폼의 스케일을 최초로 초기화하는 함수
+    /// </summary>
+    public void InitTransformScale()
+    {
+        originScale = transform.localScale;
+    }
 
     /// <summary>
     /// 카메라를 바라보는 함수
@@ -29,7 +58,9 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ShowEffect()
     {
-
+        scaleSequence = DOTween.Sequence().SetAutoKill(false)
+        .Append(transform.DOScale(new Vector3(transform.localScale.x / 1.5f, transform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(transform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
     }
 
     /// <summary>
@@ -59,22 +90,16 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void RotateTransform()
     {
-        if (!isRotating)
-        {
-            Vector3 targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
-            transform.DORotate(targetRotation, rotationTime).SetEase(moveEase);
-
-            Invoke(nameof(ApplyChangedValue), rotationTime);
-
-            isRotating = true;
-        }
+        Vector3 targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
+        transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
     }
 
     /// <summary>
     /// 회전을 통해 변한 값을 적용하는 함수
     /// </summary>
-    private void ApplyChangedValue()
+    public void ApplyChangedValue()
     {
         isRotating = false;
+        transform.localScale = originScale;
     }
 }

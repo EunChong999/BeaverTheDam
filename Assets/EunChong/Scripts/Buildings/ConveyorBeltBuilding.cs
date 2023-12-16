@@ -6,8 +6,12 @@ public class ConveyorBeltBuilding : BasicBuilding
 {
     private void OnMouseDown()
     {
-        RotateTransform();
-        ShowEffect();
+        DirectRotation();
+    }
+
+    private void Start()
+    {
+        InitTransformScale();
     }
 
     private void Update()
