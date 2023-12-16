@@ -2,24 +2,26 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BasicBuilding : MonoBehaviour
 {
     [SerializeField] float rotationTime;
     [SerializeField] Ease moveEase;
     [SerializeField] Ease scaleEase;
-    [SerializeField] Sprite[] sprites = new Sprite[4];
 
     bool isRotating;
-    int rotationCount;
+    Sequence scaleSequence;
+    string str;
 
     /// <summary>
     /// 카메라를 바라보는 함수
     /// </summary>
     public void LookCameraRotation()
     {
-        transform.Find("Sprite").LookAt(transform.Find("Sprite").position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+        foreach (Transform t in transform)
+        {
+            t.LookAt(t.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+        }
     }
 
     /// <summary>
@@ -35,21 +37,21 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ChangeSprite()
     {
-        switch(rotationCount)
-        {
-            case 0:
-                transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[0];
-                break;
-            case 1:
-                transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[1];
-                break;
-            case 2:
-                transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[2];
-                break;
-            case 3:
-                transform.Find("Sprite").GetComponent<SpriteRenderer>().sprite = sprites[3];
-                break;
-        }
+        if ((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) 
+        { transform.Find("ConveyorBelt_0 (0)").gameObject.SetActive(true); }
+        else { transform.Find("ConveyorBelt_0 (0)").gameObject.SetActive(false); }
+
+        if ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) 
+        { transform.Find("ConveyorBelt_0 (1)").gameObject.SetActive(true); }
+        else { transform.Find("ConveyorBelt_0 (1)").gameObject.SetActive(false); }
+
+        if ((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270) 
+        { transform.Find("ConveyorBelt_0 (2)").gameObject.SetActive(true); }
+        else { transform.Find("ConveyorBelt_0 (2)").gameObject.SetActive(false); }
+
+        if ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360) 
+        { transform.Find("ConveyorBelt_0 (3)").gameObject.SetActive(true); }
+        else { transform.Find("ConveyorBelt_0 (3)").gameObject.SetActive(false); }
     }
 
     /// <summary>
@@ -73,13 +75,6 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     private void ApplyChangedValue()
     {
-        rotationCount++;
-
-        if (rotationCount > 3)
-        {
-            rotationCount = 0;
-        }
-
         isRotating = false;
     }
 }
