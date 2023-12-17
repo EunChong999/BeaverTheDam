@@ -18,6 +18,11 @@ public class ConveyorBeltBuilding : ConveyorBelt
         ChangeTrailerDirection();
     }
 
+    private void FixedUpdate()
+    {
+        CarryItem();
+    }
+
     private void LateUpdate()
     {
         LookCameraRotation();

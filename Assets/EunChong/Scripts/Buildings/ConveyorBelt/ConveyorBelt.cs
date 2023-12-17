@@ -40,7 +40,7 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     public void CarryInStraight()
     {
-
+        transform.Find("Sprite").GetComponent<Animator>().SetBool("IsStraight", true);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     public void CarryInCurve()
     {
-
+        transform.Find("Sprite").GetComponent<Animator>().SetBool("IsStraight", false);
     }
 
     /// <summary>
