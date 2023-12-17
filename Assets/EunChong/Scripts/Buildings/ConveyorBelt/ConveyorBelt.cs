@@ -10,13 +10,19 @@ public enum moveType
 
 public class ConveyorBelt : BasicBuilding
 {
+    #region Variables
     [Header("ConveyorBelt")]
 
     [Space(10)]
 
     public moveType moveType;
+    #endregion
 
-    public void CarryTrailer()
+    #region Functions
+    /// <summary>
+    /// 트레일러로 물건을 운반하는 함수
+    /// </summary>
+    public void CarryItem()
     {
         switch (moveType)
         {
@@ -29,17 +35,26 @@ public class ConveyorBelt : BasicBuilding
         }
     }
 
+    /// <summary>
+    /// 직선으로 운반을 처리하는 함수
+    /// </summary>
     public void CarryInStraight()
     {
 
     }
 
+    /// <summary>
+    /// 곡선으로 운반을 처리하는 함수
+    /// </summary>
     public void CarryInCurve()
     {
 
     }
 
-    public void ChangeAnimSpeed()
+    /// <summary>
+    /// 트레일러의 방향을 바꾸는 함수
+    /// </summary>
+    public void ChangeTrailerDirection()
     {
         if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
             ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
@@ -53,4 +68,5 @@ public class ConveyorBelt : BasicBuilding
             transform.Find("Sprite").GetComponent<Animator>().SetFloat("Speed", -1);
         }
     }
+    #endregion
 }

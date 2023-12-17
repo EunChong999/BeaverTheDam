@@ -1,9 +1,7 @@
 
-
-
-
 public class ConveyorBeltBuilding : ConveyorBelt
 {
+    #region Events
     private void OnMouseDown()
     {
         DirectRotation();
@@ -17,10 +15,12 @@ public class ConveyorBeltBuilding : ConveyorBelt
     private void Update()
     {
         ChangeSprite();
+        ChangeTrailerDirection();
     }
 
     private void LateUpdate()
     {
         LookCameraRotation();
     }
+    #endregion
 }

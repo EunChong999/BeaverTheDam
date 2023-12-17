@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BasicBuilding : MonoBehaviour
 {
+    #region Variables
     [Header("BasicBuilding")]
 
     [Space(10)]
@@ -21,7 +22,9 @@ public class BasicBuilding : MonoBehaviour
     [HideInInspector] public Vector3 originScale;
 
     Sequence scaleSequence;
+    #endregion
 
+    #region Functions
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
@@ -91,4 +94,5 @@ public class BasicBuilding : MonoBehaviour
     {
         isRotating = false;
     }
+    #endregion
 }
