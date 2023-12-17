@@ -2,7 +2,7 @@
 
 
 
-public class ConveyorBeltBuilding : BasicBuilding
+public class ConveyorBeltBuilding : ConveyorBelt
 {
     private void OnMouseDown()
     {

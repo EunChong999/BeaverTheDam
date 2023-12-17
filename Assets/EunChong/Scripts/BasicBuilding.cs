@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class BasicBuilding : MonoBehaviour
 {
+    [Header("BasicBuilding")]
+
+    [Space(10)]
+
     public float rotationTime;
 
     [SerializeField] Ease rotationEase;
@@ -68,21 +72,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ChangeSprite()
     {
-        if ((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) 
-        { transform.Find("ConveyorBelt_0 (0)").gameObject.SetActive(true); }
-        else { transform.Find("ConveyorBelt_0 (0)").gameObject.SetActive(false); }
-
-        if ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) 
-        { transform.Find("ConveyorBelt_0 (1)").gameObject.SetActive(true); }
-        else { transform.Find("ConveyorBelt_0 (1)").gameObject.SetActive(false); }
-
-        if ((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270) 
-        { transform.Find("ConveyorBelt_0 (2)").gameObject.SetActive(true); }
-        else { transform.Find("ConveyorBelt_0 (2)").gameObject.SetActive(false); }
-
-        if ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360) 
-        { transform.Find("ConveyorBelt_0 (3)").gameObject.SetActive(true); }
-        else { transform.Find("ConveyorBelt_0 (3)").gameObject.SetActive(false); }
+        transform.Find("Sprite").GetComponent<Animator>().SetFloat("Angle", transform.eulerAngles.y);
     }
 
     /// <summary>
@@ -100,6 +90,5 @@ public class BasicBuilding : MonoBehaviour
     public void ApplyChangedValue()
     {
         isRotating = false;
-        transform.localScale = originScale;
     }
 }
