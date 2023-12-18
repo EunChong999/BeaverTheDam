@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum moveType
+{
+    straight,
+    curve
+}
+
 public class BasicBuilding : MonoBehaviour
 {
     #region Variables
@@ -26,6 +32,7 @@ public class BasicBuilding : MonoBehaviour
     [HideInInspector] public Point pointClass;
 
     public bool canMove;
+    public moveType moveType;
 
     Sequence scaleSequence;
     Vector3 targetRotation;
@@ -110,6 +117,22 @@ public class BasicBuilding : MonoBehaviour
     public void CheckCanMove()
     {
         canMove = pointClass.canMove;
+    }
+
+    /// <summary>
+    /// 트레일러의 타입을 선택하는 함수
+    /// </summary>
+    public void SelectTrailerType()
+    {
+        switch (moveType)
+        {
+            case moveType.straight:
+                spriteAnimator.SetBool("IsStraight", true);
+                break;
+            case moveType.curve:
+                spriteAnimator.SetBool("IsStraight", false);
+                break;
+        }
     }
     #endregion
 }

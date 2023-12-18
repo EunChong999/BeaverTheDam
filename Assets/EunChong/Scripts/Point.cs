@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Point : MonoBehaviour
 {
+    [SerializeField] LayerMask layerMask;
+
     public bool canMove { get; private set; }
 
     void Update()
@@ -13,7 +15,7 @@ public class Point : MonoBehaviour
 
     public void CanMove()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, 0.9f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, 0.9f, layerMask))
         {
             if ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straight && 
                 (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y) ||

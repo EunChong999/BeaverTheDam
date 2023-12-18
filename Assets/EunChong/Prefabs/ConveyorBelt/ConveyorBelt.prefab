@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3220860710492892668}
   - component: {fileID: 9082610978327285299}
   - component: {fileID: 2087671219231262178}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508920cdff51b3a4c8c6ea3efbba0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0
