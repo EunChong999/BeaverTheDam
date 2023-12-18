@@ -28,6 +28,7 @@ public class BasicBuilding : MonoBehaviour
     public bool canMove;
 
     Sequence scaleSequence;
+    Vector3 targetRotation;
     #endregion
 
     #region Functions
@@ -41,7 +42,7 @@ public class BasicBuilding : MonoBehaviour
             RotateTransform();
             ShowEffect();
 
-            Invoke(nameof(ApplyChangedValue), rotationTime);
+            Invoke(nameof(InitToOriginValue), rotationTime);
 
             isRotating = true;
         }
@@ -72,7 +73,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ShowEffect()
     {
-        scaleSequence = DOTween.Sequence().SetAutoKill(false)
+        scaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(transform.DOScale(new Vector3(transform.localScale.x / 1.5f, transform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(transform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
     }
@@ -90,18 +91,22 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void RotateTransform()
     {
-        Vector3 targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
+        targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
         transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
     }
 
     /// <summary>
-    /// 회전을 통해 변한 값을 적용하는 함수
+    /// 회전을 통해 변한 값을 초기화하는 함수
     /// </summary>
-    public void ApplyChangedValue()
+    public void InitToOriginValue()
     {
         isRotating = false;
+        transform.eulerAngles = targetRotation;
     }
 
+    /// <summary>
+    /// 다음으로 이동할 수 있는지 확인하는 함수
+    /// </summary>
     public void CheckCanMove()
     {
         canMove = pointClass.canMove;
