@@ -28,10 +28,10 @@ public class ConveyorBelt : BasicBuilding
         switch (moveType)
         {
             case moveType.straight:
-                animator.SetBool("IsStraight", true);
+                spriteAnimator.SetBool("IsStraight", true);
                 break;
             case moveType.curve:
-                animator.SetBool("IsStraight", false);
+                spriteAnimator.SetBool("IsStraight", false);
                 break;
         }
     }
@@ -80,13 +80,13 @@ public class ConveyorBelt : BasicBuilding
         if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
             ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
         {
-            animator.SetFloat("Speed", 1);
+            spriteAnimator.SetFloat("Speed", 1);
         }
 
         if (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270) ||
             ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360))
         {
-            animator.SetFloat("Speed", -1);
+            spriteAnimator.SetFloat("Speed", -1);
         }
     }
     #endregion

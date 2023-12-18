@@ -18,6 +18,7 @@ public class ConveyorBeltBuilding : ConveyorBelt
     {
         ChangeSprite();
         ChangeTrailerDirection();
+        CheckCanMove();
     }
 
     private void LateUpdate()

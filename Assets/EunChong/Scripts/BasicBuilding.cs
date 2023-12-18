@@ -20,7 +20,12 @@ public class BasicBuilding : MonoBehaviour
 
     [HideInInspector] public bool isRotating;
     [HideInInspector] public Vector3 originScale;
-    [HideInInspector] public Animator animator;
+    [HideInInspector] public Animator spriteAnimator;
+    [HideInInspector] public Transform spriteTransform;
+    [HideInInspector] public Transform pointTransform;
+    [HideInInspector] public Point pointClass;
+
+    public bool canMove;
 
     Sequence scaleSequence;
     #endregion
@@ -48,7 +53,10 @@ public class BasicBuilding : MonoBehaviour
     public void InitSettings()
     {
         originScale = transform.localScale;
-        animator = transform.Find("Sprite").GetComponent<Animator>();
+        spriteTransform = transform.Find("Sprite");
+        spriteAnimator = spriteTransform.GetComponent<Animator>();
+        pointTransform = transform.Find("Point");
+        pointClass = pointTransform.GetComponent<Point>();  
     }
 
     /// <summary>
@@ -56,13 +64,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void LookCameraRotation()
     {
-        foreach (Transform t in transform)
-        {
-            if (t.name == "Sprite")
-            {
-                t.LookAt(t.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
-            }
-        }
+        spriteTransform.LookAt(spriteTransform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
     }
 
     /// <summary>
@@ -80,7 +82,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ChangeSprite()
     {
-        animator.SetFloat("Angle", transform.eulerAngles.y);
+        spriteAnimator.SetFloat("Angle", transform.eulerAngles.y);
     }
 
     /// <summary>
@@ -98,6 +100,11 @@ public class BasicBuilding : MonoBehaviour
     public void ApplyChangedValue()
     {
         isRotating = false;
+    }
+
+    public void CheckCanMove()
+    {
+        canMove = pointClass.canMove;
     }
     #endregion
 }
