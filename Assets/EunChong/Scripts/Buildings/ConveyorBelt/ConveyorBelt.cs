@@ -19,6 +19,23 @@ public class ConveyorBelt : BasicBuilding
     #endregion
 
     #region Functions
+
+    /// <summary>
+    /// 트레일러의 타입을 선택하는 함수
+    /// </summary>
+    public void SelectTrailerType()
+    {
+        switch (moveType)
+        {
+            case moveType.straight:
+                animator.SetBool("IsStraight", true);
+                break;
+            case moveType.curve:
+                animator.SetBool("IsStraight", false);
+                break;
+        }
+    }
+
     /// <summary>
     /// 트레일러로 물건을 운반하는 함수
     /// </summary>
@@ -27,10 +44,10 @@ public class ConveyorBelt : BasicBuilding
         switch (moveType)
         {
             case moveType.straight:
-                CarryInStraight();
+                StartCoroutine(CarryInStraight());
                 break;
             case moveType.curve:
-                CarryInCurve();
+                StartCoroutine(CarryInCurve());
                 break;
         }
     }
@@ -38,17 +55,21 @@ public class ConveyorBelt : BasicBuilding
     /// <summary>
     /// 직선으로 운반을 처리하는 함수
     /// </summary>
-    public void CarryInStraight()
+    IEnumerator CarryInStraight()
     {
-        transform.Find("Sprite").GetComponent<Animator>().SetBool("IsStraight", true);
+        Debug.Log("CarryInStraight");
+
+        yield return null;
     }
 
     /// <summary>
     /// 곡선으로 운반을 처리하는 함수
     /// </summary>
-    public void CarryInCurve()
+    IEnumerator CarryInCurve()
     {
-        transform.Find("Sprite").GetComponent<Animator>().SetBool("IsStraight", false);
+        Debug.Log("CarryInCurve");
+
+        yield return null;
     }
 
     /// <summary>
@@ -59,13 +80,13 @@ public class ConveyorBelt : BasicBuilding
         if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
             ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
         {
-            transform.Find("Sprite").GetComponent<Animator>().SetFloat("Speed", 1);
+            animator.SetFloat("Speed", 1);
         }
 
         if (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270) ||
             ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360))
         {
-            transform.Find("Sprite").GetComponent<Animator>().SetFloat("Speed", -1);
+            animator.SetFloat("Speed", -1);
         }
     }
     #endregion

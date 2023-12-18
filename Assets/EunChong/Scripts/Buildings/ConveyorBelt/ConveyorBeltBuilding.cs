@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class ConveyorBeltBuilding : ConveyorBelt
 {
@@ -9,7 +10,8 @@ public class ConveyorBeltBuilding : ConveyorBelt
 
     private void Start()
     {
-        InitTransformScale();
+        InitSettings();
+        SelectTrailerType();
     }
 
     private void Update()
@@ -18,14 +20,17 @@ public class ConveyorBeltBuilding : ConveyorBelt
         ChangeTrailerDirection();
     }
 
-    private void FixedUpdate()
-    {
-        CarryItem();
-    }
-
     private void LateUpdate()
     {
         LookCameraRotation();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            CarryItem();
+        }
     }
     #endregion
 }

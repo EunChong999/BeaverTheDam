@@ -20,6 +20,7 @@ public class BasicBuilding : MonoBehaviour
 
     [HideInInspector] public bool isRotating;
     [HideInInspector] public Vector3 originScale;
+    [HideInInspector] public Animator animator;
 
     Sequence scaleSequence;
     #endregion
@@ -42,11 +43,12 @@ public class BasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// 트랜스폼의 스케일을 최초로 초기화하는 함수
+    /// 회전을 위한 설정들을 초기화하는 함수
     /// </summary>
-    public void InitTransformScale()
+    public void InitSettings()
     {
         originScale = transform.localScale;
+        animator = transform.Find("Sprite").GetComponent<Animator>();
     }
 
     /// <summary>
@@ -56,7 +58,10 @@ public class BasicBuilding : MonoBehaviour
     {
         foreach (Transform t in transform)
         {
-            t.LookAt(t.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+            if (t.name == "Sprite")
+            {
+                t.LookAt(t.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+            }
         }
     }
 
@@ -75,7 +80,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ChangeSprite()
     {
-        transform.Find("Sprite").GetComponent<Animator>().SetFloat("Angle", transform.eulerAngles.y);
+        animator.SetFloat("Angle", transform.eulerAngles.y);
     }
 
     /// <summary>
