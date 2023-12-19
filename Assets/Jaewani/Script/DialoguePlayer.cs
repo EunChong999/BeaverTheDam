@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialoguePlayer : MonoBehaviour
 {
+    #region Variable
     [Header("UI")]
     public SpriteRenderer speakerSpriteRenederer;
+
+    public TextMeshProUGUI dialogueNameText;
+    public TextMeshProUGUI dialogueText;
 
     [Header("Infomation")]
     public bool isPlaying = false;
@@ -15,10 +20,14 @@ public class DialoguePlayer : MonoBehaviour
     public int maxIndex;
 
     private List<Dialogue> playingDialogue;
+    #endregion
+
+    #region Function
 
     private void Start()
     {
         StartCoroutine(FadeOut(1, speakerSpriteRenederer));
+        StartDialogue(DialogueManager.instance.dialogues);
     }
 
     public void StartDialogue(List<Dialogue> dialogues)
@@ -32,17 +41,61 @@ public class DialoguePlayer : MonoBehaviour
 
         StartCoroutine(PlayDialogue(0));
     }
+
     public void EndDialogue()
     {
         isPlaying = false;
     }
     private IEnumerator PlayDialogue(int index)
     {
+
+
         Dialogue dialogue = playingDialogue[index];
 
-        if (dialogue.speakerSprite != null) Debug.Log("юс╫ц");
+        bool isNext = false;
+        bool isTyping = dialogue.isTyping;
+        bool haveCallBack = dialogue.haveCallBack;
 
-        yield return null;
+        dialogueNameText.text = dialogue.speakerName;
+        dialogueText.text = "";
+
+        if(haveCallBack) dialogue.dialogueCallBack.OnStart.Invoke();
+
+        if (index + 1 < playingDialogue.Count) isNext = true;
+        else isNext = false;
+
+        if (dialogue.speakerSprite != null) speakerSpriteRenederer.sprite = dialogue.speakerSprite;
+
+        if (isTyping)
+        {
+            
+            char[] text = dialogue.speakerText.ToCharArray();
+            WaitForSeconds seconds = new WaitForSeconds(dialogue.typingSpeed);
+            foreach (var item in text)
+            {
+                dialogueText.text += item;
+                yield return seconds;
+            }
+        }
+        else dialogueText.text = dialogue.speakerText;
+
+        if (isNext)
+        {
+            while (true)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    StartCoroutine(PlayDialogue(index + 1));
+                    break;
+                }
+                yield return null;
+            }
+            if(haveCallBack) dialogue.dialogueCallBack.OnEnd.Invoke();
+        }
+        else
+        {
+            if (haveCallBack) dialogue.dialogueCallBack.OnEnd.Invoke();
+        }
     }
 
     private IEnumerator FadeIn(float speed, SpriteRenderer spriteRenderer)
@@ -71,4 +124,5 @@ public class DialoguePlayer : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 }

@@ -7,10 +7,12 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue
 {
-    private DialogueCallBack dialogueCallBack;
+    #region Variable
+    public DialogueCallBack dialogueCallBack;
 
     [HideInInspector]
     public bool haveCallBack = false;
+    public bool isTyping;
 
     public string speakerText;
     public string speakerName;
@@ -18,7 +20,9 @@ public class Dialogue
     public Sprite speakerSprite;
 
     public float typingSpeed;
+    #endregion
 
+    #region Function
     public void InitCallBack()
     {
         haveCallBack = true;
@@ -32,6 +36,7 @@ public class Dialogue
         if (haveCallBack) dialogueCallBack.AddOnStart(action);
         else Debug.LogError("Dialogue Call Back이 등록되지 않았습니다. \n 'InitCallBack' 함수를 먼저 호출해주세요.");
     }
+    #endregion 
 }
 
 public class DialogueManager : MonoBehaviour
