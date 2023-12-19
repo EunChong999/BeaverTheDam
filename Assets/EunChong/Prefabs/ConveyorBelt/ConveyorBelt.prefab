@@ -100,6 +100,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  isThereItem: 0
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -183,6 +184,7 @@ MonoBehaviour:
   pointClass: {fileID: 0}
   canMove: 0
   moveType: 0
+  isCarrying: 0
 --- !u!65 &2076708097867504305
 BoxCollider:
   m_ObjectHideFlags: 0

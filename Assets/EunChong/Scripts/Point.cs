@@ -7,6 +7,7 @@ public class Point : MonoBehaviour
     [SerializeField] LayerMask layerMask;
 
     public bool canMove { get; private set; }
+    public bool isThereItem;
 
     void Update()
     {
@@ -19,8 +20,10 @@ public class Point : MonoBehaviour
         {
             if ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straight && 
                 (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y) ||
+
                 (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
                 (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 90) ||
+
                 (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
                 (int)hitInfo.transform.eulerAngles.y == 0 &&
                 (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270))
@@ -38,6 +41,15 @@ public class Point : MonoBehaviour
         {
             canMove = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Item"))
+        {
+            Debug.Log("IsThereItem");
+            isThereItem = true;
         }
     }
 }

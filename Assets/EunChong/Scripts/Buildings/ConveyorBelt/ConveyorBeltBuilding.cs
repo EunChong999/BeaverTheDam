@@ -21,17 +21,14 @@ public class ConveyorBeltBuilding : ConveyorBelt
         CheckCanMove();
     }
 
+    private void FixedUpdate()
+    {
+        CarryItem();
+    }
+
     private void LateUpdate()
     {
         LookCameraRotation();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Item"))
-        {
-            CarryItem();
-        }
     }
     #endregion
 }
