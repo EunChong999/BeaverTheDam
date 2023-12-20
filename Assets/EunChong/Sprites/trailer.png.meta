@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 2ada9414e988eec4f8c2ebfcb7a33f82
+guid: 2c98d9f85b0294347ae167dc6a953c3e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
-    sRGBTexture: 1
+    enableMipMap: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -52,9 +52,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -74,7 +74,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -119,24 +119,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: trailer_png_0
+      name: trailer_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,20 +131,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93e75312a71e5ae48a75f01388fff642
-      internalID: 9640567
+      spriteID: 97c19f9ab98ef4b4fa1fd20dfc1b509b
+      internalID: 1136693178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_1
+      name: trailer_1
       rect:
         serializedVersion: 2
         x: 32
@@ -165,20 +152,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f129133a7ac179548a476c9fea3a3435
-      internalID: 566498738
+      spriteID: 0c03629191786724885b9c52ad0ac1e2
+      internalID: 1380203507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_2
+      name: trailer_2
       rect:
         serializedVersion: 2
         x: 64
@@ -186,20 +173,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f58be06e6823caf4a96dbd83dce612cb
-      internalID: 1134268674
+      spriteID: f5a9438dcf9860743a3fee877cf35ee4
+      internalID: 351469063
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_3
+      name: trailer_3
       rect:
         serializedVersion: 2
         x: 96
@@ -207,20 +194,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05ab7001870349e44a14af2307755889
-      internalID: 2106231948
+      spriteID: 5520f3226629ad349a28f180a5a4135c
+      internalID: 1188399520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_4
+      name: trailer_4
       rect:
         serializedVersion: 2
         x: 128
@@ -228,20 +215,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fad8e92dc0fb0d442a8b1e56a3e0a5ac
-      internalID: 1441625399
+      spriteID: 9843fdf3a96ec814cb24b3e28eb1e023
+      internalID: 1549089275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_5
+      name: trailer_5
       rect:
         serializedVersion: 2
         x: 0
@@ -249,20 +236,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2e2dc71e14332cb4db37317aa16749ec
-      internalID: 484587456
+      spriteID: 45c0b5bc061b81f4096e64a65bb1e08b
+      internalID: 1212526273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_6
+      name: trailer_6
       rect:
         serializedVersion: 2
         x: 32
@@ -270,20 +257,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfa4ced653c3099479580d1e0e84f7f0
-      internalID: -1231203350
+      spriteID: d770b0e11ea4044489068fb11b336b38
+      internalID: -1329163023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_7
+      name: trailer_7
       rect:
         serializedVersion: 2
         x: 64
@@ -291,20 +278,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f8457556444eb84794a581c7dd0deaa
-      internalID: -1950642411
+      spriteID: fdbec73e9eeb44b4dbcc2c43426bd6b9
+      internalID: 1643605927
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_8
+      name: trailer_8
       rect:
         serializedVersion: 2
         x: 96
@@ -312,20 +299,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bff8879736557d842931c73d17de51c2
-      internalID: 2054621527
+      spriteID: 0c6f889fafbe9cf428d4d5c82d3c4f95
+      internalID: 1134167650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_9
+      name: trailer_9
       rect:
         serializedVersion: 2
         x: 128
@@ -333,20 +320,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a0ca67233bc5784eb82dd661f09f3b8
-      internalID: 1595217342
+      spriteID: f34bd92658a089241b8114db53878f69
+      internalID: 2013836662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_10
+      name: trailer_10
       rect:
         serializedVersion: 2
         x: 0
@@ -354,20 +341,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6668dee0c2c1b8842ad62ec3f2670391
-      internalID: 1664750967
+      spriteID: 8979224d10da5504b93286588c982fe5
+      internalID: 1882022062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_11
+      name: trailer_11
       rect:
         serializedVersion: 2
         x: 32
@@ -375,20 +362,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d121f4dfc329ee4e8034bd1f1d9e052
-      internalID: 1921484306
+      spriteID: bdca5f474e3348540861717f31e8fc80
+      internalID: 187237280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_12
+      name: trailer_12
       rect:
         serializedVersion: 2
         x: 64
@@ -396,20 +383,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eee9a716e2d1ee418463e6a849384d0
-      internalID: 769129931
+      spriteID: 6d569982a68ade94a8bbe3ad9b5e988e
+      internalID: 1640732783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_13
+      name: trailer_13
       rect:
         serializedVersion: 2
         x: 96
@@ -417,20 +404,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20ea05e58aa780046960d586065ad4c1
-      internalID: 1958940556
+      spriteID: bb4d622390e2845409e43673cc2f183c
+      internalID: 1147238874
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_14
+      name: trailer_14
       rect:
         serializedVersion: 2
         x: 128
@@ -438,20 +425,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80f352e946f704d469d0878134171daa
-      internalID: -1786145855
+      spriteID: 0f25ed81d2a164549b0adbc5d193d8ed
+      internalID: 883792477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_15
+      name: trailer_15
       rect:
         serializedVersion: 2
         x: 0
@@ -459,20 +446,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bac9e6d0a7705b468818afec36ac900
-      internalID: 1029108924
+      spriteID: 8781fe0054ed0ab48a50b1150a0a7600
+      internalID: -704367235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_16
+      name: trailer_16
       rect:
         serializedVersion: 2
         x: 32
@@ -480,20 +467,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b0aefdf45399354b840d617b1179fda
-      internalID: -1010575416
+      spriteID: 775bf40f9743017418f9b06baf9cb7c5
+      internalID: -725363659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_17
+      name: trailer_17
       rect:
         serializedVersion: 2
         x: 64
@@ -501,20 +488,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da21511b023aff143af934a4c9e960d2
-      internalID: 1894853730
+      spriteID: 832749bdfc0fd1f4f8e19312bf1a423d
+      internalID: 4661551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_18
+      name: trailer_18
       rect:
         serializedVersion: 2
         x: 96
@@ -522,20 +509,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c9e2539df1abac4ca0c06b4d7754d65
-      internalID: 1463267537
+      spriteID: cfbe2db2b4719e742a7eabb6166dae5f
+      internalID: -426383292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_19
+      name: trailer_19
       rect:
         serializedVersion: 2
         x: 128
@@ -543,20 +530,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3349e000a0f76c40bb95e1fba045564
-      internalID: 1762554156
+      spriteID: 900cb6ea5cd103c46863716f03d76b52
+      internalID: -165804978
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_20
+      name: trailer_20
       rect:
         serializedVersion: 2
         x: 0
@@ -564,20 +551,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbb68aa555efa4042aec5fd8d3e3b0c5
-      internalID: 1273096262
+      spriteID: 476285d8b4f17dd429473b86bc0139fa
+      internalID: -74984842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_21
+      name: trailer_21
       rect:
         serializedVersion: 2
         x: 32
@@ -585,20 +572,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f256da6ad83c3724aa96265126780dcf
-      internalID: -1949714066
+      spriteID: 002e84aaee1cd5f46987c4ea00ca6cba
+      internalID: 839221888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_22
+      name: trailer_22
       rect:
         serializedVersion: 2
         x: 64
@@ -606,20 +593,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82b365c718c89184f8c87d9a2fb04b49
-      internalID: 841267008
+      spriteID: 0a4c1da5ae767df41ba1909b7a07958b
+      internalID: 1012355696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_23
+      name: trailer_23
       rect:
         serializedVersion: 2
         x: 96
@@ -627,20 +614,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1436a1de338cc5a4586656f33f215ffe
-      internalID: 1528874356
+      spriteID: 5a4969c143de0294b9dee642d673fa6c
+      internalID: 274552111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_24
+      name: trailer_24
       rect:
         serializedVersion: 2
         x: 128
@@ -648,20 +635,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ccfd2e095c22c8e4e83bdc5739388043
-      internalID: -572622756
+      spriteID: 3fe794e3d626510488fe0e906094325a
+      internalID: -1005968460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_25
+      name: trailer_25
       rect:
         serializedVersion: 2
         x: 0
@@ -669,20 +656,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 497af412fb8ff564eaa88296d3679837
-      internalID: 2135654176
+      spriteID: 15deba7655e57ed45aab9416905072c3
+      internalID: -222241888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_26
+      name: trailer_26
       rect:
         serializedVersion: 2
         x: 32
@@ -690,20 +677,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf3d59428e7a0714f8463952a063bd78
-      internalID: 502480798
+      spriteID: fa9d433d0d65f9844b5525ea31da2768
+      internalID: -1599404716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_27
+      name: trailer_27
       rect:
         serializedVersion: 2
         x: 64
@@ -711,20 +698,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f59e2ee90e2828d4783050e6b962f853
-      internalID: -724444597
+      spriteID: 382a461f72438b1499017a1a5eebb0f2
+      internalID: 23054496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_28
+      name: trailer_28
       rect:
         serializedVersion: 2
         x: 96
@@ -732,20 +719,20 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d8413db38b1bb54d8c1cc6429c8bdd7
-      internalID: 1802128775
+      spriteID: 36be5f563d58870409badda44afd4d6d
+      internalID: -1205921952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: trailer_png_29
+      name: trailer_29
       rect:
         serializedVersion: 2
         x: 128
@@ -753,14 +740,14 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bae9fe04db188ac428df9eaab03ea56a
-      internalID: 1193372611
+      spriteID: 221e43462b482974792847ad0c5436a8
+      internalID: 321186739
       vertices: []
       indices: 
       edges: []
@@ -774,40 +761,38 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 2c98d9f85b0294347ae167dc6a953c3e, type: 3}
-      name: _NormalMap
+    secondaryTextures: []
     nameFileIdTable:
-      trailer_png_0: 9640567
-      trailer_png_1: 566498738
-      trailer_png_10: 1664750967
-      trailer_png_11: 1921484306
-      trailer_png_12: 769129931
-      trailer_png_13: 1958940556
-      trailer_png_14: -1786145855
-      trailer_png_15: 1029108924
-      trailer_png_16: -1010575416
-      trailer_png_17: 1894853730
-      trailer_png_18: 1463267537
-      trailer_png_19: 1762554156
-      trailer_png_2: 1134268674
-      trailer_png_20: 1273096262
-      trailer_png_21: -1949714066
-      trailer_png_22: 841267008
-      trailer_png_23: 1528874356
-      trailer_png_24: -572622756
-      trailer_png_25: 2135654176
-      trailer_png_26: 502480798
-      trailer_png_27: -724444597
-      trailer_png_28: 1802128775
-      trailer_png_29: 1193372611
-      trailer_png_3: 2106231948
-      trailer_png_4: 1441625399
-      trailer_png_5: 484587456
-      trailer_png_6: -1231203350
-      trailer_png_7: -1950642411
-      trailer_png_8: 2054621527
-      trailer_png_9: 1595217342
+      trailer_0: 1136693178
+      trailer_1: 1380203507
+      trailer_10: 1882022062
+      trailer_11: 187237280
+      trailer_12: 1640732783
+      trailer_13: 1147238874
+      trailer_14: 883792477
+      trailer_15: -704367235
+      trailer_16: -725363659
+      trailer_17: 4661551
+      trailer_18: -426383292
+      trailer_19: -165804978
+      trailer_2: 351469063
+      trailer_20: -74984842
+      trailer_21: 839221888
+      trailer_22: 1012355696
+      trailer_23: 274552111
+      trailer_24: -1005968460
+      trailer_25: -222241888
+      trailer_26: -1599404716
+      trailer_27: 23054496
+      trailer_28: -1205921952
+      trailer_29: 321186739
+      trailer_3: 1188399520
+      trailer_4: 1549089275
+      trailer_5: 1212526273
+      trailer_6: -1329163023
+      trailer_7: 1643605927
+      trailer_8: 1134167650
+      trailer_9: 2013836662
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
