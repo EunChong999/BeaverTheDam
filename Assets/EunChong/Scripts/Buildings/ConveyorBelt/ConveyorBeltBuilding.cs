@@ -21,11 +21,6 @@ public class ConveyorBeltBuilding : ConveyorBelt
         CheckCanMove();
     }
 
-    private void FixedUpdate()
-    {
-        CarryItem();
-    }
-
     private void LateUpdate()
     {
         LookCameraRotation();

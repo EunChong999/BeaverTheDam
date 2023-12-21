@@ -36,13 +36,27 @@ public class BasicBuilding : MonoBehaviour
 
     Sequence scaleSequence;
     Vector3 targetRotation;
+    float desiredDuration = 3;
+    float elapsedTime;
     #endregion
 
     #region Functions
     /// <summary>
+    /// 회전을 위한 설정들을 초기화하는 함수
+    /// </summary>
+    protected void InitSettings()
+    {
+        originScale = transform.localScale;
+        spriteTransform = transform.Find("Sprite");
+        spriteAnimator = spriteTransform.GetComponent<Animator>();
+        pointTransform = transform.Find("Point");
+        pointClass = pointTransform.GetComponent<Point>();
+    }
+
+    /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation()
+    protected void DirectRotation()
     {
         if (!isRotating)
         {
@@ -56,21 +70,9 @@ public class BasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// 회전을 위한 설정들을 초기화하는 함수
-    /// </summary>
-    public void InitSettings()
-    {
-        originScale = transform.localScale;
-        spriteTransform = transform.Find("Sprite");
-        spriteAnimator = spriteTransform.GetComponent<Animator>();
-        pointTransform = transform.Find("Point");
-        pointClass = pointTransform.GetComponent<Point>();  
-    }
-
-    /// <summary>
     /// 카메라를 바라보는 함수
     /// </summary>
-    public void LookCameraRotation()
+    protected void LookCameraRotation()
     {
         spriteTransform.LookAt(spriteTransform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
     }
@@ -78,7 +80,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전시 트위닝 효과를 주는 함수
     /// </summary>
-    public void ShowEffect()
+    protected void ShowEffect()
     {
         scaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(transform.DOScale(new Vector3(transform.localScale.x / 1.5f, transform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
@@ -88,7 +90,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전각에 따라 스프라이트를 변경하는 함수
     /// </summary>
-    public void ChangeSprite()
+    protected void ChangeSprite()
     {
         spriteAnimator.SetFloat("Angle", transform.eulerAngles.y);
     }
@@ -96,7 +98,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// Transform을 회전시키는 함수
     /// </summary>
-    public void RotateTransform()
+    protected void RotateTransform()
     {
         targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
         transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
@@ -105,7 +107,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전을 통해 변한 값을 초기화하는 함수
     /// </summary>
-    public void InitToOriginValue()
+    protected void InitToOriginValue()
     {
         isRotating = false;
         transform.eulerAngles = targetRotation;
@@ -114,7 +116,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 다음으로 이동할 수 있는지 확인하는 함수
     /// </summary>
-    public void CheckCanMove()
+    protected void CheckCanMove()
     {
         canMove = pointClass.canMove;
     }
@@ -122,7 +124,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 트레일러의 타입을 선택하는 함수
     /// </summary>
-    public void SelectTrailerType()
+    protected void SelectTrailerType()
     {
         switch (moveType)
         {
