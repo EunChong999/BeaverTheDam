@@ -13,6 +13,6 @@ public class Item : MonoBehaviour
 
     public void UnMove()
     {
-        isMoving = true;
+        isMoving = false;
     }
 }
