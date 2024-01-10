@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class Point : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
-    [SerializeField] float moveTime;
+    [SerializeField] float moveSpeed;
 
     public bool canMove { get; private set; }
 
@@ -71,15 +71,9 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
-        float current = 0;
-        float percent = 0;
-
-        while (percent < 1) 
+        while (itemTransform.position != hitTransform.position) 
         {
-            current += Time.deltaTime;
-            percent = current / moveTime;
-
-            itemTransform.position = Vector3.Lerp(itemTransform.position, hitTransform.position, percent);
+            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.deltaTime * moveSpeed);
 
             yield return null;
         }

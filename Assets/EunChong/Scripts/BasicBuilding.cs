@@ -39,7 +39,6 @@ public class BasicBuilding : MonoBehaviour
     float desiredDuration = 3;
     float elapsedTime;
     #endregion
-
     #region Functions
     /// <summary>
     /// 회전을 위한 설정들을 초기화하는 함수
