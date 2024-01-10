@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Progress;
 
 public class Point : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Point : MonoBehaviour
     [SerializeField] float moveSpeed;
 
     public bool canMove { get; private set; }
+    public bool isItemExist { get; private set; }
 
     Transform itemTransform;
     Transform hitTransform;
@@ -23,7 +25,7 @@ public class Point : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, 0.9f, layerMask))
         {
             if (// 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
-                (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straight && 
+                ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straight &&
                 (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y) ||
 
                 // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
@@ -31,10 +33,10 @@ public class Point : MonoBehaviour
                 (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 90) ||
 
                 // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
-                (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
+                hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
                 (int)hitInfo.transform.eulerAngles.y == 0 &&
-                (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270))
-            {
+                (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270)) 
+            {                
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
@@ -49,6 +51,24 @@ public class Point : MonoBehaviour
         {
             canMove = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+        }
+    }
+
+    private void OnTriggerEnter(Collider item)
+    {
+        if (item.CompareTag("Item"))
+        {
+            isItemExist = true;
+            Debug.Log("접근");
+        }
+    }
+
+    private void OnTriggerExit(Collider item)
+    {
+        if (item.CompareTag("Item"))
+        {
+            isItemExist = false;
+            Debug.Log("탈출");
         }
     }
 

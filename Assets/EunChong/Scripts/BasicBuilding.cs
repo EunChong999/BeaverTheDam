@@ -32,6 +32,7 @@ public class BasicBuilding : MonoBehaviour
     [HideInInspector] public Point pointClass;
 
     public bool canMove;
+    public bool isItemExist;
     public moveType moveType;
 
     Sequence scaleSequence;
@@ -113,11 +114,19 @@ public class BasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// 다음으로 이동할 수 있는지 확인하는 함수
+    /// 다음 포인트로 이동할 수 있는지 확인하는 함수
     /// </summary>
     protected void CheckCanMove()
     {
         canMove = pointClass.canMove;
+    }
+
+    /// <summary>
+    /// 포인트 위에 아이템이 존재하는지 확인하는 함수
+    /// </summary>
+    protected void CheckIsItemExist()
+    {
+        isItemExist = pointClass.isItemExist;
     }
 
     /// <summary>
