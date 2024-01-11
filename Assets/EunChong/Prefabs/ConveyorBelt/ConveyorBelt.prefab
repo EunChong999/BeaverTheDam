@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3901889093625719425}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 1
+  moveSpeed: 2.5
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
   pointTransform: {fileID: 0}
   pointClass: {fileID: 0}
   canMove: 0
+  isItemExist: 0
   moveType: 0
 --- !u!65 &2076708097867504305
 BoxCollider:
