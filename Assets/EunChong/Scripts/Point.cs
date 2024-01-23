@@ -90,7 +90,7 @@ public class Point : MonoBehaviour
 
         while (Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
         {
-            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.fixedDeltaTime * Time.deltaTime * moveSpeed);
+            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.deltaTime * moveSpeed);
             yield return null;
         }
 
