@@ -100,7 +100,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 2.5
+  moveSpeed: 100
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0

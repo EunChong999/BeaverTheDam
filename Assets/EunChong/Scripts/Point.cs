@@ -56,7 +56,6 @@ public class Point : MonoBehaviour
         if (item.CompareTag("Item"))
         {
             isItemExist = true;
-            Debug.Log("접근");
         }
     }
 
@@ -65,7 +64,6 @@ public class Point : MonoBehaviour
         if (item.CompareTag("Item"))
         {
             isItemExist = false;
-            Debug.Log("탈출");
         }
     }
 
@@ -88,15 +86,17 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
-        while (itemTransform.position != hitTransform.position) 
-        {
-            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.deltaTime * moveSpeed);
+        float threshold = 0.01f; // 조정 필요한 보정값
 
+        while (Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
+        {
+            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.fixedDeltaTime * Time.deltaTime * moveSpeed);
             yield return null;
         }
 
-        Debug.Log("목표 위치 도착");
-
+        // 보정값 적용 후 도착한 지점에 대한 추가 작업 수행
+        itemTransform.position = hitTransform.position;
         itemTransform.GetComponent<Item>().UnMove();
     }
+
 }
