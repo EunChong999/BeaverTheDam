@@ -98,5 +98,4 @@ public class Point : MonoBehaviour
         itemTransform.position = hitTransform.position;
         itemTransform.GetComponent<Item>().UnMove();
     }
-
 }
