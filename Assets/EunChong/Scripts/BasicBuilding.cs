@@ -17,6 +17,13 @@ public class BasicBuilding : MonoBehaviour
     [Space(10)]
 
     public float rotationTime;
+    public Transform spriteTransform;
+    public Transform pointTransform;
+    public GameObject directionObj;
+    public bool isRotating;
+    public bool canMove;
+    public bool isItemExist;
+    public moveType moveType;
 
     [SerializeField] Ease rotationEase;
     [SerializeField] float startScaleTime;
@@ -24,21 +31,14 @@ public class BasicBuilding : MonoBehaviour
     [SerializeField] Ease startScaleEase;
     [SerializeField] Ease endScaleEase;
 
-    [HideInInspector] public bool isRotating;
     [HideInInspector] public Vector3 originScale;
     [HideInInspector] public Animator spriteAnimator;
-    [HideInInspector] public Transform spriteTransform;
-    [HideInInspector] public Transform pointTransform;
-    [HideInInspector] public Point pointClass;
+    [HideInInspector] public Point point;
 
-    public bool canMove;
-    public bool isItemExist;
-    public moveType moveType;
-
+    WaitForSeconds waitForSeconds;
     Sequence scaleSequence;
     Vector3 targetRotation;
-    float desiredDuration = 3;
-    float elapsedTime;
+
     #endregion
     #region Functions
     /// <summary>
@@ -46,11 +46,12 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void InitSettings()
     {
+        waitForSeconds = new WaitForSeconds(rotationTime);
         originScale = transform.localScale;
         spriteTransform = transform.Find("Sprite");
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         pointTransform = transform.Find("Point");
-        pointClass = pointTransform.GetComponent<Point>();
+        point = pointTransform.GetComponent<Point>();
     }
 
     /// <summary>
@@ -62,8 +63,7 @@ public class BasicBuilding : MonoBehaviour
         {
             RotateTransform();
             ShowEffect();
-
-            Invoke(nameof(InitToOriginValue), rotationTime);
+            StartCoroutine(InitToOriginValue());
 
             isRotating = true;
         }
@@ -107,8 +107,9 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전을 통해 변한 값을 초기화하는 함수
     /// </summary>
-    protected void InitToOriginValue()
+    IEnumerator InitToOriginValue()
     {
+        yield return waitForSeconds;
         isRotating = false;
         transform.eulerAngles = targetRotation;
     }
@@ -118,7 +119,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void CheckCanMove()
     {
-        canMove = pointClass.canMove;
+        canMove = point.canMove;
     }
 
     /// <summary>
@@ -126,13 +127,13 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void CheckIsItemExist()
     {
-        isItemExist = pointClass.isItemExist;
+        isItemExist = point.isItemExist;
     }
 
     /// <summary>
     /// 트레일러의 타입을 선택하는 함수
     /// </summary>
-    protected void SelectTrailerType()
+    protected void SetTrailerType()
     {
         switch (moveType)
         {
@@ -144,5 +145,18 @@ public class BasicBuilding : MonoBehaviour
                 break;
         }
     }
+
+    protected void SetArrowDirection()
+    {
+        if (isRotating)
+        {
+            directionObj.SetActive(false);
+        }
+        else
+        {
+            directionObj.SetActive(true);
+        }
+    }
+
     #endregion
 }

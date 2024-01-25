@@ -11,11 +11,12 @@ public class ConveyorBeltBuilding : ConveyorBelt
     private void Start()
     {
         InitSettings();
-        SelectTrailerType();
+        SetTrailerType();
     }
 
     private void Update()
     {
+        SetArrowDirection();
         ChangeSprite();
         ChangeTrailerDirection();
         CheckCanMove();
