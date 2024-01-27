@@ -10,7 +10,7 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     protected void ChangeTrailerDirection()
     {
-        if (canMove)
+        if (canPlay)
         {
             if (moveType == moveType.straight)
             {

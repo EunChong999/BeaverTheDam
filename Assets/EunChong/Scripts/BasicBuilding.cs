@@ -22,6 +22,7 @@ public class BasicBuilding : MonoBehaviour
     public GameObject directionObj;
     public bool isRotating;
     public bool canMove;
+    public bool canPlay;
     public bool isItemExist;
     public moveType moveType;
 
@@ -120,6 +121,7 @@ public class BasicBuilding : MonoBehaviour
     protected void CheckCanMove()
     {
         canMove = point.canMove;
+        canPlay = point.canPlay;
     }
 
     /// <summary>

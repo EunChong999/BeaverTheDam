@@ -16,11 +16,11 @@ public class ConveyorBeltBuilding : ConveyorBelt
 
     private void Update()
     {
+        CheckCanMove();
+        CheckIsItemExist();
         SetArrowDirection();
         ChangeSprite();
         ChangeTrailerDirection();
-        CheckCanMove();
-        CheckIsItemExist();
     }
 
     private void LateUpdate()

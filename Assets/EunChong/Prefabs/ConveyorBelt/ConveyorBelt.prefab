@@ -198,6 +198,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 2
+  maxDistance: 1
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -274,7 +275,7 @@ MonoBehaviour:
   directionObj: {fileID: 3200911467241487838}
   isRotating: 0
   canMove: 0
-  isItemExist: 0
+  isItemExist: 1
   moveType: 0
   rotationEase: 0
   startScaleTime: 0.1

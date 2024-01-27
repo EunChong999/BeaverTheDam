@@ -5,8 +5,10 @@ public class Point : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
     [SerializeField] float moveSpeed;
+    [SerializeField] float maxDistance;
 
     public bool canMove { get; private set; }
+    public bool canPlay { get; private set; }
     public bool isItemExist { get; private set; }
 
     Transform itemTransform;
@@ -19,7 +21,7 @@ public class Point : MonoBehaviour
 
     public void CanMove()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, 0.9f, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask))
         {
             if (// 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
                 ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straight &&
@@ -32,25 +34,40 @@ public class Point : MonoBehaviour
                 // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
                 hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
                 (int)hitInfo.transform.eulerAngles.y == 0 &&
-                (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270) &&
-
+                (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270))
+            {
                 // 바라보는 건물에 아이템이 존재하지 않을 때
-                !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
-            {                
-                canMove = true;
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
-                hitTransform = hitInfo.transform.GetChild(1);
+                if (!hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
+                {
+                    canMove = true;
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
+                    hitTransform = hitInfo.transform.GetChild(1);
+                }
+                else
+                {
+
+                }
+
+                canPlay = true;
             }
             else
             {
-                canMove = false;
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+                // 바라보는 건물에 아이템이 존재할 때
+                if (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
+                {
+                    canMove = false;
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+                }
+
+                canPlay = false;
             }
         }
         else
         {
             canMove = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+
+            canPlay = false;
         }
     }
 
