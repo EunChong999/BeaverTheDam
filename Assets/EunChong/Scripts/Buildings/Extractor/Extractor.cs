@@ -1,8 +1,4 @@
-
-
-
-
-public class ExtractorBuilding : BasicBuilding
+public class Extractor : BasicBuilding
 {
     // Start is called before the first frame update
     void Start()

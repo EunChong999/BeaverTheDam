@@ -23,45 +23,48 @@ public class Point : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask))
         {
-            bool IsSameDir()
+            if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
-                bool dir =
-                    // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
-                    ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straight &&
-                    (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y) ||
+                bool IsSameDir()
+                {
+                    bool dir =
+                        // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
+                        ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straightType &&
+                        (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y) ||
 
-                    // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
-                    (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
-                    (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 90) ||
+                        // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
+                        (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
+                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 90) ||
 
-                    // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
-                    hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curve &&
-                    (int)hitInfo.transform.eulerAngles.y == 0 &&
-                    (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270);
+                        // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
+                        hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
+                        (int)hitInfo.transform.eulerAngles.y == 0 &&
+                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270);
 
-                return dir;
-            }
+                    return dir;
+                }
 
-            // 바라보는 건물에 아이템이 존재하지 않을 때
-            if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
-            {
-                canMove = true;
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
-                hitTransform = hitInfo.transform.GetChild(1);
-            }
-            else
-            {
-                canMove = false;
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
-            }
+                // 바라보는 건물에 아이템이 존재하지 않을 때
+                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
+                {
+                    canMove = true;
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
+                    hitTransform = hitInfo.transform.GetChild(1);
+                }
+                else
+                {
+                    canMove = false;
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+                }
 
-            if (IsSameDir()) 
-            {
-                canPlay = true;
-            }
-            else
-            {
-                canPlay = false;
+                if (IsSameDir())
+                {
+                    canPlay = true;
+                }
+                else
+                {
+                    canPlay = false;
+                }
             }
         }
         else

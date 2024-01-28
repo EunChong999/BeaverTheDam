@@ -1,4 +1,4 @@
-public class ConveyorBeltBuilding : ConveyorBelt
+public class ExtractorBuilding : Extractor
 {
     #region Events
     private void OnMouseDown()
@@ -9,16 +9,11 @@ public class ConveyorBeltBuilding : ConveyorBelt
     private void Start()
     {
         InitSettings();
-        SetTrailerType();
     }
 
     private void Update()
     {
-        CheckCanMove();
-        CheckIsItemExist();
         SetArrowDirection();
-        ChangeSprite();
-        ChangeTrailerDirection();
     }
 
     private void LateUpdate()

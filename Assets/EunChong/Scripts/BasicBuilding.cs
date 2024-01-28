@@ -1,12 +1,11 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum moveType
+public enum buildingType
 {
-    straight,
-    curve
+    movableType,
+    fixedType
 }
 
 public class BasicBuilding : MonoBehaviour
@@ -16,15 +15,12 @@ public class BasicBuilding : MonoBehaviour
 
     [Space(10)]
 
+    public buildingType buildingType;   
     public float rotationTime;
     public Transform spriteTransform;
     public Transform pointTransform;
     public GameObject directionObj;
     public bool isRotating;
-    public bool canMove;
-    public bool canPlay;
-    public bool isItemExist;
-    public moveType moveType;
 
     [SerializeField] Ease rotationEase;
     [SerializeField] float startScaleTime;
@@ -49,10 +45,12 @@ public class BasicBuilding : MonoBehaviour
     {
         waitForSeconds = new WaitForSeconds(rotationTime);
         originScale = transform.localScale;
-        spriteTransform = transform.Find("Sprite");
         spriteAnimator = spriteTransform.GetComponent<Animator>();
-        pointTransform = transform.Find("Point");
-        point = pointTransform.GetComponent<Point>();
+
+        if (buildingType == buildingType.movableType)
+        {
+            point = pointTransform.GetComponent<Point>();
+        }
     }
 
     /// <summary>
@@ -89,14 +87,6 @@ public class BasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// 회전각에 따라 스프라이트를 변경하는 함수
-    /// </summary>
-    protected void ChangeSprite()
-    {
-        spriteAnimator.SetFloat("Angle", transform.eulerAngles.y);
-    }
-
-    /// <summary>
     /// Transform을 회전시키는 함수
     /// </summary>
     protected void RotateTransform()
@@ -116,38 +106,8 @@ public class BasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// 다음 포인트로 이동할 수 있는지 확인하는 함수
+    /// 화살표의 방향을 설정하는 함수
     /// </summary>
-    protected void CheckCanMove()
-    {
-        canMove = point.canMove;
-        canPlay = point.canPlay;
-    }
-
-    /// <summary>
-    /// 포인트 위에 아이템이 존재하는지 확인하는 함수
-    /// </summary>
-    protected void CheckIsItemExist()
-    {
-        isItemExist = point.isItemExist;
-    }
-
-    /// <summary>
-    /// 트레일러의 타입을 선택하는 함수
-    /// </summary>
-    protected void SetTrailerType()
-    {
-        switch (moveType)
-        {
-            case moveType.straight:
-                spriteAnimator.SetBool("IsStraight", true);
-                break;
-            case moveType.curve:
-                spriteAnimator.SetBool("IsStraight", false);
-                break;
-        }
-    }
-
     protected void SetArrowDirection()
     {
         if (isRotating)
