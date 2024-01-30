@@ -33,7 +33,7 @@ public class BasicBuilding : MonoBehaviour
     [HideInInspector] public Point point;
 
     WaitForSeconds waitForSeconds;
-    Sequence scaleSequence;
+    Sequence buildingScaleSequence;
     Vector3 targetRotation;
 
     #endregion
@@ -81,13 +81,18 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void ShowEffect()
     {
-        scaleSequence = DOTween.Sequence().SetAutoKill(true)
+        buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(transform.DOScale(new Vector3(transform.localScale.x / 1.5f, transform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(transform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+
+        if (pointTransform.GetComponent<Point>().itemTransform != null)
+        {
+            pointTransform.GetComponent<Point>().ShowEffect();
+        }
     }
 
     /// <summary>
-    /// Transform을 회전시키는 함수
+    /// 건물을 회전시키는 함수
     /// </summary>
     protected void RotateTransform()
     {

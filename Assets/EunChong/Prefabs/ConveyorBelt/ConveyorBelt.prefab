@@ -199,6 +199,12 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 2
   maxDistance: 1
+  startScaleTime: 0.1
+  endScaleTime: 0.5
+  startScaleEase: 3
+  endScaleEase: 24
+  originScale: {x: 2, y: 2, z: 1}
+  itemTransform: {fileID: 0}
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0

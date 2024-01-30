@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -6,13 +7,20 @@ public class Point : MonoBehaviour
     [SerializeField] LayerMask layerMask;
     [SerializeField] float moveSpeed;
     [SerializeField] float maxDistance;
+    [SerializeField] float startScaleTime;
+    [SerializeField] float endScaleTime;
+    [SerializeField] Ease startScaleEase;
+    [SerializeField] Ease endScaleEase;
+
+    public Vector3 originScale;
 
     public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
     public bool isItemExist { get; private set; }
 
-    Transform itemTransform;
+    public Transform itemTransform;
     Transform hitTransform;
+    Sequence itemScaleSequence;
 
     void Update()
     {
@@ -86,6 +94,8 @@ public class Point : MonoBehaviour
         if (item.CompareTag("Item"))
         {
             isItemExist = true;
+
+            itemTransform = item.transform;
         }
     }
 
@@ -94,6 +104,8 @@ public class Point : MonoBehaviour
         if (item.CompareTag("Item"))
         {
             isItemExist = false;
+
+            itemTransform = null;
         }
     }
 
@@ -101,8 +113,6 @@ public class Point : MonoBehaviour
     {
         if (item.CompareTag("Item"))
         {
-            itemTransform = item.transform;
-
             if (hitTransform != null && !item.GetComponent<Item>().isMoving && canMove)
             {
                 StartCoroutine(CarryItem(itemTransform, hitTransform));
@@ -127,5 +137,23 @@ public class Point : MonoBehaviour
         // 보정값 적용 후 도착한 지점에 대한 추가 작업 수행
         itemTransform.position = hitTransform.position;
         itemTransform.GetComponent<Item>().UnMove();
+    }
+
+
+    /// <summary>
+    /// 회전시 트위닝 효과를 주는 함수
+    /// </summary>
+    public void ShowEffect()
+    {
+        if (itemTransform != null)
+        {
+            itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
+            .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(new Vector3(
+                itemTransform.GetComponent<Item>().spriteTransform.localScale.x / 1.5f,
+                itemTransform.GetComponent<Item>().spriteTransform.localScale.y / 1.25f,
+                itemTransform.GetComponent<Item>().spriteTransform.localScale.z / 1.5f),
+                startScaleTime).SetEase(startScaleEase))
+            .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        }
     }
 }
