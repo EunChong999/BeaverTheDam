@@ -23,7 +23,13 @@ public class Point : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask))
         {
-            if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
+            if (transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
+            {
+                canMove = true;
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
+                canPlay = true;
+            }
+            else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
                 bool IsSameDir()
                 {
