@@ -9,12 +9,12 @@ public class ExtractorBuilding : Extractor
     private void Start()
     {
         InitSettings();
-        SendItem();
     }
 
     private void Update()
     {
         SetArrowDirection();
+        SendItem();
     }
 
     private void LateUpdate()

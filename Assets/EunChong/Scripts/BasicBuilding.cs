@@ -46,11 +46,7 @@ public class BasicBuilding : MonoBehaviour
         waitForSeconds = new WaitForSeconds(rotationTime);
         originScale = transform.localScale;
         spriteAnimator = spriteTransform.GetComponent<Animator>();
-
-        if (buildingType == buildingType.movableType)
-        {
-            point = pointTransform.GetComponent<Point>();
-        }
+        point = pointTransform.GetComponent<Point>();
     }
 
     /// <summary>

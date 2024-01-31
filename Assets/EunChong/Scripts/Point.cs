@@ -19,7 +19,7 @@ public class Point : MonoBehaviour
     public bool isItemExist { get; private set; }
 
     public Transform itemTransform;
-    Transform hitTransform;
+    public Transform hitTransform;
     Sequence itemScaleSequence;
 
     void Update()
@@ -35,7 +35,7 @@ public class Point : MonoBehaviour
             {
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
-                canPlay = true;
+                hitTransform = hitInfo.transform.GetChild(1);
             }
             else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
