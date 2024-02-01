@@ -1,13 +1,6 @@
-public enum moveType
-{
-    straightType,
-    curveType
-}
-
 public class ConveyorBelt : BasicBuilding
 {
     #region Variables
-    public moveType moveType;
     public bool canMove;
     public bool canPlay;
     public bool isItemExist;
