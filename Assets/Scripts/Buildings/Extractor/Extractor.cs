@@ -4,7 +4,9 @@ using UnityEngine;
 public class Extractor : BasicBuilding
 {
     #region Variables
-    public float journeyTime = 1.0f;
+    public float journeyTime;
+    public float delayTime;
+    public float height;
     public float speed;
     public bool repeatable;
 
@@ -15,12 +17,23 @@ public class Extractor : BasicBuilding
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
+    WaitForSeconds waitForSeconds;
 
     bool isFinished;
     bool isHitted;
 
     #endregion
     #region Functions
+    /// <summary>
+    /// 기본 설정들을 초기화하는 함수
+    /// </summary>
+    public override void InitSettings()
+    {
+        base.InitSettings();
+
+        waitForSeconds = new WaitForSeconds(delayTime);
+    }
+
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
@@ -36,7 +49,7 @@ public class Extractor : BasicBuilding
 
         if (isHitted)
         {
-            StartCoroutine(GetCenter(Vector3.up / (10 * Vector3.Distance(startPos.position, endPos.position))));
+            StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
             StartCoroutine(ThrowItem(itemTransform));
             StartCoroutine(WaitMove());
             isHitted = false;
@@ -80,7 +93,7 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected IEnumerator WaitMove()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return waitForSeconds;
 
         isFinished = true;
     }

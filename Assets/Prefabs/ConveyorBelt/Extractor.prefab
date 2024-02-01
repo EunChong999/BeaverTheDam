@@ -64,6 +64,8 @@ MonoBehaviour:
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   journeyTime: 1
+  delayTime: 0.3
+  height: 10
   speed: 2
   repeatable: 0
 --- !u!65 &1864033304223956425
