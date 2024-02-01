@@ -39,9 +39,9 @@ public class BasicBuilding : MonoBehaviour
     #endregion
     #region Functions
     /// <summary>
-    /// 회전을 위한 설정들을 초기화하는 함수
+    /// 기본 설정들을 초기화하는 함수
     /// </summary>
-    protected void InitSettings()
+    public virtual void InitSettings()
     {
         waitForSeconds = new WaitForSeconds(rotationTime);
         originScale = transform.localScale;
