@@ -8,6 +8,12 @@ public enum buildingType
     fixedType
 }
 
+public enum moveType
+{
+    straightType,
+    curveType
+}
+
 public class BasicBuilding : MonoBehaviour
 {
     #region Variables
@@ -15,7 +21,8 @@ public class BasicBuilding : MonoBehaviour
 
     [Space(10)]
 
-    public buildingType buildingType;   
+    public buildingType buildingType;
+    public moveType moveType;
     public float rotationTime;
     public Transform spriteTransform;
     public Transform pointTransform;

@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3200911467241487838}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
   m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1548437218650786973}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
 --- !u!114 &5080983479983381873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicBuilding: {fileID: 8259029153256206588}
+  sprites:
+  - {fileID: 1007977388, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: 1201659474, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: -1268431379, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: 1793703971, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: 1974008637, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: 740182762, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: -1335082452, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  - {fileID: 823892583, guid: a543734bef54d564ba44faffe84c737e, type: 3}
+  spriteTransform: {fileID: 1439644759351956998}
 --- !u!212 &8433387367658369938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -86,7 +97,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 453153872, guid: 4cc7508749a2666419304a7292351c01, type: 3}
+  m_Sprite: {fileID: 1201659474, guid: a543734bef54d564ba44faffe84c737e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -225,6 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 0
+  moveType: 0
   rotationTime: 0.15
   spriteTransform: {fileID: 1439644759351956998}
   pointTransform: {fileID: 4331647266431212208}
@@ -238,7 +250,6 @@ MonoBehaviour:
   originScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
-  moveType: 0
   canMove: 0
   canPlay: 0
   isItemExist: 1

@@ -8,7 +8,6 @@ public class Extractor : BasicBuilding
     public float delayTime;
     public float height;
     public float speed;
-    public bool repeatable;
 
     float startTime;
     Vector3 centerPoint;
@@ -79,9 +78,12 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected IEnumerator ThrowItem(Transform item)
     {
+        float time = 0;
+
         while (!isFinished && item != null)
         {
-            float fracComplete = (Time.time - startTime) / journeyTime * speed;
+            time += Time.deltaTime;
+            float fracComplete = (time - startTime) / journeyTime * speed;
             item.position = Vector3.Slerp(startRelCenter, endRelCenter, fracComplete * speed);
             item.position += centerPoint;
             yield return null;
