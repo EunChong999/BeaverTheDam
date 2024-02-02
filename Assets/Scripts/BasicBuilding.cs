@@ -28,6 +28,7 @@ public class BasicBuilding : MonoBehaviour
     public Transform pointTransform;
     public GameObject directionObj;
     public bool isRotating;
+    public bool canRotate;
 
     [SerializeField] Ease rotationEase;
     [SerializeField] float startScaleTime;
@@ -61,7 +62,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void DirectRotation()
     {
-        if (!isRotating)
+        if (!isRotating && canRotate)
         {
             RotateTransform();
             ShowEffect();

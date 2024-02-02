@@ -80,6 +80,10 @@ public class Point : MonoBehaviour
                     canPlay = false;
                 }
             }
+            else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
+            {
+                canPlay = true;
+            }
         }
         else
         {
