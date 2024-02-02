@@ -4,10 +4,14 @@ using UnityEngine;
 public class Extractor : BasicBuilding
 {
     #region Variables
-    public float journeyTime;
-    public float delayTime;
-    public float height;
-    public float speed;
+
+    [SerializeField] float journeyTime;
+    [SerializeField] float arriveTime;
+    [SerializeField] float spawnTime;
+    [SerializeField] float height;
+    [SerializeField] float speed;
+    [SerializeField] GameObject item;
+    [SerializeField] Animator animator;
 
     float startTime;
     Vector3 centerPoint;
@@ -16,10 +20,10 @@ public class Extractor : BasicBuilding
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
-    WaitForSeconds waitForSeconds;
-
-    bool isFinished;
-    bool isHitted;
+    WaitForSeconds waitForArriveSeconds;
+    WaitForSeconds waitForSpawnSeconds;
+    bool isArrived;
+    bool isSpawned;
 
     #endregion
     #region Functions
@@ -29,8 +33,8 @@ public class Extractor : BasicBuilding
     public override void InitSettings()
     {
         base.InitSettings();
-
-        waitForSeconds = new WaitForSeconds(delayTime);
+        waitForArriveSeconds = new WaitForSeconds(arriveTime);
+        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
     }
 
     /// <summary>
@@ -38,20 +42,17 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected void SendItem()
     {
-        if (point.canMove)
+        if (point.canMove && !isSpawned)
         {
-            itemTransform = point.itemTransform;
+            isArrived = false;
+            animator.SetTrigger("Spawn");
+            itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
             startPos = pointTransform;
             endPos = point.hitTransform;
-            isHitted = true;
-        }
-
-        if (isHitted)
-        {
             StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
             StartCoroutine(ThrowItem(itemTransform));
             StartCoroutine(WaitMove());
-            isHitted = false;
+            isSpawned = true;
         }
     }
 
@@ -63,7 +64,7 @@ public class Extractor : BasicBuilding
     /// </param>
     protected IEnumerator GetCenter(Vector3 direction)
     {
-        while (!isFinished)
+        while (!isArrived)
         {
             centerPoint = (startPos.position + endPos.position) * .5f;
             centerPoint -= direction;
@@ -80,7 +81,7 @@ public class Extractor : BasicBuilding
     {
         float time = 0;
 
-        while (!isFinished && item != null)
+        while (!isArrived && item != null)
         {
             time += Time.deltaTime;
             float fracComplete = (time - startTime) / journeyTime * speed;
@@ -95,9 +96,10 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected IEnumerator WaitMove()
     {
-        yield return waitForSeconds;
-
-        isFinished = true;
+        yield return waitForArriveSeconds;
+        isArrived = true;
+        yield return waitForSpawnSeconds;
+        isSpawned = false;
     }
     #endregion
 }

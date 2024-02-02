@@ -65,10 +65,12 @@ MonoBehaviour:
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   journeyTime: 1
-  delayTime: 0.3
+  arriveTime: 0.3
+  spawnTime: 2
   height: 10
   speed: 2
-  repeatable: 0
+  item: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
+  animator: {fileID: 8962341367714694985}
 --- !u!65 &1864033304223956425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -220,14 +222,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5467035949325302814}
-  m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 1.25, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6028240728910822760}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!114 &2888204230455192758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,17 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 3034106066209248167}
-  sprites:
-  - {fileID: 1007977388, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: 1201659474, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: -1268431379, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: 1793703971, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: 1974008637, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: 740182762, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: -1335082452, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  - {fileID: 823892583, guid: a543734bef54d564ba44faffe84c737e, type: 3}
-  spriteTransform: {fileID: 145467275965996499}
 --- !u!212 &5994781013328430577
 SpriteRenderer:
   m_ObjectHideFlags: 0
