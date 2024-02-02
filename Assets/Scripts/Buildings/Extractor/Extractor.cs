@@ -5,7 +5,11 @@ public class Extractor : BasicBuilding
 {
     #region Variables
 
-    [SerializeField] float journeyTime;
+    [Header("ExtractorBuilding")]
+
+    [Space(10)]
+
+    [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
     [SerializeField] float spawnTime;
     [SerializeField] float height;
@@ -42,7 +46,7 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected void SendItem()
     {
-        if (point.canMove && !isSpawned)
+        if (point.canMove && !isSpawned && !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
             animator.SetTrigger("Spawn");
@@ -84,7 +88,7 @@ public class Extractor : BasicBuilding
         while (!isArrived && item != null)
         {
             time += Time.deltaTime;
-            float fracComplete = (time - startTime) / journeyTime * speed;
+            float fracComplete = (time - startTime) / floatTime * speed;
             item.position = Vector3.Slerp(startRelCenter, endRelCenter, fracComplete * speed);
             item.position += centerPoint;
             yield return null;

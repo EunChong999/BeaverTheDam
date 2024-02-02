@@ -1,6 +1,13 @@
+using UnityEngine;
+
 public class ConveyorBelt : BasicBuilding
 {
     #region Variables
+
+    [Header("ConveyorBeltBuilding")]
+
+    [Space(10)]
+
     public bool canMove;
     public bool canPlay;
     public bool isItemExist;
