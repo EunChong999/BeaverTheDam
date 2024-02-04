@@ -20,8 +20,8 @@ public class DialogueEvent
     public Vector2 line;
     public Dialogue[] dialogues;
 
-    public static string GetTSVAddress(string address, string range, long sheetID)
+    public static string GetCSVAddress(string address, string range, long sheetID)
     {
-        return $"{address}/export?format=tsv&range={range}&gid={sheetID}";
+        return $"{address}/export?format=csv&range={range}&gid={sheetID}";
     }
 }
