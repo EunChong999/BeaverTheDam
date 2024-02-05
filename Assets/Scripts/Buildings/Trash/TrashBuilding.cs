@@ -18,6 +18,7 @@ public class TrashBuilding : Trash
     private void Update()
     {
         SetArrowDirection();
+        RemoveItem();
     }
 
     private void LateUpdate()
