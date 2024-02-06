@@ -16,7 +16,6 @@ public class ConveyorBeltBuilding : ConveyorBelt
     {
         CheckCanMove();
         CheckIsItemExist();
-        SetArrowDirection();
         ChangeSprite();
         ChangeTrailerDirection();
     }

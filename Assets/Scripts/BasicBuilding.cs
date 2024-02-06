@@ -24,6 +24,7 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public moveType moveType;
     public float rotationTime;
+    public float directionTime;
     public Transform spriteTransform;
     public Transform pointTransform;
     public GameObject directionObj;
@@ -40,7 +41,8 @@ public class BasicBuilding : MonoBehaviour
     [HideInInspector] public Animator spriteAnimator;
     [HideInInspector] public Point point;
 
-    WaitForSeconds waitForSeconds;
+    WaitForSeconds waitForRotationSeconds;
+    WaitForSeconds waitForDirectionSeconds;
     Sequence buildingScaleSequence;
     Vector3 targetRotation;
 
@@ -51,7 +53,8 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public virtual void InitSettings()
     {
-        waitForSeconds = new WaitForSeconds(rotationTime);
+        waitForRotationSeconds = new WaitForSeconds(rotationTime);
+        waitForDirectionSeconds = new WaitForSeconds(directionTime);
         originScale = transform.localScale;
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
@@ -67,7 +70,8 @@ public class BasicBuilding : MonoBehaviour
             RotateTransform();
             ShowEffect();
             StartCoroutine(InitToOriginValue());
-
+            StartCoroutine(SetArrowDirection());
+            directionObj.SetActive(false);
             isRotating = true;
         }
     }
@@ -109,7 +113,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     IEnumerator InitToOriginValue()
     {
-        yield return waitForSeconds;
+        yield return waitForRotationSeconds;
         isRotating = false;
         transform.eulerAngles = targetRotation;
     }
@@ -117,13 +121,11 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 화살표의 방향을 설정하는 함수
     /// </summary>
-    protected void SetArrowDirection()
+    IEnumerator SetArrowDirection()
     {
-        if (isRotating)
-        {
-            directionObj.SetActive(false);
-        }
-        else
+        yield return waitForDirectionSeconds;
+
+        if (!isRotating) 
         {
             directionObj.SetActive(true);
         }

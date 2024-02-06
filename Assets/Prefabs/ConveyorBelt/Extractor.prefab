@@ -52,6 +52,7 @@ MonoBehaviour:
   buildingType: 1
   moveType: 0
   rotationTime: 0.15
+  directionTime: 0.3
   spriteTransform: {fileID: 145467275965996499}
   pointTransform: {fileID: 2080813722199854710}
   directionObj: {fileID: 5467035949325302814}
@@ -243,6 +244,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basicBuilding: {fileID: 3034106066209248167}
+  sprites:
+  - {fileID: 1231853436, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1329042818, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -470669281, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -925877591, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -1207316286, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1332273189, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -47779413, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -129246511, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  spriteTransform: {fileID: 145467275965996499}
 --- !u!212 &5994781013328430577
 SpriteRenderer:
   m_ObjectHideFlags: 0
