@@ -11,9 +11,11 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] Dialogue[] curDialogue;
     public InteractionEvent dialogues;
+    public Coroutine dialogueAnim;
     public float textSpeed;
     int curDialogueIndex;
     int curContextIndex;
+    bool isPlay;
 
     public void StartDialogue()
     {
@@ -23,30 +25,44 @@ public class DialogueManager : MonoBehaviour
         curContextIndex = 0;
         InitDialogue();
     }
+    private void Update()
+    {
+        isPlay = dialogueAnim != null;
+    }
     public void InitDialogue()
     {
         nameUI.text = curDialogue[curDialogueIndex].name;
-        StartCoroutine(TypingText(curDialogue[curDialogueIndex].contexts[curContextIndex]));
+        if (!isPlay) dialogueAnim = StartCoroutine(TypingText(curDialogue[curDialogueIndex].contexts[curContextIndex]));
+        else contextUI.text = curDialogue[curDialogueIndex].contexts[curContextIndex];
     }
     IEnumerator TypingText(string text)
     {
         var wait = new WaitForSeconds(textSpeed);
         int count = 0;
-        while(text.Length >= count)
+        while (text.Length >= count)
         {
-            contextUI.text = text.Substring(0,count);
+            contextUI.text = text.Substring(0, count);
             count++;
             yield return wait;
         }
+        dialogueAnim = null;
     }
     public void NextDialogue()
     {
-        if(curContextIndex < curDialogue[curDialogueIndex].contexts.Length - 1) curContextIndex++;
+        if (curContextIndex < curDialogue[curDialogueIndex].contexts.Length - 1)
+        {
+            if (!isPlay) curContextIndex++;
+            else
+            {
+                StopCoroutine(dialogueAnim);
+                dialogueAnim = null;
+            }
+        }
         else
         {
             curContextIndex = 0;
-            if(curDialogueIndex < curDialogue.Length - 1) curDialogueIndex++;
-                else EndDialogue();
+            if (curDialogueIndex < curDialogue.Length - 1) curDialogueIndex++;
+            else EndDialogue();
         }
         InitDialogue();
     }
