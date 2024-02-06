@@ -13,7 +13,6 @@ public class ExtractorBuilding : Extractor
 
     private void Update()
     {
-        SetArrowDirection();
         SendItem();
     }
 
