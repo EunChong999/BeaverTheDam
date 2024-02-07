@@ -117,7 +117,7 @@ public class Point : MonoBehaviour
     {
         if (item.CompareTag("Item"))
         {
-            if (hitTransform != null && !item.GetComponent<Item>().isMoving && canMove)
+            if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove)
             {
                 StartCoroutine(CarryItem(itemTransform, hitTransform));
                 itemTransform.GetComponent<Item>().EnMove();
@@ -132,20 +132,20 @@ public class Point : MonoBehaviour
     {
         float threshold = 0.01f; // 조정 필요한 보정값
 
-        while ((itemTransform != null && hitTransform != null) && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
+        while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
         {
             itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.deltaTime * moveSpeed);
             yield return null;
         }
 
-        // 보정값 적용 후 도착한 지점에 대한 추가 작업 수행
-        if (itemTransform != null && hitTransform != null)
+        // 아이템이 삭제되지 않았을 때만 추가 작업 수행
+        if (itemTransform != null)
         {
+            // 보정값 적용 후 도착한 지점에 대한 추가 작업 수행
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
         }
     }
-
 
     /// <summary>
     /// 회전시 트위닝 효과를 주는 함수
