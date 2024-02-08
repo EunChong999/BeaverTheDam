@@ -18,7 +18,7 @@ public class Direction : MonoBehaviour
         moveType = basicBuilding.moveType;
     }
 
-    void Update()
+    void LateUpdate()
     {
         transform.localRotation = spriteTransform.localRotation;
 
