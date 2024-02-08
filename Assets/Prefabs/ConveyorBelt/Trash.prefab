@@ -322,7 +322,7 @@ MonoBehaviour:
   buildingType: 1
   moveType: 0
   rotationTime: 0.15
-  directionTime: 0.3
+  directionTime: 0.25
   spriteTransform: {fileID: 3240011183385960952}
   pointTransform: {fileID: 4466641924370263855}
   directionObj: {fileID: 3432183352928193444}
