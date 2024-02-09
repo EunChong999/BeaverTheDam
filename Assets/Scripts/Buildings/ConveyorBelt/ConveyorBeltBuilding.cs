@@ -14,8 +14,7 @@ public class ConveyorBeltBuilding : ConveyorBelt
 
     private void Update()
     {
-        CheckCanMove();
-        CheckIsItemExist();
+        CheckPoint();
         ChangeSprite();
         ChangeTrailerDirection();
     }

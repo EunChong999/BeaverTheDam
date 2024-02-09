@@ -67,8 +67,8 @@ MonoBehaviour:
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   floatTime: 1
-  arriveTime: 0.3
-  spawnTime: 2
+  arriveTime: 0.5
+  spawnTime: 1
   height: 10
   speed: 2
   item: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}

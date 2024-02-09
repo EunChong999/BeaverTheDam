@@ -42,22 +42,39 @@ public class Extractor : BasicBuilding
     }
 
     /// <summary>
-    /// 아이템을 발사하는 함수
+    /// 발사에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    protected void SendItem()
+    protected void DirectSending()
     {
         if (point.canMove && !isSpawned && !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
-            animator.SetTrigger("Spawn");
-            itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
-            startPos = pointTransform;
-            endPos = point.hitTransform;
-            StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-            StartCoroutine(ThrowItem(itemTransform));
-            StartCoroutine(WaitMove());
+            SendSignal();
+            SendItem();
             isSpawned = true;
         }
+    }
+
+    /// <summary>
+    /// 미리 신호를 보내는 함수
+    /// </summary>
+    private void SendSignal()
+    {
+        point.hitTransform.GetComponent<Point>().ReceiveSendingSignal(waitForSpawnSeconds);
+    }
+
+    /// <summary>
+    /// 아이템을 발사하는 함수
+    /// </summary>
+    private void SendItem()
+    {
+        animator.SetTrigger("Spawn");
+        itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
+        startPos = pointTransform;
+        endPos = point.hitTransform;
+        StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+        StartCoroutine(ThrowItem(itemTransform));
+        StartCoroutine(WaitMove());
     }
 
     /// <summary>
