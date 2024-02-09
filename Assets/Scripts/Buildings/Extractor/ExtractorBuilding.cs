@@ -13,7 +13,7 @@ public class ExtractorBuilding : Extractor
 
     private void Update()
     {
-        SendItem();
+        DirectSending();
     }
 
     private void LateUpdate()

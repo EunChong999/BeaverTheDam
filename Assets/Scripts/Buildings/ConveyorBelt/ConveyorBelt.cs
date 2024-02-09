@@ -11,6 +11,7 @@ public class ConveyorBelt : BasicBuilding
     public bool canMove;
     public bool canPlay;
     public bool isItemExist;
+    public bool isExpectToSend;
     #endregion
     #region Functions
     /// <summary>
@@ -63,20 +64,14 @@ public class ConveyorBelt : BasicBuilding
     }
 
     /// <summary>
-    /// 다음 포인트로 이동할 수 있는지 확인하는 함수
+    /// 포인트를 확인하는 함수
     /// </summary>
-    protected void CheckCanMove()
+    protected void CheckPoint()
     {
         canMove = point.canMove;
         canPlay = point.canPlay;
-    }
-
-    /// <summary>
-    /// 포인트 위에 아이템이 존재하는지 확인하는 함수
-    /// </summary>
-    protected void CheckIsItemExist()
-    {
         isItemExist = point.isItemExist;
+        isExpectToSend = point.isExpectToSend;
     }
 
     /// <summary>
