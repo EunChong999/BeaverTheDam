@@ -42,7 +42,7 @@ public class Trash : BasicBuilding
     /// </summary>
     protected void RemoveItem()
     {
-        if (point.canMove && !isRemoved && point.hitTransform.GetComponent<Point>().isItemExist && !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
+        if (point.diffDir && point.canMove && !isRemoved && point.hitTransform.GetComponent<Point>().isItemExist && !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
         {
             isArrived = false;
             itemTransform = point.hitTransform.GetComponent<Point>().itemTransform;
