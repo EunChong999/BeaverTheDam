@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 146048699094021565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.99, y: 0.99, z: 0.99}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6592887672983351718}
@@ -57,6 +57,7 @@ MonoBehaviour:
   originScale: {x: 2, y: 2, z: 1}
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
+  diffDir: 0
 --- !u!65 &2513637673661219576
 BoxCollider:
   m_ObjectHideFlags: 0

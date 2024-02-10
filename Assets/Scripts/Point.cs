@@ -18,7 +18,6 @@ public class Point : MonoBehaviour
     public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
     public bool isItemExist { get; private set; }
-    public bool isExpectToSend { get; private set; }
 
     public Transform itemTransform;
     public Transform hitTransform;
@@ -84,7 +83,7 @@ public class Point : MonoBehaviour
                 }
 
                 // 바라보는 건물에 아이템이 존재하지 않을 때
-                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isExpectToSend)
+                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
                 {
                     canMove = true;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
@@ -186,28 +185,6 @@ public class Point : MonoBehaviour
                 itemTransform.GetComponent<Item>().spriteTransform.localScale.z / 1.5f),
                 startScaleTime).SetEase(startScaleEase))
             .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
-        }
-    }
-
-    /// <summary>
-    /// 추출자 신호를 받는 함수
-    /// </summary>
-    public void ReceiveSendingSignal(WaitForSeconds sendTime)
-    {
-        isExpectToSend = true;
-        StartCoroutine(ReleaseSendingSignal(sendTime));
-    }
-
-    /// <summary>
-    /// 추출자 신호를 해제하는 함수
-    /// </summary>
-    private IEnumerator ReleaseSendingSignal(WaitForSeconds sendTime)
-    {
-        yield return sendTime;
-
-        if (itemTransform == null)
-        {
-            isExpectToSend = false;
         }
     }
 }
