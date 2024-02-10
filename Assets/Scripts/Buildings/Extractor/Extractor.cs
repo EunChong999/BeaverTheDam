@@ -49,18 +49,9 @@ public class Extractor : BasicBuilding
         if (point.canMove && !isSpawned && !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
-            SendSignal();
             SendItem();
             isSpawned = true;
         }
-    }
-
-    /// <summary>
-    /// 미리 신호를 보내는 함수
-    /// </summary>
-    private void SendSignal()
-    {
-        point.hitTransform.GetComponent<Point>().ReceiveSendingSignal(waitForSpawnSeconds);
     }
 
     /// <summary>
@@ -119,6 +110,7 @@ public class Extractor : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+
         yield return waitForSpawnSeconds;
         isSpawned = false;
     }
