@@ -24,6 +24,8 @@ public class Point : MonoBehaviour
     public Transform hitTransform;
     Sequence itemScaleSequence;
 
+    [HideInInspector] public bool diffDir;
+
     void Update()
     {
         CanMove();
@@ -38,6 +40,27 @@ public class Point : MonoBehaviour
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
+
+                bool IsDiffDir()
+                {
+                    bool dir =
+                        // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 반대인 경우
+                        ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straightType &&
+                        (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y + 180) ||
+
+                        // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
+                        (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
+                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 180) ||
+
+                        // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 180도 돌아가 있는 경우
+                        hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
+                        (int)hitInfo.transform.eulerAngles.y == 0 &&
+                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 180);
+
+                    return dir;
+                }
+
+                diffDir = IsDiffDir();
             }
             else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
