@@ -653,7 +653,9 @@ MonoBehaviour:
   - {fileID: 1570941365}
   - {fileID: 866085537}
   - {fileID: 1756444568}
-  clearValue: 3
+  nextStage: {fileID: 919845463}
+  clearScore: 0
+  StageIndex: 0
 --- !u!4 &726222231
 Transform:
   m_ObjectHideFlags: 0
@@ -936,7 +938,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 726222230}
         m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
-        m_MethodName: ReStage
+        m_MethodName: StartStage
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1070,7 +1072,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 726222230}
         m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
-        m_MethodName: ReStage
+        m_MethodName: StartStage
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
