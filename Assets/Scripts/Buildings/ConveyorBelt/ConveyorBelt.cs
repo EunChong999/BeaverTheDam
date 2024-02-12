@@ -71,6 +71,7 @@ public class ConveyorBelt : BasicBuilding
         canMove = point.canMove;
         canPlay = point.canPlay;
         isItemExist = point.isItemExist;
+        isExpectToSend = point.isExpectToSend;
     }
 
     /// <summary>
