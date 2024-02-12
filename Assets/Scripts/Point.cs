@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Point : MonoBehaviour
@@ -198,10 +197,6 @@ public class Point : MonoBehaviour
     private IEnumerator ReleaseSendingSignal(WaitForSeconds sendTime)
     {
         yield return sendTime;
-
-        if (itemTransform == null)
-        {
-            isExpectToSend = false;
-        }
+        isExpectToSend = false;
     }
 }
