@@ -18,10 +18,13 @@ public class Point : MonoBehaviour
     public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
     public bool isItemExist { get; private set; }
+    public bool isExpectToSend { get; private set; }
 
     public Transform itemTransform;
     public Transform hitTransform;
     Sequence itemScaleSequence;
+
+    public Extractor extractor;
 
     [HideInInspector] public bool diffDir;
 
@@ -83,7 +86,7 @@ public class Point : MonoBehaviour
                 }
 
                 // 바라보는 건물에 아이템이 존재하지 않을 때
-                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
+                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isExpectToSend)
                 {
                     canMove = true;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
@@ -122,7 +125,6 @@ public class Point : MonoBehaviour
         if (item.CompareTag("Item"))
         {
             isItemExist = true;
-
             itemTransform = item.transform;
         }
     }
@@ -132,7 +134,6 @@ public class Point : MonoBehaviour
         if (item.CompareTag("Item"))
         {
             isItemExist = false;
-
             itemTransform = null;
         }
     }
@@ -185,6 +186,22 @@ public class Point : MonoBehaviour
                 itemTransform.GetComponent<Item>().spriteTransform.localScale.z / 1.5f),
                 startScaleTime).SetEase(startScaleEase))
             .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        }
+    }
+
+    public void ReceiveSendingSignal(WaitForSeconds sendTime)
+    {
+        isExpectToSend = true;
+        StartCoroutine(ReleaseSendingSignal(sendTime));
+    }
+
+    private IEnumerator ReleaseSendingSignal(WaitForSeconds sendTime)
+    {
+        yield return sendTime;
+
+        if (itemTransform == null)
+        {
+            isExpectToSend = false;
         }
     }
 }

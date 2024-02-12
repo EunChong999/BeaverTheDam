@@ -46,12 +46,18 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected void DirectSending()
     {
-        if (point.canMove && !isSpawned && !point.hitTransform.GetComponent<Point>().isItemExist)
+        if (!isRotating && point.canMove && !isSpawned && !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
+            SendSignal();
             SendItem();
             isSpawned = true;
         }
+    }
+
+    private void SendSignal()
+    {
+        point.hitTransform.GetComponent<Point>().ReceiveSendingSignal(waitForSpawnSeconds);
     }
 
     /// <summary>
