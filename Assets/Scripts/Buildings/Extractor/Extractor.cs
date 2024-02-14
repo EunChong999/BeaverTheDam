@@ -49,8 +49,7 @@ public class Extractor : BasicBuilding
         if (!isRotating && 
             point.canMove && 
             !isSpawned && 
-            !point.hitTransform.GetComponent<Point>().isItemExist &&
-            !point.hitTransform.GetComponent<Point>().hitTransform.GetComponent<Point>().isItemExist)
+            !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
             SendSignal();

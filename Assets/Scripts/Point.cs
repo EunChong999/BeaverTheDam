@@ -23,8 +23,6 @@ public class Point : MonoBehaviour
     public Transform hitTransform;
     Sequence itemScaleSequence;
 
-    public Extractor extractor;
-
     [HideInInspector] public bool diffDir;
 
     void Update()
