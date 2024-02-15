@@ -46,7 +46,11 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected void DirectSending()
     {
-        if (!isRotating && point.canMove && !isSpawned && !point.hitTransform.GetComponent<Point>().isItemExist)
+        if (!isRotating && 
+            point.canMove && 
+            !isSpawned && 
+            !point.hitTransform.GetComponent<Point>().isItemExist &&
+            !point.hitTransform.GetComponent<Point>().hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
             SendSignal();
