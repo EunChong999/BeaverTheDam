@@ -31,11 +31,11 @@ public class Direction : MonoBehaviour
                 }
                 else if (transform.parent.localRotation.eulerAngles.y >= 90 && transform.parent.localRotation.eulerAngles.y < 180)
                 {
-                    spriteRenderer.sprite = sprites[5];
+                    spriteRenderer.sprite = sprites[7];
                 }
                 else if (transform.parent.localRotation.eulerAngles.y >= 180 && transform.parent.localRotation.eulerAngles.y < 270)
                 {
-                    spriteRenderer.sprite = sprites[4];
+                    spriteRenderer.sprite = sprites[6];
                 }
                 else if (transform.parent.localRotation.eulerAngles.y >= 270 && transform.parent.localRotation.eulerAngles.y < 360)
                 {
@@ -49,15 +49,15 @@ public class Direction : MonoBehaviour
                 }
                 else if (transform.parent.localRotation.eulerAngles.y >= 90 && transform.parent.localRotation.eulerAngles.y < 180)
                 {
-                    spriteRenderer.sprite = sprites[5];
+                    spriteRenderer.sprite = sprites[11];
                 }
                 else if (transform.parent.localRotation.eulerAngles.y >= 180 && transform.parent.localRotation.eulerAngles.y < 270)
                 {
-                    spriteRenderer.sprite = sprites[6];
+                    spriteRenderer.sprite = sprites[9];
                 }
                 else if (transform.parent.localRotation.eulerAngles.y >= 270 && transform.parent.localRotation.eulerAngles.y < 360)
                 {
-                    spriteRenderer.sprite = sprites[7];
+                    spriteRenderer.sprite = sprites[4];
                 }
                 break;
         }

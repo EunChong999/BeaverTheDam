@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3200911467241487838}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,14 +47,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicBuilding: {fileID: 8259029153256206588}
   sprites:
-  - {fileID: 1231853436, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: 1329042818, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -470669281, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -925877591, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -1207316286, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: 1332273189, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -47779413, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -129246511, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1554793137, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 360886987, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -294306969, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -642710945, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 208866389, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 359604304, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 75627457, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1889100881, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1760693951, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1188433005, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   spriteTransform: {fileID: 1439644759351956998}
 --- !u!212 &8433387367658369938
 SpriteRenderer:
@@ -97,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 453153872, guid: 4cc7508749a2666419304a7292351c01, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +109,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3901889093625719425
@@ -165,7 +169,6 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  extractor: {fileID: 0}
   diffDir: 0
 --- !u!65 &2087671219231262178
 BoxCollider:
@@ -201,7 +204,7 @@ GameObject:
   - component: {fileID: 2076708097867504305}
   - component: {fileID: -6079029594059074078}
   m_Layer: 0
-  m_Name: ConveyorBelt
+  m_Name: ConveyorBelt_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
