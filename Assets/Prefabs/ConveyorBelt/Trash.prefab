@@ -57,7 +57,6 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  extractor: {fileID: 0}
   diffDir: 0
 --- !u!65 &2513637673661219576
 BoxCollider:
@@ -211,14 +210,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicBuilding: {fileID: 664323672746903740}
   sprites:
-  - {fileID: 1231853436, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: 1329042818, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -470669281, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -925877591, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -1207316286, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: 1332273189, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -47779413, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
-  - {fileID: -129246511, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1554793137, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 360886987, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -294306969, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: -642710945, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 208866389, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 359604304, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 75627457, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1889100881, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1760693951, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
+  - {fileID: 1188433005, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   spriteTransform: {fileID: 3240011183385960952}
 --- !u!212 &3836362294814052453
 SpriteRenderer:
@@ -261,7 +264,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 453153872, guid: 4cc7508749a2666419304a7292351c01, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -269,7 +272,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &4060486654672281663
