@@ -14,7 +14,7 @@ public class DataBaseManager : MonoBehaviour
     public static bool isFinish = false;
 
     public readonly string ADDRESS = "https://docs.google.com/spreadsheets/d/1BbJ6btodZXZCIMzK0Sj2fd0S1ngLJ9iXDCivDr7C6BQ";
-    public readonly string RANGE = "A2:C";
+    public readonly string RANGE = "A2:E";
     public readonly long SHEET_ID = 1042825153;
 
     private void Awake()

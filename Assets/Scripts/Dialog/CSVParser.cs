@@ -18,6 +18,11 @@ public class CSVParser : MonoBehaviour
 
             dialogue.name = row[1];
 
+            string[] pos = row[4].Split('`');
+
+            dialogue.pos = new Vector2(float.Parse(pos[0]),float.Parse(pos[1]));
+            dialogue.CharID = row[3];
+
             List<string> contextList = new List<string>();
 
             do
@@ -33,6 +38,7 @@ public class CSVParser : MonoBehaviour
             } while (row[0].ToString() == "");
 
             dialogue.contexts = contextList.ToArray();
+            
 
             dialogueList.Add(dialogue);
         }

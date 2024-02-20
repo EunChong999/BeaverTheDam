@@ -10,6 +10,10 @@ public class Dialogue
 
     [Tooltip("대사")]
     public string[] contexts;
+    [Tooltip("캐릭터 ID")]
+    public string CharID;
+    [Tooltip("위치")]
+    public Vector2 pos;
 }
 
 [System.Serializable]

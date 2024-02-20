@@ -13,6 +13,7 @@ public class SelectManager : Manager
 {
     [SerializeField] StageBtn[] buttons;
     [SerializeField] Transform btnTransform;
+    [SerializeField] Transform terrainTransform;
     [SerializeField] Button[] chapterBtn;
     public int clearIndex;
     public int maxChapter;
@@ -69,5 +70,6 @@ public class SelectManager : Manager
         chapterBtn[0].gameObject.SetActive(curChapter > 0);
         chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
         btnTransform.DOLocalMoveX(curChapter * -1920, 0.5f);
+        terrainTransform.DOLocalMoveX(curChapter * -3, 0.5f);
     }
 }
