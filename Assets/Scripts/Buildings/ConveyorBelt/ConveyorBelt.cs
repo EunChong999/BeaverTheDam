@@ -38,7 +38,17 @@ public class ConveyorBelt : BasicBuilding
 
             if (moveType == moveType.curveType)
             {
-                spriteAnimator.SetFloat("Speed", 1);
+                if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
+                    ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) ||
+                    (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270)))
+                {
+                    spriteAnimator.SetFloat("Speed", 1);
+                }
+
+                if ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360)
+                {
+                    spriteAnimator.SetFloat("Speed", -1);
+                }
             }
         }
         else
