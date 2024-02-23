@@ -14,7 +14,9 @@ public class SelectManager : Manager
     [SerializeField] StageBtn[] buttons;
     [SerializeField] Transform btnTransform;
     [SerializeField] Transform terrainTransform;
+    [SerializeField] Transform chapterTextBtnTransform;
     [SerializeField] Button[] chapterBtn;
+    [SerializeField] Button[] chapterTextBtn;
     public int clearIndex;
     public int maxChapter;
 
@@ -59,6 +61,12 @@ public class SelectManager : Manager
             maxIndex += buttons[i].button.Length;
         }
         PlayerPrefs.SetInt("MaxIndex", maxIndex);
+
+        for(int i = 0; i < chapterTextBtn.Length; i++)
+        {
+            var num = i;
+            chapterTextBtn[num].onClick.AddListener(() => ChapterMove(num - curChapter));
+        }
     }
     public void StageStart()
     {
@@ -71,5 +79,11 @@ public class SelectManager : Manager
         chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
         btnTransform.DOLocalMoveX(curChapter * -1920, 0.5f);
         terrainTransform.DOLocalMoveX(curChapter * -3, 0.5f);
+        for(int i = 0; i < chapterTextBtn.Length; i++)
+        {
+            var text = chapterTextBtn[i].transform.GetChild(0).GetComponent<Text>();
+            text.color = i == curChapter ? Color.white : Color.grey;
+        }
+        chapterTextBtnTransform.DOLocalMoveX(curChapter * -chapterTextBtn[curChapter].transform.localPosition.x,0.5f);
     }
 }
