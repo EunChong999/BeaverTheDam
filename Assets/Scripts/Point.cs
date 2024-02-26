@@ -15,8 +15,9 @@ public class Point : MonoBehaviour
 
     public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
-    public bool isItemExist { get; private set; }
     public bool isExpectToSend { get; private set; }
+
+    public bool isItemExist;
 
     public Transform itemTransform;
     public Transform hitTransform;
@@ -25,11 +26,29 @@ public class Point : MonoBehaviour
 
     [HideInInspector] public bool diffDir;
 
+    private void Start()
+    {
+        if (itemTransform != null)
+        {
+            isItemExist = true;
+        }
+    }
+
     void Update()
     {
         moveSpeed = BuildingManager.instance.speed;
 
         CanMove();
+
+        if (itemTransform != null
+            && hitTransform != null
+            && !itemTransform.GetComponent<Item>().isMoving
+            && canMove 
+            && !hitTransform.GetComponent<Point>().isItemExist)
+        {
+            StartCoroutine(CarryItem(itemTransform, hitTransform));
+            itemTransform.GetComponent<Item>().EnMove();
+        }
     }
 
     public void CanMove()
@@ -85,7 +104,7 @@ public class Point : MonoBehaviour
                 }
 
                 // 바라보는 건물에 아이템이 존재하지 않을 때
-                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isExpectToSend)
+                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
                 {
                     canMove = true;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
@@ -119,55 +138,29 @@ public class Point : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider item)
-    {
-        if (item.CompareTag("Item"))
-        {
-            isItemExist = true;
-            itemTransform = item.transform;
-        }
-    }
-
-    private void OnTriggerExit(Collider item)
-    {
-        if (item.CompareTag("Item"))
-        {
-            isItemExist = false;
-            itemTransform = null;
-        }
-    }
-
-    private void OnTriggerStay(Collider item)
-    {
-        if (item.CompareTag("Item"))
-        {
-            if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove)
-            {
-                StartCoroutine(CarryItem(itemTransform, hitTransform));
-                itemTransform.GetComponent<Item>().EnMove();
-            }
-        }
-    }
-
     /// <summary>
     /// 물건을 운반하는 함수
     /// </summary>
-    public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
+    public IEnumerator CarryItem(Transform item, Transform hit)
     {
         float threshold = 0.01f; // 조정 필요한 보정값
 
-        while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
+        while (item != null && Vector3.Distance(item.position, hit.position) > threshold)
         {
-            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.deltaTime * moveSpeed);
+            item.position = Vector3.MoveTowards(item.position, hit.position, Time.deltaTime * moveSpeed);
             yield return null;
         }
 
         // 아이템이 삭제되지 않았을 때만 추가 작업 수행
-        if (itemTransform != null)
+        if (item != null)
         {
             // 보정값 적용 후 도착한 지점에 대한 추가 작업 수행
-            itemTransform.position = hitTransform.position;
-            itemTransform.GetComponent<Item>().UnMove();
+            item.position = hit.position;
+            item.GetComponent<Item>().UnMove();
+            hitTransform.GetComponent<Point>().itemTransform = itemTransform;
+            itemTransform = null;
+            isItemExist = false;
+            hitTransform.GetComponent<Point>().isItemExist = true;
         }
     }
 

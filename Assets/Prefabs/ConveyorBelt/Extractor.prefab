@@ -68,7 +68,7 @@ MonoBehaviour:
   point: {fileID: 0}
   floatTime: 1
   arriveTime: 0.5
-  spawnTime: 1.25
+  spawnTime: 1.5
   height: 10
   speed: 2
   item: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
@@ -169,13 +169,13 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 2
   maxDistance: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0
