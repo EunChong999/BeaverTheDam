@@ -157,11 +157,17 @@ public class Point : MonoBehaviour
             // 보정값 적용 후 도착한 지점에 대한 추가 작업 수행
             item.position = hit.position;
             item.GetComponent<Item>().UnMove();
-            hitTransform.GetComponent<Point>().itemTransform = itemTransform;
-            itemTransform = null;
-            isItemExist = false;
-            hitTransform.GetComponent<Point>().isItemExist = true;
         }
+
+        Release();
+    }
+
+    private void Release()
+    {
+        hitTransform.GetComponent<Point>().itemTransform = itemTransform;
+        itemTransform = null;
+        isItemExist = false;
+        hitTransform.GetComponent<Point>().isItemExist = true;
     }
 
     /// <summary>
