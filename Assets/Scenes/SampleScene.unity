@@ -30831,6 +30831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Extractor
       objectReference: {fileID: 0}
+    - target: {fileID: 165476104835612904, guid: 142b3094e1a408b47abbefd465a3c85e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3034106066209248167, guid: 142b3094e1a408b47abbefd465a3c85e, type: 3}
       propertyPath: speed
       value: 1.75
@@ -42027,6 +42031,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 873211430221446263, guid: 8ae9383d1c725fa4b82e2ca3b5a0b628, type: 3}
   m_PrefabInstance: {fileID: 1224807275}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1224911419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1224911420}
+  - component: {fileID: 1224911421}
+  m_Layer: 0
+  m_Name: BuildingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1224911420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224911419}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1224911421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224911419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ddb47bfea0676941bd9882ba0e1c086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!1001 &1230244888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44277,7 +44326,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 2
   maxDistance: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
@@ -56673,6 +56721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item  (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65580,6 +65632,10 @@ PrefabInstance:
     - target: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
       propertyPath: m_Name
       value: Item  (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -76461,7 +76517,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 2
   maxDistance: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
