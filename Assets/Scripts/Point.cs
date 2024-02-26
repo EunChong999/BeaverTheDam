@@ -5,7 +5,6 @@ using UnityEngine;
 public class Point : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
-    [SerializeField] float moveSpeed;
     [SerializeField] float maxDistance;
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -22,11 +21,14 @@ public class Point : MonoBehaviour
     public Transform itemTransform;
     public Transform hitTransform;
     Sequence itemScaleSequence;
+    float moveSpeed;
 
     [HideInInspector] public bool diffDir;
 
     void Update()
     {
+        moveSpeed = BuildingManager.instance.speed;
+
         CanMove();
     }
 
