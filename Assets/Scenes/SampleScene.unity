@@ -4205,6 +4205,14 @@ PrefabInstance:
       propertyPath: moveType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8259029153256206588, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
+      propertyPath: isItemExist
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082610978327285299, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
+      propertyPath: itemTransform
+      value: 
+      objectReference: {fileID: 434781191}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30833,7 +30841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 165476104835612904, guid: 142b3094e1a408b47abbefd465a3c85e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3034106066209248167, guid: 142b3094e1a408b47abbefd465a3c85e, type: 3}
       propertyPath: speed
@@ -44181,6 +44189,10 @@ PrefabInstance:
       propertyPath: moveType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9082610978327285299, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
+      propertyPath: itemTransform
+      value: 
+      objectReference: {fileID: 1650278199}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44332,6 +44344,7 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0
@@ -60638,7 +60651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65635,7 +65648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -76523,6 +76536,7 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0

@@ -160,13 +160,13 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 2
   maxDistance: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   point: {fileID: 0}
   canMove: 0
   canPlay: 0
-  isItemExist: 1
+  isItemExist: 0
   isExpectToSend: 0
 --- !u!65 &2076708097867504305
 BoxCollider:

@@ -46,9 +46,9 @@ public class Extractor : BasicBuilding
     /// </summary>
     protected void DirectSending()
     {
-        if (!isRotating && 
-            point.canMove && 
-            !isSpawned && 
+        if (!isRotating &&
+            point.canMove &&
+            !isSpawned &&
             !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
@@ -61,6 +61,7 @@ public class Extractor : BasicBuilding
     private void SendSignal()
     {
         point.hitTransform.GetComponent<Point>().ReceiveSendingSignal(waitForSpawnSeconds);
+
     }
 
     /// <summary>
@@ -68,8 +69,10 @@ public class Extractor : BasicBuilding
     /// </summary>
     private void SendItem()
     {
-        animator.SetTrigger("Spawn");
+        point.hitTransform.GetComponent<Point>().isItemExist = true;
         itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
+        point.hitTransform.GetComponent<Point>().itemTransform = itemTransform;
+        animator.SetTrigger("Spawn");
         startPos = pointTransform;
         endPos = point.hitTransform;
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
