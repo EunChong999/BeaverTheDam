@@ -42,16 +42,24 @@ public class Trash : BasicBuilding
     /// </summary>
     protected void RemoveItem()
     {
-        if (point.diffDir && point.canMove && !isRemoved && point.hitTransform.GetComponent<Point>().isItemExist && !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
+        if (point.hitTransform.GetComponent<Point>().itemTransform != null)
         {
-            isArrived = false;
-            itemTransform = point.hitTransform.GetComponent<Point>().itemTransform;
-            startPos = point.hitTransform;
-            endPos = pointTransform;
-            StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-            StartCoroutine(ThrowItem(itemTransform));
-            StartCoroutine(WaitMove());
-            isRemoved = true;
+            if (point.diffDir &&
+                point.canMove &&
+                !isRemoved &&
+                point.hitTransform.GetComponent<Point>().isItemExist &&
+                !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
+            {
+                isArrived = false;
+                itemTransform = point.hitTransform.GetComponent<Point>().itemTransform;
+                startPos = point.hitTransform;
+                endPos = pointTransform;
+                StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+                StartCoroutine(ThrowItem(itemTransform));
+                StartCoroutine(WaitMove());
+                isRemoved = true;
+                point.hitTransform.GetComponent<Point>().isItemExist = false;
+            }
         }
     }
 
