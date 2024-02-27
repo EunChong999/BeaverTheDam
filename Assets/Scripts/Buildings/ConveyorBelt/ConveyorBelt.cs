@@ -11,7 +11,6 @@ public class ConveyorBelt : BasicBuilding
     public bool canMove;
     public bool canPlay;
     public bool isItemExist;
-    public bool isExpectToSend;
     #endregion
     #region Functions
     /// <summary>
@@ -81,7 +80,6 @@ public class ConveyorBelt : BasicBuilding
         canMove = point.canMove;
         canPlay = point.canPlay;
         isItemExist = point.isItemExist;
-        isExpectToSend = point.isExpectToSend;
     }
 
     /// <summary>
