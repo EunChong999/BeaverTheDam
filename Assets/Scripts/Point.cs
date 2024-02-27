@@ -43,8 +43,7 @@ public class Point : MonoBehaviour
         if (itemTransform != null
             && hitTransform != null
             && !itemTransform.GetComponent<Item>().isMoving
-            && canMove 
-            && !hitTransform.GetComponent<Point>().isItemExist)
+            && canMove)
         {
             StartCoroutine(CarryItem(itemTransform, hitTransform));
             itemTransform.GetComponent<Item>().EnMove();

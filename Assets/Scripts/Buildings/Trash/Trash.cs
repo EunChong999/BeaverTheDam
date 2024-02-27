@@ -58,7 +58,6 @@ public class Trash : BasicBuilding
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitMove());
                 isRemoved = true;
-                point.hitTransform.GetComponent<Point>().isItemExist = false;
             }
         }
     }
@@ -107,6 +106,7 @@ public class Trash : BasicBuilding
         isArrived = true;
         Destroy(itemTransform.gameObject);
         isRemoved = false;
+        point.hitTransform.GetComponent<Point>().isItemExist = false;
     }
     #endregion
 }
