@@ -52,22 +52,14 @@ public class Extractor : BasicBuilding
             !point.hitTransform.GetComponent<Point>().isItemExist)
         {
             isArrived = false;
-            SendSignal();
             SendItem();
             isSpawned = true;
         }
     }
-
-    private void SendSignal()
-    {
-        point.hitTransform.GetComponent<Point>().ReceiveSendingSignal(waitForSpawnSeconds);
-
-    }
-
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    private void SendItem()
+    void SendItem()
     {
         point.hitTransform.GetComponent<Point>().isItemExist = true;
         itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;

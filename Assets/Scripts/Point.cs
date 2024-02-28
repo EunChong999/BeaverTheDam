@@ -13,10 +13,8 @@ public class Point : MonoBehaviour
 
     public Vector3 originScale;
 
-    public bool canMove { get; private set; }
+    public bool canMove;
     public bool canPlay { get; private set; }
-    public bool isExpectToSend { get; private set; }
-
     public bool isItemExist;
 
     public Transform itemTransform;
@@ -45,6 +43,7 @@ public class Point : MonoBehaviour
             && !itemTransform.GetComponent<Item>().isMoving
             && canMove)
         {
+            hitTransform.GetComponent<Point>().isItemExist = true;
             StartCoroutine(CarryItem(itemTransform, hitTransform));
             itemTransform.GetComponent<Item>().EnMove();
         }
@@ -65,16 +64,16 @@ public class Point : MonoBehaviour
                     bool dir =
                         // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 반대인 경우
                         ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straightType &&
-                        (int)hitInfo.transform.eulerAngles.y == (int)transform.parent.eulerAngles.y + 180) ||
+                        Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 180) ||
 
-                        // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
+                        // 이동형이 곡선형일 때, 건물끼리 바라보는 방향이 반대인 경우
                         (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
-                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 180) ||
+                        Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 180) ||
 
-                        // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 180도 돌아가 있는 경우
+                        // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 건물끼리 바라보는 방향이 반대인 경우
                         hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         (int)hitInfo.transform.eulerAngles.y == 0 &&
-                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 180);
+                       Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 180);
 
                     return dir;
                 }
@@ -92,18 +91,19 @@ public class Point : MonoBehaviour
 
                         // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
                         (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
-                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 90) ||
+                        Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 90) ||
 
                         // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
                         hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         (int)hitInfo.transform.eulerAngles.y == 0 &&
-                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270);
+                        Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 270);
 
                     return dir;
                 }
 
                 // 바라보는 건물에 아이템이 존재하지 않을 때
-                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
+                if (IsSameDir() && 
+                    !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
                 {
                     canMove = true;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
@@ -184,17 +184,5 @@ public class Point : MonoBehaviour
                 startScaleTime).SetEase(startScaleEase))
             .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
         }
-    }
-
-    public void ReceiveSendingSignal(WaitForSeconds sendTime)
-    {
-        isExpectToSend = true;
-        StartCoroutine(ReleaseSendingSignal(sendTime));
-    }
-
-    private IEnumerator ReleaseSendingSignal(WaitForSeconds sendTime)
-    {
-        yield return sendTime;
-        isExpectToSend = false;
     }
 }
