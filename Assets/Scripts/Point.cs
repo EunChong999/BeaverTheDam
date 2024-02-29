@@ -114,20 +114,9 @@ public class Point : MonoBehaviour
                     canMove = false;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
                 }
+            }
 
-                if (IsSameDir())
-                {
-                    canPlay = true;
-                }
-                else
-                {
-                    canPlay = false;
-                }
-            }
-            else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
-            {
-                canPlay = true;
-            }
+            canPlay = true;
         }
         else
         {
