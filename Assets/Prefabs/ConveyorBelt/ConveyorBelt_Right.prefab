@@ -166,6 +166,7 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  canMove: 0
   isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
@@ -260,7 +261,6 @@ MonoBehaviour:
   canMove: 0
   canPlay: 0
   isItemExist: 0
-  isExpectToSend: 0
 --- !u!65 &2076708097867504305
 BoxCollider:
   m_ObjectHideFlags: 0
