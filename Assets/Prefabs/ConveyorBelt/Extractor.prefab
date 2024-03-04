@@ -58,6 +58,7 @@ MonoBehaviour:
   directionObj: {fileID: 5467035949325302814}
   isRotating: 0
   canRotate: 1
+  targetAngle: 90
   rotationEase: 0
   startScaleTime: 0.1
   endScaleTime: 0.5
@@ -175,6 +176,7 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  canMove: 0
   isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
@@ -300,7 +302,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -31,6 +31,7 @@ public class BasicBuilding : MonoBehaviour
     public bool isRotating;
     public bool canRotate;
 
+    [SerializeField] float targetAngle;
     [SerializeField] Ease rotationEase;
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -104,7 +105,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void RotateTransform()
     {
-        targetRotation = transform.eulerAngles + new Vector3(0, 90, 0);
+        targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
         transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
     }
 
