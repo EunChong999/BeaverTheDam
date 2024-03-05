@@ -91,12 +91,12 @@ public class Point : MonoBehaviour
 
                         // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
                         (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
-                        Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 90) ||
+                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) + 90) ||
 
                         // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
                         hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         (int)hitInfo.transform.eulerAngles.y == 0 &&
-                        Mathf.Abs((int)hitInfo.transform.eulerAngles.y - (int)transform.parent.eulerAngles.y) == 270);
+                        (int)hitInfo.transform.eulerAngles.y == (int)(transform.parent.eulerAngles.y) - 270);
 
                     return dir;
                 }
