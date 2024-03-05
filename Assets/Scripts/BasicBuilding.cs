@@ -64,7 +64,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    protected void DirectRotation()
+    public void DirectRotation()
     {
         if (!isRotating && canRotate)
         {

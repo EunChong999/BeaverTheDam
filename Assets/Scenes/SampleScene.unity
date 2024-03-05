@@ -22710,6 +22710,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bbd4c9bc779fe40bb87dd356cbcc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildings:
+  - {fileID: 5214105236160842987}
+  - {fileID: 5214105235355704321}
 --- !u!1001 &711832260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72824,7 +72827,7 @@ MonoBehaviour:
   directionObj: {fileID: 3200911467906318164}
   isRotating: 0
   canRotate: 1
-  targetAngle: 0
+  targetAngle: 180
   rotationEase: 0
   startScaleTime: 0.1
   endScaleTime: 0.5
@@ -72857,7 +72860,7 @@ MonoBehaviour:
   directionObj: {fileID: 3200911468177993662}
   isRotating: 0
   canRotate: 1
-  targetAngle: 0
+  targetAngle: 180
   rotationEase: 0
   startScaleTime: 0.1
   endScaleTime: 0.5
@@ -72985,7 +72988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508920cdff51b3a4c8c6ea3efbba0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDouble: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -73012,7 +73014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508920cdff51b3a4c8c6ea3efbba0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDouble: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 64
