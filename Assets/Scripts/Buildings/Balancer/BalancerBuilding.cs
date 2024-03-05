@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class BalancerBuilding : Balancer
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject[] buildings;
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        buildings[0].GetComponent<BasicBuilding>().DirectRotation();
+        buildings[1].GetComponent<BasicBuilding>().DirectRotation();
     }
 }
