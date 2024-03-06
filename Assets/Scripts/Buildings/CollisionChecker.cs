@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
 {
+    [SerializeField] int[] orders;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Item"))
         {
-            other.GetComponent<Item>().spriteTransform.GetComponent<SpriteRenderer>().sortingOrder = 4;
+            other.GetComponent<Item>().spriteTransform.GetComponent<SpriteRenderer>().sortingOrder = orders[0];
         }
     }
 
@@ -16,7 +18,7 @@ public class CollisionChecker : MonoBehaviour
     {
         if (other.CompareTag("Item"))
         {
-            other.GetComponent<Item>().spriteTransform.GetComponent<SpriteRenderer>().sortingOrder = 5;
+            other.GetComponent<Item>().spriteTransform.GetComponent<SpriteRenderer>().sortingOrder = orders[1];
         }
     }
 }
