@@ -19,7 +19,7 @@ public class BalancerBuilding : Balancer
 
     private void Start()
     {
-        originScale = transform.localScale;
+        originScale = spriteTransform.localScale;
     }
 
     private void OnMouseDown()

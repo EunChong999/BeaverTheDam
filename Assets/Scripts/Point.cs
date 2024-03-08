@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -13,9 +13,9 @@ public class Point : MonoBehaviour
 
     public Vector3 originScale;
 
-    public bool canMove;
+    public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
-    public bool isItemExist;
+    public bool isItemExist { get; private set; }
 
     public Transform itemTransform;
     public Transform hitTransform;
@@ -24,34 +24,16 @@ public class Point : MonoBehaviour
 
     [HideInInspector] public bool diffDir;
 
-    private void Start()
-    {
-        if (itemTransform != null)
-        {
-            isItemExist = true;
-        }
-    }
-
     void Update()
     {
         moveSpeed = BuildingManager.instance.speed;
 
         CanMove();
-
-        if (itemTransform != null
-            && hitTransform != null
-            && !itemTransform.GetComponent<Item>().isMoving
-            && canMove)
-        {
-            hitTransform.GetComponent<Point>().isItemExist = true;
-            StartCoroutine(CarryItem(itemTransform, hitTransform));
-            itemTransform.GetComponent<Item>().EnMove();
-        }
     }
 
     public void CanMove()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
             if (transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
             {
@@ -62,15 +44,15 @@ public class Point : MonoBehaviour
                 bool IsDiffDir()
                 {
                     bool dir =
-                        // ÀÌµ¿ÇüÀÌ Á÷¼±ÇüÀÏ ¶§, °Ç¹°³¢¸® ¹Ù¶óº¸´Â ¹æÇâÀÌ ¹İ´ëÀÎ °æ¿ì
+                        // ì´ë™í˜•ì´ ì§ì„ í˜•ì¼ ë•Œ, ê±´ë¬¼ë¼ë¦¬ ë°”ë¼ë³´ëŠ” ë°©í–¥ì´ ë°˜ëŒ€ì¸ ê²½ìš°
                         ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straightType &&
                         Mathf.Abs(Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) - Mathf.RoundToInt(transform.parent.eulerAngles.y)) == 180) ||
 
-                        // ÀÌµ¿ÇüÀÌ °î¼±ÇüÀÏ ¶§, °Ç¹°³¢¸® ¹Ù¶óº¸´Â ¹æÇâÀÌ ¹İ´ëÀÎ °æ¿ì
+                        // ì´ë™í˜•ì´ ê³¡ì„ í˜•ì¼ ë•Œ, ê±´ë¬¼ë¼ë¦¬ ë°”ë¼ë³´ëŠ” ë°©í–¥ì´ ë°˜ëŒ€ì¸ ê²½ìš°
                         (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         Mathf.Abs(Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) - Mathf.RoundToInt(transform.parent.eulerAngles.y)) == 180) ||
 
-                        // ÀÌµ¿ÇüÀÌ °î¼±ÇüÀÏ ¶§, ¹Ù¶óº¸´Â °Ç¹°ÀÇ ¹æÇâÀÌ 0µµÀÌ°í, °Ç¹°³¢¸® ¹Ù¶óº¸´Â ¹æÇâÀÌ ¹İ´ëÀÎ °æ¿ì
+                        // ì´ë™í˜•ì´ ê³¡ì„ í˜•ì¼ ë•Œ, ë°”ë¼ë³´ëŠ” ê±´ë¬¼ì˜ ë°©í–¥ì´ 0ë„ì´ê³ , ê±´ë¬¼ë¼ë¦¬ ë°”ë¼ë³´ëŠ” ë°©í–¥ì´ ë°˜ëŒ€ì¸ ê²½ìš°
                         hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == 0 &&
                        Mathf.Abs(Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) - Mathf.RoundToInt(transform.parent.eulerAngles.y)) == 180);
@@ -85,15 +67,15 @@ public class Point : MonoBehaviour
                 bool IsSameDir()
                 {
                     bool dir =
-                        // ÀÌµ¿ÇüÀÌ Á÷¼±ÇüÀÏ ¶§, °Ç¹°³¢¸® ¹Ù¶óº¸´Â ¹æÇâÀÌ °°Àº °æ¿ì
+                        // ì´ë™í˜•ì´ ì§ì„ í˜•ì¼ ë•Œ, ê±´ë¬¼ë¼ë¦¬ ë°”ë¼ë³´ëŠ” ë°©í–¥ì´ ê°™ì€ ê²½ìš°
                         ((hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.straightType &&
                         Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y)) ||
 
-                        // ÀÌµ¿ÇüÀÌ °î¼±ÇüÀÏ ¶§, ¹Ù¶óº¸´Â °Ç¹°ÀÌ ÇØ´ç °Ç¹°º¸´Ù ¹æÇâÀÌ 90µµ µ¹¾Æ°¡ ÀÖ´Â °æ¿ì 
+                        // ì´ë™í˜•ì´ ê³¡ì„ í˜•ì¼ ë•Œ, ë°”ë¼ë³´ëŠ” ê±´ë¬¼ì´ í•´ë‹¹ ê±´ë¬¼ë³´ë‹¤ ë°©í–¥ì´ 90ë„ ëŒì•„ê°€ ìˆëŠ” ê²½ìš° 
                         (hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt((transform.parent.eulerAngles.y) + 90)) ||
 
-                        // ÀÌµ¿ÇüÀÌ °î¼±ÇüÀÏ ¶§, ¹Ù¶óº¸´Â °Ç¹°ÀÇ ¹æÇâÀÌ 0µµÀÌ°í, ÇØ´ç °Ç¹°ÀÌ ¹Ù¶óº¸´Â °Ç¹°º¸´Ù 270µµ µ¹¾Æ°¡ ÀÖ´Â °æ¿ì
+                        // ì´ë™í˜•ì´ ê³¡ì„ í˜•ì¼ ë•Œ, ë°”ë¼ë³´ëŠ” ê±´ë¬¼ì˜ ë°©í–¥ì´ 0ë„ì´ê³ , í•´ë‹¹ ê±´ë¬¼ì´ ë°”ë¼ë³´ëŠ” ê±´ë¬¼ë³´ë‹¤ 270ë„ ëŒì•„ê°€ ìˆëŠ” ê²½ìš°
                         hitInfo.transform.GetComponent<ConveyorBeltBuilding>().moveType == moveType.curveType &&
                         Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == 0 &&
                         Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y) - 270);
@@ -101,7 +83,7 @@ public class Point : MonoBehaviour
                     return dir;
                 }
 
-                // ¹Ù¶óº¸´Â °Ç¹°¿¡ ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» ¶§
+                // ë°”ë¼ë³´ëŠ” ê±´ë¬¼ì— ì•„ì´í…œì´ ì¡´ì¬í•˜ì§€ ì•Šì„ ë•Œ
                 if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
                 {
                     canMove = true;
@@ -113,9 +95,13 @@ public class Point : MonoBehaviour
                     canMove = false;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
                 }
-            }
 
-            canPlay = true;
+                canPlay = true;
+            }
+            else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
+            {
+                canPlay = true;
+            }
         }
         else
         {
@@ -125,40 +111,54 @@ public class Point : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// ¹°°ÇÀ» ¿î¹İÇÏ´Â ÇÔ¼ö
-    /// </summary>
-    public IEnumerator CarryItem(Transform item, Transform hit)
+    private void OnTriggerExit(Collider item)
     {
-        float threshold = 0.01f; // Á¶Á¤ ÇÊ¿äÇÑ º¸Á¤°ª
-
-        while (item != null && Vector3.Distance(item.position, hit.position) > threshold)
+        if (item.CompareTag("Item"))
         {
-            item.position = Vector3.MoveTowards(item.position, hit.position, Time.deltaTime * moveSpeed);
+            isItemExist = false;
+            itemTransform = null;
+        }
+    }
+
+    private void OnTriggerStay(Collider item)
+    {
+        if (item.CompareTag("Item"))
+        {
+            isItemExist = true;
+            itemTransform = item.transform;
+
+            if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove)
+            {
+                StartCoroutine(CarryItem(itemTransform, hitTransform));
+                itemTransform.GetComponent<Item>().EnMove();
+            }
+        }
+    }
+
+    /// <summary>
+    /// ë¬¼ê±´ì„ ìš´ë°˜í•˜ëŠ” í•¨ìˆ˜
+    /// </summary>
+    public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
+    {
+        float threshold = 0.01f; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
+        while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
+        {
+            itemTransform.position = Vector3.MoveTowards(itemTransform.position, hitTransform.position, Time.deltaTime * moveSpeed);
             yield return null;
         }
 
-        // ¾ÆÀÌÅÛÀÌ »èÁ¦µÇÁö ¾Ê¾ÒÀ» ¶§¸¸ Ãß°¡ ÀÛ¾÷ ¼öÇà
-        if (item != null)
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+        if (itemTransform != null)
         {
-            // º¸Á¤°ª Àû¿ë ÈÄ µµÂøÇÑ ÁöÁ¡¿¡ ´ëÇÑ Ãß°¡ ÀÛ¾÷ ¼öÇà
-            item.position = hit.position;
-            item.GetComponent<Item>().UnMove();
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+            itemTransform.position = hitTransform.position;
+            itemTransform.GetComponent<Item>().UnMove();
         }
-
-        Release();
-    }
-
-    private void Release()
-    {
-        hitTransform.GetComponent<Point>().itemTransform = itemTransform;
-        itemTransform = null;
-        isItemExist = false;
-        hitTransform.GetComponent<Point>().isItemExist = true;
     }
 
     /// <summary>
-    /// È¸Àü½Ã Æ®À§´× È¿°ú¸¦ ÁÖ´Â ÇÔ¼ö
+    /// íšŒì „ì‹œ íŠ¸ìœ„ë‹ íš¨ê³¼ë¥¼ ì£¼ëŠ” í•¨ìˆ˜
     /// </summary>
     public void ShowEffect()
     {

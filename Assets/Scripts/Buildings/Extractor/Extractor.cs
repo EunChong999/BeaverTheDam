@@ -56,15 +56,14 @@ public class Extractor : BasicBuilding
             isSpawned = true;
         }
     }
+
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    void SendItem()
+    private void SendItem()
     {
-        point.hitTransform.GetComponent<Point>().isItemExist = true;
-        itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
-        point.hitTransform.GetComponent<Point>().itemTransform = itemTransform;
         animator.SetTrigger("Spawn");
+        itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
         startPos = pointTransform;
         endPos = point.hitTransform;
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
@@ -75,9 +74,6 @@ public class Extractor : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    /// <param name="direction">
-    /// 포물선의 방향
-    /// </param>
     protected IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)

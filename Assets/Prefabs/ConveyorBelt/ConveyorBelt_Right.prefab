@@ -139,7 +139,7 @@ Transform:
   m_GameObject: {fileID: 3901889093625719425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1548437218650786973}
@@ -166,8 +166,6 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
-  canMove: 0
-  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0
