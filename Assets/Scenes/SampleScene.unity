@@ -22719,7 +22719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711361719}
-  - component: {fileID: 711361722}
+  - component: {fileID: 711361723}
   - component: {fileID: 711361720}
   - component: {fileID: 711361721}
   m_Layer: 0
@@ -22795,7 +22795,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &711361722
+--- !u!114 &711361723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22804,7 +22804,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 711361718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bbd4c9bc779fe40bb87dd356cbcc23, type: 3}
+  m_Script: {fileID: 11500000, guid: df1aebeeefe97304fb083452e2293943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
@@ -72502,7 +72502,7 @@ GameObject:
   - component: {fileID: 5080983481196449553}
   - component: {fileID: 8433387366186820082}
   m_Layer: 0
-  m_Name: 3
+  m_Name: Direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72928,8 +72928,6 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
-  canMove: 0
-  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0
@@ -72954,8 +72952,6 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
-  canMove: 0
-  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
   diffDir: 0

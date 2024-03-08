@@ -33,7 +33,7 @@ public class Point : MonoBehaviour
 
     public void CanMove()
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
             if (transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
             {
@@ -83,7 +83,7 @@ public class Point : MonoBehaviour
                     return dir;
                 }
 
-                // �ٶ󺸴� �ǹ��� �������� �������� ���� ��
+                // 바라보는 건물에 아이템이 존재하지 않을 때
                 if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
                 {
                     canMove = true;
@@ -96,14 +96,7 @@ public class Point : MonoBehaviour
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
                 }
 
-                if (IsSameDir())
-                {
-                    canPlay = true;
-                }
-                else
-                {
-                    canPlay = false;
-                }
+                canPlay = true;
             }
             else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
             {
@@ -115,15 +108,6 @@ public class Point : MonoBehaviour
             canMove = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
             canPlay = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider item)
-    {
-        if (item.CompareTag("Item"))
-        {
-            isItemExist = true;
-            itemTransform = item.transform;
         }
     }
 
@@ -140,6 +124,9 @@ public class Point : MonoBehaviour
     {
         if (item.CompareTag("Item"))
         {
+            isItemExist = true;
+            itemTransform = item.transform;
+
             if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove)
             {
                 StartCoroutine(CarryItem(itemTransform, hitTransform));
