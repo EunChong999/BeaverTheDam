@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
-    [SerializeField] GameObject[] buildings;
+    [SerializeField] protected ConveyorBelt[] buildings;
     [SerializeField] Transform spriteTransform;
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
@@ -17,7 +17,7 @@ public class DoubleBasicBuilding : MonoBehaviour
     [SerializeField] Ease startScaleEase;
     [SerializeField] Ease endScaleEase;
 
-    private void Start()
+    protected virtual void Start()
     {
         originScale = spriteTransform.localScale;
     }

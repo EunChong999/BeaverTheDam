@@ -22817,9 +22817,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711361719}
-  - component: {fileID: 711361723}
   - component: {fileID: 711361720}
   - component: {fileID: 711361721}
+  - component: {fileID: 711361722}
   m_Layer: 0
   m_Name: Balancer
   m_TagString: Untagged
@@ -22893,7 +22893,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &711361723
+--- !u!114 &711361722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -22902,12 +22902,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 711361718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df1aebeeefe97304fb083452e2293943, type: 3}
+  m_Script: {fileID: 11500000, guid: 07641360d8d99b3438892da4a7346732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
-  - {fileID: 5214105236160842987}
-  - {fileID: 5214105235355704321}
+  - {fileID: 8259029154191663772}
+  - {fileID: 8259029153921036918}
   spriteTransform: {fileID: 102019165}
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
@@ -22916,6 +22916,9 @@ MonoBehaviour:
   endScaleTime: 0.5
   startScaleEase: 3
   endScaleEase: 24
+  gateCount: 0
+  isEnter: 
+  enterItem: {fileID: 0}
 --- !u!1001 &711832260
 PrefabInstance:
   m_ObjectHideFlags: 0
