@@ -16,8 +16,10 @@ public class Balancer : DoubleBasicBuilding
             && Vector3.Distance(build.itemTransform.position,build.transform.position) <= 0.01f)
             {
                 curItem = build.itemTransform;
+                int curIndex = CalculateMoveConveyor(i);
+                if(curIndex == -1) return;
                 build.itemTransform.position 
-                = buildings[CalculateMoveConveyor(i)].transform.position;
+                = buildings[curIndex].transform.position;
                 curCount++;
             }
         }
@@ -31,6 +33,6 @@ public class Balancer : DoubleBasicBuilding
                 return (startIndex + i + curCount) % buildings.Length;
             }
         }
-        return 99;
+        return -1;
     }
 }
