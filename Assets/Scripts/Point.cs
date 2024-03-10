@@ -140,7 +140,7 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
-        float threshold = 0.01f; // ���� �ʿ��� ������
+        float threshold = 0.05f; // ���� �ʿ��� ������
 
         while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
         {

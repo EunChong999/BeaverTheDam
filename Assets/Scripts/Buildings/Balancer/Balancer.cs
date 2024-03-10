@@ -4,45 +4,33 @@ using UnityEngine;
 
 public class Balancer : DoubleBasicBuilding
 {
-    public int gateCount = 0;
-    public bool[] isEnter;
-    public Transform enterItem;
-    protected override void Start()
-    {
-        isEnter = new bool[buildings.Length];
-    }
+    Transform curItem;
+    int curCount;
     private void Update()
     {
-        for (int i = 0; i < buildings.Length; i++)
+        for(int i = 0; i < buildings.Length; i++)
         {
-            Transform curItem = buildings[i].point.itemTransform;
-            if (curItem != null && !isEnter[i])
+            var build = buildings[i].point;
+            if(build.itemTransform != null 
+            && build.itemTransform != curItem 
+            && Vector3.Distance(build.itemTransform.position,build.transform.position) <= 0.01f)
             {
-                if (curItem != enterItem)
-                {
-                    enterItem = curItem;
-                    ChangePos();
-                }
+                curItem = build.itemTransform;
+                build.itemTransform.position 
+                = buildings[CalculateMoveConveyor(i)].transform.position;
+                curCount++;
             }
-            isEnter[i] = buildings[i].isItemExist;
         }
     }
-
-    private void ChangePos()
+    public int CalculateMoveConveyor(int startIndex)
     {
-        do
+        for(int i = 0; i < buildings.Length; i++)
         {
-            if(buildings[gateCount % buildings.Length].canMove) 
+            if(buildings[(startIndex + i + curCount) % buildings.Length].canMove)
             {
-                break;
+                return (startIndex + i + curCount) % buildings.Length;
             }
-            gateCount++;
-            gateCount = gateCount % buildings.Length;
         }
-        while(!buildings[gateCount % buildings.Length].canMove);
-        print(gateCount);
-        enterItem.position = buildings[gateCount].transform.position;
-        gateCount++;
+        return 99;
     }
-
 }
