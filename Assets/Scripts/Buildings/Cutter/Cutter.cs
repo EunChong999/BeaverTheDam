@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class Trash : BasicBuilding
+public class Cutter : BasicBuilding
 {
     #region Variables
-
-    [Header("TrashBuilding")]
+    [Header("CutterBuilding")]
 
     [Space(10)]
 
@@ -24,30 +23,23 @@ public class Trash : BasicBuilding
     WaitForSeconds waitForArriveSeconds;
     bool isArrived;
     bool isRemoved;
-
     #endregion
     #region Functions
-    /// <summary>
-    /// 기본 설정들을 초기화하는 함수
-    /// </summary>
     public override void InitSettings()
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
     }
 
-    /// <summary>
-    /// 아이템을 발사하는 함수
-    /// </summary>
-    protected void RemoveItem()
+    protected void DirectStoreItem()
     {
         if (point.hitTransform != null && point.hitTransform.GetComponent<Point>().itemTransform != null)
         {
-            if (point.canMove &&
+            if (point.sameDir &&
+                point.canMove &&
                 !isRemoved &&
                 point.hitTransform.GetComponent<Point>().isItemExist &&
                 !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
-
             {
                 isArrived = false;
                 itemTransform = point.hitTransform.GetComponent<Point>().itemTransform;
@@ -102,6 +94,11 @@ public class Trash : BasicBuilding
         isArrived = true;
         Destroy(itemTransform.gameObject);
         isRemoved = false;
+    }
+
+    protected void DirectReturnItem()
+    {
+
     }
     #endregion
 }
