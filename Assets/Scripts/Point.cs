@@ -23,7 +23,7 @@ public class Point : MonoBehaviour
     public Point beforePoint;
     float moveSpeed;
 
-    [HideInInspector] public bool sameDir;
+    [HideInInspector] public bool diffDir;
 
     void Update()
     {
@@ -43,28 +43,26 @@ public class Point : MonoBehaviour
                 hitTransform = hitInfo.transform.GetChild(1);
                 hitTransform.GetComponent<Point>().beforePoint = GetComponent<Point>();
 
-                bool IsSameDir()
+                bool IsDiffDir()
                 {
                     bool dir =
-                        beforePoint != null &&
-                        
-                        // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
-                        ((beforePoint.transform.GetComponent<BasicBuilding>().moveType == moveType.straightType &&
-                        Mathf.RoundToInt(beforePoint.transform.parent.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y)) ||
+                        // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 반대인 경우
+                        ((hitInfo.transform.GetComponent<BasicBuilding>().moveType == moveType.straightType &&
+                        Mathf.Abs(Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) - Mathf.RoundToInt(transform.parent.eulerAngles.y)) == 180) ||
 
-                        // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
-                        (beforePoint.transform.GetComponent<BasicBuilding>().moveType == moveType.curveType &&
-                        Mathf.RoundToInt(beforePoint.transform.parent.eulerAngles.y) == Mathf.RoundToInt((transform.parent.eulerAngles.y) + 90)) ||
+                        // 이동형이 곡선형일 때, 건물끼리 바라보는 방향이 반대인 경우
+                        (hitInfo.transform.GetComponent<BasicBuilding>().moveType == moveType.curveType &&
+                        Mathf.Abs(Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) - Mathf.RoundToInt(transform.parent.eulerAngles.y)) == 180) ||
 
-                        // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
-                        beforePoint.transform.GetComponent<BasicBuilding>().moveType == moveType.curveType &&
-                        Mathf.RoundToInt(beforePoint.transform.parent.eulerAngles.y) == 0 &&
-                        Mathf.RoundToInt(beforePoint.transform.parent.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y) - 270);
+                        // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 건물끼리 바라보는 방향이 반대인 경우
+                        hitInfo.transform.GetComponent<BasicBuilding>().moveType == moveType.curveType &&
+                        Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == 0 &&
+                       Mathf.Abs(Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) - Mathf.RoundToInt(transform.parent.eulerAngles.y)) == 180);
 
                     return dir;
                 }
 
-                sameDir = IsSameDir();
+                diffDir = IsDiffDir();
             }
             else if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
@@ -88,7 +86,7 @@ public class Point : MonoBehaviour
                 }
 
                 // 바라보는 건물에 아이템이 존재하지 않을 때
-                if (IsSameDir() && !hitInfo.transform.GetComponent<ConveyorBeltBuilding>().isItemExist)
+                if (IsSameDir() && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
                 {
                     canMove = true;
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);

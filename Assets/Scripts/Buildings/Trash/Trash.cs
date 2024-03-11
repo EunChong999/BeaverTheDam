@@ -43,11 +43,11 @@ public class Trash : BasicBuilding
     {
         if (point.hitTransform != null && point.hitTransform.GetComponent<Point>().itemTransform != null)
         {
-            if (point.canMove &&
+            if (point.diffDir &&
+                point.canMove &&
                 !isRemoved &&
                 point.hitTransform.GetComponent<Point>().isItemExist &&
                 !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
-
             {
                 isArrived = false;
                 itemTransform = point.hitTransform.GetComponent<Point>().itemTransform;

@@ -35,7 +35,7 @@ public class Cutter : BasicBuilding
     {
         if (point.hitTransform != null && point.hitTransform.GetComponent<Point>().itemTransform != null)
         {
-            if (point.sameDir &&
+            if (point.diffDir &&
                 point.canMove &&
                 !isRemoved &&
                 point.hitTransform.GetComponent<Point>().isItemExist &&
