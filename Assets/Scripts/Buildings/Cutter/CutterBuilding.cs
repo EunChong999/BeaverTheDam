@@ -14,7 +14,7 @@ public class CutterBuilding : Cutter
     private void Update()
     {
         DirectStoreItem();
-        //DirectReturnItem();
+        DirectReturnItem();
     }
 
     private void LateUpdate()
