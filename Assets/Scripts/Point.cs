@@ -75,9 +75,6 @@ public class Point : MonoBehaviour
             {
                 canMove = false;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
-
-                if (hitTransform != null)
-                    hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = null;
             }
 
             canPlay = true;
