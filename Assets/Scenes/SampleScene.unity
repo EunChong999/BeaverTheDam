@@ -72388,7 +72388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -72400,7 +72400,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -72408,7 +72408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -72993,6 +72993,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 1439644757869302924}
   pointTransform: {fileID: 4331647267901282362}
   directionObj: {fileID: 3200911467906318164}
+  pointingPoint: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 180
@@ -73046,6 +73047,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 1439644758140191846}
   pointTransform: {fileID: 4331647267098495184}
   directionObj: {fileID: 3200911468177993662}
+  pointingPoint: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 180
@@ -73227,10 +73229,10 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  beforePoint: {fileID: 0}
-  diffDir: 0
 --- !u!114 &9082610979801193555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73252,7 +73254,7 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  beforePoint: {fileID: 0}
-  diffDir: 0

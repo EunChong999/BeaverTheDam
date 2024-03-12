@@ -33,17 +33,16 @@ public class Cutter : BasicBuilding
 
     protected void DirectStoreItem()
     {
-        if (point.hitTransform != null && point.hitTransform.GetComponent<Point>().itemTransform != null)
+        if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
-            if (point.diffDir &&
-                point.canMove &&
+            if (pointingPoint.canMove &&
                 !isRemoved &&
-                point.hitTransform.GetComponent<Point>().isItemExist &&
-                !point.hitTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().isMoving)
+                pointingPoint.isItemExist &&
+                !pointingPoint.itemTransform.GetComponent<Item>().isMoving)
             {
                 isArrived = false;
-                itemTransform = point.hitTransform.GetComponent<Point>().itemTransform;
-                startPos = point.hitTransform;
+                itemTransform = pointingPoint.itemTransform;
+                startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                 endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
@@ -92,6 +91,7 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        point.isItemExist = false;
         Destroy(itemTransform.gameObject);
         isRemoved = false;
     }

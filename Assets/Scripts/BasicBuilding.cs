@@ -28,6 +28,7 @@ public class BasicBuilding : MonoBehaviour
     public Transform spriteTransform;
     public Transform pointTransform;
     public GameObject directionObj;
+    public Point pointingPoint;
     public bool isRotating;
     public bool canRotate;
 
