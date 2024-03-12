@@ -72685,7 +72685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.7071068
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -72697,7 +72697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -72705,7 +72705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 270
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -73210,7 +73210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 8259029154191663772}
+  basicBuilding: {fileID: 5214105236160842988}
   sprites:
   - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
@@ -73237,7 +73237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 8259029153921036918}
+  basicBuilding: {fileID: 5214105235355704322}
   sprites:
   - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
@@ -73261,7 +73261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1548437218250198551}
-  - component: {fileID: 8259029153921036918}
+  - component: {fileID: 5214105235355704322}
   - component: {fileID: 2076708099350157371}
   - component: {fileID: 3144342442399307624}
   m_Layer: 0
@@ -73271,6 +73271,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5214105235355704322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214105235355704321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee073010d99c7d44a6e0a298afbf184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 1
+  moveType: 0
+  rotationTime: 0.15
+  directionTime: 0.25
+  spriteTransform: {fileID: 1439644757869302924}
+  pointTransform: {fileID: 4331647267901282362}
+  directionObj: {fileID: 3200911467906318164}
+  pointingPoint: {fileID: 0}
+  isRotating: 0
+  canRotate: 1
+  targetAngle: 180
+  rotationEase: 0
+  startScaleTime: 0.1
+  endScaleTime: 0.5
+  startScaleEase: 3
+  endScaleEase: 24
+  originScale: {x: 0, y: 0, z: 0}
+  spriteAnimator: {fileID: 0}
+  point: {fileID: 0}
+  floatTime: 1
+  arriveTime: 0.5
+  spawnTime: 1.5
+  returnTime: 0.1
+  storeTime: 0.5
+  height: 10
+  speed: 1.5
 --- !u!1 &5214105236160842987
 GameObject:
   m_ObjectHideFlags: 0
@@ -73280,7 +73318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1548437217984290557}
-  - component: {fileID: 8259029154191663772}
+  - component: {fileID: 5214105236160842988}
   - component: {fileID: 2076708098542651601}
   - component: {fileID: 3144342441593374594}
   m_Layer: 0
@@ -73290,6 +73328,44 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5214105236160842988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214105236160842987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ee073010d99c7d44a6e0a298afbf184, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingType: 1
+  moveType: 0
+  rotationTime: 0.15
+  directionTime: 0.25
+  spriteTransform: {fileID: 1439644758140191846}
+  pointTransform: {fileID: 4331647267098495184}
+  directionObj: {fileID: 3200911468177993662}
+  pointingPoint: {fileID: 0}
+  isRotating: 0
+  canRotate: 1
+  targetAngle: 180
+  rotationEase: 0
+  startScaleTime: 0.1
+  endScaleTime: 0.5
+  startScaleEase: 3
+  endScaleEase: 24
+  originScale: {x: 0, y: 0, z: 0}
+  spriteAnimator: {fileID: 0}
+  point: {fileID: 0}
+  floatTime: 1
+  arriveTime: 0.5
+  spawnTime: 1.5
+  returnTime: 0.1
+  storeTime: 0.5
+  height: 10
+  speed: 1.5
 --- !u!1 &5754178340844022226
 GameObject:
   m_ObjectHideFlags: 0
@@ -73331,72 +73407,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6592887672983351718, guid: 71b09599a0a6afb43aea0e592f66e0e6, type: 3}
   m_PrefabInstance: {fileID: 26163981834385982}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8259029153921036918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5214105235355704321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0e278871af41348b1bc30878365fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingType: 0
-  moveType: 0
-  rotationTime: 0.15
-  directionTime: 0.25
-  spriteTransform: {fileID: 1439644757869302924}
-  pointTransform: {fileID: 4331647267901282362}
-  directionObj: {fileID: 3200911467906318164}
-  isRotating: 0
-  canRotate: 1
-  targetAngle: 180
-  rotationEase: 0
-  startScaleTime: 0.1
-  endScaleTime: 0.5
-  startScaleEase: 3
-  endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
-  spriteAnimator: {fileID: 0}
-  point: {fileID: 0}
-  canMove: 0
-  canPlay: 0
-  isItemExist: 0
---- !u!114 &8259029154191663772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5214105236160842987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0e278871af41348b1bc30878365fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingType: 0
-  moveType: 0
-  rotationTime: 0.15
-  directionTime: 0.25
-  spriteTransform: {fileID: 1439644758140191846}
-  pointTransform: {fileID: 4331647267098495184}
-  directionObj: {fileID: 3200911468177993662}
-  isRotating: 0
-  canRotate: 1
-  targetAngle: 180
-  rotationEase: 0
-  startScaleTime: 0.1
-  endScaleTime: 0.5
-  startScaleEase: 3
-  endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
-  spriteAnimator: {fileID: 0}
-  point: {fileID: 0}
-  canMove: 0
-  canPlay: 0
-  isItemExist: 0
 --- !u!212 &8433387365919863064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73522,9 +73532,10 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
 --- !u!114 &9082610979801193555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73546,6 +73557,7 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
