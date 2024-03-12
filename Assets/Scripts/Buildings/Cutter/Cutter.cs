@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Cutter : BasicBuilding
 {
@@ -10,6 +11,7 @@ public class Cutter : BasicBuilding
 
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
+    [SerializeField] float spawnTime;
     [SerializeField] float height;
     [SerializeField] float speed;
 
@@ -20,22 +22,28 @@ public class Cutter : BasicBuilding
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
+    GameObject itemTemp;
     WaitForSeconds waitForArriveSeconds;
+    WaitForSeconds waitForSpawnSeconds;
     bool isArrived;
+    bool isSpawned;
     bool isRemoved;
+
     #endregion
     #region Functions
     public override void InitSettings()
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
+        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
     }
 
     protected void DirectStoreItem()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
-            if (pointingPoint.canMove &&
+            if (pointingPoint.hitTransform.Equals(pointTransform) &&
+                pointingPoint.canMove &&
                 !isRemoved &&
                 pointingPoint.isItemExist &&
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving)
@@ -92,13 +100,37 @@ public class Cutter : BasicBuilding
         yield return waitForArriveSeconds;
         isArrived = true;
         point.isItemExist = false;
-        Destroy(itemTransform.gameObject);
+        itemTemp = itemTransform.gameObject;
+        itemTemp.SetActive(false);
         isRemoved = false;
     }
 
-    protected void DirectReturnItem()
-    {
+    //protected void DirectReturnItem()
+    //{
+    //    if (itemTemp != null &&
+    //        !isRotating &&
+    //        point.canMove &&
+    //        !isSpawned &&
+    //        !point.hitTransform.GetComponent<Point>().isItemExist)
+    //    {
+    //        itemTemp.SetActive(true);
+    //        isArrived = false;
+    //        SendItem();
+    //        isSpawned = true;
+    //    }
+    //}
 
-    }
+    ///// <summary>
+    ///// 아이템을 발사하는 함수
+    ///// </summary>
+    //private void SendItem()
+    //{
+    //    itemTransform = itemTemp.transform;
+    //    startPos = pointTransform;
+    //    endPos = point.hitTransform;
+    //    StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+    //    StartCoroutine(ThrowItem(itemTransform));
+    //    StartCoroutine(WaitMove());
+    //}
     #endregion
 }
