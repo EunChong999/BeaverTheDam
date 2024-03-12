@@ -12,6 +12,8 @@ public class Cutter : BasicBuilding
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
     [SerializeField] float spawnTime;
+    [SerializeField] float returnTime;
+    [SerializeField] float storeTime;
     [SerializeField] float height;
     [SerializeField] float speed;
 
@@ -25,9 +27,12 @@ public class Cutter : BasicBuilding
     GameObject itemTemp;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForSpawnSeconds;
+    WaitForSeconds waitForReturnSeconds;
+    WaitForSeconds waitForStoreSeconds;
     bool isArrived;
-    bool isSpawned;
+    bool isReturned;
     bool isRemoved;
+    bool isStoring;
 
     #endregion
     #region Functions
@@ -36,6 +41,8 @@ public class Cutter : BasicBuilding
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
         waitForSpawnSeconds = new WaitForSeconds(spawnTime);
+        waitForReturnSeconds = new WaitForSeconds(returnTime);
+        waitForStoreSeconds = new WaitForSeconds(storeTime);
     }
 
     protected void DirectStoreItem()
@@ -46,10 +53,13 @@ public class Cutter : BasicBuilding
                 pointingPoint.canMove &&
                 !isRemoved &&
                 pointingPoint.isItemExist &&
-                !pointingPoint.itemTransform.GetComponent<Item>().isMoving)
+                !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
+                itemTemp == null)
             {
+                isStoring = true;
                 isArrived = false;
                 itemTransform = pointingPoint.itemTransform;
+                itemTemp = itemTransform.gameObject;
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                 endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
@@ -99,10 +109,11 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
-        point.isItemExist = false;
-        itemTemp = itemTransform.gameObject;
         itemTemp.SetActive(false);
+        point.isItemExist = false;
         isRemoved = false;
+        yield return waitForStoreSeconds;
+        isStoring = false;
     }
 
     /// <summary>
@@ -112,8 +123,9 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
-        yield return waitForSpawnSeconds;
-        isSpawned = false;
+        yield return waitForReturnSeconds;
+        isReturned = false;
+        itemTemp = null;
     }
 
     protected void DirectReturnItem()
@@ -121,13 +133,13 @@ public class Cutter : BasicBuilding
         if (itemTemp != null &&
             !isRotating &&
             point.canMove &&
-            !isSpawned &&
-            !point.hitTransform.GetComponent<Point>().isItemExist)
+            !isReturned &&
+            !point.hitTransform.GetComponent<Point>().isItemExist &&
+            !isStoring)
         {
-            itemTemp.SetActive(true);
             isArrived = false;
             SendItem();
-            isSpawned = true;
+            isReturned = true;
         }
     }
 
@@ -136,6 +148,7 @@ public class Cutter : BasicBuilding
     /// </summary>
     private void SendItem()
     {
+        itemTemp.SetActive(true);
         itemTransform = itemTemp.transform;
         startPos = pointTransform;
         endPos = point.hitTransform;

@@ -73008,6 +73008,8 @@ MonoBehaviour:
   floatTime: 1
   arriveTime: 0.5
   spawnTime: 1.5
+  returnTime: 0.1
+  storeTime: 0.5
   height: 10
   speed: 1.5
 --- !u!1 &5214105236160842987
@@ -73063,6 +73065,8 @@ MonoBehaviour:
   floatTime: 1
   arriveTime: 0.5
   spawnTime: 1.5
+  returnTime: 0.1
+  storeTime: 0.5
   height: 10
   speed: 1.5
 --- !u!1 &5754178340844022226
