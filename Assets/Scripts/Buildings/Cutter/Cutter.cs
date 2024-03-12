@@ -54,7 +54,7 @@ public class Cutter : BasicBuilding
                 endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitMove());
+                StartCoroutine(WaitMoveForStore());
                 isRemoved = true;
             }
         }
@@ -95,7 +95,7 @@ public class Cutter : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMove()
+    protected IEnumerator WaitMoveForStore()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -105,32 +105,43 @@ public class Cutter : BasicBuilding
         isRemoved = false;
     }
 
-    //protected void DirectReturnItem()
-    //{
-    //    if (itemTemp != null &&
-    //        !isRotating &&
-    //        point.canMove &&
-    //        !isSpawned &&
-    //        !point.hitTransform.GetComponent<Point>().isItemExist)
-    //    {
-    //        itemTemp.SetActive(true);
-    //        isArrived = false;
-    //        SendItem();
-    //        isSpawned = true;
-    //    }
-    //}
+    /// <summary>
+    /// 이동을 대기시키는 함수
+    /// </summary>
+    protected IEnumerator WaitMoveForReturn()
+    {
+        yield return waitForArriveSeconds;
+        isArrived = true;
+        yield return waitForSpawnSeconds;
+        isSpawned = false;
+    }
 
-    ///// <summary>
-    ///// 아이템을 발사하는 함수
-    ///// </summary>
-    //private void SendItem()
-    //{
-    //    itemTransform = itemTemp.transform;
-    //    startPos = pointTransform;
-    //    endPos = point.hitTransform;
-    //    StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-    //    StartCoroutine(ThrowItem(itemTransform));
-    //    StartCoroutine(WaitMove());
-    //}
+    protected void DirectReturnItem()
+    {
+        if (itemTemp != null &&
+            !isRotating &&
+            point.canMove &&
+            !isSpawned &&
+            !point.hitTransform.GetComponent<Point>().isItemExist)
+        {
+            itemTemp.SetActive(true);
+            isArrived = false;
+            SendItem();
+            isSpawned = true;
+        }
+    }
+
+    /// <summary>
+    /// 아이템을 발사하는 함수
+    /// </summary>
+    private void SendItem()
+    {
+        itemTransform = itemTemp.transform;
+        startPos = pointTransform;
+        endPos = point.hitTransform;
+        StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+        StartCoroutine(ThrowItem(itemTransform));
+        StartCoroutine(WaitMoveForReturn());
+    }
     #endregion
 }
