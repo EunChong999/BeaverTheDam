@@ -49,6 +49,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMoving: 0
   spriteTransform: {fileID: 159132853655487175}
+  rotationEase: 0
+  startScaleTime: 0.05
+  endScaleTime: 1
+  startScaleEase: 3
+  endScaleEase: 24
+  originScale: {x: 0, y: 0, z: 0}
 --- !u!54 &2022189486249235290
 Rigidbody:
   m_ObjectHideFlags: 0
