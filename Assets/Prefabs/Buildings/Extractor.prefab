@@ -50,7 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 1
-  moveType: 0
+  movementType: 0
+  directionType: 1
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 145467275965996499}
@@ -178,6 +179,7 @@ MonoBehaviour:
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 1
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
 --- !u!65 &162824134998551256

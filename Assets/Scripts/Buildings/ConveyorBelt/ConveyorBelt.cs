@@ -1,5 +1,11 @@
 using UnityEngine;
 
+//public enum movementType
+//{
+//    movableType,
+//    fixedType
+//}
+
 public class ConveyorBelt : BasicBuilding
 {
     #region Variables
@@ -20,7 +26,7 @@ public class ConveyorBelt : BasicBuilding
     {
         if (canPlay)
         {
-            if (moveType == directionType.straightType)
+            if (movementType == movementType.straightType)
             {
                 if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
                     ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
@@ -35,7 +41,7 @@ public class ConveyorBelt : BasicBuilding
                 }
             }
 
-            if (moveType == directionType.curveType)
+            if (movementType == movementType.curveType)
             {
                 if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
                     ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) ||
@@ -61,12 +67,12 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     protected void SetTrailerType()
     {
-        switch (moveType)
+        switch (movementType)
         {
-            case directionType.straightType:
+            case movementType.straightType:
                 spriteAnimator.SetBool("IsStraight", true);
                 break;
-            case directionType.curveType:
+            case movementType.curveType:
                 spriteAnimator.SetBool("IsStraight", false);
                 break;
         }

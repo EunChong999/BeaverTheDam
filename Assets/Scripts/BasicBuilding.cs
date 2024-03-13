@@ -2,16 +2,22 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
-public enum movementType
+public enum buildingType
 {
     movableType,
     fixedType
 }
 
-public enum directionType
+public enum movementType
 {
     straightType,
     curveType
+}
+
+public enum directionType
+{
+    leftType,
+    rightType,
 }
 
 public class BasicBuilding : MonoBehaviour
@@ -21,8 +27,9 @@ public class BasicBuilding : MonoBehaviour
 
     [Space(10)]
 
-    public movementType buildingType;
-    public directionType moveType;
+    public buildingType buildingType;
+    public movementType movementType;
+    public directionType directionType;
     public float rotationTime;
     public float directionTime;
     public Transform spriteTransform;
@@ -65,11 +72,12 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation()
+    public void DirectRotation(directionType dirType)
     {
         if (!isRotating && canRotate)
         {
-            RotateTransform();
+            directionType = dirType;
+            RotateTransform(directionType);
             ShowEffect();
             StartCoroutine(InitToOriginValue());
             StartCoroutine(SetArrowDirection());
@@ -104,9 +112,18 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 건물을 회전시키는 함수
     /// </summary>
-    protected void RotateTransform()
+    protected void RotateTransform(directionType dirType)
     {
-        targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
+        if (dirType.Equals(directionType.rightType))
+        {
+            targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
+        }
+
+        if (dirType.Equals(directionType.leftType))
+        {
+            targetRotation = transform.eulerAngles + new Vector3(0, -targetAngle, 0);
+        }
+
         transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
     }
 

@@ -10,14 +10,14 @@ public class Direction : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    directionType moveType;
+    movementType moveType;
 
     int rotationToInt;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        moveType = basicBuilding.moveType;
+        moveType = basicBuilding.movementType;
     }
 
     void LateUpdate()
@@ -27,7 +27,7 @@ public class Direction : MonoBehaviour
 
         switch (moveType)
         {
-            case directionType.straightType:
+            case movementType.straightType:
                 if (rotationToInt >= 0 && rotationToInt < 90)
                 {
                     spriteRenderer.sprite = sprites[1];
@@ -45,7 +45,7 @@ public class Direction : MonoBehaviour
                     spriteRenderer.sprite = sprites[0];
                 }
                 break;
-            case directionType.curveType:
+            case movementType.curveType:
                 if (rotationToInt >= 0 && rotationToInt < 90)
                 {
                     spriteRenderer.sprite = sprites[2];

@@ -35,7 +35,7 @@ public class Point : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
-            if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == movementType.movableType)
+            if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
                 isMovable = true;
             }
@@ -48,15 +48,15 @@ public class Point : MonoBehaviour
             {
                 bool dir =
                     // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
-                    ((hitInfo.transform.GetComponent<BasicBuilding>().moveType == directionType.straightType &&
+                    ((hitInfo.transform.GetComponent<BasicBuilding>().movementType == movementType.straightType &&
                     Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y)) ||
 
                     // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
-                    (hitInfo.transform.GetComponent<BasicBuilding>().moveType == directionType.curveType &&
+                    (hitInfo.transform.GetComponent<BasicBuilding>().movementType == movementType.curveType &&
                     Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt((transform.parent.eulerAngles.y) + 90)) ||
 
                     // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
-                    hitInfo.transform.GetComponent<BasicBuilding>().moveType == directionType.curveType &&
+                    hitInfo.transform.GetComponent<BasicBuilding>().movementType == movementType.curveType &&
                     Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == 0 &&
                     Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y) - 270);
 

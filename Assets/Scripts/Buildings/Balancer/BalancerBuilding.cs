@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BalancerBuilding : Balancer
@@ -22,11 +20,24 @@ public class BalancerBuilding : Balancer
         originScale = spriteTransform.localScale;
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
         ShowEffect();
-        buildings[0].GetComponent<BasicBuilding>().DirectRotation();
-        buildings[1].GetComponent<BasicBuilding>().DirectRotation();
+
+        // 마우스 좌클릭
+        if (Input.GetMouseButtonDown(0))
+        {
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(directionType.leftType);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(directionType.leftType);
+
+        }
+
+        // 마우스 우클릭
+        if (Input.GetMouseButtonDown(1))
+        {
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(directionType.rightType);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(directionType.rightType);
+        }
     }
 
     /// <summary>
