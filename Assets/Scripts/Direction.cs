@@ -10,7 +10,7 @@ public class Direction : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    moveType moveType;
+    directionType moveType;
 
     int rotationToInt;
 
@@ -27,7 +27,7 @@ public class Direction : MonoBehaviour
 
         switch (moveType)
         {
-            case moveType.straightType:
+            case directionType.straightType:
                 if (rotationToInt >= 0 && rotationToInt < 90)
                 {
                     spriteRenderer.sprite = sprites[1];
@@ -45,7 +45,7 @@ public class Direction : MonoBehaviour
                     spriteRenderer.sprite = sprites[0];
                 }
                 break;
-            case moveType.curveType:
+            case directionType.curveType:
                 if (rotationToInt >= 0 && rotationToInt < 90)
                 {
                     spriteRenderer.sprite = sprites[2];

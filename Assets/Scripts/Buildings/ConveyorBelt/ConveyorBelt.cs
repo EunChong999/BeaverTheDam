@@ -20,7 +20,7 @@ public class ConveyorBelt : BasicBuilding
     {
         if (canPlay)
         {
-            if (moveType == moveType.straightType)
+            if (moveType == directionType.straightType)
             {
                 if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
                     ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
@@ -35,7 +35,7 @@ public class ConveyorBelt : BasicBuilding
                 }
             }
 
-            if (moveType == moveType.curveType)
+            if (moveType == directionType.curveType)
             {
                 if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
                     ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) ||
@@ -63,10 +63,10 @@ public class ConveyorBelt : BasicBuilding
     {
         switch (moveType)
         {
-            case moveType.straightType:
+            case directionType.straightType:
                 spriteAnimator.SetBool("IsStraight", true);
                 break;
-            case moveType.curveType:
+            case directionType.curveType:
                 spriteAnimator.SetBool("IsStraight", false);
                 break;
         }

@@ -2,13 +2,13 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
-public enum buildingType
+public enum movementType
 {
     movableType,
     fixedType
 }
 
-public enum moveType
+public enum directionType
 {
     straightType,
     curveType
@@ -21,8 +21,8 @@ public class BasicBuilding : MonoBehaviour
 
     [Space(10)]
 
-    public buildingType buildingType;
-    public moveType moveType;
+    public movementType buildingType;
+    public directionType moveType;
     public float rotationTime;
     public float directionTime;
     public Transform spriteTransform;
