@@ -1,9 +1,27 @@
+using UnityEngine;
+
 public class ConveyorBeltBuilding : ConveyorBelt
 {
     #region Events
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        DirectRotation();
+        // 마우스 좌클릭
+        if (Input.GetMouseButtonDown(0))
+        {
+            DirectRotation(false, targetAngle);
+        }
+
+        // 마우스 우클릭
+        else if (Input.GetMouseButtonDown(1))
+        {
+            DirectRotation(true, targetAngle);
+        }
+
+        // 마우스 휠클릭
+        else if (Input.GetMouseButtonDown(2))
+        {
+            ChangeDirectionType();
+        }
     }
 
     private void Start()

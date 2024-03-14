@@ -10,42 +10,46 @@ public class Direction : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
-    directionType moveType;
+    movementType movementType;
+    directionType directionType;
 
     int rotationToInt;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        moveType = basicBuilding.moveType;
+        movementType = basicBuilding.movementType;
     }
 
     void LateUpdate()
     {
         transform.localRotation = spriteTransform.localRotation;
         rotationToInt = Mathf.RoundToInt(transform.parent.rotation.eulerAngles.y);
+        directionType = basicBuilding.directionType;
 
-        switch (moveType)
+        if (movementType == movementType.straightType)
         {
-            case directionType.straightType:
-                if (rotationToInt >= 0 && rotationToInt < 90)
-                {
-                    spriteRenderer.sprite = sprites[1];
-                }
-                else if (rotationToInt >= 90 && rotationToInt < 180)
-                {
-                    spriteRenderer.sprite = sprites[7];
-                }
-                else if (rotationToInt >= 180 && rotationToInt < 270)
-                {
-                    spriteRenderer.sprite = sprites[6];
-                }
-                else if (rotationToInt >= 270 && rotationToInt < 360)
-                {
-                    spriteRenderer.sprite = sprites[0];
-                }
-                break;
-            case directionType.curveType:
+            if (rotationToInt >= 0 && rotationToInt < 90)
+            {
+                spriteRenderer.sprite = sprites[1];
+            }
+            else if (rotationToInt >= 90 && rotationToInt < 180)
+            {
+                spriteRenderer.sprite = sprites[7];
+            }
+            else if (rotationToInt >= 180 && rotationToInt < 270)
+            {
+                spriteRenderer.sprite = sprites[6];
+            }
+            else if (rotationToInt >= 270 && rotationToInt < 360)
+            {
+                spriteRenderer.sprite = sprites[0];
+            }
+        }
+        else
+        {
+            if (directionType == directionType.rightType)
+            {
                 if (rotationToInt >= 0 && rotationToInt < 90)
                 {
                     spriteRenderer.sprite = sprites[2];
@@ -62,7 +66,26 @@ public class Direction : MonoBehaviour
                 {
                     spriteRenderer.sprite = sprites[4];
                 }
-                break;
+            }
+            else
+            {
+                if (rotationToInt >= 0 && rotationToInt < 90)
+                {
+                    spriteRenderer.sprite = sprites[8];
+                }
+                else if (rotationToInt >= 90 && rotationToInt < 180)
+                {
+                    spriteRenderer.sprite = sprites[10];
+                }
+                else if (rotationToInt >= 180 && rotationToInt < 270)
+                {
+                    spriteRenderer.sprite = sprites[3];
+                }
+                else if (rotationToInt >= 270 && rotationToInt < 360)
+                {
+                    spriteRenderer.sprite = sprites[5];
+                }
+            }
         }
 
         if (rotationToInt >= 0 && rotationToInt < 90)

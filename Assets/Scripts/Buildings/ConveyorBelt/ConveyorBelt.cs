@@ -11,6 +11,7 @@ public class ConveyorBelt : BasicBuilding
     public bool canMove;
     public bool canPlay;
     public bool isItemExist;
+    int rotationAngle;
     #endregion
     #region Functions
     /// <summary>
@@ -20,33 +21,52 @@ public class ConveyorBelt : BasicBuilding
     {
         if (canPlay)
         {
-            if (moveType == directionType.straightType)
+            rotationAngle = Mathf.RoundToInt(transform.eulerAngles.y);
+
+            if (movementType == movementType.straightType)
             {
-                if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
-                    ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
+                if ((rotationAngle >= 0 && rotationAngle < 90) ||
+                    (rotationAngle >= 90 && rotationAngle < 180))
                 {
                     spriteAnimator.SetFloat("Speed", 1);
                 }
 
-                if (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270) ||
-                    ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360))
+                if ((rotationAngle >= 180 && rotationAngle < 270) ||
+                    (rotationAngle >= 270 && rotationAngle < 360))
                 {
                     spriteAnimator.SetFloat("Speed", -1);
                 }
             }
 
-            if (moveType == directionType.curveType)
+            if (movementType == movementType.curveType)
             {
-                if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
-                    ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) ||
-                    (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270)))
+                if (directionType == directionType.rightType)
                 {
-                    spriteAnimator.SetFloat("Speed", 1);
-                }
+                    if (rotationAngle >= 0 && rotationAngle < 90 ||
+                       (rotationAngle >= 90 && rotationAngle < 180 ||
+                       (rotationAngle >= 180 && rotationAngle < 270)))
+                    {
+                        spriteAnimator.SetFloat("Speed", 1);
+                    }
 
-                if ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360)
+                    if (rotationAngle >= 270 && rotationAngle < 360)
+                    {
+                        spriteAnimator.SetFloat("Speed", -1);
+                    }
+                }
+                else
                 {
-                    spriteAnimator.SetFloat("Speed", -1);
+                    if (rotationAngle >= 0 && rotationAngle < 90 ||
+                       (rotationAngle >= 90 && rotationAngle < 180 ||
+                       (rotationAngle >= 180 && rotationAngle < 270)))
+                    {
+                        spriteAnimator.SetFloat("Speed", -1);
+                    }
+
+                    if (rotationAngle >= 270 && rotationAngle < 360)
+                    {
+                        spriteAnimator.SetFloat("Speed", 1);
+                    }
                 }
             }
         }
@@ -61,12 +81,12 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     protected void SetTrailerType()
     {
-        switch (moveType)
+        switch (movementType)
         {
-            case directionType.straightType:
+            case movementType.straightType:
                 spriteAnimator.SetBool("IsStraight", true);
                 break;
-            case directionType.curveType:
+            case movementType.curveType:
                 spriteAnimator.SetBool("IsStraight", false);
                 break;
         }
@@ -87,7 +107,8 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     protected void ChangeSprite()
     {
-        spriteAnimator.SetFloat("Angle", transform.eulerAngles.y);
+        spriteAnimator.SetFloat("AngleFloat", Mathf.RoundToInt(transform.eulerAngles.y));
+        spriteAnimator.SetInteger("AngleInt", Mathf.RoundToInt(transform.eulerAngles.y));
     }
     #endregion
 }

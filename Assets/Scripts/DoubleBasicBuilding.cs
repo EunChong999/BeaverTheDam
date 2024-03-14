@@ -22,11 +22,30 @@ public class DoubleBasicBuilding : MonoBehaviour
         originScale = spriteTransform.localScale;
     }
 
-    private void OnMouseDown()
+    private void OnMouseOver()
     {
-        ShowEffect();
-        buildings[0].GetComponent<BasicBuilding>().DirectRotation();
-        buildings[1].GetComponent<BasicBuilding>().DirectRotation();
+        // 마우스 좌클릭
+        if (Input.GetMouseButtonDown(0))
+        {
+            ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+        }
+
+        // 마우스 우클릭
+        else if (Input.GetMouseButtonDown(1))
+        {
+            ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+        }
+
+        else if (Input.GetMouseButtonDown(2))
+        {
+            ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+        }
     }
 
     /// <summary>

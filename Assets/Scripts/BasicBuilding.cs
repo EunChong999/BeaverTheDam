@@ -2,16 +2,22 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
-public enum movementType
+public enum buildingType
 {
     movableType,
     fixedType
 }
 
-public enum directionType
+public enum movementType
 {
     straightType,
     curveType
+}
+
+public enum directionType
+{
+    leftType,
+    rightType,
 }
 
 public class BasicBuilding : MonoBehaviour
@@ -21,8 +27,9 @@ public class BasicBuilding : MonoBehaviour
 
     [Space(10)]
 
-    public movementType buildingType;
-    public directionType moveType;
+    public buildingType buildingType;
+    public movementType movementType;
+    public directionType directionType;
     public float rotationTime;
     public float directionTime;
     public Transform spriteTransform;
@@ -32,7 +39,8 @@ public class BasicBuilding : MonoBehaviour
     public bool isRotating;
     public bool canRotate;
 
-    [SerializeField] float targetAngle;
+    [SerializeField] protected float targetAngle;
+
     [SerializeField] Ease rotationEase;
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -65,11 +73,11 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation()
+    public void DirectRotation(bool isRight, float targetAngle)
     {
         if (!isRotating && canRotate)
         {
-            RotateTransform();
+            RotateTransform(isRight, targetAngle, transform);
             ShowEffect();
             StartCoroutine(InitToOriginValue());
             StartCoroutine(SetArrowDirection());
@@ -104,9 +112,17 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 건물을 회전시키는 함수
     /// </summary>
-    protected void RotateTransform()
+    protected void RotateTransform(bool isRight, float targetAngle, Transform transform)
     {
-        targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
+        if (isRight)
+        {
+            targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
+        }
+        else
+        {
+            targetRotation = transform.eulerAngles + new Vector3(0, -targetAngle, 0);
+        }
+
         transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
     }
 
@@ -130,6 +146,29 @@ public class BasicBuilding : MonoBehaviour
         if (!isRotating) 
         {
             directionObj.SetActive(true);
+        }
+    }
+
+    public void ChangeDirectionType()
+    {
+        ShowEffect();
+
+        if (movementType == movementType.curveType)
+        {
+            if (directionType == directionType.rightType)
+            {
+                directionType = directionType.leftType;
+                RotateTransform(true, 90, pointTransform);
+            }
+            else
+            {
+                directionType = directionType.rightType;
+                RotateTransform(true, -90, pointTransform);
+            }
+        }
+        else
+        {
+            DirectRotation(true, 180);
         }
     }
 
