@@ -1,16 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-public class Trash : BasicBuilding
+public class Cutter : BasicBuilding
 {
     #region Variables
-
-    [Header("TrashBuilding")]
+    [Header("CutterBuilding")]
 
     [Space(10)]
 
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
+    [SerializeField] float spawnTime;
+    [SerializeField] float returnTime;
+    [SerializeField] float storeTime;
     [SerializeField] float height;
     [SerializeField] float speed;
 
@@ -21,40 +24,47 @@ public class Trash : BasicBuilding
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
+    GameObject itemTemp;
     WaitForSeconds waitForArriveSeconds;
+    WaitForSeconds waitForSpawnSeconds;
+    WaitForSeconds waitForReturnSeconds;
+    WaitForSeconds waitForStoreSeconds;
     bool isArrived;
+    bool isReturned;
     bool isRemoved;
+    bool isStoring;
 
     #endregion
     #region Functions
-    /// <summary>
-    /// 기본 설정들을 초기화하는 함수
-    /// </summary>
     public override void InitSettings()
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
+        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
+        waitForReturnSeconds = new WaitForSeconds(returnTime);
+        waitForStoreSeconds = new WaitForSeconds(storeTime);
     }
 
-    /// <summary>
-    /// 아이템을 발사하는 함수
-    /// </summary>
-    protected void RemoveItem()
+    protected void DirectStoreItem()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
-            if (pointingPoint.canMove &&
+            if (pointingPoint.hitTransform.Equals(pointTransform) &&
+                pointingPoint.canMove &&
                 !isRemoved &&
                 pointingPoint.isItemExist &&
-                !pointingPoint.itemTransform.GetComponent<Item>().isMoving)
+                !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
+                itemTemp == null)
             {
+                isStoring = true;
                 isArrived = false;
                 itemTransform = pointingPoint.itemTransform;
+                itemTemp = itemTransform.gameObject;
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                 endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitMove());
+                StartCoroutine(WaitMoveForStore());
                 isRemoved = true;
             }
         }
@@ -95,13 +105,56 @@ public class Trash : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMove()
+    protected IEnumerator WaitMoveForStore()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        itemTemp.SetActive(false);
         point.isItemExist = false;
-        Destroy(itemTransform.gameObject);
         isRemoved = false;
+        yield return waitForStoreSeconds;
+        isStoring = false;
+    }
+
+    /// <summary>
+    /// 이동을 대기시키는 함수
+    /// </summary>
+    protected IEnumerator WaitMoveForReturn()
+    {
+        yield return waitForArriveSeconds;
+        isArrived = true;
+        yield return waitForReturnSeconds;
+        isReturned = false;
+        itemTemp = null;
+    }
+
+    protected void DirectReturnItem()
+    {
+        if (itemTemp != null &&
+            !isRotating &&
+            point.canMove &&
+            !isReturned &&
+            !point.hitTransform.GetComponent<Point>().isItemExist &&
+            !isStoring)
+        {
+            isArrived = false;
+            SendItem();
+            isReturned = true;
+        }
+    }
+
+    /// <summary>
+    /// 아이템을 발사하는 함수
+    /// </summary>
+    private void SendItem()
+    {
+        itemTemp.SetActive(true);
+        itemTransform = itemTemp.transform;
+        startPos = pointTransform;
+        endPos = point.hitTransform;
+        StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+        StartCoroutine(ThrowItem(itemTransform));
+        StartCoroutine(WaitMoveForReturn());
     }
     #endregion
 }

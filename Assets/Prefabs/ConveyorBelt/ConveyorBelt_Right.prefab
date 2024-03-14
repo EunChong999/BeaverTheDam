@@ -166,9 +166,9 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 1
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
 --- !u!65 &2087671219231262178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 1439644759351956998}
   pointTransform: {fileID: 4331647266431212208}
   directionObj: {fileID: 3200911467241487838}
+  pointingPoint: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 90
