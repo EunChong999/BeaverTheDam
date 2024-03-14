@@ -28,16 +28,23 @@ public class DoubleBasicBuilding : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(directionType.leftType);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(directionType.leftType);
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
         }
 
         // 마우스 우클릭
-        if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))
         {
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(directionType.rightType);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(directionType.rightType);
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+        }
+
+        else if (Input.GetMouseButtonDown(2))
+        {
+            ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
         }
     }
 

@@ -22,21 +22,20 @@ public class BalancerBuilding : Balancer
 
     private void OnMouseOver()
     {
-        ShowEffect();
-
         // 마우스 좌클릭
         if (Input.GetMouseButtonDown(0))
         {
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(directionType.leftType);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(directionType.leftType);
-
+            ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
         }
 
         // 마우스 우클릭
-        if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))
         {
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(directionType.rightType);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(directionType.rightType);
+            ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(true, targetAngle);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(true, targetAngle);
         }
     }
 

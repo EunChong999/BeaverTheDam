@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using System.Collections;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Point : MonoBehaviour
@@ -23,6 +22,10 @@ public class Point : MonoBehaviour
     public Transform hitTransform;
     Sequence itemScaleSequence;
     float moveSpeed;
+    int hitAngle;
+    int thisAngle;
+    movementType hitMovementType;
+    directionType hitDirectionType;
 
     void Update()
     {
@@ -35,6 +38,11 @@ public class Point : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
+            hitAngle = Mathf.RoundToInt(hitInfo.transform.eulerAngles.y);
+            thisAngle = Mathf.RoundToInt(transform.parent.eulerAngles.y);
+            hitMovementType = hitInfo.transform.GetComponent<BasicBuilding>().movementType;
+            hitDirectionType = hitInfo.transform.GetComponent<BasicBuilding>().directionType;
+
             if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
                 isMovable = true;
@@ -46,21 +54,42 @@ public class Point : MonoBehaviour
 
             bool IsSameDir()
             {
-                bool dir =
-                    // 이동형이 직선형일 때, 건물끼리 바라보는 방향이 같은 경우
-                    ((hitInfo.transform.GetComponent<BasicBuilding>().movementType == movementType.straightType &&
-                    Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y)) ||
-
-                    // 이동형이 곡선형일 때, 바라보는 건물이 해당 건물보다 방향이 90도 돌아가 있는 경우 
-                    (hitInfo.transform.GetComponent<BasicBuilding>().movementType == movementType.curveType &&
-                    Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt((transform.parent.eulerAngles.y) + 90)) ||
-
-                    // 이동형이 곡선형일 때, 바라보는 건물의 방향이 0도이고, 해당 건물이 바라보는 건물보다 270도 돌아가 있는 경우
-                    hitInfo.transform.GetComponent<BasicBuilding>().movementType == movementType.curveType &&
-                    Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == 0 &&
-                    Mathf.RoundToInt(hitInfo.transform.eulerAngles.y) == Mathf.RoundToInt(transform.parent.eulerAngles.y) - 270);
-
-                return dir;
+                if (hitMovementType == movementType.straightType)
+                {
+                    if (hitAngle == thisAngle)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (hitDirectionType == directionType.rightType)
+                    {
+                        if ((hitAngle == (thisAngle + 90)) || (hitAngle == 0 && hitAngle == (thisAngle - 270)))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if ((hitAngle == (thisAngle + 180)) || (hitAngle == 0 && hitAngle == (thisAngle - 180)))
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
 
             // 바라보는 건물에 아이템이 존재하지 않을 때

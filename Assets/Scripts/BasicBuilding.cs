@@ -16,6 +16,7 @@ public enum movementType
 
 public enum directionType
 {
+    none,
     leftType,
     rightType,
 }
@@ -39,7 +40,8 @@ public class BasicBuilding : MonoBehaviour
     public bool isRotating;
     public bool canRotate;
 
-    [SerializeField] float targetAngle;
+    [SerializeField] protected float targetAngle;
+
     [SerializeField] Ease rotationEase;
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -54,6 +56,8 @@ public class BasicBuilding : MonoBehaviour
     WaitForSeconds waitForDirectionSeconds;
     Sequence buildingScaleSequence;
     Vector3 targetRotation;
+
+    bool isRightMoving;
 
     #endregion
     #region Functions
@@ -72,12 +76,12 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation(directionType dirType)
+    public void DirectRotation(bool isRight, float targetAngle)
     {
         if (!isRotating && canRotate)
         {
-            directionType = dirType;
-            RotateTransform(directionType);
+            isRightMoving = isRight; 
+            RotateTransform(isRight, targetAngle);
             ShowEffect();
             StartCoroutine(InitToOriginValue());
             StartCoroutine(SetArrowDirection());
@@ -112,14 +116,13 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 건물을 회전시키는 함수
     /// </summary>
-    protected void RotateTransform(directionType dirType)
+    protected void RotateTransform(bool isRight, float targetAngle)
     {
-        if (dirType.Equals(directionType.rightType))
+        if (isRight)
         {
             targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
         }
-
-        if (dirType.Equals(directionType.leftType))
+        else
         {
             targetRotation = transform.eulerAngles + new Vector3(0, -targetAngle, 0);
         }
@@ -147,6 +150,27 @@ public class BasicBuilding : MonoBehaviour
         if (!isRotating) 
         {
             directionObj.SetActive(true);
+        }
+    }
+
+    public void ChangeDirectionType()
+    {
+        ShowEffect();
+
+        if (movementType == movementType.curveType)
+        {
+            if (directionType == directionType.rightType)
+            {
+                directionType = directionType.leftType;
+            }
+            else
+            {
+                directionType = directionType.rightType;
+            }
+        }
+        else
+        {
+            DirectRotation(isRightMoving, 180);
         }
     }
 

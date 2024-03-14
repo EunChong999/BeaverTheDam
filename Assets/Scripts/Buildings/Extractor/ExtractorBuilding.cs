@@ -8,13 +8,19 @@ public class ExtractorBuilding : Extractor
         // 마우스 좌클릭
         if (Input.GetMouseButtonDown(0))
         {
-            DirectRotation(directionType.leftType);
+            DirectRotation(false, targetAngle);
         }
 
         // 마우스 우클릭
-        if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1))
         {
-            DirectRotation(directionType.rightType);
+            DirectRotation(true, targetAngle);
+        }
+
+        // 마우스 휠클릭
+        else if (Input.GetMouseButtonDown(2))
+        {
+            ChangeDirectionType();
         }
     }
 

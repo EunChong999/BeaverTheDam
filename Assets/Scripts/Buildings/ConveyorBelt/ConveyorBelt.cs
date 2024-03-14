@@ -1,11 +1,5 @@
 using UnityEngine;
 
-//public enum movementType
-//{
-//    movableType,
-//    fixedType
-//}
-
 public class ConveyorBelt : BasicBuilding
 {
     #region Variables
@@ -17,6 +11,7 @@ public class ConveyorBelt : BasicBuilding
     public bool canMove;
     public bool canPlay;
     public bool isItemExist;
+    int rotationAngle;
     #endregion
     #region Functions
     /// <summary>
@@ -26,16 +21,18 @@ public class ConveyorBelt : BasicBuilding
     {
         if (canPlay)
         {
+            rotationAngle = Mathf.RoundToInt(transform.eulerAngles.y);
+
             if (movementType == movementType.straightType)
             {
-                if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
-                    ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180))
+                if ((rotationAngle >= 0 && rotationAngle < 90) ||
+                    (rotationAngle >= 90 && rotationAngle < 180))
                 {
                     spriteAnimator.SetFloat("Speed", 1);
                 }
 
-                if (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270) ||
-                    ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360))
+                if ((rotationAngle >= 180 && rotationAngle < 270) ||
+                    (rotationAngle >= 270 && rotationAngle < 360))
                 {
                     spriteAnimator.SetFloat("Speed", -1);
                 }
@@ -43,16 +40,33 @@ public class ConveyorBelt : BasicBuilding
 
             if (movementType == movementType.curveType)
             {
-                if (((int)transform.eulerAngles.y >= 0 && (int)transform.eulerAngles.y < 90) ||
-                    ((int)transform.eulerAngles.y >= 90 && (int)transform.eulerAngles.y < 180) ||
-                    (((int)transform.eulerAngles.y >= 180 && (int)transform.eulerAngles.y < 270)))
+                if (directionType == directionType.rightType)
                 {
-                    spriteAnimator.SetFloat("Speed", 1);
-                }
+                    if (rotationAngle >= 0 && rotationAngle < 90 ||
+                       (rotationAngle >= 90 && rotationAngle < 180 ||
+                       (rotationAngle >= 180 && rotationAngle < 270)))
+                    {
+                        spriteAnimator.SetFloat("Speed", 1);
+                    }
 
-                if ((int)transform.eulerAngles.y >= 270 && (int)transform.eulerAngles.y < 360)
+                    if (rotationAngle >= 270 && rotationAngle < 360)
+                    {
+                        spriteAnimator.SetFloat("Speed", -1);
+                    }
+                }
+                else
                 {
-                    spriteAnimator.SetFloat("Speed", -1);
+                    if (rotationAngle >= 0 && rotationAngle < 90 ||
+                       (rotationAngle >= 90 && rotationAngle < 180 ||
+                       (rotationAngle >= 180 && rotationAngle < 270)))
+                    {
+                        spriteAnimator.SetFloat("Speed", -1);
+                    }
+
+                    if (rotationAngle >= 270 && rotationAngle < 360)
+                    {
+                        spriteAnimator.SetFloat("Speed", 1);
+                    }
                 }
             }
         }
@@ -93,7 +107,7 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     protected void ChangeSprite()
     {
-        spriteAnimator.SetFloat("Angle", transform.eulerAngles.y);
+        spriteAnimator.SetFloat("Angle", Mathf.RoundToInt(transform.eulerAngles.y));
     }
     #endregion
 }

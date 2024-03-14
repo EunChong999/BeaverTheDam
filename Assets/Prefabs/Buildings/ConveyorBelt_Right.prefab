@@ -242,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingType: 0
   movementType: 0
-  directionType: 1
+  directionType: 2
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 1439644759351956998}
