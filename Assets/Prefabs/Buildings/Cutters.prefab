@@ -505,7 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingType: 1
   movementType: 0
-  directionType: 0
+  directionType: 1
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 1431563378783571231}
@@ -849,7 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingType: 1
   movementType: 0
-  directionType: 0
+  directionType: 1
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 5701561591834069847}

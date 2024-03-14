@@ -43,7 +43,8 @@ public class Trash : BasicBuilding
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
-            if (pointingPoint.canMove &&
+            if (pointingPoint.hitTransform.Equals(pointTransform) &&
+                pointingPoint.canMove &&
                 !isRemoved &&
                 pointingPoint.isItemExist &&
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving)
