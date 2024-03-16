@@ -8,11 +8,6 @@ public class PainterBuilding : Painter
         InitSettings();
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void LateUpdate()
     {
         LookCameraRotation();

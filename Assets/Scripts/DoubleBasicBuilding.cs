@@ -7,6 +7,7 @@ public class DoubleBasicBuilding : MonoBehaviour
 {
     [SerializeField] GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
+    [SerializeField] bool canExchange;
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
 
@@ -30,6 +31,9 @@ public class DoubleBasicBuilding : MonoBehaviour
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+
+            if (canExchange)
+                ExchangeBuildings();
         }
 
         // 마우스 우클릭
@@ -38,6 +42,9 @@ public class DoubleBasicBuilding : MonoBehaviour
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+
+            if (canExchange)
+                ExchangeBuildings();
         }
 
         else if (Input.GetMouseButtonDown(2))
@@ -45,7 +52,17 @@ public class DoubleBasicBuilding : MonoBehaviour
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+
+            if (canExchange)
+                ExchangeBuildings();
         }
+    }
+
+    private void ExchangeBuildings()
+    {
+        Vector3 temp = buildings[0].transform.position;
+        buildings[0].transform.position = buildings[1].transform.position;
+        buildings[1].transform.position = temp;
     }
 
     /// <summary>
