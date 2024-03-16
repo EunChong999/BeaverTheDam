@@ -515,7 +515,7 @@ MonoBehaviour:
   isRotating: 0
   canRotate: 1
   targetAngle: 180
-  rotationEase: 0
+  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -745,7 +745,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 8750936777657017151}
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
-  rotationEase: 0
+  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -859,7 +859,7 @@ MonoBehaviour:
   isRotating: 0
   canRotate: 1
   targetAngle: 180
-  rotationEase: 0
+  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3

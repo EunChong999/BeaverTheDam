@@ -4575,7 +4575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3901889093625719425, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
       propertyPath: m_Name
-      value: 33
+      value: Point
       objectReference: {fileID: 0}
     - target: {fileID: 4058673679482753814, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
       propertyPath: m_Mesh
@@ -73302,9 +73302,10 @@ MonoBehaviour:
   - {fileID: 3481245556791568329}
   - {fileID: 3898749059321340320}
   spriteTransform: {fileID: 3949935593019201509}
+  canExchange: 1
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
-  rotationEase: 0
+  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -73533,7 +73534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8318754772722258099}
-  - component: {fileID: 8318754772722258100}
+  - component: {fileID: 8318754772722258101}
   - component: {fileID: 8315561065358663489}
   - component: {fileID: 4316490306560172689}
   m_Layer: 0
@@ -73623,7 +73624,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2719670581648454698}
-  - component: {fileID: 8728020536066416137}
+  - component: {fileID: 8728020536066416138}
   - component: {fileID: 8568577956851503713}
   - component: {fileID: 3610817234789280477}
   m_Layer: 0
@@ -73860,7 +73861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 0}
+  basicBuilding: {fileID: 8318754772722258101}
   sprites:
   - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
@@ -74034,14 +74035,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3195528192348003632}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8318754772722258099}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &7412939113518397428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74155,7 +74156,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3481245556791568329}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.25, y: 0.5, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -74165,8 +74166,8 @@ Transform:
   - {fileID: 4297114259428926714}
   m_Father: {fileID: 2882922278500792030}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!114 &8318754772722258100
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8318754772722258101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74175,12 +74176,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3481245556791568329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e445c474bb1b4a344854b6e47b0df55b, type: 3}
+  m_Script: {fileID: 11500000, guid: 44b9381813b3c0a4791ad0970e7c507f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 1
-  movementType: 0
-  directionType: 1
+  movementType: 1
+  directionType: 0
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 6534541253963756190}
@@ -74190,7 +74191,7 @@ MonoBehaviour:
   isRotating: 0
   canRotate: 1
   targetAngle: 180
-  rotationEase: 0
+  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -74313,7 +74314,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8728020536066416137
+--- !u!114 &8728020536066416138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74322,7 +74323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3898749059321340320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e445c474bb1b4a344854b6e47b0df55b, type: 3}
+  m_Script: {fileID: 11500000, guid: 44b9381813b3c0a4791ad0970e7c507f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 1
@@ -74337,7 +74338,7 @@ MonoBehaviour:
   isRotating: 0
   canRotate: 1
   targetAngle: 180
-  rotationEase: 0
+  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -74357,7 +74358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 0}
+  basicBuilding: {fileID: 8728020536066416138}
   sprites:
   - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
