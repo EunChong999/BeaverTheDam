@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
-    [SerializeField] GameObject[] buildings;
+    public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [SerializeField] bool canExchange;
     [HideInInspector] public Vector3 originScale;
@@ -25,7 +25,7 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     private void OnMouseOver()
     {
-        // ¸¶¿ì½º ÁÂÅ¬¸¯
+        // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Å¬ï¿½ï¿½
         if (Input.GetMouseButtonDown(0))
         {
             ShowEffect();
@@ -36,7 +36,7 @@ public class DoubleBasicBuilding : MonoBehaviour
                 ExchangeBuildings();
         }
 
-        // ¸¶¿ì½º ¿ìÅ¬¸¯
+        // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Å¬ï¿½ï¿½
         else if (Input.GetMouseButtonDown(1))
         {
             ShowEffect();
@@ -66,7 +66,7 @@ public class DoubleBasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// È¸Àü½Ã Æ®À§´× È¿°ú¸¦ ÁÖ´Â ÇÔ¼ö
+    /// È¸ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     /// </summary>
     protected void ShowEffect()
     {
