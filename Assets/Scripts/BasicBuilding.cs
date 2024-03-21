@@ -16,7 +16,6 @@ public enum movementType
 
 public enum directionType
 {
-    none,
     leftType,
     rightType,
 }
@@ -57,8 +56,6 @@ public class BasicBuilding : MonoBehaviour
     Sequence buildingScaleSequence;
     Vector3 targetRotation;
 
-    bool isRightMoving;
-
     #endregion
     #region Functions
     /// <summary>
@@ -80,8 +77,7 @@ public class BasicBuilding : MonoBehaviour
     {
         if (!isRotating && canRotate)
         {
-            isRightMoving = isRight; 
-            RotateTransform(isRight, targetAngle);
+            RotateTransform(isRight, targetAngle, transform);
             ShowEffect();
             StartCoroutine(InitToOriginValue());
             StartCoroutine(SetArrowDirection());
@@ -116,7 +112,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 건물을 회전시키는 함수
     /// </summary>
-    protected void RotateTransform(bool isRight, float targetAngle)
+    protected void RotateTransform(bool isRight, float targetAngle, Transform transform)
     {
         if (isRight)
         {
@@ -162,15 +158,17 @@ public class BasicBuilding : MonoBehaviour
             if (directionType == directionType.rightType)
             {
                 directionType = directionType.leftType;
+                RotateTransform(true, 90, pointTransform);
             }
             else
             {
                 directionType = directionType.rightType;
+                RotateTransform(true, -90, pointTransform);
             }
         }
         else
         {
-            DirectRotation(isRightMoving, 180);
+            DirectRotation(true, 180);
         }
     }
 

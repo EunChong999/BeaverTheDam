@@ -56,13 +56,44 @@ public class Point : MonoBehaviour
             {
                 if (hitMovementType == movementType.straightType)
                 {
-                    if (hitAngle == thisAngle)
+                    if (transform.parent.GetComponent<BasicBuilding>().movementType == movementType.straightType)
                     {
-                        return true;
+                        if (hitAngle == thisAngle)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     else
                     {
-                        return false;
+                        if (transform.parent.GetComponent<BasicBuilding>().directionType == directionType.rightType)
+                        {
+                            if (hitAngle == thisAngle)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            if ((thisAngle == 0 && hitAngle == 90) ||
+                                (thisAngle == 270 && hitAngle == 0) ||
+                                (thisAngle == 180 && hitAngle == 90) ||
+                                (thisAngle == 90 && hitAngle == 180))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
                     }
                 }
                 else
@@ -80,7 +111,7 @@ public class Point : MonoBehaviour
                     }
                     else
                     {
-                        if ((hitAngle == (thisAngle + 180)) || (hitAngle == 0 && hitAngle == (thisAngle - 180)))
+                        if (Mathf.Abs(hitAngle - thisAngle) == 180 || (hitAngle == 90 && thisAngle == 90))
                         {
                             return true;
                         }

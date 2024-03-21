@@ -1,145 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1101 &-8932200624014390717
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 270
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 179
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3282707783278981753}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-8894763175289749441
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 91
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 7162682950259439354}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-8227952322087281243
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 360
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 269
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 7988741493687884732}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-7735996662268585444
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 360
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 269
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -6843072521978072664}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-7701694001460879896
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 270
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 179
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3282707783278981753}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1101 &-7534982210699733816
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -149,10 +9,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 180
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3075616971322237568}
@@ -179,10 +39,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7162682950259439354}
-    m_Position: {x: 220, y: 80, z: 0}
+    m_Position: {x: 450, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6843072521978072664}
-    m_Position: {x: 220, y: 150, z: 0}
+    m_Position: {x: 450, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6122148166454605520}
     m_Position: {x: 680, y: 80, z: 0}
@@ -199,28 +59,19 @@ AnimatorStateMachine:
     m_State: {fileID: 3815383048557118846}
     m_Position: {x: 220, y: 10, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 4714360259833011837}
-    m_Position: {x: 450, y: 10, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -4251916872494082122}
+    m_State: {fileID: 6420243639001345506}
     m_Position: {x: 680, y: -130, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1385411316675631873}
-    m_Position: {x: 450, y: -130, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -3282707783278981753}
-    m_Position: {x: 450, y: -60, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 7988741493687884732}
+    m_State: {fileID: -976241420386879102}
     m_Position: {x: 680, y: -60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 50, y: 80, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 50, y: 160, z: 0}
+  m_AnyStatePosition: {x: 30, y: -20, z: 0}
+  m_EntryPosition: {x: 30, y: 20, z: 0}
+  m_ExitPosition: {x: 30, y: 60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 3815383048557118846}
 --- !u!1101 &-7309699360048664627
@@ -232,13 +83,69 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 180
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3075616971322237568}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-7124349145081357763
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 180
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 90
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 6420243639001345506}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-7018860733253631119
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 90
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -6843072521978072664}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -262,8 +169,9 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -8894763175289749441}
-  - {fileID: -2470860416986512046}
+  - {fileID: -7124349145081357763}
+  - {fileID: 3717845304797444617}
+  - {fileID: -3889631912005009199}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -288,10 +196,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 360
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 269
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7441325571632214397}
@@ -307,7 +215,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-6114526415098995375
+--- !u!1101 &-6570267392085665748
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,14 +223,11 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 270
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 179
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsStraight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3282707783278981753}
+  m_DstState: {fileID: -3075616971322237568}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -344,10 +249,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 270
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1855722322067573109}
@@ -363,7 +268,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-5389468375735286955
+--- !u!1101 &-4646408631911814113
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,14 +276,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 90
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
     m_EventTreshold: 180
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1385411316675631873}
+  m_DstState: {fileID: -6843072521978072664}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -391,7 +296,63 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-4672844924189130810
+--- !u!1101 &-4365100903046124037
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 180
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 6420243639001345506}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-3889631912005009199
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 270
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 90
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -976241420386879102}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &-3247380367011708332
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,67 +361,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRight
+    m_ConditionEvent: IsStraight
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3075616971322237568}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1102 &-4251916872494082122
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ConveyorBelt_Curve (3) 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 4496623280285181385}
-  - {fileID: -8227952322087281243}
-  - {fileID: -6114526415098995375}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 1
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e24fd093abb414b449d20a5091fc661b, type: 2}
-  m_Tag: 
-  m_SpeedParameter: Speed
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1101 &-4131856668875363724
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 90
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: -1
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -4251916872494082122}
+  m_DstState: {fileID: 7162682950259439354}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -473,63 +377,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-3577790064947374462
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 90
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: -1
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -4251916872494082122}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1102 &-3282707783278981753
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ConveyorBelt_Curve (1) 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 616433509099913893}
-  - {fileID: -1724576194512007122}
-  - {fileID: -3577790064947374462}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 1
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 793691a3b933edc4ebb2539efe695b41, type: 2}
-  m_Tag: 
-  m_SpeedParameter: Speed
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &-3075616971322237568
 AnimatorState:
   serializedVersion: 6
@@ -559,7 +406,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &-2470860416986512046
+--- !u!1101 &-2533801465850687491
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -567,14 +414,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 90
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
     m_EventTreshold: 270
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 7162682950259439354}
+  m_DstState: {fileID: -6843072521978072664}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -596,10 +443,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 180
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3075616971322237568}
@@ -644,34 +491,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &-1724576194512007122
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 360
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 269
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 7988741493687884732}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1101 &-1147165656855038726
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -681,10 +500,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 360
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 269
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7441325571632214397}
@@ -700,59 +519,35 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-918682651130195632
-AnimatorStateTransition:
+--- !u!1102 &-976241420386879102
+AnimatorState:
+  serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 360
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 269
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 7988741493687884732}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-216355034817003785
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsRight
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -3282707783278981753}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_Name: 'ConveyorBelt_Straight (3) '
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 9007847113870490997}
+  - {fileID: 5204259344215141745}
+  - {fileID: -2533801465850687491}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 1
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 1393fd9ac6bbc8349a52e417f21af219, type: 2}
+  m_Tag: 
+  m_SpeedParameter: Speed
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -762,15 +557,21 @@ AnimatorController:
   m_Name: ConveyorBelt
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: Speed
-    m_Type: 1
-    m_DefaultFloat: 1
+  - m_Name: AngleInt
+    m_Type: 3
+    m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Angle
+  - m_Name: AngleFloat
     m_Type: 1
     m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Speed
+    m_Type: 1
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -808,98 +609,13 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 270
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1855722322067573109}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &616433509099913893
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 180
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 89
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1385411316675631873}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1102 &1385411316675631873
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ConveyorBelt_Curve (0) 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -4131856668875363724}
-  - {fileID: -7701694001460879896}
-  - {fileID: -918682651130195632}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 1
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7d664e551a3783248b84746b9e21e1a9, type: 2}
-  m_Tag: 
-  m_SpeedParameter: Speed
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1101 &2029173204778710285
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 180
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 91
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -6843072521978072664}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -921,10 +637,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 90
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6122148166454605520}
@@ -949,10 +665,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 90
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6122148166454605520}
@@ -977,13 +693,69 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 90
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6122148166454605520}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &3516794817866055615
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 270
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 180
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -976241420386879102}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &3717845304797444617
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 90
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 7162682950259439354}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -1007,8 +779,8 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 9095219185004449713}
-  - {fileID: 5091206527917779388}
+  - {fileID: -6570267392085665748}
+  - {fileID: -3247380367011708332}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1024,7 +796,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &3847471083426914514
+--- !u!1101 &5204259344215141745
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1032,42 +804,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
-    m_EventTreshold: 90
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: -1
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -4251916872494082122}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_ExitTime: 0
-  m_HasExitTime: 0
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &4496623280285181385
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
     m_EventTreshold: 180
-  - m_ConditionMode: 3
-    m_ConditionEvent: Angle
-    m_EventTreshold: 89
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 270
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 1385411316675631873}
+  m_DstState: {fileID: 6420243639001345506}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -1080,35 +824,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &4714360259833011837
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Direction
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -4672844924189130810}
-  - {fileID: -216355034817003785}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1101 &5091206527917779388
+--- !u!1101 &5888480064866986574
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1116,11 +832,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsStraight
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 270
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 4714360259833011837}
+  m_DstState: {fileID: -976241420386879102}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -1142,10 +861,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 360
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 269
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7441325571632214397}
@@ -1190,6 +909,35 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &6420243639001345506
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'ConveyorBelt_Straight (2) '
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions:
+  - {fileID: 3516794817866055615}
+  - {fileID: -4646408631911814113}
+  - {fileID: 9057205577511701086}
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 1
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 80c1e397d23f4744f867c34cd5534b53, type: 2}
+  m_Tag: 
+  m_SpeedParameter: Speed
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: Speed
 --- !u!1101 &6430794639805558470
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1199,10 +947,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 270
   - m_ConditionMode: 3
-    m_ConditionEvent: Angle
+    m_ConditionEvent: AngleFloat
     m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1855722322067573109}
@@ -1229,8 +977,9 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 2029173204778710285}
-  - {fileID: -7735996662268585444}
+  - {fileID: 5888480064866986574}
+  - {fileID: -7018860733253631119}
+  - {fileID: -4365100903046124037}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -1275,36 +1024,7 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &7988741493687884732
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: ConveyorBelt_Curve (2) 0
-  m_Speed: -1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -8932200624014390717}
-  - {fileID: 3847471083426914514}
-  - {fileID: -5389468375735286955}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 1
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f93ad8aa7dc618e4d96e386880d69cbd, type: 2}
-  m_Tag: 
-  m_SpeedParameter: Speed
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1101 &9095219185004449713
+--- !u!1101 &9007847113870490997
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1312,9 +1032,40 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsStraight
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
     m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 270
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 7162682950259439354}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
+--- !u!1101 &9057205577511701086
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 6
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: AngleInt
+    m_EventTreshold: 180
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7162682950259439354}
   m_Solo: 0

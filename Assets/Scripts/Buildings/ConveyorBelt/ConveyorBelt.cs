@@ -107,7 +107,8 @@ public class ConveyorBelt : BasicBuilding
     /// </summary>
     protected void ChangeSprite()
     {
-        spriteAnimator.SetFloat("Angle", Mathf.RoundToInt(transform.eulerAngles.y));
+        spriteAnimator.SetFloat("AngleFloat", Mathf.RoundToInt(transform.eulerAngles.y));
+        spriteAnimator.SetInteger("AngleInt", Mathf.RoundToInt(transform.eulerAngles.y));
     }
     #endregion
 }

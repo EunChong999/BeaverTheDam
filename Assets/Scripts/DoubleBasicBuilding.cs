@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
-    [SerializeField] protected GameObject[] buildings;
+    public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
+    [SerializeField] bool canExchange;
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
 
@@ -24,20 +25,26 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     private void OnMouseOver()
     {
-        // ¸¶¿ì½º ÁÂÅ¬¸¯
+        // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Å¬ï¿½ï¿½
         if (Input.GetMouseButtonDown(0))
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+
+            if (canExchange)
+                ExchangeBuildings();
         }
 
-        // ¸¶¿ì½º ¿ìÅ¬¸¯
+        // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Å¬ï¿½ï¿½
         else if (Input.GetMouseButtonDown(1))
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+
+            if (canExchange)
+                ExchangeBuildings();
         }
 
         else if (Input.GetMouseButtonDown(2))
@@ -45,11 +52,21 @@ public class DoubleBasicBuilding : MonoBehaviour
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+
+            if (canExchange)
+                ExchangeBuildings();
         }
     }
 
+    private void ExchangeBuildings()
+    {
+        Vector3 temp = buildings[0].transform.position;
+        buildings[0].transform.position = buildings[1].transform.position;
+        buildings[1].transform.position = temp;
+    }
+
     /// <summary>
-    /// È¸Àü½Ã Æ®À§´× È¿°ú¸¦ ÁÖ´Â ÇÔ¼ö
+    /// È¸ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     /// </summary>
     protected void ShowEffect()
     {
