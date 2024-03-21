@@ -103,7 +103,7 @@ public class Point : MonoBehaviour
             else
             {
                 canMove = false;
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
             }
 
             canPlay = true;
@@ -111,7 +111,7 @@ public class Point : MonoBehaviour
         else
         {
             canMove = false;
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
             canPlay = false;
         }
     }
@@ -145,7 +145,7 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
-        float threshold = 0.05f; // ���� �ʿ��� ������
+        float threshold = 0.1f; // ���� �ʿ��� ������
 
         while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
         {

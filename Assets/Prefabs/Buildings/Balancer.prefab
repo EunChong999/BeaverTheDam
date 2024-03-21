@@ -54,9 +54,10 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
 --- !u!65 &5028583240836288636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -350,9 +351,10 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
 --- !u!65 &2593867482820289905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -758,12 +760,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 0
-  moveType: 0
+  movementType: 0
+  directionType: 0
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 5440281878526014625}
   pointTransform: {fileID: 4287781423138580668}
   directionObj: {fileID: 2801980610199235635}
+  pointingPoint: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 180
@@ -876,12 +880,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingType: 0
-  moveType: 0
+  movementType: 0
+  directionType: 0
   rotationTime: 0.15
   directionTime: 0.25
   spriteTransform: {fileID: 256087051698150282}
   pointTransform: {fileID: 5508745652001881638}
   directionObj: {fileID: 1734788047209264212}
+  pointingPoint: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 180
@@ -979,7 +985,7 @@ Transform:
   - {fileID: 570342346305207762}
   - {fileID: 7862789701760940882}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8511768404963890654
 BoxCollider:
@@ -1042,8 +1048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildings:
-  - {fileID: 7070507562440947321}
-  - {fileID: 3272139994425490174}
+  - {fileID: 8632682349521116943}
+  - {fileID: 6319391355911574037}
   spriteTransform: {fileID: 1590608125697538349}
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180

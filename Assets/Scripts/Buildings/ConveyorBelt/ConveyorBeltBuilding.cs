@@ -30,7 +30,7 @@ public class ConveyorBeltBuilding : ConveyorBelt
         SetTrailerType();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         CheckPoint();
         ChangeSprite();

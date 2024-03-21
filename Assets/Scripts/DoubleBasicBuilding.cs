@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
-    [SerializeField] GameObject[] buildings;
+    [SerializeField] protected GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
