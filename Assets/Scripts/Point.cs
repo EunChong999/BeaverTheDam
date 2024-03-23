@@ -85,7 +85,8 @@ public class Point : MonoBehaviour
                             if ((thisAngle == 0 && hitAngle == 90) ||
                                 (thisAngle == 270 && hitAngle == 0) ||
                                 (thisAngle == 180 && hitAngle == 90) ||
-                                (thisAngle == 90 && hitAngle == 180))
+                                (thisAngle == 90 && hitAngle == 180) || 
+                                (thisAngle == 180 && hitAngle == 270))
                             {
                                 return true;
                             }
@@ -176,7 +177,7 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
-        float threshold = 0.1f; // ���� �ʿ��� ������
+        float threshold = 0.01f;
 
         while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
         {

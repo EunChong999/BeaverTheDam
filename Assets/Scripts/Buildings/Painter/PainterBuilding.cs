@@ -8,6 +8,14 @@ public class PainterBuilding : Painter
         InitSettings();
     }
 
+    private void Update()
+    {
+        DirectStoreItem();
+
+        if (painterType == painterType.outputType)
+            DirectReturnItem();
+    }
+
     private void LateUpdate()
     {
         LookCameraRotation();
