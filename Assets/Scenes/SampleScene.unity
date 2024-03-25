@@ -11904,7 +11904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3901889093625719425, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
       propertyPath: m_Name
-      value: 33
+      value: Point
       objectReference: {fileID: 0}
     - target: {fileID: 4058673679482753814, guid: f962a1fb5559c14428d8473402f297ca, type: 3}
       propertyPath: m_Mesh
@@ -74644,6 +74644,7 @@ MonoBehaviour:
   storeTime: 2.75
   height: 10
   speed: 1.5
+  itemTransform: {fileID: 0}
 --- !u!4 &8429498014074922542
 Transform:
   m_ObjectHideFlags: 0
@@ -74800,6 +74801,7 @@ MonoBehaviour:
   storeTime: 2.75
   height: 10
   speed: 1.5
+  itemTransform: {fileID: 0}
 --- !u!114 &9197388004600413051
 MonoBehaviour:
   m_ObjectHideFlags: 0

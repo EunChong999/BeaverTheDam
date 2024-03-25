@@ -136,6 +136,7 @@ public class Point : MonoBehaviour
             {
                 canMove = false;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
+                hitTransform = null;
             }
 
             canPlay = true;
@@ -144,6 +145,7 @@ public class Point : MonoBehaviour
         {
             canMove = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
+            hitTransform = null;
             canPlay = false;
         }
     }
