@@ -168,25 +168,22 @@ public class Painter : BasicBuilding
     {
         yield return waitForSpawnSeconds;
 
-        while (true)
+        if (point.hitTransform != null)
         {
-            if (point.hitTransform != null)
+            if (point.hitTransform == hitTemp)
             {
-                if (point.hitTransform == hitTemp)
-                {
-                    colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
-                    itemTemp = partnerPainter.itemTemp;
-                    itemTemp.SetActive(true);
-                    itemTransform = itemTemp.transform;
-                    itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
-                    itemTransform.GetComponent<Item>().ShowEffect();
-                    startPos = pointTransform;
-                    endPos = point.hitTransform;
-                    StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-                    StartCoroutine(ThrowItem(itemTransform));
-                    StartCoroutine(WaitMoveForReturn());
-                    yield break;
-                }
+                colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
+                itemTemp = partnerPainter.itemTemp;
+                itemTemp.SetActive(true);
+                itemTransform = itemTemp.transform;
+                itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
+                itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
+                itemTransform.GetComponent<Item>().ShowEffect();
+                startPos = pointTransform;
+                endPos = point.hitTransform;
+                StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+                StartCoroutine(ThrowItem(itemTransform));
+                StartCoroutine(WaitMoveForReturn());
             }
         }
     }

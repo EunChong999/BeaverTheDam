@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     public bool isMoving;
     public Transform spriteTransform;
     public SpriteRenderer spriteRenderer;
+    public Sprite replaceSprite;
     Sequence itemScaleSequence;
 
     [SerializeField] float startScaleTime;

@@ -50,6 +50,7 @@ MonoBehaviour:
   isMoving: 0
   spriteTransform: {fileID: 159132853655487175}
   spriteRenderer: {fileID: 7204287765081671397}
+  replaceSprite: {fileID: 21300000, guid: d69127b6b49649a40932cc32152f6a27, type: 3}
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 0
