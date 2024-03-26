@@ -150,23 +150,23 @@ public class Point : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider item)
+    private void OnTriggerExit(Collider obj)
     {
-        if (item.CompareTag("Item"))
+        if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
             isItemExist = false;
             itemTransform = null;
         }
     }
 
-    private void OnTriggerStay(Collider item)
+    private void OnTriggerStay(Collider obj)
     {
-        if (item.CompareTag("Item"))
+        if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
             isItemExist = true;
-            itemTransform = item.transform;
+            itemTransform = obj.transform;
 
-            if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove && isMovable)
+            if (isItemExist && hitTransform != null && !obj.GetComponent<Item>().isMoving && canMove && isMovable)
             {
                 StartCoroutine(CarryItem(itemTransform, hitTransform));
                 itemTransform.GetComponent<Item>().EnMove();

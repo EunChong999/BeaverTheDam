@@ -57,6 +57,7 @@ public class Cutter : BasicBuilding
             {
                 isStoring = true;
                 isArrived = false;
+                canRotate = false;
                 itemTransform = pointingPoint.itemTransform;
                 itemTemp = itemTransform.gameObject;
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
@@ -108,6 +109,7 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        canRotate = true;
         itemTemp.SetActive(false);
         point.isItemExist = false;
         isRemoved = false;
@@ -122,6 +124,7 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        canRotate = true;
         yield return waitForReturnSeconds;
         isReturned = false;
         itemTemp = null;
@@ -137,6 +140,7 @@ public class Cutter : BasicBuilding
             !isStoring)
         {
             isArrived = false;
+            canRotate = false;
             SendItem();
             isReturned = true;
         }

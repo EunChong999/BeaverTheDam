@@ -22,6 +22,7 @@ public class Painter : BasicBuilding
     [SerializeField] float spawnTime;
     [SerializeField] float returnTime;
     [SerializeField] float storeTime;
+    [SerializeField] float sendTime;
     [SerializeField] float height;
     [SerializeField] float speed;
 
@@ -34,9 +35,9 @@ public class Painter : BasicBuilding
     Transform endPos;
     GameObject itemTemp;
     WaitForSeconds waitForArriveSeconds;
-    WaitForSeconds waitForSpawnSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
+    WaitForSeconds waitForSendSeconds;
     bool isArrived;
     bool isReturned;
     bool isRemoved;
@@ -50,9 +51,9 @@ public class Painter : BasicBuilding
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
-        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
+        waitForSendSeconds = new WaitForSeconds(sendTime);
     }
 
     protected void DirectStoreItem()
@@ -68,6 +69,7 @@ public class Painter : BasicBuilding
             {
                 isStoring = true;
                 isArrived = false;
+                canRotate = false;
                 itemTransform = pointingPoint.itemTransform;
                 itemTemp = itemTransform.gameObject;
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
@@ -119,6 +121,7 @@ public class Painter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        canRotate = true;
         itemTemp.SetActive(false);
         point.isItemExist = false;
         isRemoved = false;
@@ -133,6 +136,7 @@ public class Painter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        canRotate = true;
         yield return waitForReturnSeconds;
         isReturned = false;
         itemTemp = null;
@@ -152,10 +156,12 @@ public class Painter : BasicBuilding
             !isReturned &&
             !point.hitTransform.GetComponent<Point>().isItemExist &&
             !isStoring && 
-            partnerPainter.itemTemp != null)
+            partnerPainter.itemTemp != null &&
+            painterType == painterType.outputType)
         {
             hitTemp = point.hitTransform;
             isArrived = false;
+            canRotate = false;
             StartCoroutine(SendItem());
             isReturned = true;
         }
@@ -166,25 +172,26 @@ public class Painter : BasicBuilding
     /// </summary>
     IEnumerator SendItem()
     {
-        yield return waitForSpawnSeconds;
+        yield return waitForSendSeconds;
 
-        if (point.hitTransform != null)
+        if (point.hitTransform != null && point.hitTransform == hitTemp)
         {
-            if (point.hitTransform == hitTemp)
-            {
-                colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
-                itemTemp = partnerPainter.itemTemp;
-                itemTemp.SetActive(true);
-                itemTransform = itemTemp.transform;
-                itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
-                itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
-                itemTransform.GetComponent<Item>().ShowEffect();
-                startPos = pointTransform;
-                endPos = point.hitTransform;
-                StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-                StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitMoveForReturn());
-            }
+            colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
+            itemTemp = partnerPainter.itemTemp;
+            itemTemp.SetActive(true);
+            itemTransform = itemTemp.transform;
+            itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
+            itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
+            itemTransform.GetComponent<Item>().ShowEffect();
+            startPos = pointTransform;
+            endPos = point.hitTransform;
+            StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+            StartCoroutine(ThrowItem(itemTransform));
+            StartCoroutine(WaitMoveForReturn());
+        }
+        else
+        {
+            StartCoroutine(SendItem());
         }
     }
     #endregion

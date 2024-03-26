@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8922622133874635902}
   - component: {fileID: 6972131961223761594}
   - component: {fileID: 9050419071681707003}
-  m_Layer: 7
-  m_Name: Item 1
-  m_TagString: Item
+  m_Layer: 8
+  m_Name: Dye
+  m_TagString: Dye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
   isMoving: 0
   spriteTransform: {fileID: 1622650527766905753}
   spriteRenderer: {fileID: 4725108808863434905}
+  replaceSprite: {fileID: 0}
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 0
@@ -177,7 +178,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: -1551993532, guid: 64d29c653f0f5c04ca5ea1bff04069fc, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.40851688, a: 1}
+  m_Color: {r: 1, g: 0.9600028, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

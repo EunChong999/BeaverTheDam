@@ -25,8 +25,9 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     private void OnMouseOver()
     {
-        // ���콺 ��Ŭ��
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && 
+            buildings[0].GetComponent<BasicBuilding>().canRotate &&
+            buildings[1].GetComponent<BasicBuilding>().canRotate)
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
@@ -36,8 +37,9 @@ public class DoubleBasicBuilding : MonoBehaviour
                 ExchangeBuildings();
         }
 
-        // ���콺 ��Ŭ��
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) &&
+            buildings[0].GetComponent<BasicBuilding>().canRotate &&
+            buildings[1].GetComponent<BasicBuilding>().canRotate)
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
@@ -47,7 +49,9 @@ public class DoubleBasicBuilding : MonoBehaviour
                 ExchangeBuildings();
         }
 
-        else if (Input.GetMouseButtonDown(2))
+        else if (Input.GetMouseButtonDown(2) &&
+            buildings[0].GetComponent<BasicBuilding>().canRotate &&
+            buildings[1].GetComponent<BasicBuilding>().canRotate)
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
@@ -65,9 +69,6 @@ public class DoubleBasicBuilding : MonoBehaviour
         buildings[1].transform.position = temp;
     }
 
-    /// <summary>
-    /// ȸ���� Ʈ���� ȿ���� �ִ� �Լ�
-    /// </summary>
     protected void ShowEffect()
     {
         buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)

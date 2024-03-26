@@ -11,9 +11,7 @@ public class PainterBuilding : Painter
     private void Update()
     {
         DirectStoreItem();
-
-        if (painterType == painterType.outputType)
-            DirectReturnItem();
+        DirectReturnItem();
     }
 
     private void LateUpdate()
