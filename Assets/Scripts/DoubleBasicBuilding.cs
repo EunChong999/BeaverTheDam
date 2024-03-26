@@ -1,10 +1,15 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+public enum doubleType
+{
+    widthType,
+    lengthType
+}
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
+    public doubleType doubleType;
     public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [SerializeField] bool canExchange;
@@ -54,11 +59,16 @@ public class DoubleBasicBuilding : MonoBehaviour
             buildings[1].GetComponent<BasicBuilding>().canRotate)
         {
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
 
-            if (canExchange)
-                ExchangeBuildings();
+            if (doubleType == doubleType.widthType) 
+            {
+                buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+                buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            }
+            else
+            {
+                buildings[0].GetComponent<BasicBuilding>().ChangeDirectionType();
+            }
         }
     }
 

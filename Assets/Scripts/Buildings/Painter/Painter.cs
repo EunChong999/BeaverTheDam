@@ -67,17 +67,40 @@ public class Painter : BasicBuilding
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
                 itemTemp == null)
             {
-                isStoring = true;
-                isArrived = false;
-                canRotate = false;
-                itemTransform = pointingPoint.itemTransform;
-                itemTemp = itemTransform.gameObject;
-                startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
-                endPos = pointTransform;
-                StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-                StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitMoveForStore());
-                isRemoved = true;
+                if (painterType == painterType.outputType) 
+                {
+                    if (pointingPoint.itemTransform.CompareTag("Dye"))
+                    {
+                        isStoring = true;
+                        isArrived = false;
+                        canRotate = false;
+                        itemTransform = pointingPoint.itemTransform;
+                        itemTemp = itemTransform.gameObject;
+                        startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
+                        endPos = pointTransform;
+                        StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+                        StartCoroutine(ThrowItem(itemTransform));
+                        StartCoroutine(WaitMoveForStore());
+                        isRemoved = true;
+                    }
+                }
+                else
+                {
+                    if (pointingPoint.itemTransform.CompareTag("Item"))
+                    {
+                        isStoring = true;
+                        isArrived = false;
+                        canRotate = false;
+                        itemTransform = pointingPoint.itemTransform;
+                        itemTemp = itemTransform.gameObject;
+                        startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
+                        endPos = pointTransform;
+                        StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
+                        StartCoroutine(ThrowItem(itemTransform));
+                        StartCoroutine(WaitMoveForStore());
+                        isRemoved = true;
+                    }
+                }
             }
         }
     }

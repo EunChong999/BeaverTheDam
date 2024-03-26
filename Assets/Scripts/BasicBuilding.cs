@@ -153,22 +153,47 @@ public class BasicBuilding : MonoBehaviour
     {
         ShowEffect();
 
-        if (movementType == movementType.curveType)
+        if (buildingType == buildingType.movableType) 
         {
-            if (directionType == directionType.rightType)
+            if (movementType == movementType.curveType)
             {
-                directionType = directionType.leftType;
-                RotateTransform(true, 90, pointTransform);
+                if (directionType == directionType.rightType)
+                {
+                    directionType = directionType.leftType;
+                    RotateTransform(true, 90, pointTransform);
+                }
+                else
+                {
+                    directionType = directionType.rightType;
+                    RotateTransform(true, -90, pointTransform);
+                }
             }
             else
             {
-                directionType = directionType.rightType;
-                RotateTransform(true, -90, pointTransform);
+                DirectRotation(true, 180);
             }
         }
         else
         {
-            DirectRotation(true, 180);
+            if (movementType == movementType.curveType)
+            {
+                if (directionType == directionType.rightType)
+                {
+                    directionType = directionType.leftType;
+                    RotateTransform(true, -90, transform);
+                    RotateTransform(true, 0, pointTransform);
+                }
+                else
+                {
+                    directionType = directionType.rightType;
+                    RotateTransform(true, 90, transform);
+                    RotateTransform(true, 0, pointTransform);
+                }
+            }
+            else
+            {
+                DirectRotation(true, 180);
+            }
         }
     }
 

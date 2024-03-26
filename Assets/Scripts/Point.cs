@@ -136,6 +136,10 @@ public class Point : MonoBehaviour
             {
                 canMove = false;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
+
+                if (hitTransform != null)
+                    hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = null;
+
                 hitTransform = null;
             }
 
@@ -145,6 +149,10 @@ public class Point : MonoBehaviour
         {
             canMove = false;
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
+
+            if (hitTransform != null)
+                hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = null;
+
             hitTransform = null;
             canPlay = false;
         }
