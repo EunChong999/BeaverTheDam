@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Point : MonoBehaviour
 {
+    [SerializeField] Detector detector;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float maxDistance;
     [SerializeField] float startScaleTime;
@@ -30,6 +31,7 @@ public class Point : MonoBehaviour
     void Update()
     {
         moveSpeed = BuildingManager.instance.speed;
+        originScale = BuildingManager.instance.originScale;
 
         CanMove();
     }
@@ -52,80 +54,8 @@ public class Point : MonoBehaviour
                 isMovable = false;
             }
 
-            bool IsSameDir()
-            {
-                if (hitMovementType == movementType.straightType)
-                {
-                    if (transform.parent.GetComponent<BasicBuilding>().movementType == movementType.straightType)
-                    {
-                        if (hitAngle == thisAngle)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (transform.parent.GetComponent<BasicBuilding>().directionType == directionType.rightType)
-                        {
-                            if (hitAngle == thisAngle)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            if ((thisAngle == 0 && hitAngle == 90) ||
-                                (thisAngle == 270 && hitAngle == 0) ||
-                                (thisAngle == 180 && hitAngle == 90) ||
-                                (thisAngle == 90 && hitAngle == 180) || 
-                                (thisAngle == 180 && hitAngle == 270))
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (hitDirectionType == directionType.rightType)
-                    {
-                        if ((hitAngle == (thisAngle + 90)) || (hitAngle == 0 && hitAngle == (thisAngle - 270)))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (Mathf.Abs(hitAngle - thisAngle) == 180 || (hitAngle == 90 && thisAngle == 90))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-
             // 바라보는 건물에 아이템이 존재하지 않을 때
-            if (IsSameDir() && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
+            if (detector.canMove && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
             {
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);

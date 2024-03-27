@@ -36,6 +36,7 @@ public class BasicBuilding : MonoBehaviour
     public Transform pointTransform;
     public GameObject directionObj;
     public Point pointingPoint;
+    public Detector detector;
     public bool isRotating;
     public bool canRotate;
 
@@ -73,13 +74,13 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation(bool isRight, float targetAngle)
+    public void DirectRotation(bool isRight, float targetAngle, Transform transform)
     {
         if (!isRotating && canRotate)
         {
-            RotateTransform(isRight, targetAngle, transform);
             ShowEffect();
-            StartCoroutine(InitToOriginValue());
+            RotateTransform(isRight, targetAngle, transform);
+            StartCoroutine(InitToOriginValue(transform));
             StartCoroutine(SetArrowDirection());
             directionObj.SetActive(false);
             isRotating = true;
@@ -123,13 +124,13 @@ public class BasicBuilding : MonoBehaviour
             targetRotation = transform.eulerAngles + new Vector3(0, -targetAngle, 0);
         }
 
-        transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
+        transform.DORotate(targetRotation, rotationTime - 0.25f).SetEase(rotationEase);
     }
 
     /// <summary>
     /// 회전을 통해 변한 값을 초기화하는 함수
     /// </summary>
-    IEnumerator InitToOriginValue()
+    IEnumerator InitToOriginValue(Transform transform)
     {
         yield return waitForRotationSeconds;
         isRotating = false;
@@ -160,39 +161,17 @@ public class BasicBuilding : MonoBehaviour
                 if (directionType == directionType.rightType)
                 {
                     directionType = directionType.leftType;
-                    RotateTransform(true, 90, pointTransform);
+                    DirectRotation(true, 90, pointTransform);
                 }
                 else
                 {
                     directionType = directionType.rightType;
-                    RotateTransform(true, -90, pointTransform);
+                    DirectRotation(true, -90, pointTransform);
                 }
             }
             else
             {
-                DirectRotation(true, 180);
-            }
-        }
-        else
-        {
-            if (movementType == movementType.curveType)
-            {
-                if (directionType == directionType.rightType)
-                {
-                    directionType = directionType.leftType;
-                    RotateTransform(true, -90, transform);
-                    RotateTransform(true, 0, pointTransform);
-                }
-                else
-                {
-                    directionType = directionType.rightType;
-                    RotateTransform(true, 90, transform);
-                    RotateTransform(true, 0, pointTransform);
-                }
-            }
-            else
-            {
-                DirectRotation(true, 180);
+                DirectRotation(true, 180, transform);
             }
         }
     }

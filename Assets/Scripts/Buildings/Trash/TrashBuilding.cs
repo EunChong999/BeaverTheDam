@@ -8,13 +8,13 @@ public class TrashBuilding : Trash
         // 마우스 좌클릭
         if (Input.GetMouseButtonDown(0))
         {
-            DirectRotation(false, targetAngle);
+            DirectRotation(false, targetAngle, transform);
         }
 
         // 마우스 우클릭
         else if (Input.GetMouseButtonDown(1))
         {
-            DirectRotation(true, targetAngle);
+            DirectRotation(true, targetAngle, transform);
         }
 
         // 마우스 휠클릭
