@@ -76,7 +76,7 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void DirectRotation(bool isRight, float targetAngle, Transform transform)
     {
-        if (!isRotating && canRotate)
+        if (canRotate)
         {
             ShowEffect();
             StartCoroutine(SetArrowDirection());

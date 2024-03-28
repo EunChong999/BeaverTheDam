@@ -65,16 +65,11 @@ public class DoubleBasicBuilding : MonoBehaviour
             !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
 
-            if (doubleType == doubleType.widthType) 
-            {
-                buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
-                buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
-            }
-            else
-            {
-                buildings[0].GetComponent<BasicBuilding>().ChangeDirectionType();
-            }
+            if (canExchange)
+                ExchangeBuildings();
         }
     }
 
