@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Item
   - Dye
-  - Detector
+  - Detection Target
   layers:
   - Default
   - TransparentFX

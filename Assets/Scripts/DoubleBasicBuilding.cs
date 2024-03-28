@@ -32,7 +32,9 @@ public class DoubleBasicBuilding : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && 
             buildings[0].GetComponent<BasicBuilding>().canRotate &&
-            buildings[1].GetComponent<BasicBuilding>().canRotate)
+            buildings[1].GetComponent<BasicBuilding>().canRotate &&
+            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
+            !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
@@ -44,7 +46,9 @@ public class DoubleBasicBuilding : MonoBehaviour
 
         else if (Input.GetMouseButtonDown(1) &&
             buildings[0].GetComponent<BasicBuilding>().canRotate &&
-            buildings[1].GetComponent<BasicBuilding>().canRotate)
+            buildings[1].GetComponent<BasicBuilding>().canRotate &&
+            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
+            !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
@@ -56,7 +60,9 @@ public class DoubleBasicBuilding : MonoBehaviour
 
         else if (Input.GetMouseButtonDown(2) &&
             buildings[0].GetComponent<BasicBuilding>().canRotate &&
-            buildings[1].GetComponent<BasicBuilding>().canRotate)
+            buildings[1].GetComponent<BasicBuilding>().canRotate &&
+            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
+            !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
 
