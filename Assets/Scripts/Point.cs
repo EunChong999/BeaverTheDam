@@ -28,6 +28,11 @@ public class Point : MonoBehaviour
     movementType hitMovementType;
     directionType hitDirectionType;
 
+    private void Start()
+    {
+        canPlay = true;
+    }
+
     void Update()
     {
         moveSpeed = BuildingManager.instance.speed;
@@ -72,8 +77,6 @@ public class Point : MonoBehaviour
 
                 hitTransform = null;
             }
-
-            canPlay = true;
         }
         else
         {
@@ -94,6 +97,7 @@ public class Point : MonoBehaviour
         {
             isItemExist = false;
             itemTransform = null;
+            canPlay = true;
         }
     }
 
@@ -103,6 +107,15 @@ public class Point : MonoBehaviour
         {
             isItemExist = true;
             itemTransform = obj.transform;
+
+            if (!itemTransform.GetComponent<Item>().isMoving)
+            {
+                canPlay = false;
+            }
+            else
+            {
+                canPlay = true;
+            }
 
             if (isItemExist && hitTransform != null && !obj.GetComponent<Item>().isMoving && canMove && isMovable)
             {

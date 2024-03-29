@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8922622133874635902}
   - component: {fileID: 6972131961223761594}
   - component: {fileID: 9050419071681707003}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Blue Dye
   m_TagString: Dye
   m_Icon: {fileID: 0}

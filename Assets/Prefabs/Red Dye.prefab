@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 686602074114759341}
   - component: {fileID: 2976677730687018186}
   - component: {fileID: 6970094314374776172}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Red Dye
   m_TagString: Dye
   m_Icon: {fileID: 0}
