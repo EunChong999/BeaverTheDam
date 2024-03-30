@@ -77,6 +77,11 @@ public class Point : MonoBehaviour
 
                 hitTransform = null;
             }
+
+            if (!isItemExist)
+            {
+                canPlay = true;
+            }
         }
         else
         {
