@@ -100,8 +100,6 @@ public class Point : MonoBehaviour
     {
         if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            isItemExist = false;
-            itemTransform = null;
             canPlay = true;
         }
     }
@@ -110,10 +108,7 @@ public class Point : MonoBehaviour
     {
         if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            isItemExist = true;
-            itemTransform = obj.transform;
-
-            if (!itemTransform.GetComponent<Item>().isMoving)
+            if (!obj.GetComponent<Item>().isMoving)
             {
                 canPlay = false;
             }
@@ -121,12 +116,28 @@ public class Point : MonoBehaviour
             {
                 canPlay = true;
             }
+        }
+    }
 
-            if (isItemExist && hitTransform != null && !obj.GetComponent<Item>().isMoving && canMove && isMovable)
-            {
-                StartCoroutine(CarryItem(itemTransform, hitTransform));
-                itemTransform.GetComponent<Item>().EnMove();
-            }
+    public void Exit()
+    {
+        isItemExist = false;
+        itemTransform = null;
+    }
+
+    public void Enter(Transform item)
+    {
+        isItemExist = true;
+        itemTransform = item.transform;
+
+        if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove && isMovable)
+        {
+            StartCoroutine(CarryItem(itemTransform, hitTransform));
+            itemTransform.GetComponent<Item>().EnMove();
+        }
+        else
+        {
+            Debug.Log("확인");
         }
     }
 
@@ -148,6 +159,9 @@ public class Point : MonoBehaviour
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
         }
+
+        Exit();
+        hitTransform.GetComponent<Point>().Enter(itemTransform);
     }
 
     /// <summary>

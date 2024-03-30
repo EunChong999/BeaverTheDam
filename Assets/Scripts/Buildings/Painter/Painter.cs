@@ -81,6 +81,7 @@ public class Painter : BasicBuilding
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitMoveForStore());
+                        pointingPoint.Exit();
                         isRemoved = true;
                     }
                 }
@@ -98,6 +99,7 @@ public class Painter : BasicBuilding
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitMoveForStore());
+                        pointingPoint.Exit();
                         isRemoved = true;
                     }
                 }
@@ -203,6 +205,7 @@ public class Painter : BasicBuilding
             itemTemp = partnerPainter.itemTemp;
             itemTemp.SetActive(true);
             itemTransform = itemTemp.transform;
+            point.hitTransform.GetComponent<Point>().Enter(itemTransform);
             itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect();

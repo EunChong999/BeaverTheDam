@@ -65,6 +65,7 @@ public class Cutter : BasicBuilding
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitMoveForStore());
+                pointingPoint.Exit();
                 isRemoved = true;
             }
         }
@@ -153,6 +154,7 @@ public class Cutter : BasicBuilding
     {
         itemTemp.SetActive(true);
         itemTransform = itemTemp.transform;
+        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
         endPos = point.hitTransform;

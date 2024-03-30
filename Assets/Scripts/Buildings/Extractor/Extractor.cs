@@ -64,6 +64,7 @@ public class Extractor : BasicBuilding
     {
         animator.SetTrigger("Spawn");
         itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
+        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
         endPos = point.hitTransform;

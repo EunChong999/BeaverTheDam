@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1aebeeefe97304fb083452e2293943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doubleType: 0
+  doubleType: 1
   buildings:
   - {fileID: 3481245557005016029}
   - {fileID: 3898749057899404724}

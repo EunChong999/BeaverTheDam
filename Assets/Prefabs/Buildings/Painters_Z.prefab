@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1aebeeefe97304fb083452e2293943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doubleType: 1
+  doubleType: 0
   buildings:
   - {fileID: 6946044648685095488}
   - {fileID: 4689441142570067589}
