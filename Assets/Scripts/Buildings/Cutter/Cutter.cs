@@ -55,17 +55,16 @@ public class Cutter : BasicBuilding
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
                 itemTemp == null)
             {
+                startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
+                endPos = pointTransform;
                 isStoring = true;
                 isArrived = false;
                 canRotate = false;
                 itemTransform = pointingPoint.itemTransform;
                 itemTemp = itemTransform.gameObject;
-                startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
-                endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitMoveForStore());
-                pointingPoint.Exit();
                 isRemoved = true;
             }
         }
@@ -114,6 +113,7 @@ public class Cutter : BasicBuilding
         itemTemp.SetActive(false);
         point.isItemExist = false;
         isRemoved = false;
+        pointingPoint.Exit();
         yield return waitForStoreSeconds;
         isStoring = false;
     }
@@ -126,9 +126,7 @@ public class Cutter : BasicBuilding
         yield return waitForArriveSeconds;
         isArrived = true;
         canRotate = true;
-
-        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
-
+        endPos.GetComponent<Point>().Move(itemTransform);
         yield return waitForReturnSeconds;
         isReturned = false;
         itemTemp = null;
@@ -157,6 +155,7 @@ public class Cutter : BasicBuilding
     {
         itemTemp.SetActive(true);
         itemTransform = itemTemp.transform;
+        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
         endPos = point.hitTransform;

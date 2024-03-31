@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Point : MonoBehaviour
 {
@@ -62,6 +63,7 @@ public class Point : MonoBehaviour
                 if (isStopped)
                 {
                     isStopped = false;
+                    Debug.Log("재개");
                 }
             }
             else
@@ -126,7 +128,10 @@ public class Point : MonoBehaviour
     {
         isItemExist = true;
         itemTransform = item.transform;
+    }
 
+    public void Move(Transform item)
+    {
         if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove && isMovable)
         {
             StartCoroutine(CarryItem(itemTransform, hitTransform));
@@ -134,6 +139,7 @@ public class Point : MonoBehaviour
         }
         else
         {
+            Debug.Log("정지");
             isStopped = true;
         }
     }
@@ -143,8 +149,6 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
-        Debug.Log("이동");
-
         float threshold = 0.01f;
 
         while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)
@@ -161,6 +165,7 @@ public class Point : MonoBehaviour
 
         Exit();
         hitTransform.GetComponent<Point>().Enter(itemTransform);
+        hitTransform.GetComponent<Point>().Move(itemTransform);
     }
 
     /// <summary>

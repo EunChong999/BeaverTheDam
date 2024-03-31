@@ -81,7 +81,6 @@ public class Painter : BasicBuilding
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitMoveForStore());
-                        pointingPoint.Exit();
                         isRemoved = true;
                     }
                 }
@@ -89,17 +88,16 @@ public class Painter : BasicBuilding
                 {
                     if (pointingPoint.itemTransform.CompareTag("Item"))
                     {
+                        startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
+                        endPos = pointTransform;
                         isStoring = true;
                         isArrived = false;
                         canRotate = false;
                         itemTransform = pointingPoint.itemTransform;
                         itemTemp = itemTransform.gameObject;
-                        startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
-                        endPos = pointTransform;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitMoveForStore());
-                        pointingPoint.Exit();
                         isRemoved = true;
                     }
                 }
@@ -150,9 +148,7 @@ public class Painter : BasicBuilding
         itemTemp.SetActive(false);
         point.isItemExist = false;
         isRemoved = false;
-
-        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
-
+        pointingPoint.Exit();
         yield return waitForStoreSeconds;
         isStoring = false;
     }
@@ -165,6 +161,7 @@ public class Painter : BasicBuilding
         yield return waitForArriveSeconds;
         isArrived = true;
         canRotate = true;
+        endPos.GetComponent<Point>().Move(itemTransform);
         yield return waitForReturnSeconds;
         isReturned = false;
         itemTemp = null;
@@ -208,6 +205,7 @@ public class Painter : BasicBuilding
             itemTemp = partnerPainter.itemTemp;
             itemTemp.SetActive(true);
             itemTransform = itemTemp.transform;
+            point.hitTransform.GetComponent<Point>().Enter(itemTransform);
             itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect();
