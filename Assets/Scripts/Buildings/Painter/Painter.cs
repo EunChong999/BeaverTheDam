@@ -150,6 +150,9 @@ public class Painter : BasicBuilding
         itemTemp.SetActive(false);
         point.isItemExist = false;
         isRemoved = false;
+
+        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
+
         yield return waitForStoreSeconds;
         isStoring = false;
     }
@@ -205,7 +208,6 @@ public class Painter : BasicBuilding
             itemTemp = partnerPainter.itemTemp;
             itemTemp.SetActive(true);
             itemTransform = itemTemp.transform;
-            point.hitTransform.GetComponent<Point>().Enter(itemTransform);
             itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect();

@@ -18,15 +18,12 @@ public class Point : MonoBehaviour
     public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
     public bool isItemExist;
+    public bool isStopped;
 
     public Transform itemTransform;
     public Transform hitTransform;
     Sequence itemScaleSequence;
     float moveSpeed;
-    int hitAngle;
-    int thisAngle;
-    movementType hitMovementType;
-    directionType hitDirectionType;
 
     private void Start()
     {
@@ -45,11 +42,6 @@ public class Point : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
-            hitAngle = Mathf.RoundToInt(hitInfo.transform.eulerAngles.y);
-            thisAngle = Mathf.RoundToInt(transform.parent.eulerAngles.y);
-            hitMovementType = hitInfo.transform.GetComponent<BasicBuilding>().movementType;
-            hitDirectionType = hitInfo.transform.GetComponent<BasicBuilding>().directionType;
-
             if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
                 isMovable = true;
@@ -66,6 +58,11 @@ public class Point : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
                 hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = GetComponent<Point>();
+
+                if (isStopped)
+                {
+                    isStopped = false;
+                }
             }
             else
             {
@@ -137,7 +134,7 @@ public class Point : MonoBehaviour
         }
         else
         {
-            Debug.Log("확인");
+            isStopped = true;
         }
     }
 
@@ -146,6 +143,8 @@ public class Point : MonoBehaviour
     /// </summary>
     public IEnumerator CarryItem(Transform itemTransform, Transform hitTransform)
     {
+        Debug.Log("이동");
+
         float threshold = 0.01f;
 
         while (itemTransform != null && Vector3.Distance(itemTransform.position, hitTransform.position) > threshold)

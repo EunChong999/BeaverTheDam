@@ -126,6 +126,9 @@ public class Cutter : BasicBuilding
         yield return waitForArriveSeconds;
         isArrived = true;
         canRotate = true;
+
+        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
+
         yield return waitForReturnSeconds;
         isReturned = false;
         itemTemp = null;
@@ -154,7 +157,6 @@ public class Cutter : BasicBuilding
     {
         itemTemp.SetActive(true);
         itemTransform = itemTemp.transform;
-        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
         endPos = point.hitTransform;
