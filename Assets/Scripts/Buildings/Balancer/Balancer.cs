@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Balancer : DoubleBasicBuilding
+public class Balancer : BasicBuilding
 {
     Transform curItem; //현재 들어간 아이템
-    int curCount; //균등분배를 위한 카운트(들어간 후 증감)
+    bool priority;
     public ConveyorBelt[] Belts;
     private void Start()
     {
-        Belts = new ConveyorBelt[buildings.Length];
-        for(int i = 0; i < buildings.Length; i++)
-        {
-            Belts[i] = buildings[i].GetComponent<ConveyorBelt>();
-        }
+
     }
     private void Update()
     {
@@ -29,7 +25,7 @@ public class Balancer : DoubleBasicBuilding
                if(curIndex == -1) return; //만약 없다면 함수 취소
                build.itemTransform.position 
                = Belts[curIndex].transform.position; //아이템의 위치를 저장한 Index의 컨베이어 벨트로 이동
-               curCount++; //균등 분배를 위해 증감
+               //curCount++; //균등 분배를 위해 증감
            }
        }
     }
