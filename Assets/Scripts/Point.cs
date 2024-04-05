@@ -25,6 +25,7 @@ public class Point : MonoBehaviour
     public Transform hitTransform;
     Sequence itemScaleSequence;
     float moveSpeed;
+    bool firstContect;
 
     private void Start()
     {
@@ -55,6 +56,12 @@ public class Point : MonoBehaviour
             // 바라보는 건물에 아이템이 존재하지 않을 때
             if (detector.canMove && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
             {
+                if (!canMove)
+                {
+                    Debug.Log("이동 가능");
+                    firstContect = true;
+                }
+
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
@@ -63,11 +70,16 @@ public class Point : MonoBehaviour
                 if (isStopped)
                 {
                     isStopped = false;
-                    Debug.Log("재개");
                 }
             }
             else
             {
+                if (canMove)
+                {
+                    Debug.Log("이동 불가능");
+                    firstContect = false;
+                }
+
                 canMove = false;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
 
@@ -139,7 +151,6 @@ public class Point : MonoBehaviour
         }
         else
         {
-            Debug.Log("정지");
             isStopped = true;
         }
     }

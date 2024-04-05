@@ -30,23 +30,23 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public movementType movementType;
     public directionType directionType;
-    public float rotationTime;
-    public float directionTime;
+    public float rotationTime = 0.15f;
+    public float directionTime = 0.25f;
     public Transform spriteTransform;
     public Transform pointTransform;
     public GameObject directionObj;
     public Point pointingPoint;
     public Detector detector;
-    public bool isRotating;
-    public bool canRotate;
+    public bool isRotating = false;
+    public bool canRotate = true;
 
-    [SerializeField] protected float targetAngle;
+    [SerializeField] protected float targetAngle = 90;
 
-    [SerializeField] Ease rotationEase;
-    [SerializeField] float startScaleTime;
-    [SerializeField] float endScaleTime;
-    [SerializeField] Ease startScaleEase;
-    [SerializeField] Ease endScaleEase;
+    [SerializeField] Ease rotationEase = Ease.Linear;
+    [SerializeField] float startScaleTime = 0.1f;
+    [SerializeField] float endScaleTime = 0.5f;
+    [SerializeField] Ease startScaleEase = Ease.OutSine;
+    [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
     [HideInInspector] public Vector3 originScale;
     [HideInInspector] public Animator spriteAnimator;
