@@ -16,12 +16,12 @@ public class DoubleBasicBuilding : MonoBehaviour
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
 
-    [SerializeField] float targetAngle;
-    [SerializeField] Ease rotationEase;
-    [SerializeField] float startScaleTime;
-    [SerializeField] float endScaleTime;
-    [SerializeField] Ease startScaleEase;
-    [SerializeField] Ease endScaleEase;
+    [SerializeField] float targetAngle = 180;
+    [SerializeField] Ease rotationEase = Ease.Linear;
+    [SerializeField] float startScaleTime = 0.1f; 
+    [SerializeField] float endScaleTime = 0.5f;
+    [SerializeField] Ease startScaleEase = Ease.OutSine;
+    [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
     private void Start()
     {
