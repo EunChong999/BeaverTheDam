@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Point : MonoBehaviour
 {
@@ -59,12 +58,6 @@ public class Point : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
                 hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = GetComponent<Point>();
-
-                if (isStopped)
-                {
-                    Debug.Log("재개");
-                    isStopped = false;
-                }
             }
             else
             {
@@ -95,11 +88,39 @@ public class Point : MonoBehaviour
         }
     }
 
+    public void DoMove(Collider obj)
+    {
+        if (!obj.GetComponent<Item>().isMoving)
+        {
+            canPlay = false;
+        }
+        else
+        {
+            canPlay = true;
+        }
+
+        isItemExist = true;
+        itemTransform = obj.transform;
+
+        if (hitTransform != null && !obj.GetComponent<Item>().isMoving && canMove && isMovable)
+        {
+            StartCoroutine(CarryItem(itemTransform, hitTransform));
+            itemTransform.GetComponent<Item>().EnMove();
+        }
+    }
+
+    public void DoneMove()
+    {
+        canPlay = true;
+        isItemExist = false;
+        itemTransform = null;
+    }
+
     private void OnTriggerExit(Collider obj)
     {
         if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            canPlay = true;
+            DoneMove();
         }
     }
 
@@ -107,39 +128,7 @@ public class Point : MonoBehaviour
     {
         if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            if (!obj.GetComponent<Item>().isMoving)
-            {
-                canPlay = false;
-            }
-            else
-            {
-                canPlay = true;
-            }
-        }
-    }
-
-    public void Exit()
-    {
-        isItemExist = false;
-        itemTransform = null;
-    }
-
-    public void Enter(Transform item)
-    {
-        isItemExist = true;
-        itemTransform = item.transform;
-    }
-
-    public void Move(Transform item)
-    {
-        if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove && isMovable)
-        {
-            StartCoroutine(CarryItem(itemTransform, hitTransform));
-            itemTransform.GetComponent<Item>().EnMove();
-        }
-        else
-        {
-            isStopped = true;
+            DoMove(obj);
         }
     }
 
@@ -161,10 +150,6 @@ public class Point : MonoBehaviour
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
         }
-
-        Exit();
-        hitTransform.GetComponent<Point>().Enter(itemTransform);
-        hitTransform.GetComponent<Point>().Move(itemTransform);
     }
 
     /// <summary>
