@@ -8,6 +8,12 @@ public class PainterBuilding : Painter
         InitSettings();
     }
 
+    private void Update()
+    {
+        DirectStoreItem();
+        DirectReturnItem();
+    }
+
     private void LateUpdate()
     {
         LookCameraRotation();

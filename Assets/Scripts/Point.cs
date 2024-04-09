@@ -1,9 +1,11 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Point : MonoBehaviour
 {
+    [SerializeField] Detector detector;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float maxDistance;
     [SerializeField] float startScaleTime;
@@ -17,19 +19,23 @@ public class Point : MonoBehaviour
     public bool canMove { get; private set; }
     public bool canPlay { get; private set; }
     public bool isItemExist;
+    public bool isStopped;
 
     public Transform itemTransform;
     public Transform hitTransform;
     Sequence itemScaleSequence;
     float moveSpeed;
-    int hitAngle;
-    int thisAngle;
-    movementType hitMovementType;
-    directionType hitDirectionType;
+    bool firstContect;
+
+    private void Start()
+    {
+        canPlay = true;
+    }
 
     void Update()
     {
         moveSpeed = BuildingManager.instance.speed;
+        originScale = BuildingManager.instance.originScale;
 
         CanMove();
     }
@@ -38,11 +44,6 @@ public class Point : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
-            hitAngle = Mathf.RoundToInt(hitInfo.transform.eulerAngles.y);
-            thisAngle = Mathf.RoundToInt(transform.parent.eulerAngles.y);
-            hitMovementType = hitInfo.transform.GetComponent<BasicBuilding>().movementType;
-            hitDirectionType = hitInfo.transform.GetComponent<BasicBuilding>().directionType;
-
             if (hitInfo.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
             {
                 isMovable = true;
@@ -52,122 +53,105 @@ public class Point : MonoBehaviour
                 isMovable = false;
             }
 
-            bool IsSameDir()
-            {
-                if (hitMovementType == movementType.straightType)
-                {
-                    if (transform.parent.GetComponent<BasicBuilding>().movementType == movementType.straightType)
-                    {
-                        if (hitAngle == thisAngle)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (transform.parent.GetComponent<BasicBuilding>().directionType == directionType.rightType)
-                        {
-                            if (hitAngle == thisAngle)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                        else
-                        {
-                            if ((thisAngle == 0 && hitAngle == 90) ||
-                                (thisAngle == 270 && hitAngle == 0) ||
-                                (thisAngle == 180 && hitAngle == 90) ||
-                                (thisAngle == 90 && hitAngle == 180))
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (hitDirectionType == directionType.rightType)
-                    {
-                        if ((hitAngle == (thisAngle + 90)) || (hitAngle == 0 && hitAngle == (thisAngle - 270)))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        if (Mathf.Abs(hitAngle - thisAngle) == 180 || (hitAngle == 90 && thisAngle == 90))
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-            }
-
             // 바라보는 건물에 아이템이 존재하지 않을 때
-            if (IsSameDir() && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
+            if (detector.canMove && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
             {
+                if (!canMove)
+                {
+                    Debug.Log("이동 가능");
+                    firstContect = true;
+                }
+
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
                 hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = GetComponent<Point>();
+
+                if (isStopped)
+                {
+                    isStopped = false;
+                }
             }
             else
             {
+                if (canMove)
+                {
+                    Debug.Log("이동 불가능");
+                    firstContect = false;
+                }
+
                 canMove = false;
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
+
+                if (hitTransform != null)
+                    hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = null;
+
+                hitTransform = null;
             }
 
-            canPlay = true;
+            if (!isItemExist)
+            {
+                canPlay = true;
+            }
         }
         else
         {
             canMove = false;
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * 0.9f, Color.green);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * maxDistance, Color.green);
+
+            if (hitTransform != null)
+                hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = null;
+
+            hitTransform = null;
             canPlay = false;
         }
     }
 
-    private void OnTriggerExit(Collider item)
+    private void OnTriggerExit(Collider obj)
     {
-        if (item.CompareTag("Item"))
+        if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            isItemExist = false;
-            itemTransform = null;
+            canPlay = true;
         }
     }
 
-    private void OnTriggerStay(Collider item)
+    private void OnTriggerStay(Collider obj)
     {
-        if (item.CompareTag("Item"))
+        if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            isItemExist = true;
-            itemTransform = item.transform;
-
-            if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove && isMovable)
+            if (!obj.GetComponent<Item>().isMoving)
             {
-                StartCoroutine(CarryItem(itemTransform, hitTransform));
-                itemTransform.GetComponent<Item>().EnMove();
+                canPlay = false;
             }
+            else
+            {
+                canPlay = true;
+            }
+        }
+    }
+
+    public void Exit()
+    {
+        isItemExist = false;
+        itemTransform = null;
+    }
+
+    public void Enter(Transform item)
+    {
+        isItemExist = true;
+        itemTransform = item.transform;
+    }
+
+    public void Move(Transform item)
+    {
+        if (isItemExist && hitTransform != null && !item.GetComponent<Item>().isMoving && canMove && isMovable)
+        {
+            StartCoroutine(CarryItem(itemTransform, hitTransform));
+            itemTransform.GetComponent<Item>().EnMove();
+        }
+        else
+        {
+            isStopped = true;
         }
     }
 
@@ -189,6 +173,10 @@ public class Point : MonoBehaviour
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
         }
+
+        Exit();
+        hitTransform.GetComponent<Point>().Enter(itemTransform);
+        hitTransform.GetComponent<Point>().Move(itemTransform);
     }
 
     /// <summary>

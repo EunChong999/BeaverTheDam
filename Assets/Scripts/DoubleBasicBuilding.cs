@@ -1,22 +1,27 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+public enum doubleType
+{
+    widthType,
+    lengthType
+}
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
+    public doubleType doubleType;
     public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [SerializeField] bool canExchange;
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
 
-    [SerializeField] float targetAngle;
-    [SerializeField] Ease rotationEase;
-    [SerializeField] float startScaleTime;
-    [SerializeField] float endScaleTime;
-    [SerializeField] Ease startScaleEase;
-    [SerializeField] Ease endScaleEase;
+    [SerializeField] float targetAngle = 180;
+    [SerializeField] Ease rotationEase = Ease.Linear;
+    [SerializeField] float startScaleTime = 0.1f; 
+    [SerializeField] float endScaleTime = 0.5f;
+    [SerializeField] Ease startScaleEase = Ease.OutSine;
+    [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
     private void Start()
     {
@@ -25,33 +30,43 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     private void OnMouseOver()
     {
-        // ���콺 ��Ŭ��
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && 
+            buildings[0].GetComponent<BasicBuilding>().canRotate &&
+            buildings[1].GetComponent<BasicBuilding>().canRotate &&
+            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
+            !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
 
             if (canExchange)
                 ExchangeBuildings();
         }
 
-        // ���콺 ��Ŭ��
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) &&
+            buildings[0].GetComponent<BasicBuilding>().canRotate &&
+            buildings[1].GetComponent<BasicBuilding>().canRotate &&
+            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
+            !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
 
             if (canExchange)
                 ExchangeBuildings();
         }
 
-        else if (Input.GetMouseButtonDown(2))
+        else if (Input.GetMouseButtonDown(2) &&
+            buildings[0].GetComponent<BasicBuilding>().canRotate &&
+            buildings[1].GetComponent<BasicBuilding>().canRotate &&
+            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
+            !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle);
+            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
+            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
 
             if (canExchange)
                 ExchangeBuildings();
@@ -65,9 +80,6 @@ public class DoubleBasicBuilding : MonoBehaviour
         buildings[1].transform.position = temp;
     }
 
-    /// <summary>
-    /// ȸ���� Ʈ���� ȿ���� �ִ� �Լ�
-    /// </summary>
     protected void ShowEffect()
     {
         buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)

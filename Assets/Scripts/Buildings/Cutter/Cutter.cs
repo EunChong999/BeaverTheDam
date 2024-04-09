@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Cutter : BasicBuilding
 {
@@ -56,12 +55,13 @@ public class Cutter : BasicBuilding
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
                 itemTemp == null)
             {
-                isStoring = true;
-                isArrived = false;
-                itemTransform = pointingPoint.itemTransform;
-                itemTemp = itemTransform.gameObject;
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                 endPos = pointTransform;
+                isStoring = true;
+                isArrived = false;
+                canRotate = false;
+                itemTransform = pointingPoint.itemTransform;
+                itemTemp = itemTransform.gameObject;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitMoveForStore());
@@ -109,9 +109,11 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        canRotate = true;
         itemTemp.SetActive(false);
         point.isItemExist = false;
         isRemoved = false;
+        pointingPoint.Exit();
         yield return waitForStoreSeconds;
         isStoring = false;
     }
@@ -123,6 +125,8 @@ public class Cutter : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
+        canRotate = true;
+        endPos.GetComponent<Point>().Move(itemTransform);
         yield return waitForReturnSeconds;
         isReturned = false;
         itemTemp = null;
@@ -138,6 +142,7 @@ public class Cutter : BasicBuilding
             !isStoring)
         {
             isArrived = false;
+            canRotate = false;
             SendItem();
             isReturned = true;
         }
@@ -150,6 +155,7 @@ public class Cutter : BasicBuilding
     {
         itemTemp.SetActive(true);
         itemTransform = itemTemp.transform;
+        point.hitTransform.GetComponent<Point>().Enter(itemTransform);
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
         endPos = point.hitTransform;

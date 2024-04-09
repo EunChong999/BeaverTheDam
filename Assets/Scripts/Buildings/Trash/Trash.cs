@@ -103,6 +103,7 @@ public class Trash : BasicBuilding
         point.isItemExist = false;
         Destroy(itemTransform.gameObject);
         isRemoved = false;
+        pointingPoint.Exit();
     }
     #endregion
 }

@@ -30,22 +30,23 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public movementType movementType;
     public directionType directionType;
-    public float rotationTime;
-    public float directionTime;
+    public float rotationTime = 0.15f;
+    public float directionTime = 0.25f;
     public Transform spriteTransform;
     public Transform pointTransform;
     public GameObject directionObj;
     public Point pointingPoint;
-    public bool isRotating;
-    public bool canRotate;
+    public Detector detector;
+    public bool isRotating = false;
+    public bool canRotate = true;
 
-    [SerializeField] protected float targetAngle;
+    [SerializeField] protected float targetAngle = 90;
 
-    [SerializeField] Ease rotationEase;
-    [SerializeField] float startScaleTime;
-    [SerializeField] float endScaleTime;
-    [SerializeField] Ease startScaleEase;
-    [SerializeField] Ease endScaleEase;
+    [SerializeField] Ease rotationEase = Ease.Linear;
+    [SerializeField] float startScaleTime = 0.1f;
+    [SerializeField] float endScaleTime = 0.5f;
+    [SerializeField] Ease startScaleEase = Ease.OutSine;
+    [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
     [HideInInspector] public Vector3 originScale;
     [HideInInspector] public Animator spriteAnimator;
@@ -73,16 +74,14 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation(bool isRight, float targetAngle)
+    public void DirectRotation(bool isRight, float targetAngle, Transform transform)
     {
-        if (!isRotating && canRotate)
+        if (canRotate)
         {
-            RotateTransform(isRight, targetAngle, transform);
             ShowEffect();
-            StartCoroutine(InitToOriginValue());
             StartCoroutine(SetArrowDirection());
             directionObj.SetActive(false);
-            isRotating = true;
+            StartCoroutine(RotateTransform(isRight, targetAngle, transform));
         }
     }
 
@@ -112,8 +111,10 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 건물을 회전시키는 함수
     /// </summary>
-    protected void RotateTransform(bool isRight, float targetAngle, Transform transform)
+    private IEnumerator RotateTransform(bool isRight, float targetAngle, Transform transform)
     {
+        isRotating = true;
+
         if (isRight)
         {
             targetRotation = transform.eulerAngles + new Vector3(0, targetAngle, 0);
@@ -123,17 +124,13 @@ public class BasicBuilding : MonoBehaviour
             targetRotation = transform.eulerAngles + new Vector3(0, -targetAngle, 0);
         }
 
-        transform.DORotate(targetRotation, rotationTime).SetEase(rotationEase);
-    }
+        transform.DORotate(targetRotation, rotationTime - 0.25f).SetEase(rotationEase);
 
-    /// <summary>
-    /// 회전을 통해 변한 값을 초기화하는 함수
-    /// </summary>
-    IEnumerator InitToOriginValue()
-    {
         yield return waitForRotationSeconds;
-        isRotating = false;
+
         transform.eulerAngles = targetRotation;
+
+        isRotating = false;
     }
 
     /// <summary>
@@ -149,6 +146,9 @@ public class BasicBuilding : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 회전 타입을 변경하는 함수
+    /// </summary>
     public void ChangeDirectionType()
     {
         ShowEffect();
@@ -158,19 +158,18 @@ public class BasicBuilding : MonoBehaviour
             if (directionType == directionType.rightType)
             {
                 directionType = directionType.leftType;
-                RotateTransform(true, 90, pointTransform);
+                DirectRotation(true, 90, pointTransform);
             }
             else
             {
                 directionType = directionType.rightType;
-                RotateTransform(true, -90, pointTransform);
+                DirectRotation(true, -90, pointTransform);
             }
         }
         else
         {
-            DirectRotation(true, 180);
+            DirectRotation(true, 180, transform);
         }
     }
-
     #endregion
 }

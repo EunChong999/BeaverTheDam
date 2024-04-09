@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508920cdff51b3a4c8c6ea3efbba0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detector: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -54,9 +55,11 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
+  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
 --- !u!65 &5028583240836288636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 7070507562440947321}
+  basicBuilding: {fileID: 0}
   sprites:
   - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
@@ -341,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 508920cdff51b3a4c8c6ea3efbba0baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detector: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -350,9 +354,11 @@ MonoBehaviour:
   startScaleEase: 3
   endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
+  isMovable: 0
+  isItemExist: 0
+  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
-  diffDir: 0
 --- !u!65 &2593867482820289905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -525,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31815197f979fc7438900c6b694722f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicBuilding: {fileID: 3272139994425490174}
+  basicBuilding: {fileID: 0}
   sprites:
   - {fileID: -1661265365, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
   - {fileID: 20585700, guid: 1ef93b8ef81e5e641ba95369efeeef3a, type: 3}
@@ -717,7 +723,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7862789701760940882}
-  - component: {fileID: 3272139994425490174}
   - component: {fileID: 8763238510811531476}
   - component: {fileID: 3290519288217543978}
   m_Layer: 0
@@ -745,39 +750,6 @@ Transform:
   m_Father: {fileID: 6073988047179469406}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!114 &3272139994425490174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6319391355911574037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0e278871af41348b1bc30878365fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingType: 0
-  moveType: 0
-  rotationTime: 0.15
-  directionTime: 0.25
-  spriteTransform: {fileID: 5440281878526014625}
-  pointTransform: {fileID: 4287781423138580668}
-  directionObj: {fileID: 2801980610199235635}
-  isRotating: 0
-  canRotate: 1
-  targetAngle: 180
-  rotationEase: 0
-  startScaleTime: 0.1
-  endScaleTime: 0.5
-  startScaleEase: 3
-  endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
-  spriteAnimator: {fileID: 0}
-  point: {fileID: 0}
-  canMove: 0
-  canPlay: 0
-  isItemExist: 0
 --- !u!65 &8763238510811531476
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -835,7 +807,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 570342346305207762}
-  - component: {fileID: 7070507562440947321}
   - component: {fileID: 5967207806447487817}
   - component: {fileID: 2672468059813758091}
   m_Layer: 0
@@ -863,39 +834,6 @@ Transform:
   m_Father: {fileID: 6073988047179469406}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
---- !u!114 &7070507562440947321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8632682349521116943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b0e278871af41348b1bc30878365fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingType: 0
-  moveType: 0
-  rotationTime: 0.15
-  directionTime: 0.25
-  spriteTransform: {fileID: 256087051698150282}
-  pointTransform: {fileID: 5508745652001881638}
-  directionObj: {fileID: 1734788047209264212}
-  isRotating: 0
-  canRotate: 1
-  targetAngle: 180
-  rotationEase: 0
-  startScaleTime: 0.1
-  endScaleTime: 0.5
-  startScaleEase: 3
-  endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
-  spriteAnimator: {fileID: 0}
-  point: {fileID: 0}
-  canMove: 0
-  canPlay: 0
-  isItemExist: 0
 --- !u!65 &5967207806447487817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -955,7 +893,7 @@ GameObject:
   - component: {fileID: 6073988047179469406}
   - component: {fileID: 8511768404963890654}
   - component: {fileID: 336582986929744286}
-  - component: {fileID: 4081875893388316066}
+  - component: {fileID: 6054587393999214279}
   m_Layer: 0
   m_Name: Balancer
   m_TagString: Untagged
@@ -979,7 +917,7 @@ Transform:
   - {fileID: 570342346305207762}
   - {fileID: 7862789701760940882}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8511768404963890654
 BoxCollider:
@@ -1029,7 +967,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4081875893388316066
+--- !u!114 &6054587393999214279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1038,13 +976,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8783092820917260256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07641360d8d99b3438892da4a7346732, type: 3}
+  m_Script: {fileID: 11500000, guid: df1aebeeefe97304fb083452e2293943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doubleType: 0
   buildings:
-  - {fileID: 7070507562440947321}
-  - {fileID: 3272139994425490174}
+  - {fileID: 8632682349521116943}
+  - {fileID: 6319391355911574037}
   spriteTransform: {fileID: 1590608125697538349}
+  canExchange: 0
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
   rotationEase: 0

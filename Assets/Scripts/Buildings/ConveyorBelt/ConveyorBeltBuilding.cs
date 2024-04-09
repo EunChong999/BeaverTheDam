@@ -6,21 +6,24 @@ public class ConveyorBeltBuilding : ConveyorBelt
     private void OnMouseOver()
     {
         // 마우스 좌클릭
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isRotating)
         {
-            DirectRotation(false, targetAngle);
+            DirectRotation(false, targetAngle, transform);
         }
 
         // 마우스 우클릭
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) && !isRotating)
         {
-            DirectRotation(true, targetAngle);
+            DirectRotation(true, targetAngle, transform);
         }
 
         // 마우스 휠클릭
-        else if (Input.GetMouseButtonDown(2))
+        else if (Input.GetMouseButtonDown(2) && !isRotating)
         {
             ChangeDirectionType();
+
+            if (movementType == movementType.curveType)
+                detector.ExchangeDetector();
         }
     }
 
@@ -30,7 +33,7 @@ public class ConveyorBeltBuilding : ConveyorBelt
         SetTrailerType();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         CheckPoint();
         ChangeSprite();

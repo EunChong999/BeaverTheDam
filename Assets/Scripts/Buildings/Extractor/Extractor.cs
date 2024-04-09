@@ -62,11 +62,12 @@ public class Extractor : BasicBuilding
     /// </summary>
     private void SendItem()
     {
-        animator.SetTrigger("Spawn");
-        itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
-        itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
         endPos = point.hitTransform;
+        animator.SetTrigger("Spawn");
+        itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
+        endPos.GetComponent<Point>().Enter(itemTransform);
+        itemTransform.GetComponent<Item>().ShowEffect();
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
         StartCoroutine(ThrowItem(itemTransform));
         StartCoroutine(WaitMove());
@@ -111,7 +112,7 @@ public class Extractor : BasicBuilding
     {
         yield return waitForArriveSeconds;
         isArrived = true;
-
+        endPos.GetComponent<Point>().Move(itemTransform);
         yield return waitForSpawnSeconds;
         isSpawned = false;
     }
