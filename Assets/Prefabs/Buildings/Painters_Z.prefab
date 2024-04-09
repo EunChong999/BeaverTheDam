@@ -411,7 +411,6 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 0
   isItemExist: 0
-  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
 --- !u!65 &7960071277475435742
@@ -707,7 +706,7 @@ Transform:
   - {fileID: 2837857213526104462}
   - {fileID: 3087584476926804187}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2688785913951136336
 MonoBehaviour:
@@ -920,7 +919,6 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 0
   isItemExist: 0
-  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
 --- !u!65 &4310803559463836431
@@ -1181,7 +1179,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1923154656, guid: ce1bc1c1cfd2dce4ea769dfc8dc1c7b5, type: 3}
+  m_Sprite: {fileID: -2053585680, guid: b01f19341ac06b84ca29acad641da49b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
