@@ -9,10 +9,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3075616971322237568}
@@ -83,10 +83,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3075616971322237568}
@@ -111,10 +111,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6420243639001345506}
@@ -139,10 +139,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6843072521978072664}
@@ -196,10 +196,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 360
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 269
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7441325571632214397}
@@ -249,10 +249,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1855722322067573109}
@@ -277,10 +277,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6843072521978072664}
@@ -305,10 +305,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6420243639001345506}
@@ -333,10 +333,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -976241420386879102}
@@ -415,10 +415,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6843072521978072664}
@@ -443,10 +443,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 89
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3075616971322237568}
@@ -500,10 +500,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 360
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 269
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7441325571632214397}
@@ -557,36 +557,30 @@ AnimatorController:
   m_Name: ConveyorBelt
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: AngleInt
+  - m_Name: Angle
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: AngleFloat
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsStraight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsRight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -609,10 +603,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1855722322067573109}
@@ -637,10 +631,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6122148166454605520}
@@ -665,10 +659,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6122148166454605520}
@@ -693,10 +687,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6122148166454605520}
@@ -721,10 +715,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -976241420386879102}
@@ -749,10 +743,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 0
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 90
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7162682950259439354}
@@ -805,10 +799,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6420243639001345506}
@@ -833,10 +827,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -976241420386879102}
@@ -861,10 +855,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 360
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 269
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7441325571632214397}
@@ -947,10 +941,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   - m_ConditionMode: 3
-    m_ConditionEvent: AngleFloat
+    m_ConditionEvent: Angle
     m_EventTreshold: 179
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1855722322067573109}
@@ -1033,10 +1027,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 0
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 270
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7162682950259439354}
@@ -1061,10 +1055,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 0
   - m_ConditionMode: 7
-    m_ConditionEvent: AngleInt
+    m_ConditionEvent: Angle
     m_EventTreshold: 180
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7162682950259439354}
