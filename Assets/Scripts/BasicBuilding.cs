@@ -34,7 +34,6 @@ public class BasicBuilding : MonoBehaviour
     public float directionTime = 0.25f;
     public Transform spriteTransform;
     public Transform pointTransform;
-    public GameObject directionObj;
     public Point pointingPoint;
     public Detector detector;
     public bool isRotating = false;
@@ -79,8 +78,6 @@ public class BasicBuilding : MonoBehaviour
         if (canRotate)
         {
             ShowEffect();
-            StartCoroutine(SetArrowDirection());
-            directionObj.SetActive(false);
             StartCoroutine(RotateTransform(isRight, targetAngle, transform));
         }
     }
@@ -131,19 +128,6 @@ public class BasicBuilding : MonoBehaviour
         transform.eulerAngles = targetRotation;
 
         isRotating = false;
-    }
-
-    /// <summary>
-    /// 화살표의 방향을 설정하는 함수
-    /// </summary>
-    IEnumerator SetArrowDirection()
-    {
-        yield return waitForDirectionSeconds;
-
-        if (!isRotating) 
-        {
-            directionObj.SetActive(true);
-        }
     }
 
     /// <summary>
