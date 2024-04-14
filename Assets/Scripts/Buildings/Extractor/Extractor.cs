@@ -1,6 +1,0 @@
-
-
-public class Extractor : BasicBuilding
-{
-
-}

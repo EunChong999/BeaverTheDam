@@ -114,6 +114,15 @@ public class ExtractorBuilding : BasicBuilding
         yield return waitForSpawnSeconds;
         isSpawned = false;
     }
+
+    /// <summary>
+    /// 애니메이션을 재생하는 함수
+    /// </summary>
+    private void PlayAnimation()
+    {
+        animator.SetInteger("AngleInt", Mathf.RoundToInt(transform.eulerAngles.y));
+        animator.SetFloat("AngleFloat", Mathf.RoundToInt(transform.eulerAngles.y));
+    }
     #endregion
     #region Events
     private void OnMouseOver()
@@ -145,7 +154,7 @@ public class ExtractorBuilding : BasicBuilding
     private void Update()
     {
         DirectSending();
-        animator.SetInteger("Angle", Mathf.RoundToInt(transform.eulerAngles.y));
+        PlayAnimation();
     }
 
     private void LateUpdate()

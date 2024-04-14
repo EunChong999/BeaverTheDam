@@ -1122,7 +1122,7 @@ MonoBehaviour:
   originScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
-  canStore: 0
+  canStore: 1
   floatTime: 1
   arriveTime: 0.5
   spawnTime: 1.5
