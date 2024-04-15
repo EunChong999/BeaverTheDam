@@ -11,7 +11,7 @@ public class Item : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
-    public Sprite cuttedReplaceSprite;
+    public Sprite[] cuttedReplaceSprite;
     Sequence itemScaleSequence;
 
     [SerializeField] float startScaleTime;
@@ -45,9 +45,28 @@ public class Item : MonoBehaviour
         .Append(spriteTransform.DOScale(new Vector3(2, 2, 2), endScaleTime).SetEase(endScaleEase));
     }
 
-    public void CutSprite()
+    public void CutSprite(float angle, bool canStore)
     {
-        spriteRenderer.sprite = cuttedSprites[0];
+        if (angle == 0 && canStore)
+        {
+            spriteRenderer.sprite = cuttedSprites[3];
+        }
+
+        if (angle == 270 && canStore)
+        {
+            spriteRenderer.sprite = cuttedSprites[0];
+        }
+
+        if (angle == 0 && !canStore)
+        {
+            spriteRenderer.sprite = cuttedSprites[2];
+        }
+
+        if (angle == 270 && !canStore)
+        {
+            spriteRenderer.sprite = cuttedSprites[1];
+        }
+
         isCutted = true;
     }
 

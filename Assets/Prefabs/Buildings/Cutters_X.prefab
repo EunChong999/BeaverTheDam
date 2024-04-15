@@ -258,6 +258,7 @@ MonoBehaviour:
   originScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
+  partnerBuilding: {fileID: 8728020536288518684}
   canStore: 1
   floatTime: 1
   arriveTime: 0.5
@@ -498,6 +499,7 @@ MonoBehaviour:
   originScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
+  partnerBuilding: {fileID: 4188098765104816584}
   canStore: 0
   floatTime: 1
   arriveTime: 0.5
