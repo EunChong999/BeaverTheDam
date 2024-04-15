@@ -47,10 +47,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce9e8925034c85d49ba11eb3879d4c26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCutted: 0
   isMoving: 0
   spriteTransform: {fileID: 159132853655487175}
   spriteRenderer: {fileID: 7204287765081671397}
   replaceSprite: {fileID: 21300000, guid: d69127b6b49649a40932cc32152f6a27, type: 3}
+  cuttedSprites:
+  - {fileID: -1478775193, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  - {fileID: -1600591439, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  - {fileID: 2136776076, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  - {fileID: 1261009898, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  cuttedReplaceSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 0

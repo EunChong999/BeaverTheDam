@@ -9,9 +9,12 @@ public enum doubleType
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
+    [SerializeField] bool isRotated;
+    [SerializeField] bool isReversed;
     public doubleType doubleType;
     public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
+    [SerializeField] Animator animator;
     [SerializeField] bool canExchange;
     [HideInInspector] public Vector3 originScale;
     Sequence buildingScaleSequence;
@@ -26,44 +29,39 @@ public class DoubleBasicBuilding : MonoBehaviour
     private void Start()
     {
         originScale = spriteTransform.localScale;
+
+        if (!isReversed)
+        {
+            return;
+        }
+
+        if (canExchange)
+            ExchangeBuildings();
+    }
+
+    private void Update()
+    {
+        if (isRotated)
+            animator.SetFloat("Rotated", 1);
+        else
+            animator.SetFloat("Rotated", -1);
+
+        if (isReversed)
+            animator.SetFloat("Reversed", 1);
+        else
+            animator.SetFloat("Reversed", -1);
     }
 
     private void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && 
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && 
             buildings[0].GetComponent<BasicBuilding>().canRotate &&
             buildings[1].GetComponent<BasicBuilding>().canRotate &&
             !buildings[0].GetComponent<BasicBuilding>().isRotating &&
             !buildings[1].GetComponent<BasicBuilding>().isRotating)
         {
-            ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
+            isRotated = !isRotated;
 
-            if (canExchange)
-                ExchangeBuildings();
-        }
-
-        else if (Input.GetMouseButtonDown(1) &&
-            buildings[0].GetComponent<BasicBuilding>().canRotate &&
-            buildings[1].GetComponent<BasicBuilding>().canRotate &&
-            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
-            !buildings[1].GetComponent<BasicBuilding>().isRotating)
-        {
-            ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
-
-            if (canExchange)
-                ExchangeBuildings();
-        }
-
-        else if (Input.GetMouseButtonDown(2) &&
-            buildings[0].GetComponent<BasicBuilding>().canRotate &&
-            buildings[1].GetComponent<BasicBuilding>().canRotate &&
-            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
-            !buildings[1].GetComponent<BasicBuilding>().isRotating)
-        {
             ShowEffect();
             buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
             buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);

@@ -15,7 +15,6 @@ public class ExtractorBuilding : BasicBuilding
     [SerializeField] float height;
     [SerializeField] float speed;
     [SerializeField] GameObject item;
-    [SerializeField] Animator animator;
 
     float startTime;
     Vector3 centerPoint;

@@ -104,6 +104,14 @@ public class TrashBuilding : BasicBuilding
         Destroy(itemTransform.gameObject);
         isRemoved = false;
     }
+
+    /// <summary>
+    /// 애니메이션을 재생하는 함수
+    /// </summary>
+    private void PlayAnimation()
+    {
+        animator.SetFloat("Angle", Mathf.RoundToInt(transform.eulerAngles.y));
+    }
     #endregion
     #region Events
     private void OnMouseOver()
@@ -135,6 +143,7 @@ public class TrashBuilding : BasicBuilding
     private void Update()
     {
         RemoveItem();
+        PlayAnimation();
     }
 
     private void LateUpdate()

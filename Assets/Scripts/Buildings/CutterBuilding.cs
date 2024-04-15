@@ -8,6 +8,7 @@ public class CutterBuilding : BasicBuilding
 
     [Space(10)]
 
+    [SerializeField] CutterBuilding partnerBuilding;
     [SerializeField] bool canStore;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
@@ -66,6 +67,7 @@ public class CutterBuilding : BasicBuilding
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitMoveForStore());
+                partnerBuilding.DirectStoreItem();
                 isRemoved = true;
             }
         }
@@ -140,6 +142,13 @@ public class CutterBuilding : BasicBuilding
             !point.hitTransform.GetComponent<Point>().isItemExist &&
             !isStoring)
         {
+            if (canStore)
+            {
+                partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
+                partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
+                partnerBuilding.itemTemp.GetComponent<Item>().UnMove();
+            }
+
             isArrived = false;
             canRotate = false;
             SendItem();
@@ -153,6 +162,7 @@ public class CutterBuilding : BasicBuilding
     private void SendItem()
     {
         itemTemp.SetActive(true);
+        itemTemp.GetComponent<Item>().CutSprite(transform.eulerAngles.y, canStore);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;
