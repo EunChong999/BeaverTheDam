@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public bool isCutted;
     public bool isMoving;
     public Transform spriteTransform;
     public SpriteRenderer spriteRenderer;
     public Sprite replaceSprite;
+    public Sprite[] cuttedSprites;
+    public Sprite cuttedReplaceSprite;
     Sequence itemScaleSequence;
 
     [SerializeField] float startScaleTime;
@@ -40,5 +43,16 @@ public class Item : MonoBehaviour
         itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(spriteTransform.DOScale(new Vector3(2, 2, 2), endScaleTime).SetEase(endScaleEase));
+    }
+
+    public void CutSprite()
+    {
+        spriteRenderer.sprite = cuttedSprites[0];
+        isCutted = true;
+    }
+
+    public void RotateSprite()
+    {
+
     }
 }

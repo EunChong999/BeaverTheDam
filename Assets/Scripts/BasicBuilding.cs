@@ -36,6 +36,7 @@ public class BasicBuilding : MonoBehaviour
     public Transform pointTransform;
     public Point pointingPoint;
     public Detector detector;
+    public Animator animator;
     public bool isRotating = false;
     public bool canRotate = true;
 

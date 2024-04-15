@@ -253,6 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8750936777657017151}
   - component: {fileID: 6552688686550920919}
+  - component: {fileID: 6281885831796542253}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -316,7 +317,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -205065161, guid: b01f19341ac06b84ca29acad641da49b, type: 3}
+  m_Sprite: {fileID: -692669282, guid: 28e5fbde7acf34b4c9f25fe36b341181, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -327,6 +328,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6281885831796542253
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047080781424024656}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c877f436acfd4c941a085046e901e9ea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2898852246163249525
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,6 +620,7 @@ MonoBehaviour:
   pointTransform: {fileID: 8341741709974208618}
   pointingPoint: {fileID: 0}
   detector: {fileID: 4834966946618006479}
+  animator: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 180
@@ -714,12 +737,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1aebeeefe97304fb083452e2293943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isRotated: 0
+  isReversed: 0
   doubleType: 0
   buildings:
   - {fileID: 4331957005138131291}
   - {fileID: 7693188614683057755}
   spriteTransform: {fileID: 8750936777657017151}
-  canExchange: 0
+  animator: {fileID: 6281885831796542253}
+  canExchange: 1
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
   rotationEase: 1
@@ -1113,6 +1139,7 @@ MonoBehaviour:
   pointTransform: {fileID: 8880725737528568167}
   pointingPoint: {fileID: 0}
   detector: {fileID: 9223092952582846687}
+  animator: {fileID: 0}
   isRotating: 0
   canRotate: 1
   targetAngle: 180

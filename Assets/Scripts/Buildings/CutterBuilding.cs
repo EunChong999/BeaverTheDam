@@ -155,6 +155,7 @@ public class CutterBuilding : BasicBuilding
         itemTemp.SetActive(true);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect();
+        itemTransform.GetComponent<Item>().CutSprite();
         startPos = pointTransform;
         endPos = point.hitTransform;
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
