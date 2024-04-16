@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCutted: 0
+  isColored: 0
   isMoving: 0
   spriteTransform: {fileID: 159132853655487175}
   spriteRenderer: {fileID: 7204287765081671397}
@@ -58,10 +59,10 @@ MonoBehaviour:
   - {fileID: 2136776076, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
   - {fileID: 1261009898, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
   cuttedReplaceSprite:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: -1591933598, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
+  - {fileID: -1409564195, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
+  - {fileID: -1562656868, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
+  - {fileID: -1192081027, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 0

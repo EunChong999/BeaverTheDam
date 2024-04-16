@@ -267,6 +267,7 @@ MonoBehaviour:
   storeTime: 0.5
   height: 10
   speed: 1.5
+  isXType: 1
 --- !u!65 &8315561065706595157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -508,6 +509,7 @@ MonoBehaviour:
   storeTime: 0.5
   height: 10
   speed: 1.5
+  isXType: 1
 --- !u!65 &8568577955455266421
 BoxCollider:
   m_ObjectHideFlags: 0

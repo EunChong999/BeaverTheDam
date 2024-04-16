@@ -6,6 +6,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public bool isCutted;
+    public bool isColored;
     public bool isMoving;
     public Transform spriteTransform;
     public SpriteRenderer spriteRenderer;
@@ -45,24 +46,29 @@ public class Item : MonoBehaviour
         .Append(spriteTransform.DOScale(new Vector3(2, 2, 2), endScaleTime).SetEase(endScaleEase));
     }
 
-    public void CutSprite(float angle, bool canStore)
+    public void CutSprite(bool isXType, bool canStore)
     {
-        if (angle == 0 && canStore)
+        if (isCutted)
+        {
+            return;
+        }
+
+        if (isXType && canStore)
         {
             spriteRenderer.sprite = cuttedSprites[3];
         }
 
-        if (angle == 270 && canStore)
+        if (!isXType && canStore)
         {
             spriteRenderer.sprite = cuttedSprites[0];
         }
 
-        if (angle == 0 && !canStore)
+        if (isXType && !canStore)
         {
             spriteRenderer.sprite = cuttedSprites[2];
         }
 
-        if (angle == 270 && !canStore)
+        if (!isXType && !canStore)
         {
             spriteRenderer.sprite = cuttedSprites[1];
         }
@@ -70,8 +76,38 @@ public class Item : MonoBehaviour
         isCutted = true;
     }
 
-    public void RotateSprite()
+    public void ReplaceSprite()
     {
+        spriteRenderer.sprite = replaceSprite;
 
+        isColored = true;
+    }
+
+    public void ReplaceSprites()
+    {
+        if (!isColored)
+        {
+            return;
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[0])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[0];
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[1])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[1];
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[2])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[2];
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[3])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[3];
+        }
     }
 }

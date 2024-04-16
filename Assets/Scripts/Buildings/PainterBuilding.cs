@@ -202,7 +202,9 @@ public class PainterBuilding : BasicBuilding
             itemTemp = partnerPainter.itemTemp;
             itemTemp.SetActive(true);
             itemTransform = itemTemp.transform;
-            itemTemp.GetComponent<Item>().spriteRenderer.sprite = itemTemp.GetComponent<Item>().replaceSprite;
+
+            itemTemp.GetComponent<Item>().ReplaceSprite();
+
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect();
             startPos = pointTransform;

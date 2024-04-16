@@ -24,6 +24,7 @@ public class Point : MonoBehaviour
     public Transform hitTransform;
     Sequence itemScaleSequence;
     float moveSpeed;
+    Coroutine coroutine;
 
     private void Start()
     {
@@ -104,12 +105,12 @@ public class Point : MonoBehaviour
 
         if (hitTransform != null && !obj.GetComponent<Item>().isMoving && canMove && isMovable)
         {
-            StartCoroutine(CarryItem(itemTransform, hitTransform));
+            coroutine = StartCoroutine(CarryItem(itemTransform, hitTransform));
             itemTransform.GetComponent<Item>().EnMove();
         }
     }
 
-    public void DoneMove()
+    public void DoneMove(Transform transform)
     {
         canPlay = true;
         isItemExist = false;
@@ -120,7 +121,7 @@ public class Point : MonoBehaviour
     {
         if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
         {
-            DoneMove();
+            DoneMove(obj.transform);
         }
     }
 
@@ -150,6 +151,8 @@ public class Point : MonoBehaviour
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
         }
+
+
     }
 
     /// <summary>
