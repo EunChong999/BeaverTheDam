@@ -13,7 +13,9 @@ public class Item : MonoBehaviour
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
     public Sprite[] cuttedReplaceSprite;
+
     Sequence itemScaleSequence;
+    int type = -1;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -46,7 +48,7 @@ public class Item : MonoBehaviour
         .Append(spriteTransform.DOScale(new Vector3(2, 2, 2), endScaleTime).SetEase(endScaleEase));
     }
 
-    public void CutSprite(bool isXType, bool canStore)
+    public void CutSprites(bool isXType, bool canStore)
     {
         if (isCutted)
         {
@@ -76,6 +78,29 @@ public class Item : MonoBehaviour
         isCutted = true;
     }
 
+    public void ReplaceCuttedSprite()
+    {
+        if (spriteRenderer.sprite == cuttedSprites[0])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[0];
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[1])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[1];
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[2])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[2];
+        }
+
+        if (spriteRenderer.sprite == cuttedSprites[3])
+        {
+            spriteRenderer.sprite = cuttedReplaceSprite[3];
+        }   
+    }
+
     public void ReplaceSprite()
     {
         spriteRenderer.sprite = replaceSprite;
@@ -83,7 +108,7 @@ public class Item : MonoBehaviour
         isColored = true;
     }
 
-    public void ReplaceSprites()
+    public void PaintSprite()
     {
         if (!isColored)
         {

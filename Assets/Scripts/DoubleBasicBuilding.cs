@@ -78,7 +78,7 @@ public class DoubleBasicBuilding : MonoBehaviour
         buildings[1].transform.position = temp;
     }
 
-    protected void ShowEffect()
+    private void ShowEffect()
     {
         buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))

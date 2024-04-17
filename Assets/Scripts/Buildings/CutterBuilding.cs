@@ -47,7 +47,7 @@ public class CutterBuilding : BasicBuilding
         waitForStoreSeconds = new WaitForSeconds(storeTime);
     }
 
-    protected void DirectStoreItem()
+    private void DirectStoreItem()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -76,7 +76,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    protected IEnumerator GetCenter(Vector3 direction)
+    private IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -91,7 +91,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    protected IEnumerator ThrowItem(Transform item)
+    private IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
@@ -108,7 +108,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMoveForStore()
+    private IEnumerator WaitMoveForStore()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -123,7 +123,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMoveForReturn()
+    private IEnumerator WaitMoveForReturn()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -133,7 +133,7 @@ public class CutterBuilding : BasicBuilding
         itemTemp = null;
     }
 
-    protected void DirectReturnItem()
+    private void DirectReturnItem()
     {
         if (itemTemp != null &&
             !isRotating &&
@@ -162,8 +162,8 @@ public class CutterBuilding : BasicBuilding
     private void SendItem()
     {
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CutSprite(isXType, canStore);
-        itemTemp.GetComponent<Item>().ReplaceSprites();
+        itemTemp.GetComponent<Item>().CutSprites(isXType, canStore);
+        itemTemp.GetComponent<Item>().PaintSprite();
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect();
         startPos = pointTransform;

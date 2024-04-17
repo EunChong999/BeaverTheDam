@@ -15,7 +15,7 @@ public class PainterBuilding : BasicBuilding
     [Space(10)]
 
     [SerializeField] PainterBuilding partnerPainter;
-    [SerializeField] protected painterType painterType;
+    [SerializeField] private painterType painterType;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
     [SerializeField] float spawnTime;
@@ -55,7 +55,7 @@ public class PainterBuilding : BasicBuilding
         waitForSendSeconds = new WaitForSeconds(sendTime);
     }
 
-    protected void DirectStoreItem()
+    private void DirectStoreItem()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -107,7 +107,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    protected IEnumerator GetCenter(Vector3 direction)
+    private IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -122,7 +122,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    protected IEnumerator ThrowItem(Transform item)
+    private IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
@@ -139,7 +139,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMoveForStore()
+    private IEnumerator WaitMoveForStore()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -154,7 +154,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMoveForReturn()
+    private IEnumerator WaitMoveForReturn()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -170,7 +170,7 @@ public class PainterBuilding : BasicBuilding
         }
     }
 
-    protected void DirectReturnItem()
+    private void DirectReturnItem()
     {
         if (itemTemp != null &&
             !isRotating &&
@@ -203,7 +203,15 @@ public class PainterBuilding : BasicBuilding
             itemTemp.SetActive(true);
             itemTransform = itemTemp.transform;
 
-            itemTemp.GetComponent<Item>().ReplaceSprite();
+            if (itemTemp.GetComponent<Item>().isCutted)
+            {
+                itemTemp.GetComponent<Item>().ReplaceCuttedSprite();
+                itemTemp.GetComponent<Item>().PaintSprite();
+            }
+            else
+            {
+                itemTemp.GetComponent<Item>().ReplaceSprite();
+            }
 
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect();
