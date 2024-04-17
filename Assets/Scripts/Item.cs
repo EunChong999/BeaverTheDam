@@ -15,7 +15,6 @@ public class Item : MonoBehaviour
     public Sprite[] cuttedReplaceSprite;
 
     Sequence itemScaleSequence;
-    int type = -1;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;

@@ -36,10 +36,10 @@ public class Point : MonoBehaviour
         moveSpeed = BuildingManager.instance.speed;
         originScale = BuildingManager.instance.originScale;
 
-        CanMove();
+        CheckCanMove();
     }
 
-    public void CanMove()
+    public void CheckCanMove()
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out RaycastHit hitInfo, maxDistance, layerMask) && !transform.parent.GetComponent<BasicBuilding>().isRotating)
         {
@@ -52,7 +52,6 @@ public class Point : MonoBehaviour
                 isMovable = false;
             }
 
-            // 바라보는 건물에 아이템이 존재하지 않을 때
             if (detector.canMove && !hitInfo.transform.GetChild(1).GetComponent<Point>().isItemExist)
             {
                 canMove = true;
