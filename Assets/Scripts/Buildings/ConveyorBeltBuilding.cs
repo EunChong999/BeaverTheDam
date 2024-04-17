@@ -17,7 +17,7 @@ public class ConveyorBeltBuilding : BasicBuilding
     /// <summary>
     /// 트레일러의 방향을 바꾸는 함수
     /// </summary>
-    protected void ChangeTrailerDirection()
+    private void ChangeTrailerDirection()
     {
         if (canPlay)
         {
@@ -79,7 +79,7 @@ public class ConveyorBeltBuilding : BasicBuilding
     /// <summary>
     /// 트레일러의 타입을 선택하는 함수
     /// </summary>
-    protected void SetTrailerType()
+    private void SetTrailerType()
     {
         switch (movementType)
         {
@@ -95,7 +95,7 @@ public class ConveyorBeltBuilding : BasicBuilding
     /// <summary>
     /// 포인트를 확인하는 함수
     /// </summary>
-    protected void CheckPoint()
+    private void CheckPoint()
     {
         canMove = point.canMove;
         canPlay = point.canPlay;
@@ -105,7 +105,7 @@ public class ConveyorBeltBuilding : BasicBuilding
     /// <summary>
     /// 회전각에 따라 스프라이트를 변경하는 함수
     /// </summary>
-    protected void ChangeSprite()
+    private void ChangeSprite()
     {
         spriteAnimator.SetInteger("Angle", Mathf.RoundToInt(transform.eulerAngles.y));
     }
@@ -141,7 +141,7 @@ public class ConveyorBeltBuilding : BasicBuilding
         SetTrailerType();
     }
 
-    protected virtual void Update()
+    private void Update()
     {
         CheckPoint();
         ChangeSprite();

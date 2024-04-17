@@ -43,7 +43,7 @@ public class ExtractorBuilding : BasicBuilding
     /// <summary>
     /// 발사에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    protected void DirectSending()
+    private void DirectSending()
     {
         if (!isRotating &&
             point.canMove &&
@@ -74,7 +74,7 @@ public class ExtractorBuilding : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    protected IEnumerator GetCenter(Vector3 direction)
+    private IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -89,7 +89,7 @@ public class ExtractorBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    protected IEnumerator ThrowItem(Transform item)
+    private IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
