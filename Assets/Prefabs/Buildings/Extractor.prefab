@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7252070589688644987}
   m_Layer: 0
   m_Name: Extractor
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +59,7 @@ MonoBehaviour:
   pointTransform: {fileID: 2080813722199854710}
   pointingPoint: {fileID: 0}
   detector: {fileID: 7969759582862820521}
+  animator: {fileID: 8962341367714694985}
   isRotating: 0
   canRotate: 1
   targetAngle: 90
@@ -76,7 +77,6 @@ MonoBehaviour:
   height: 10
   speed: 2
   item: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
-  animator: {fileID: 8962341367714694985}
 --- !u!65 &1864033304223956425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 162824134998551256}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ Transform:
   m_GameObject: {fileID: 344136790020456750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6028240728910822760}

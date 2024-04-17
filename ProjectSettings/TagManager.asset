@@ -7,6 +7,8 @@ TagManager:
   - Item
   - Dye
   - Detection Target
+  - Point
+  - Building
   layers:
   - Default
   - TransparentFX
