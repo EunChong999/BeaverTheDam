@@ -20,7 +20,6 @@ public class DoubleBasicBuilding : MonoBehaviour
     Sequence buildingScaleSequence;
 
     [SerializeField] float targetAngle = 180;
-    [SerializeField] Ease rotationEase = Ease.Linear;
     [SerializeField] float startScaleTime = 0.1f; 
     [SerializeField] float endScaleTime = 0.5f;
     [SerializeField] Ease startScaleEase = Ease.OutSine;
