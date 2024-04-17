@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 5568177795517752336}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 3195528191496233252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8318754773582294183}
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 4316490305163009669}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -375,7 +375,6 @@ MonoBehaviour:
   canExchange: 1
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
-  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -442,7 +441,7 @@ GameObject:
   - component: {fileID: 3610817233392899785}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1043,7 +1042,7 @@ GameObject:
   - component: {fileID: 2782602842630264436}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1057,7 +1056,7 @@ Transform:
   m_GameObject: {fileID: 8272833505636930404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2719670583447734334}

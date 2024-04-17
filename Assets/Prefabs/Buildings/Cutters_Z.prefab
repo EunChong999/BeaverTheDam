@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4779493292504642042}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 1404511604683722641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7368933079631318800}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 6249535406744399621}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 1820354207827488273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4768654197791157451}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 4176572988183291929}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,6 +639,7 @@ MonoBehaviour:
   storeTime: 0.5
   height: 10
   speed: 1.5
+  isXType: 0
 --- !u!65 &8590940940692533000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -747,7 +748,6 @@ MonoBehaviour:
   canExchange: 1
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
-  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -1093,7 +1093,7 @@ GameObject:
   - component: {fileID: 4173647389533032665}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1159,6 +1159,7 @@ MonoBehaviour:
   storeTime: 0.5
   height: 10
   speed: 1.5
+  isXType: 0
 --- !u!65 &7726761920151412176
 BoxCollider:
   m_ObjectHideFlags: 0

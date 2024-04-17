@@ -51,6 +51,7 @@ MonoBehaviour:
   isColored: 0
   isMoving: 0
   spriteTransform: {fileID: 159132853655487175}
+  curPoint: {fileID: 0}
   spriteRenderer: {fileID: 7204287765081671397}
   replaceSprite: {fileID: 21300000, guid: d69127b6b49649a40932cc32152f6a27, type: 3}
   cuttedSprites:
@@ -93,7 +94,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!65 &8974687539372810887
 BoxCollider:

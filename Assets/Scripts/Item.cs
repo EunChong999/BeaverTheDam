@@ -9,12 +9,14 @@ public class Item : MonoBehaviour
     public bool isColored;
     public bool isMoving;
     public Transform spriteTransform;
+    public Point curPoint;
     public SpriteRenderer spriteRenderer;
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
     public Sprite[] cuttedReplaceSprite;
 
     Sequence itemScaleSequence;
+    Vector3 originScale;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -27,6 +29,12 @@ public class Item : MonoBehaviour
         spriteTransform.localScale = Vector3.zero;
     }
 
+    private void OnEnable()
+    {
+        originScale = BuildingManager.instance.originScale;
+    }
+
+    #region Functions
     public void EnMove()
     {
         isMoving = true;
@@ -44,7 +52,7 @@ public class Item : MonoBehaviour
     {
         itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
-        .Append(spriteTransform.DOScale(new Vector3(2, 2, 2), endScaleTime).SetEase(endScaleEase));
+        .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
     }
 
     public void CutSprites(bool isXType, bool canStore)
@@ -134,4 +142,5 @@ public class Item : MonoBehaviour
             spriteRenderer.sprite = cuttedReplaceSprite[3];
         }
     }
+    #endregion
 }

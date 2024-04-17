@@ -57,7 +57,7 @@ public class Point : MonoBehaviour
                 canMove = true;
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hitInfo.distance, Color.red);
                 hitTransform = hitInfo.transform.GetChild(1);
-                hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = GetComponent<Point>();
+                hitTransform.parent.GetComponent<BasicBuilding>().pointingPoint = this;
             }
             else
             {
@@ -88,9 +88,9 @@ public class Point : MonoBehaviour
         }
     }
 
-    public void DoMove(Collider obj)
+    public void DoMove(Transform transform)
     {
-        if (!obj.GetComponent<Item>().isMoving)
+        if (!transform.GetComponent<Item>().isMoving)
         {
             canPlay = false;
         }
@@ -100,9 +100,9 @@ public class Point : MonoBehaviour
         }
 
         isItemExist = true;
-        itemTransform = obj.transform;
+        itemTransform = transform;
 
-        if (hitTransform != null && !obj.GetComponent<Item>().isMoving && canMove && isMovable)
+        if (hitTransform != null && !transform.GetComponent<Item>().isMoving && canMove && isMovable)
         {
             coroutine = StartCoroutine(CarryItem(itemTransform, hitTransform));
             itemTransform.GetComponent<Item>().EnMove();
@@ -118,18 +118,18 @@ public class Point : MonoBehaviour
 
     private void OnTriggerExit(Collider obj)
     {
-        if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
-        {
-            DoneMove(obj.transform);
-        }
+        if (!obj.CompareTag("Item") && !obj.CompareTag("Dye"))
+            return;
+
+        DoneMove(obj.transform);
     }
 
     private void OnTriggerStay(Collider obj)
     {
-        if (obj.CompareTag("Item") || obj.CompareTag("Dye"))
-        {
-            DoMove(obj);
-        }
+        if (!obj.CompareTag("Item") && !obj.CompareTag("Dye"))
+            return;
+
+        DoMove(obj.transform);
     }
 
     /// <summary>
@@ -150,8 +150,6 @@ public class Point : MonoBehaviour
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
         }
-
-
     }
 
     /// <summary>

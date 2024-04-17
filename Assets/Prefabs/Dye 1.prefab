@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6972131961223761594}
   - component: {fileID: 9050419071681707003}
   m_Layer: 7
-  m_Name: Blue Dye
+  m_Name: Dye 1
   m_TagString: Dye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,8 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCutted: 0
+  isColored: 0
   isMoving: 0
   spriteTransform: {fileID: 1622650527766905753}
+  curPoint: {fileID: 0}
   spriteRenderer: {fileID: 4725108808863434905}
   replaceSprite: {fileID: 0}
   cuttedSprites: []

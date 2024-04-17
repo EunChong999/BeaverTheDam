@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 7960071277475435742}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ Transform:
   m_GameObject: {fileID: 4406952165496033648}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3087584476926804187}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 6742892584647229117}
   m_Layer: 0
   m_Name: Painter
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -506,7 +506,6 @@ MonoBehaviour:
   canExchange: 1
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
-  rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
@@ -653,7 +652,7 @@ GameObject:
   - component: {fileID: 4310803559463836431}
   m_Layer: 6
   m_Name: Point
-  m_TagString: Untagged
+  m_TagString: Point
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -667,7 +666,7 @@ Transform:
   m_GameObject: {fileID: 6900336395764436222}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2837857213526104462}
@@ -734,7 +733,7 @@ GameObject:
   - component: {fileID: 3505504486495641387}
   m_Layer: 0
   m_Name: Painter
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
