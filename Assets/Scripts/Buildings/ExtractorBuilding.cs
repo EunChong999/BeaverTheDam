@@ -61,6 +61,8 @@ public class ExtractorBuilding : BasicBuilding
     /// </summary>
     private void SendItem()
     {
+        point.hitTransform.GetComponent<Point>().isItemExist = true;
+
         startPos = pointTransform;
         endPos = point.hitTransform;
         animator.SetTrigger("Spawn");

@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 7664567297159486324}
   m_Layer: 0
   m_Name: Painter
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -944,7 +944,7 @@ GameObject:
   - component: {fileID: 76669768140641082}
   m_Layer: 0
   m_Name: Painter
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

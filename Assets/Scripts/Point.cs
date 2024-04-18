@@ -24,7 +24,6 @@ public class Point : MonoBehaviour
     public Transform hitTransform;
     Sequence itemScaleSequence;
     float moveSpeed;
-    Coroutine coroutine;
 
     private void Start()
     {
@@ -104,8 +103,13 @@ public class Point : MonoBehaviour
 
         if (hitTransform != null && !transform.GetComponent<Item>().isMoving && canMove && isMovable)
         {
-            coroutine = StartCoroutine(CarryItem(itemTransform, hitTransform));
+            StartCoroutine(CarryItem(itemTransform, hitTransform));
             itemTransform.GetComponent<Item>().EnMove();
+
+            if (this.transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
+                return;
+
+            hitTransform.GetComponent<Point>().isItemExist = true;
         }
     }
 

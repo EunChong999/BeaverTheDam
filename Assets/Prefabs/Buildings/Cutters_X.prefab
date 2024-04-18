@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 4316490305163009669}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 3610817233392899785}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
