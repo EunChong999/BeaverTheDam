@@ -198,6 +198,8 @@ public class PainterBuilding : BasicBuilding
 
         if (point.hitTransform != null && point.hitTransform == hitTemp)
         {
+            point.hitTransform.GetComponent<Point>().isItemExist = true;
+
             colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
             itemTemp = partnerPainter.itemTemp;
             itemTemp.SetActive(true);

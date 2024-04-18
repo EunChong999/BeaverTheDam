@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 4176572988183291929}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1095,7 +1095,7 @@ GameObject:
   - component: {fileID: 4173647389533032665}
   m_Layer: 0
   m_Name: Cutter
-  m_TagString: Building
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

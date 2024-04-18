@@ -161,6 +161,8 @@ public class CutterBuilding : BasicBuilding
     /// </summary>
     private void SendItem()
     {
+        point.hitTransform.GetComponent<Point>().isItemExist = true;
+
         itemTemp.SetActive(true);
         itemTemp.GetComponent<Item>().CutSprites(isXType, canStore);
         itemTemp.GetComponent<Item>().PaintSprite();
