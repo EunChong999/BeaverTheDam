@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class ExtractorBuilding : BasicBuilding
+public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBuilding
 {
-    #region Variables
+    #region Variabless
 
     [Header("ExtractorBuilding")]
 
@@ -43,7 +43,7 @@ public class ExtractorBuilding : BasicBuilding
     /// <summary>
     /// 발사에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    private void DirectSending()
+    public void Output()
     {
         if (!isRotating &&
             point.canMove &&
@@ -70,13 +70,13 @@ public class ExtractorBuilding : BasicBuilding
         itemTransform.GetComponent<Item>().ShowEffect();
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
         StartCoroutine(ThrowItem(itemTransform));
-        StartCoroutine(WaitMove());
+        StartCoroutine(WaitOutputMove());
     }
 
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    private IEnumerator GetCenter(Vector3 direction)
+    public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -91,7 +91,7 @@ public class ExtractorBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    private IEnumerator ThrowItem(Transform item)
+    public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
@@ -108,7 +108,7 @@ public class ExtractorBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMove()
+    public IEnumerator WaitOutputMove()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -154,7 +154,7 @@ public class ExtractorBuilding : BasicBuilding
 
     private void Update()
     {
-        DirectSending();
+        Output();
         PlayAnimation();
     }
 
