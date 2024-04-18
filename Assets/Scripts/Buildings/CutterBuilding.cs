@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CutterBuilding : BasicBuilding
+public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
     [Header("CutterBuilding")]
@@ -47,7 +47,7 @@ public class CutterBuilding : BasicBuilding
         waitForStoreSeconds = new WaitForSeconds(storeTime);
     }
 
-    private void DirectStoreItem()
+    public void Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -67,7 +67,7 @@ public class CutterBuilding : BasicBuilding
                 itemTemp = itemTransform.gameObject;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitMoveForStore());
+                StartCoroutine(WaitInputMove());
                 isRemoved = true;
             }
         }
@@ -76,7 +76,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    private IEnumerator GetCenter(Vector3 direction)
+    public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -91,7 +91,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    private IEnumerator ThrowItem(Transform item)
+    public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
@@ -108,7 +108,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    private IEnumerator WaitMoveForStore()
+    public IEnumerator WaitInputMove()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -123,7 +123,7 @@ public class CutterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    private IEnumerator WaitMoveForReturn()
+    public IEnumerator WaitOutputMove()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -133,7 +133,7 @@ public class CutterBuilding : BasicBuilding
         itemTemp = null;
     }
 
-    private void DirectReturnItem()
+    public void Output()
     {
         if (itemTemp != null &&
             !isRotating &&
@@ -172,7 +172,7 @@ public class CutterBuilding : BasicBuilding
         endPos = point.hitTransform;
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
         StartCoroutine(ThrowItem(itemTransform));
-        StartCoroutine(WaitMoveForReturn());
+        StartCoroutine(WaitOutputMove());
     }
     #endregion
     #region Events
@@ -184,9 +184,9 @@ public class CutterBuilding : BasicBuilding
     private void Update()
     {
         if (canStore)
-            DirectStoreItem();
+            Input();
 
-        DirectReturnItem();
+        Output();
     }
 
     private void LateUpdate()

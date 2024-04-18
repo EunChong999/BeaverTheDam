@@ -8,10 +8,8 @@ public class ConveyorBeltBuilding : BasicBuilding
 
     [Space(10)]
 
-    public bool canMove;
-    public bool canPlay;
-    public bool isItemExist;
-    int rotationAngle;
+    private bool canPlay;
+    private int rotationAngle;
     #endregion
     #region Functions
     /// <summary>
@@ -97,9 +95,7 @@ public class ConveyorBeltBuilding : BasicBuilding
     /// </summary>
     private void CheckPoint()
     {
-        canMove = point.canMove;
         canPlay = point.canPlay;
-        isItemExist = point.isItemExist;
     }
 
     /// <summary>

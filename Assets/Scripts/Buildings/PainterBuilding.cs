@@ -7,7 +7,7 @@ public enum painterType
     outputType
 }
 
-public class PainterBuilding : BasicBuilding
+public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
     [Header("PainterBuilding")]
@@ -55,7 +55,7 @@ public class PainterBuilding : BasicBuilding
         waitForSendSeconds = new WaitForSeconds(sendTime);
     }
 
-    private void DirectStoreItem()
+    public void Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -79,7 +79,7 @@ public class PainterBuilding : BasicBuilding
                         endPos = pointTransform;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
-                        StartCoroutine(WaitMoveForStore());
+                        StartCoroutine(WaitInputMove());
                         isRemoved = true;
                     }
                 }
@@ -96,7 +96,7 @@ public class PainterBuilding : BasicBuilding
                         itemTemp = itemTransform.gameObject;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
-                        StartCoroutine(WaitMoveForStore());
+                        StartCoroutine(WaitInputMove());
                         isRemoved = true;
                     }
                 }
@@ -107,7 +107,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    private IEnumerator GetCenter(Vector3 direction)
+    public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -122,7 +122,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    private IEnumerator ThrowItem(Transform item)
+    public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
@@ -139,7 +139,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    private IEnumerator WaitMoveForStore()
+    public IEnumerator WaitInputMove()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -154,7 +154,7 @@ public class PainterBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    private IEnumerator WaitMoveForReturn()
+    public IEnumerator WaitOutputMove()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -170,7 +170,7 @@ public class PainterBuilding : BasicBuilding
         }
     }
 
-    private void DirectReturnItem()
+    public void Output()
     {
         if (itemTemp != null &&
             !isRotating &&
@@ -221,7 +221,7 @@ public class PainterBuilding : BasicBuilding
             endPos = point.hitTransform;
             StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
             StartCoroutine(ThrowItem(itemTransform));
-            StartCoroutine(WaitMoveForReturn());
+            StartCoroutine(WaitOutputMove());
         }
         else
         {
@@ -237,8 +237,8 @@ public class PainterBuilding : BasicBuilding
 
     private void Update()
     {
-        DirectStoreItem();
-        DirectReturnItem();
+        Input();
+        Output();
     }
 
     private void LateUpdate()

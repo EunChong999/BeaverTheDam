@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TrashBuilding : BasicBuilding
+public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding
 {
     #region Variables
 
@@ -39,7 +39,7 @@ public class TrashBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    protected void RemoveItem()
+    public void Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -55,7 +55,7 @@ public class TrashBuilding : BasicBuilding
                 endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitMove());
+                StartCoroutine(WaitInputMove());
                 isRemoved = true;
             }
         }
@@ -64,7 +64,7 @@ public class TrashBuilding : BasicBuilding
     /// <summary>
     /// 포물선의 중앙을 결정하는 함수
     /// </summary>
-    protected IEnumerator GetCenter(Vector3 direction)
+    public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
         {
@@ -79,7 +79,7 @@ public class TrashBuilding : BasicBuilding
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    protected IEnumerator ThrowItem(Transform item)
+    public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
 
@@ -96,7 +96,7 @@ public class TrashBuilding : BasicBuilding
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    protected IEnumerator WaitMove()
+    public IEnumerator WaitInputMove()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -117,19 +117,19 @@ public class TrashBuilding : BasicBuilding
     private void OnMouseOver()
     {
         // 마우스 좌클릭
-        if (Input.GetMouseButtonDown(0) && !isRotating)
+        if (UnityEngine.Input.GetMouseButtonDown(0) && !isRotating)
         {
             DirectRotation(false, targetAngle, transform);
         }
 
         // 마우스 우클릭
-        else if (Input.GetMouseButtonDown(1) && !isRotating)
+        else if (UnityEngine.Input.GetMouseButtonDown(1) && !isRotating)
         {
             DirectRotation(true, targetAngle, transform);
         }
 
         // 마우스 휠클릭
-        else if (Input.GetMouseButtonDown(2) && !isRotating)
+        else if (UnityEngine.Input.GetMouseButtonDown(2) && !isRotating)
         {
             ChangeDirectionType();
         }
@@ -142,7 +142,7 @@ public class TrashBuilding : BasicBuilding
 
     private void Update()
     {
-        RemoveItem();
+        Input();
         PlayAnimation();
     }
 
