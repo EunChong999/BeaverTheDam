@@ -67,7 +67,7 @@ public class BasicBuilding : MonoBehaviour
     {
         waitForRotationSeconds = new WaitForSeconds(rotationTime);
         waitForDirectionSeconds = new WaitForSeconds(directionTime);
-        originScale = transform.localScale;
+        originScale = spriteTransform.localScale;
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
     }
@@ -98,12 +98,12 @@ public class BasicBuilding : MonoBehaviour
     protected void ShowEffect()
     {
         buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
-        .Append(transform.DOScale(new Vector3(transform.localScale.x / 1.5f, transform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
-        .Append(transform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
 
         if (pointTransform.GetComponent<Point>().itemTransform != null)
         {
-            pointTransform.GetComponent<Point>().ShowEffect();
+            pointTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().ShowEffect();
         }
     }
 

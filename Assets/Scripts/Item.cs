@@ -24,14 +24,9 @@ public class Item : MonoBehaviour
     [SerializeField] Ease startScaleEase;
     [SerializeField] Ease endScaleEase;
 
-    private void Start()
-    {
-        spriteTransform.localScale = Vector3.zero;
-    }
-
     private void OnEnable()
     {
-        originScale = BuildingManager.instance.originScale;
+        originScale = spriteTransform.localScale;
     }
 
     #region Functions
@@ -51,7 +46,7 @@ public class Item : MonoBehaviour
     public void ShowEffect()
     {
         itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
-        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
     }
 
