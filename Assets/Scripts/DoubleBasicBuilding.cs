@@ -9,6 +9,7 @@ public enum doubleType
 
 public class DoubleBasicBuilding : MonoBehaviour
 {
+    #region Variables
     [SerializeField] bool isRotated;
     [SerializeField] bool isReversed;
     public doubleType doubleType;
@@ -27,7 +28,23 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     BasicBuilding firstBuilding;
     BasicBuilding secondBuilding;
+    #endregion
+    #region Functions
+    private void ExchangeBuildings()
+    {
+        Vector3 temp = buildings[0].transform.position;
+        buildings[0].transform.position = buildings[1].transform.position;
+        buildings[1].transform.position = temp;
+    }
 
+    private void ShowEffect()
+    {
+        buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
+        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+    }
+    #endregion
+    #region Events
     private void Start()
     {
         firstBuilding = buildings[0].GetComponent<BasicBuilding>();
@@ -59,7 +76,7 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && 
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) &&
             firstBuilding.canRotate &&
             secondBuilding.canRotate &&
             !firstBuilding.isRotating &&
@@ -76,7 +93,6 @@ public class DoubleBasicBuilding : MonoBehaviour
         }
     }
 
-    #region Events
     private void OnMouseEnter()
     {
         firstBuilding.direction.SetActive(true);
@@ -89,18 +105,4 @@ public class DoubleBasicBuilding : MonoBehaviour
         secondBuilding.direction.SetActive(false);
     }
     #endregion
-
-    private void ExchangeBuildings()
-    {
-        Vector3 temp = buildings[0].transform.position;
-        buildings[0].transform.position = buildings[1].transform.position;
-        buildings[1].transform.position = temp;
-    }
-
-    private void ShowEffect()
-    {
-        buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
-        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
-        .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
-    }
 }

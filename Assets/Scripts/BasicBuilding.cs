@@ -48,14 +48,16 @@ public class BasicBuilding : MonoBehaviour
     [SerializeField] Ease startScaleEase = Ease.OutSine;
     [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
-    [HideInInspector] public Vector3 originScale;
+    [HideInInspector] public Vector3 spriteOriginScale;
+    [HideInInspector] public Vector3 directionOriginScale;
     [HideInInspector] public Animator spriteAnimator;
     [HideInInspector] public Point point;
     [HideInInspector] public Point pointingPoint;
 
     WaitForSeconds waitForRotationSeconds;
     WaitForSeconds waitForDirectionSeconds;
-    Sequence buildingScaleSequence;
+    Sequence spriteScaleSequence;
+    Sequence directionScaleSequence;
     Vector3 targetRotation;
 
     #endregion
@@ -67,7 +69,8 @@ public class BasicBuilding : MonoBehaviour
     {
         waitForRotationSeconds = new WaitForSeconds(rotationTime);
         waitForDirectionSeconds = new WaitForSeconds(directionTime);
-        originScale = spriteTransform.localScale;
+        spriteOriginScale = spriteTransform.localScale;
+        directionOriginScale = direction.transform.localScale;
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
     }
@@ -97,13 +100,17 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     protected void ShowEffect()
     {
-        buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
+        spriteScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
-        .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        .Append(spriteTransform.DOScale(spriteOriginScale, endScaleTime).SetEase(endScaleEase));
+
+        directionScaleSequence = DOTween.Sequence().SetAutoKill(true)
+        .Append(direction.transform.DOScale(new Vector3(direction.transform.localScale.x / 1.5f, direction.transform.localScale.y / 1.25f, direction.transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(direction.transform.DOScale(directionOriginScale, endScaleTime).SetEase(endScaleEase));
 
         if (pointTransform.GetComponent<Point>().itemTransform != null)
         {
-            pointTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().ShowEffect();
+            pointTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().ShowEffect(false);
         }
     }
 

@@ -56,7 +56,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
                 !isRemoved &&
                 pointingPoint.isItemExist &&
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
-                itemTemp == null)
+                itemTemp == null && 
+                partnerBuilding.itemTemp == null)
             {
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                 endPos = pointTransform;
@@ -67,15 +68,12 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
                 itemTemp = itemTransform.gameObject;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitInputMove());
+                StartCoroutine(WaitForInput());
                 isRemoved = true;
             }
         }
     }
 
-    /// <summary>
-    /// 포물선의 중앙을 결정하는 함수
-    /// </summary>
     public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
@@ -88,9 +86,6 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         }
     }
 
-    /// <summary>
-    /// 아이템을 발사하는 함수
-    /// </summary>
     public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
@@ -105,10 +100,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         }
     }
 
-    /// <summary>
-    /// 이동을 대기시키는 함수
-    /// </summary>
-    public IEnumerator WaitInputMove()
+    public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -117,13 +109,18 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         point.isItemExist = false;
         isRemoved = false;
         yield return waitForStoreSeconds;
+
+        if (canStore && !itemTemp.GetComponent<Item>().isCutted)
+        {
+            partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
+            partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
+            partnerBuilding.itemTemp.GetComponent<Item>().UnMove();
+        }
+
         isStoring = false;
     }
 
-    /// <summary>
-    /// 이동을 대기시키는 함수
-    /// </summary>
-    public IEnumerator WaitOutputMove()
+    public IEnumerator WaitForOutput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -142,24 +139,17 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
             !point.hitTransform.GetComponent<Point>().isItemExist &&
             !isStoring)
         {
-            if (canStore && !itemTemp.GetComponent<Item>().isCutted)
-            {
-                partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
-                partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
-                partnerBuilding.itemTemp.GetComponent<Item>().UnMove();
-            }
-
             isArrived = false;
             canRotate = false;
-            SendItem();
+            DirectSending();
             isReturned = true;
         }
     }
 
     /// <summary>
-    /// 아이템을 발사하는 함수
+    /// 아이템을 보내는 함수
     /// </summary>
-    private void SendItem()
+    private void DirectSending()
     {
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
@@ -167,12 +157,12 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         itemTemp.GetComponent<Item>().CutSprites(isXType, canStore);
         itemTemp.GetComponent<Item>().PaintSprite();
         itemTransform = itemTemp.transform;
-        itemTransform.GetComponent<Item>().ShowEffect();
+        itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
         endPos = point.hitTransform;
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
         StartCoroutine(ThrowItem(itemTransform));
-        StartCoroutine(WaitOutputMove());
+        StartCoroutine(WaitForOutput());
     }
     #endregion
     #region Events

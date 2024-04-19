@@ -19,6 +19,7 @@ public class Direction : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         movementType = basicBuilding.movementType;
+        spriteRenderer.color = BuildingManager.instance.directionColor;
         gameObject.SetActive(false);
     }
 
