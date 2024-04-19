@@ -32,9 +32,9 @@ public class BasicBuilding : MonoBehaviour
     public directionType directionType;
     public float rotationTime = 0.15f;
     public float directionTime = 0.25f;
+    public GameObject direction;
     public Transform spriteTransform;
     public Transform pointTransform;
-    public Point pointingPoint;
     public Detector detector;
     public Animator animator;
     public bool isRotating = false;
@@ -51,6 +51,7 @@ public class BasicBuilding : MonoBehaviour
     [HideInInspector] public Vector3 originScale;
     [HideInInspector] public Animator spriteAnimator;
     [HideInInspector] public Point point;
+    [HideInInspector] public Point pointingPoint;
 
     WaitForSeconds waitForRotationSeconds;
     WaitForSeconds waitForDirectionSeconds;
@@ -155,6 +156,17 @@ public class BasicBuilding : MonoBehaviour
         {
             DirectRotation(true, 180, transform);
         }
+    }
+    #endregion
+    #region Events
+    private void OnMouseEnter()
+    {
+        direction.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        direction.SetActive(false);
     }
     #endregion
 }

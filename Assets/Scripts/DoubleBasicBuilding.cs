@@ -25,8 +25,14 @@ public class DoubleBasicBuilding : MonoBehaviour
     [SerializeField] Ease startScaleEase = Ease.OutSine;
     [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
+    BasicBuilding firstBuilding;
+    BasicBuilding secondBuilding;
+
     private void Start()
     {
+        firstBuilding = buildings[0].GetComponent<BasicBuilding>();
+        secondBuilding = buildings[1].GetComponent<BasicBuilding>();
+
         originScale = spriteTransform.localScale;
 
         if (!isReversed)
@@ -54,21 +60,35 @@ public class DoubleBasicBuilding : MonoBehaviour
     private void OnMouseOver()
     {
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && 
-            buildings[0].GetComponent<BasicBuilding>().canRotate &&
-            buildings[1].GetComponent<BasicBuilding>().canRotate &&
-            !buildings[0].GetComponent<BasicBuilding>().isRotating &&
-            !buildings[1].GetComponent<BasicBuilding>().isRotating)
+            firstBuilding.canRotate &&
+            secondBuilding.canRotate &&
+            !firstBuilding.isRotating &&
+            !secondBuilding.isRotating)
         {
             isRotated = !isRotated;
 
             ShowEffect();
-            buildings[0].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[0].GetComponent<BasicBuilding>().transform);
-            buildings[1].GetComponent<BasicBuilding>().DirectRotation(false, targetAngle, buildings[1].GetComponent<BasicBuilding>().transform);
+            firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform);
+            secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform);
 
             if (canExchange)
                 ExchangeBuildings();
         }
     }
+
+    #region Events
+    private void OnMouseEnter()
+    {
+        firstBuilding.direction.SetActive(true);
+        secondBuilding.direction.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        firstBuilding.direction.SetActive(false);
+        secondBuilding.direction.SetActive(false);
+    }
+    #endregion
 
     private void ExchangeBuildings()
     {
