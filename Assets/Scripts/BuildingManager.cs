@@ -7,6 +7,7 @@ public class BuildingManager : MonoBehaviour
 {
     public float speed;
     public Vector3 originScale;
+    public Color directionColor;
 
     public static BuildingManager instance;
 

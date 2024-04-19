@@ -55,7 +55,7 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
                 endPos = pointTransform;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
-                StartCoroutine(WaitInputMove());
+                StartCoroutine(WaitForInput());
                 isRemoved = true;
             }
         }
@@ -96,7 +96,7 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    public IEnumerator WaitInputMove()
+    public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;

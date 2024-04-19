@@ -64,7 +64,8 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                 !isRemoved &&
                 pointingPoint.isItemExist &&
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
-                itemTemp == null)
+                itemTemp == null &&
+                !isRotating)
             {
                 if (painterType == painterType.outputType)
                 {
@@ -79,7 +80,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         endPos = pointTransform;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
-                        StartCoroutine(WaitInputMove());
+                        StartCoroutine(WaitForInput());
                         isRemoved = true;
                     }
                 }
@@ -96,7 +97,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         itemTemp = itemTransform.gameObject;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
-                        StartCoroutine(WaitInputMove());
+                        StartCoroutine(WaitForInput());
                         isRemoved = true;
                     }
                 }
@@ -139,7 +140,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    public IEnumerator WaitInputMove()
+    public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -154,7 +155,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    public IEnumerator WaitOutputMove()
+    public IEnumerator WaitForOutput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
@@ -216,12 +217,12 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             }
 
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
-            itemTransform.GetComponent<Item>().ShowEffect();
+            itemTransform.GetComponent<Item>().ShowEffect(true);
             startPos = pointTransform;
             endPos = point.hitTransform;
             StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
             StartCoroutine(ThrowItem(itemTransform));
-            StartCoroutine(WaitOutputMove());
+            StartCoroutine(WaitForOutput());
         }
         else
         {

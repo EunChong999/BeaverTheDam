@@ -24,14 +24,9 @@ public class Item : MonoBehaviour
     [SerializeField] Ease startScaleEase;
     [SerializeField] Ease endScaleEase;
 
-    private void Start()
-    {
-        spriteTransform.localScale = Vector3.zero;
-    }
-
     private void OnEnable()
     {
-        originScale = BuildingManager.instance.originScale;
+        originScale = spriteTransform.localScale;
     }
 
     #region Functions
@@ -48,11 +43,20 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 회전시 트위닝 효과를 주는 함수
     /// </summary>
-    public void ShowEffect()
+    public void ShowEffect(bool isSending)
     {
-        itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
-        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
-        .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        if (isSending)
+        {
+            itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
+            .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+            .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        }
+        else
+        {
+            itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
+            .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+            .Append(spriteTransform.DOScale(originScale, endScaleTime * 0.75f).SetEase(endScaleEase));
+        }
     }
 
     public void CutSprites(bool isXType, bool canStore)

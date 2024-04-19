@@ -19,6 +19,8 @@ public class Direction : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         movementType = basicBuilding.movementType;
+        spriteRenderer.color = BuildingManager.instance.directionColor;
+        gameObject.SetActive(false);
     }
 
     void LateUpdate()
@@ -90,19 +92,19 @@ public class Direction : MonoBehaviour
 
         if (rotationToInt >= 0 && rotationToInt < 90)
         {
-            transform.localPosition = new Vector3(-0.1f, 0.5f, -0.125f);
+            transform.localPosition = new Vector3(-0.2f, 1.25f, -0.25f);
         }
         else if (rotationToInt >= 90 && rotationToInt < 180)
         {
-            transform.localPosition = new Vector3(0.1f, 0.5f, -0.125f);
+            transform.localPosition = new Vector3(0.2f, 1.25f, -0.25f);
         }
         else if (rotationToInt >= 180 && rotationToInt < 270)
         {
-            transform.localPosition = new Vector3(0.1f, 0.5f, 0.125f);
+            transform.localPosition = new Vector3(0.2f, 1.25f, 0.25f);
         }
         else if (rotationToInt >= 270 && rotationToInt < 360)
         {
-            transform.localPosition = new Vector3(-0.1f, 0.5f, 0.125f);
+            transform.localPosition = new Vector3(-0.2f, 1.25f, 0.25f);
         }
     }
 }

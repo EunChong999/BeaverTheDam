@@ -67,10 +67,10 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         endPos = point.hitTransform;
         animator.SetTrigger("Spawn");
         itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
-        itemTransform.GetComponent<Item>().ShowEffect();
+        itemTransform.GetComponent<Item>().ShowEffect(true);
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
         StartCoroutine(ThrowItem(itemTransform));
-        StartCoroutine(WaitOutputMove());
+        StartCoroutine(WaitForOutput());
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
     /// <summary>
     /// 이동을 대기시키는 함수
     /// </summary>
-    public IEnumerator WaitOutputMove()
+    public IEnumerator WaitForOutput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
