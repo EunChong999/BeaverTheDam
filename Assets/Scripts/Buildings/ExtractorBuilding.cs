@@ -9,12 +9,12 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
 
     [Space(10)]
 
+    [SerializeField] GameObject item;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
     [SerializeField] float spawnTime;
     [SerializeField] float height;
     [SerializeField] float speed;
-    [SerializeField] GameObject item;
 
     float startTime;
     Vector3 centerPoint;
@@ -23,6 +23,7 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
+    Sprite itemSprite;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForSpawnSeconds;
     bool isArrived;
@@ -30,19 +31,16 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
 
     #endregion
     #region Functions
-    /// <summary>
-    /// 기본 설정들을 초기화하는 함수
-    /// </summary>
+
     public override void InitSettings()
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
         waitForSpawnSeconds = new WaitForSeconds(spawnTime);
+        itemSprite = item.GetComponent<Item>().spriteRenderer.sprite;
+        ApplyStoreItemImg(itemSprite);
     }
 
-    /// <summary>
-    /// 발사에 대한 전체적인 동작을 지시하는 함수
-    /// </summary>
     public void Output()
     {
         if (!isRotating &&
@@ -73,9 +71,6 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         StartCoroutine(WaitForOutput());
     }
 
-    /// <summary>
-    /// 포물선의 중앙을 결정하는 함수
-    /// </summary>
     public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
@@ -88,9 +83,6 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         }
     }
 
-    /// <summary>
-    /// 아이템을 발사하는 함수
-    /// </summary>
     public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
@@ -105,9 +97,6 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         }
     }
 
-    /// <summary>
-    /// 이동을 대기시키는 함수
-    /// </summary>
     public IEnumerator WaitForOutput()
     {
         yield return waitForArriveSeconds;
@@ -128,20 +117,17 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
     #region Events
     private void OnMouseOver()
     {
-        // 마우스 좌클릭
-        if (Input.GetMouseButtonDown(0) && !isRotating)
+        if (isRotating)
+            return;
+
+        // 마우스 좌클릭 또는 우클릭
+        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
         {
             DirectRotation(false, targetAngle, transform);
         }
 
-        // 마우스 우클릭
-        else if (Input.GetMouseButtonDown(1) && !isRotating)
-        {
-            DirectRotation(true, targetAngle, transform);
-        }
-
         // 마우스 휠클릭
-        else if (Input.GetMouseButtonDown(2) && !isRotating)
+        else if (Input.GetMouseButtonDown(2))
         {
             ChangeDirectionType();
         }

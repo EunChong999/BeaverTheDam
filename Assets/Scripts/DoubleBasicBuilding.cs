@@ -97,12 +97,24 @@ public class DoubleBasicBuilding : MonoBehaviour
     {
         firstBuilding.direction.SetActive(true);
         secondBuilding.direction.SetActive(true);
+
+        if (firstBuilding.itemType == itemType.storeType)
+            firstBuilding.itemPanel.SetActive(false);
+
+        if (secondBuilding.itemType == itemType.storeType)
+            secondBuilding.itemPanel.SetActive(false);
     }
 
     private void OnMouseExit()
     {
         firstBuilding.direction.SetActive(false);
         secondBuilding.direction.SetActive(false);
+
+        if (firstBuilding.itemType == itemType.storeType)
+            firstBuilding.itemPanel.SetActive(true);
+
+        if (secondBuilding.itemType == itemType.storeType)
+            secondBuilding.itemPanel.SetActive(true);
     }
     #endregion
 }

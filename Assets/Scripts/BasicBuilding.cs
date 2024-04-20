@@ -20,6 +20,12 @@ public enum directionType
     rightType,
 }
 
+public enum itemType
+{
+    storeType,
+    carryType
+}
+
 public class BasicBuilding : MonoBehaviour
 {
     #region Variables
@@ -30,9 +36,11 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public movementType movementType;
     public directionType directionType;
+    public itemType itemType;
     public float rotationTime = 0.15f;
     public float directionTime = 0.25f;
     public GameObject direction;
+    public GameObject itemPanel;
     public Transform spriteTransform;
     public Transform pointTransform;
     public Detector detector;
@@ -58,6 +66,7 @@ public class BasicBuilding : MonoBehaviour
     WaitForSeconds waitForDirectionSeconds;
     Sequence spriteScaleSequence;
     Sequence directionScaleSequence;
+    SpriteRenderer itemPanelSpriteRenderer;
     Vector3 targetRotation;
 
     #endregion
@@ -73,6 +82,9 @@ public class BasicBuilding : MonoBehaviour
         directionOriginScale = direction.transform.localScale;
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
+
+        if (itemType == itemType.storeType)
+            itemPanelSpriteRenderer = itemPanel.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -98,7 +110,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전시 트위닝 효과를 주는 함수
     /// </summary>
-    protected void ShowEffect()
+    private void ShowEffect()
     {
         spriteScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
@@ -142,7 +154,7 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전 타입을 변경하는 함수
     /// </summary>
-    public void ChangeDirectionType()
+    protected void ChangeDirectionType()
     {
         ShowEffect();
 
@@ -164,16 +176,38 @@ public class BasicBuilding : MonoBehaviour
             DirectRotation(true, 180, transform);
         }
     }
+
+    /// <summary>
+    /// 저장할 아이템의 이미지를 적용하는 함수
+    /// </summary>
+    public void ApplyStoreItemImg(Sprite sprite)
+    {
+        itemPanelSpriteRenderer.sprite = sprite;
+    }
+
+    /// <summary>
+    /// 저장했던 아이템의 이미지를 해제하는 함수
+    /// </summary>
+    public void ReleaseStoreItemImg()
+    {
+        itemPanelSpriteRenderer.sprite = null;
+    }
     #endregion
     #region Events
     private void OnMouseEnter()
     {
         direction.SetActive(true);
+
+        if (itemType == itemType.storeType)
+            itemPanel.SetActive(false);
     }
 
     private void OnMouseExit()
     {
         direction.SetActive(false);
+
+        if (itemType == itemType.storeType)
+            itemPanel.SetActive(true);
     }
     #endregion
 }

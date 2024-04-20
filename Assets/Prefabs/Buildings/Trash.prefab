@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 146048699094021565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6592887672983351718}
@@ -50,10 +50,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxDistance: 1
-  startScaleTime: 0.1
-  endScaleTime: 0.5
-  startScaleEase: 3
-  endScaleEase: 24
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 0
   isItemExist: 0
@@ -533,9 +529,11 @@ MonoBehaviour:
   buildingType: 1
   movementType: 0
   directionType: 1
+  itemType: 1
   rotationTime: 0.15
   directionTime: 0.25
   direction: {fileID: 1600895799732392494}
+  productPanel: {fileID: 0}
   spriteTransform: {fileID: 3240011183385960952}
   pointTransform: {fileID: 4466641924370263855}
   detector: {fileID: 4448568271064846530}
@@ -548,7 +546,8 @@ MonoBehaviour:
   endScaleTime: 0.5
   startScaleEase: 3
   endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
+  spriteOriginScale: {x: 0, y: 0, z: 0}
+  directionOriginScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
