@@ -7,10 +7,6 @@ public class Point : MonoBehaviour
     [SerializeField] Detector detector;
     [SerializeField] LayerMask layerMask;
     [SerializeField] float maxDistance;
-    [SerializeField] float startScaleTime;
-    [SerializeField] float endScaleTime;
-    [SerializeField] Ease startScaleEase;
-    [SerializeField] Ease endScaleEase;
 
     public Vector3 originScale;
 
@@ -22,7 +18,6 @@ public class Point : MonoBehaviour
 
     public Transform itemTransform;
     public Transform hitTransform;
-    Sequence itemScaleSequence;
     float moveSpeed;
 
     private void Start()
@@ -153,23 +148,6 @@ public class Point : MonoBehaviour
         {
             itemTransform.position = hitTransform.position;
             itemTransform.GetComponent<Item>().UnMove();
-        }
-    }
-
-    /// <summary>
-    /// 회전시 트위닝 효과를 주는 함수
-    /// </summary>
-    public void ShowEffect()
-    {
-        if (itemTransform != null)
-        {
-            itemScaleSequence = DOTween.Sequence().SetAutoKill(true)
-            .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(new Vector3(
-                itemTransform.GetComponent<Item>().spriteTransform.localScale.x / 1.5f,
-                itemTransform.GetComponent<Item>().spriteTransform.localScale.y / 1.25f,
-                itemTransform.GetComponent<Item>().spriteTransform.localScale.z / 1.5f),
-                startScaleTime).SetEase(startScaleEase))
-            .Append(itemTransform.GetComponent<Item>().spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
         }
     }
 }

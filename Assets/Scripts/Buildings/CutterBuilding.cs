@@ -25,18 +25,19 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     [SerializeField] float speed;
     [SerializeField] bool isXType;
 
-    float startTime;
-    Vector3 centerPoint;
-    Vector3 startRelCenter;
-    Vector3 endRelCenter;
+    GameObject itemTemp;
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
-    GameObject itemTemp;
+    Sprite itemSprite;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForSpawnSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
+    Vector3 centerPoint;
+    Vector3 startRelCenter;
+    Vector3 endRelCenter;
+    float startTime;
     bool isArrived;
     bool isReturned;
     bool isRemoved;
@@ -112,6 +113,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
+        ApplyStoreItemImg(itemSprite);
+        partnerBuilding.ApplyStoreItemImg(itemSprite);
         isArrived = true;
         canRotate = true;
         itemTemp.SetActive(false);
@@ -160,6 +163,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     /// </summary>
     private void DirectSending()
     {
+        ReleaseStoreItemImg();
+
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
@@ -186,6 +191,11 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
             Input();
 
         Output();
+
+        if (itemTransform != null)
+            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
+
+
     }
 
     private void LateUpdate()

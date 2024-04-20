@@ -14,7 +14,9 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     [Space(10)]
 
-    [SerializeField] PainterBuilding partnerPainter;
+    public Transform itemTransform;
+
+    [SerializeField] PainterBuilding partnerBuilding;
     [SerializeField] private painterType painterType;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
@@ -25,24 +27,24 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     [SerializeField] float height;
     [SerializeField] float speed;
 
-    float startTime;
-    Vector3 centerPoint;
-    Vector3 startRelCenter;
-    Vector3 endRelCenter;
-    public Transform itemTransform;
+    GameObject itemTemp;
     Transform startPos;
     Transform endPos;
-    GameObject itemTemp;
+    Transform hitTemp;
+    Sprite itemSprite;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
     WaitForSeconds waitForSendSeconds;
+    Vector3 centerPoint;
+    Vector3 startRelCenter;
+    Vector3 endRelCenter;
+    Color colorTemp;
+    float startTime;
     bool isArrived;
     bool isReturned;
     bool isRemoved;
     bool isStoring;
-    Transform hitTemp;
-    Color colorTemp;
 
     #endregion
     #region Functions
@@ -105,9 +107,6 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         }
     }
 
-    /// <summary>
-    /// 포물선의 중앙을 결정하는 함수
-    /// </summary>
     public IEnumerator GetCenter(Vector3 direction)
     {
         while (!isArrived)
@@ -120,9 +119,6 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         }
     }
 
-    /// <summary>
-    /// 아이템을 발사하는 함수
-    /// </summary>
     public IEnumerator ThrowItem(Transform item)
     {
         float time = 0;
@@ -137,12 +133,10 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         }
     }
 
-    /// <summary>
-    /// 이동을 대기시키는 함수
-    /// </summary>
     public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
+        ApplyStoreItemImg(itemSprite);
         isArrived = true;
         canRotate = true;
         itemTemp.SetActive(false);
@@ -152,23 +146,21 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         isStoring = false;
     }
 
-    /// <summary>
-    /// 이동을 대기시키는 함수
-    /// </summary>
     public IEnumerator WaitForOutput()
     {
         yield return waitForArriveSeconds;
         isArrived = true;
         canRotate = true;
         yield return waitForReturnSeconds;
-        isReturned = false;
-        itemTemp = null;
 
         if (painterType == painterType.outputType)
         {
-            partnerPainter.itemTemp = null;
-            partnerPainter.point.itemTransform = null;
+            partnerBuilding.itemTemp = null;
+            partnerBuilding.point.itemTransform = null;
         }
+        
+        isReturned = false;
+        itemTemp = null;
     }
 
     public void Output()
@@ -179,7 +171,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             !isReturned &&
             !point.hitTransform.GetComponent<Point>().isItemExist &&
             !isStoring &&
-            partnerPainter.itemTemp != null &&
+            partnerBuilding.itemTemp != null &&
             painterType == painterType.outputType)
         {
             hitTemp = point.hitTransform;
@@ -197,12 +189,15 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     {
         yield return waitForSendSeconds;
 
+        ReleaseStoreItemImg();
+        partnerBuilding.ReleaseStoreItemImg();
+
         if (point.hitTransform != null && point.hitTransform == hitTemp)
         {
             point.hitTransform.GetComponent<Point>().isItemExist = true;
 
             colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
-            itemTemp = partnerPainter.itemTemp;
+            itemTemp = partnerBuilding.itemTemp;
             itemTemp.SetActive(true);
             itemTransform = itemTemp.transform;
 
@@ -240,6 +235,9 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     {
         Input();
         Output();
+
+        if (itemTransform != null)
+            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
     }
 
     private void LateUpdate()
