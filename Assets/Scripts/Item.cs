@@ -59,29 +59,29 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void CutSprites(bool isXType, bool canStore)
+    public void CutSprites(bool isXType, cutterType cutterType)
     {
         if (isCutted)
         {
             return;
         }
 
-        if (isXType && canStore)
+        if (isXType && cutterType == cutterType.inputType)
         {
             spriteRenderer.sprite = cuttedSprites[3];
         }
 
-        if (!isXType && canStore)
+        if (!isXType && cutterType == cutterType.inputType)
         {
             spriteRenderer.sprite = cuttedSprites[0];
         }
 
-        if (isXType && !canStore)
+        if (isXType && cutterType == cutterType.outputType)
         {
             spriteRenderer.sprite = cuttedSprites[2];
         }
 
-        if (!isXType && !canStore)
+        if (!isXType && cutterType == cutterType.outputType)
         {
             spriteRenderer.sprite = cuttedSprites[1];
         }

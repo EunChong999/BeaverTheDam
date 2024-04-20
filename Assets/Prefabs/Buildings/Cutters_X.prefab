@@ -466,25 +466,26 @@ MonoBehaviour:
   directionType: 1
   rotationTime: 0.15
   directionTime: 0.25
+  direction: {fileID: 304288248953142517}
   spriteTransform: {fileID: 6534541254722719370}
   pointTransform: {fileID: 7196649001402457934}
   detector: {fileID: 2101673516960035845}
   animator: {fileID: 0}
   isRotating: 0
   canRotate: 1
-  direction: {fileID: 304288248953142517}
   targetAngle: 180
   rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
   endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
+  spriteOriginScale: {x: 0, y: 0, z: 0}
+  directionOriginScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   partnerBuilding: {fileID: 8728020536288518684}
-  canStore: 1
+  cutterType: 0
   floatTime: 1
   arriveTime: 0.5
   spawnTime: 1.5
@@ -709,25 +710,26 @@ MonoBehaviour:
   directionType: 1
   rotationTime: 0.15
   directionTime: 0.25
+  direction: {fileID: 2681982167707884776}
   spriteTransform: {fileID: 5584249655195336092}
   pointTransform: {fileID: 8429498013852686906}
   detector: {fileID: 1630861063914127053}
   animator: {fileID: 0}
   isRotating: 0
   canRotate: 1
-  direction: {fileID: 2681982167707884776}
   targetAngle: 180
   rotationEase: 1
   startScaleTime: 0.1
   endScaleTime: 0.5
   startScaleEase: 3
   endScaleEase: 24
-  originScale: {x: 0, y: 0, z: 0}
+  spriteOriginScale: {x: 0, y: 0, z: 0}
+  directionOriginScale: {x: 0, y: 0, z: 0}
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   partnerBuilding: {fileID: 4188098765104816584}
-  canStore: 0
+  cutterType: 1
   floatTime: 1
   arriveTime: 0.5
   spawnTime: 1.5

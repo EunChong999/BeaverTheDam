@@ -185,7 +185,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             hitTemp = point.hitTransform;
             isArrived = false;
             canRotate = false;
-            StartCoroutine(SendItem());
+            StartCoroutine(DirectSending());
             isReturned = true;
         }
     }
@@ -193,7 +193,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    IEnumerator SendItem()
+    IEnumerator DirectSending()
     {
         yield return waitForSendSeconds;
 
@@ -226,7 +226,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         }
         else
         {
-            StartCoroutine(SendItem());
+            StartCoroutine(DirectSending());
         }
     }
     #endregion
