@@ -6,7 +6,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public bool isCutted;
-    public bool isColored;
+    public bool isPainted;
     public bool isMoving;
     public Transform spriteTransform;
     public Point curPoint;
@@ -59,13 +59,89 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void CutSprites(bool isXType, cutterType cutterType)
+    public void CutSprite(bool isXType, cutterType cutterType)
     {
+        if (!isCutted)
+        {
+            if (isXType && cutterType == cutterType.inputType)
+            {
+                spriteRenderer.sprite = cuttedSprites[3];
+            }
+
+            if (!isXType && cutterType == cutterType.inputType)
+            {
+                spriteRenderer.sprite = cuttedSprites[0];
+            }
+
+            if (isXType && cutterType == cutterType.outputType)
+            {
+                spriteRenderer.sprite = cuttedSprites[2];
+            }
+
+            if (!isXType && cutterType == cutterType.outputType)
+            {
+                spriteRenderer.sprite = cuttedSprites[1];
+            }
+
+            if (isPainted)
+            {
+                if (spriteRenderer.sprite == cuttedSprites[0])
+                {
+                    spriteRenderer.sprite = cuttedReplaceSprite[0];
+                }
+
+                if (spriteRenderer.sprite == cuttedSprites[1])
+                {
+                    spriteRenderer.sprite = cuttedReplaceSprite[1];
+                }
+
+                if (spriteRenderer.sprite == cuttedSprites[2])
+                {
+                    spriteRenderer.sprite = cuttedReplaceSprite[2];
+                }
+
+                if (spriteRenderer.sprite == cuttedSprites[3])
+                {
+                    spriteRenderer.sprite = cuttedReplaceSprite[3];
+                }
+            }
+
+            isCutted = true;
+        }
+    }
+
+    public void PaintSprite(Color color)
+    {
+        spriteRenderer.sprite = replaceSprite;
+
         if (isCutted)
         {
-            return;
+            if (spriteRenderer.sprite == cuttedSprites[0])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[0];
+            }
+
+            if (spriteRenderer.sprite == cuttedSprites[1])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[1];
+            }
+
+            if (spriteRenderer.sprite == cuttedSprites[2])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[2];
+            }
+
+            if (spriteRenderer.sprite == cuttedSprites[3])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[3];
+            }
         }
 
+        isPainted = true;
+    }
+
+    public Sprite ApplyCutSprites(bool isXType, cutterType cutterType)
+    {
         if (isXType && cutterType == cutterType.inputType)
         {
             spriteRenderer.sprite = cuttedSprites[3];
@@ -86,65 +162,30 @@ public class Item : MonoBehaviour
             spriteRenderer.sprite = cuttedSprites[1];
         }
 
-        isCutted = true;
-    }
-
-    public void ReplaceCuttedSprite()
-    {
-        if (spriteRenderer.sprite == cuttedSprites[0])
+        if (isPainted)
         {
-            spriteRenderer.sprite = cuttedReplaceSprite[0];
+            if (spriteRenderer.sprite == cuttedSprites[0])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[0];
+            }
+
+            if (spriteRenderer.sprite == cuttedSprites[1])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[1];
+            }
+
+            if (spriteRenderer.sprite == cuttedSprites[2])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[2];
+            }
+
+            if (spriteRenderer.sprite == cuttedSprites[3])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprite[3];
+            }
         }
 
-        if (spriteRenderer.sprite == cuttedSprites[1])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[1];
-        }
-
-        if (spriteRenderer.sprite == cuttedSprites[2])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[2];
-        }
-
-        if (spriteRenderer.sprite == cuttedSprites[3])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[3];
-        }   
-    }
-
-    public void ReplaceSprite()
-    {
-        spriteRenderer.sprite = replaceSprite;
-
-        isColored = true;
-    }
-
-    public void PaintSprite()
-    {
-        if (!isColored)
-        {
-            return;
-        }
-
-        if (spriteRenderer.sprite == cuttedSprites[0])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[0];
-        }
-
-        if (spriteRenderer.sprite == cuttedSprites[1])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[1];
-        }
-
-        if (spriteRenderer.sprite == cuttedSprites[2])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[2];
-        }
-
-        if (spriteRenderer.sprite == cuttedSprites[3])
-        {
-            spriteRenderer.sprite = cuttedReplaceSprite[3];
-        }
+        return spriteRenderer.sprite;
     }
     #endregion
 }
