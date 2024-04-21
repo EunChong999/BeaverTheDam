@@ -113,8 +113,21 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
-        ApplyStoreItemImg(itemSprite);
-        partnerBuilding.ApplyStoreItemImg(itemSprite);
+
+        if (!itemTransform.GetComponent<Item>().isCutted)
+        {
+            itemSprite = itemTransform.GetComponent<Item>().ApplyCutSprites(isXType, cutterType);
+            ApplyStoreItemImg(itemSprite);
+
+            itemSprite = itemTransform.GetComponent<Item>().ApplyCutSprites(partnerBuilding.isXType, partnerBuilding.cutterType);
+            partnerBuilding.ApplyStoreItemImg(itemSprite);
+        }
+        else
+        {
+            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
+            ApplyStoreItemImg(itemSprite);
+        }
+
         isArrived = true;
         canRotate = true;
         itemTemp.SetActive(false);
@@ -168,8 +181,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CutSprites(isXType, cutterType);
-        itemTemp.GetComponent<Item>().PaintSprite();
+        itemTemp.GetComponent<Item>().CutSprite(isXType, cutterType);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
@@ -191,11 +203,6 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
             Input();
 
         Output();
-
-        if (itemTransform != null)
-            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
-
-
     }
 
     private void LateUpdate()

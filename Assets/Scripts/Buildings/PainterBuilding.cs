@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum painterType
 {
@@ -136,7 +137,12 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
+
+        if (itemTransform != null)
+            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
+
         ApplyStoreItemImg(itemSprite);
+
         isArrived = true;
         canRotate = true;
         itemTemp.SetActive(false);
@@ -199,18 +205,8 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
             itemTemp = partnerBuilding.itemTemp;
             itemTemp.SetActive(true);
+            itemTemp.GetComponent<Item>().PaintSprite(Color.green);
             itemTransform = itemTemp.transform;
-
-            if (itemTemp.GetComponent<Item>().isCutted)
-            {
-                itemTemp.GetComponent<Item>().ReplaceCuttedSprite();
-                itemTemp.GetComponent<Item>().PaintSprite();
-            }
-            else
-            {
-                itemTemp.GetComponent<Item>().ReplaceSprite();
-            }
-
             itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect(true);
             startPos = pointTransform;
@@ -235,9 +231,6 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     {
         Input();
         Output();
-
-        if (itemTransform != null)
-            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
     }
 
     private void LateUpdate()
