@@ -593,10 +593,11 @@ MonoBehaviour:
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   itemTransform: {fileID: 0}
+  dye: {fileID: 0}
   partnerBuilding: {fileID: 2730211793010495831}
   painterType: 0
   floatTime: 1
-  arriveTime: 0.5
+  arriveTime: 0.45
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 2.75
@@ -870,7 +871,7 @@ GameObject:
   - component: {fileID: 2688785913951136336}
   - component: {fileID: 1978489162273379025}
   - component: {fileID: 1695314357732711061}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Painters_Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1292,10 +1293,11 @@ MonoBehaviour:
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   itemTransform: {fileID: 0}
+  dye: {fileID: 0}
   partnerBuilding: {fileID: 6645662977023849326}
   painterType: 1
   floatTime: 1
-  arriveTime: 0.5
+  arriveTime: 0.45
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 2.75

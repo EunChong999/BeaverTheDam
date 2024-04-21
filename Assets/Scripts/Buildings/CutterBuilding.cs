@@ -29,7 +29,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
-    Sprite itemSprite;
+    SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForSpawnSeconds;
     WaitForSeconds waitForReturnSeconds;
@@ -114,18 +114,18 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     {
         yield return waitForArriveSeconds;
 
-        if (!itemTransform.GetComponent<Item>().isCutted)
+        if (itemTransform.GetComponent<Item>().isCutted)
         {
-            itemSprite = itemTransform.GetComponent<Item>().ApplyCutSprites(isXType, cutterType);
-            ApplyStoreItemImg(itemSprite);
-
-            itemSprite = itemTransform.GetComponent<Item>().ApplyCutSprites(partnerBuilding.isXType, partnerBuilding.cutterType);
-            partnerBuilding.ApplyStoreItemImg(itemSprite);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().spriteRenderer;
+            ApplyStoreItemImg(itemSpriteRenderer);
         }
         else
         {
-            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
-            ApplyStoreItemImg(itemSprite);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, cutterType);
+            ApplyStoreItemImg(itemSpriteRenderer);
+
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.cutterType);
+            partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
         }
 
         isArrived = true;
@@ -182,6 +182,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
 
         itemTemp.SetActive(true);
         itemTemp.GetComponent<Item>().CutSprite(isXType, cutterType);
+        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, cutterType);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;

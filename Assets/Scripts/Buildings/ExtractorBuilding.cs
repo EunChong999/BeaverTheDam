@@ -23,7 +23,7 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
-    Sprite itemSprite;
+    SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForSpawnSeconds;
     bool isArrived;
@@ -37,8 +37,8 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
         waitForSpawnSeconds = new WaitForSeconds(spawnTime);
-        itemSprite = item.GetComponent<Item>().spriteRenderer.sprite;
-        ApplyStoreItemImg(itemSprite);
+        itemSpriteRenderer = item.GetComponent<Item>().spriteRenderer;
+        ApplyStoreItemImg(itemSpriteRenderer);
     }
 
     public void Output()

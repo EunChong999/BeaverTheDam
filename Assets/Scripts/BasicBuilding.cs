@@ -180,9 +180,10 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 저장할 아이템의 이미지를 적용하는 함수
     /// </summary>
-    public void ApplyStoreItemImg(Sprite sprite)
+    public void ApplyStoreItemImg(SpriteRenderer spriteRenderer)
     {
-        itemPanelSpriteRenderer.sprite = sprite;
+        itemPanelSpriteRenderer.sprite = spriteRenderer.sprite;
+        itemPanelSpriteRenderer.color = spriteRenderer.color;
     }
 
     /// <summary>

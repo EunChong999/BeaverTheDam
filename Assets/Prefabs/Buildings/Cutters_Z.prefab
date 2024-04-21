@@ -829,7 +829,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 8726325966062911907}
   cutterType: 1
   floatTime: 1
-  arriveTime: 0.5
+  arriveTime: 0.45
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 0.5
@@ -1092,7 +1092,7 @@ GameObject:
   - component: {fileID: 6556070578763578105}
   - component: {fileID: 5883946400467331559}
   - component: {fileID: 510989786377083280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cutters_Z
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 7120436453550699813}
   cutterType: 0
   floatTime: 1
-  arriveTime: 0.5
+  arriveTime: 0.45
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 0.5
