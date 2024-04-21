@@ -20,6 +20,12 @@ public enum directionType
     rightType,
 }
 
+public enum itemType
+{
+    storeType,
+    carryType
+}
+
 public class BasicBuilding : MonoBehaviour
 {
     #region Variables
@@ -30,13 +36,15 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public movementType movementType;
     public directionType directionType;
+    public itemType itemType;
     public float rotationTime = 0.15f;
     public float directionTime = 0.25f;
+    public GameObject direction;
+    public GameObject itemPanel;
     public Transform spriteTransform;
     public Transform pointTransform;
-    public GameObject directionObj;
-    public Point pointingPoint;
     public Detector detector;
+    public Animator animator;
     public bool isRotating = false;
     public bool canRotate = true;
 
@@ -48,13 +56,17 @@ public class BasicBuilding : MonoBehaviour
     [SerializeField] Ease startScaleEase = Ease.OutSine;
     [SerializeField] Ease endScaleEase = Ease.OutElastic;
 
-    [HideInInspector] public Vector3 originScale;
+    [HideInInspector] public Vector3 spriteOriginScale;
+    [HideInInspector] public Vector3 directionOriginScale;
     [HideInInspector] public Animator spriteAnimator;
     [HideInInspector] public Point point;
+    [HideInInspector] public Point pointingPoint;
 
     WaitForSeconds waitForRotationSeconds;
     WaitForSeconds waitForDirectionSeconds;
-    Sequence buildingScaleSequence;
+    Sequence spriteScaleSequence;
+    Sequence directionScaleSequence;
+    SpriteRenderer itemPanelSpriteRenderer;
     Vector3 targetRotation;
 
     #endregion
@@ -66,9 +78,13 @@ public class BasicBuilding : MonoBehaviour
     {
         waitForRotationSeconds = new WaitForSeconds(rotationTime);
         waitForDirectionSeconds = new WaitForSeconds(directionTime);
-        originScale = transform.localScale;
+        spriteOriginScale = spriteTransform.localScale;
+        directionOriginScale = direction.transform.localScale;
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
+
+        if (itemType == itemType.storeType)
+            itemPanelSpriteRenderer = itemPanel.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -79,8 +95,6 @@ public class BasicBuilding : MonoBehaviour
         if (canRotate)
         {
             ShowEffect();
-            StartCoroutine(SetArrowDirection());
-            directionObj.SetActive(false);
             StartCoroutine(RotateTransform(isRight, targetAngle, transform));
         }
     }
@@ -96,15 +110,19 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전시 트위닝 효과를 주는 함수
     /// </summary>
-    protected void ShowEffect()
+    private void ShowEffect()
     {
-        buildingScaleSequence = DOTween.Sequence().SetAutoKill(true)
-        .Append(transform.DOScale(new Vector3(transform.localScale.x / 1.5f, transform.localScale.y / 1.25f, transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
-        .Append(transform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
+        spriteScaleSequence = DOTween.Sequence().SetAutoKill(true)
+        .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(spriteTransform.DOScale(spriteOriginScale, endScaleTime).SetEase(endScaleEase));
+
+        directionScaleSequence = DOTween.Sequence().SetAutoKill(true)
+        .Append(direction.transform.DOScale(new Vector3(direction.transform.localScale.x / 1.5f, direction.transform.localScale.y / 1.25f, direction.transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
+        .Append(direction.transform.DOScale(directionOriginScale, endScaleTime).SetEase(endScaleEase));
 
         if (pointTransform.GetComponent<Point>().itemTransform != null)
         {
-            pointTransform.GetComponent<Point>().ShowEffect();
+            pointTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().ShowEffect(false);
         }
     }
 
@@ -134,22 +152,9 @@ public class BasicBuilding : MonoBehaviour
     }
 
     /// <summary>
-    /// 화살표의 방향을 설정하는 함수
-    /// </summary>
-    IEnumerator SetArrowDirection()
-    {
-        yield return waitForDirectionSeconds;
-
-        if (!isRotating) 
-        {
-            directionObj.SetActive(true);
-        }
-    }
-
-    /// <summary>
     /// 회전 타입을 변경하는 함수
     /// </summary>
-    public void ChangeDirectionType()
+    protected void ChangeDirectionType()
     {
         ShowEffect();
 
@@ -170,6 +175,39 @@ public class BasicBuilding : MonoBehaviour
         {
             DirectRotation(true, 180, transform);
         }
+    }
+
+    /// <summary>
+    /// 저장할 아이템의 이미지를 적용하는 함수
+    /// </summary>
+    public void ApplyStoreItemImg(Sprite sprite)
+    {
+        itemPanelSpriteRenderer.sprite = sprite;
+    }
+
+    /// <summary>
+    /// 저장했던 아이템의 이미지를 해제하는 함수
+    /// </summary>
+    public void ReleaseStoreItemImg()
+    {
+        itemPanelSpriteRenderer.sprite = null;
+    }
+    #endregion
+    #region Events
+    private void OnMouseEnter()
+    {
+        direction.SetActive(true);
+
+        if (itemType == itemType.storeType)
+            itemPanel.SetActive(false);
+    }
+
+    private void OnMouseExit()
+    {
+        direction.SetActive(false);
+
+        if (itemType == itemType.storeType)
+            itemPanel.SetActive(true);
     }
     #endregion
 }
