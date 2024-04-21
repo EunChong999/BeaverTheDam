@@ -15,7 +15,8 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     [Space(10)]
 
-    public Transform itemTransform;
+    [HideInInspector] public Transform itemTransform;
+    [HideInInspector] public Dye dye;
 
     [SerializeField] PainterBuilding partnerBuilding;
     [SerializeField] private painterType painterType;
@@ -32,7 +33,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     Transform startPos;
     Transform endPos;
     Transform hitTemp;
-    Sprite itemSprite;
+    SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
@@ -40,7 +41,6 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     Vector3 centerPoint;
     Vector3 startRelCenter;
     Vector3 endRelCenter;
-    Color colorTemp;
     float startTime;
     bool isArrived;
     bool isReturned;
@@ -78,6 +78,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         isArrived = false;
                         canRotate = false;
                         itemTransform = pointingPoint.itemTransform;
+                        dye = itemTransform.GetComponent<Dye>();
                         itemTemp = itemTransform.gameObject;
                         startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                         endPos = pointTransform;
@@ -139,9 +140,9 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         yield return waitForArriveSeconds;
 
         if (itemTransform != null)
-            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().spriteRenderer;
 
-        ApplyStoreItemImg(itemSprite);
+        ApplyStoreItemImg(itemSpriteRenderer);
 
         isArrived = true;
         canRotate = true;
@@ -201,13 +202,13 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         if (point.hitTransform != null && point.hitTransform == hitTemp)
         {
             point.hitTransform.GetComponent<Point>().isItemExist = true;
-
-            colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
             itemTemp = partnerBuilding.itemTemp;
             itemTemp.SetActive(true);
-            itemTemp.GetComponent<Item>().PaintSprite(Color.green);
+
+            if (dye != null)
+                itemTemp.GetComponent<Item>().PaintSprite(dye.myColor);
+
             itemTransform = itemTemp.transform;
-            itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect(true);
             startPos = pointTransform;
             endPos = point.hitTransform;
