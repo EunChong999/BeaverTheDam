@@ -77,8 +77,8 @@ public class SelectManager : Manager
         curChapter += addIndex;
         chapterBtn[0].gameObject.SetActive(curChapter > 0);
         chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
-        btnTransform.DOLocalMoveX(curChapter * -1920, 0.5f);
-        terrainTransform.DOLocalMoveX(curChapter * -3, 0.5f);
+        btnTransform.DOLocalMove(new Vector2(curChapter * -1920,(curChapter * -1120) + 90), 0.5f);
+        terrainTransform.DOLocalMove(new Vector2(curChapter * -3,(curChapter *-1.75f) + 0.15f), 0.5f);
         for(int i = 0; i < chapterTextBtn.Length; i++)
         {
             var text = chapterTextBtn[i].transform.GetChild(0).GetComponent<Text>();
