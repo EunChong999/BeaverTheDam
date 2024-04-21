@@ -7,6 +7,7 @@ public class Manager : MonoBehaviour
 {
     public enum Scenes
     {
+        Title,
         SelectScene,
         MainScene
     }
