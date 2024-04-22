@@ -2,59 +2,95 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum colorType
+public enum basicColorType
 {
     red,
-    orange,
     yellow,
+    blue
+}
+
+public enum syntheticColorType
+{
+    orange,
     green,
-    blue,
     magenta
 }
 
 public class Dye : MonoBehaviour
 {
-    public colorType colorType;
-    public Color[] colors;
+    public basicColorType basicColorType;
+    public syntheticColorType syntheticColorType;
+    public Sprite[] syntheticSprites;
+    public Color[] basicColors;
+    public Color[] syntheticColors;
     public Color myColor;
+
+    [SerializeField] SpriteRenderer spriteRenderer;
+
+    bool isMixed;
  
     private void Start()
     {
-        ChangeColor();
+        ChangeToBasicColor();
     }
 
-    public void ChangeColor()
+    public void MixColor(basicColorType firstColor, basicColorType secondColor)
     {
-        switch (colorType)
+        if (isMixed)
         {
-            case colorType.red:
+            return;
+        }
+
+        if (firstColor == secondColor)
+        {
+            return;
+        }
+
+        switch ((int)firstColor + (int)secondColor)
+        {
+            case 1:
             {
-                myColor = colors[(int)colorType.red];
+                spriteRenderer.sprite = syntheticSprites[0];
+                syntheticColorType = syntheticColorType.orange;
+                myColor = syntheticColors[(int)syntheticColorType.orange];
                 break;
             }
-            case colorType.orange:
+            case 2:
             {
-                myColor = colors[(int)colorType.orange];
+                spriteRenderer.sprite = syntheticSprites[1];
+                syntheticColorType = syntheticColorType.magenta;
+                myColor = syntheticColors[(int)syntheticColorType.magenta];
                 break;
             }
-            case colorType.yellow:
+            case 3:
             {
-                myColor = colors[(int)colorType.yellow];
+                spriteRenderer.sprite = syntheticSprites[2];
+                syntheticColorType = syntheticColorType.green;
+                myColor = syntheticColors[(int)syntheticColorType.green];
                 break;
             }
-            case colorType.green:
+        }
+
+        isMixed = false;
+    }
+
+    public void ChangeToBasicColor()
+    {
+        switch (basicColorType)
+        {
+            case basicColorType.red:
             {
-                myColor = colors[(int)colorType.green];
+                myColor = basicColors[(int)basicColorType.red];
                 break;
             }
-            case colorType.blue:
+            case basicColorType.yellow:
             {
-                myColor = colors[(int)colorType.blue];
+                myColor = basicColors[(int)basicColorType.yellow];
                 break;
             }
-            case colorType.magenta:
+            case basicColorType.blue:
             {
-                myColor = colors[(int)colorType.magenta];
+                myColor = basicColors[(int)basicColorType.blue];
                 break;
             }
         }

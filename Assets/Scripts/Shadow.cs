@@ -33,28 +33,53 @@ public class Shadow : MonoBehaviour
         }
     }
 
-    public void CutSprite(bool isXType, cutterType cutterType)
+    public void CutSprite(bool isXType, bool isInput, bool isReversed)
     {
         if (!isCutted)
         {
-            if (isXType && cutterType == cutterType.inputType)
+            if (isReversed)
             {
-                curSprite = cuttedSprites[3];
-            }
+                if (isXType && isInput == true)
+                {
+                    curSprite = cuttedSprites[3];
+                }
 
-            if (!isXType && cutterType == cutterType.inputType)
-            {
-                curSprite = cuttedSprites[0];
-            }
+                if (!isXType && isInput == true)
+                {
+                    curSprite = cuttedSprites[0];
+                }
 
-            if (isXType && cutterType == cutterType.outputType)
-            {
-                curSprite = cuttedSprites[2];
-            }
+                if (isXType && isInput == false)
+                {
+                    curSprite = cuttedSprites[2];
+                }
 
-            if (!isXType && cutterType == cutterType.outputType)
+                if (!isXType && isInput == false)
+                {
+                    curSprite = cuttedSprites[1];
+                }
+            }
+            else
             {
-                curSprite = cuttedSprites[1];
+                if (isXType && isInput == true)
+                {
+                    curSprite = cuttedSprites[2];
+                }
+
+                if (!isXType && isInput == true)
+                {
+                    curSprite = cuttedSprites[1];
+                }
+
+                if (isXType && isInput == false)
+                {
+                    curSprite = cuttedSprites[3];
+                }
+
+                if (!isXType && isInput == false)
+                {
+                    curSprite = cuttedSprites[0];
+                }
             }
 
             spriteRenderer.sprite = curSprite;

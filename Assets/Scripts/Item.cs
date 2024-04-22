@@ -1,8 +1,5 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Item : MonoBehaviour
 {
@@ -18,15 +15,19 @@ public class Item : MonoBehaviour
     public Sprite[] cuttedReplaceSprites;
 
     [HideInInspector] public Point curPoint;
-
-    Sequence itemScaleSequence;
-    Vector3 originScale;
+    [HideInInspector] public bool isZCombined;
+    [HideInInspector] public bool isXCombined;
+    [HideInInspector] public bool isZCutted;
+    [HideInInspector] public bool isXCutted;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
     [SerializeField] Ease rotationEase;
     [SerializeField] Ease startScaleEase;
     [SerializeField] Ease endScaleEase;
+
+    Sequence itemScaleSequence;
+    Vector3 originScale;
     #endregion
     #region Functions
     /// <summary>
@@ -67,26 +68,51 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 잘려진 스프라이트로 변경해주는 함수
     /// </summary>
-    private void ChangeToCuttedSprites(bool isXType, cutterType cutterType)
+    private void ChangeToCuttedSprites(bool isXType, bool isInput, bool isReversed)
     {
-        if (isXType && cutterType == cutterType.inputType)
+        if (isReversed)
         {
-            spriteRenderer.sprite = cuttedSprites[3];
-        }
+            if (isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[3];
+            }
 
-        if (!isXType && cutterType == cutterType.inputType)
-        {
-            spriteRenderer.sprite = cuttedSprites[0];
-        }
+            if (!isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[0];
+            }
 
-        if (isXType && cutterType == cutterType.outputType)
-        {
-            spriteRenderer.sprite = cuttedSprites[2];
-        }
+            if (isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[2];
+            }
 
-        if (!isXType && cutterType == cutterType.outputType)
+            if (!isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[1];
+            }
+        }
+        else
         {
-            spriteRenderer.sprite = cuttedSprites[1];
+            if (isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[2];
+            }
+
+            if (!isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[1];
+            }
+
+            if (isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[3];
+            }
+
+            if (!isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[0];
+            }
         }
     }
 
@@ -108,11 +134,11 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 스프라이트를 자르는 함수
     /// </summary>
-    public void CutSprite(bool isXType, cutterType cutterType)
+    public void CutSprite(bool isXType, bool cutterType, bool isReversed)
     {
         if (!isCutted)
         {
-            ChangeToCuttedSprites(isXType, cutterType);
+            ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
             if (isPainted)
             {
@@ -145,9 +171,9 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 잘려진 스프라이트를 반환하는 함수
     /// </summary>
-    public SpriteRenderer ApplyCutSprite(bool isXType, cutterType cutterType)
+    public SpriteRenderer ApplyCutSprite(bool isXType, bool cutterType, bool isReversed)
     {
-        ChangeToCuttedSprites(isXType, cutterType);
+        ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
         if (isPainted)
         {

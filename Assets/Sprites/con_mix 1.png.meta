@@ -223,8 +223,8 @@ TextureImporter:
       name: con_mix 1_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 256
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -244,8 +244,8 @@ TextureImporter:
       name: con_mix 1_5
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
+        x: 320
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -265,8 +265,8 @@ TextureImporter:
       name: con_mix 1_6
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
+        x: 384
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -286,8 +286,8 @@ TextureImporter:
       name: con_mix 1_7
       rect:
         serializedVersion: 2
-        x: 192
-        y: 0
+        x: 448
+        y: 64
         width: 64
         height: 64
       alignment: 0
@@ -299,6 +299,174 @@ TextureImporter:
       bones: []
       spriteID: bbaed62e640fc1244a215719058bafa8
       internalID: -920705123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0153c2e806806804cb483b44b3cb30d9
+      internalID: -1460418841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f33b48a11323c448ff7889aab4135d
+      internalID: -557147640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0a4614516ada8a4aba359e0772a8bd1
+      internalID: -973515666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be0467d2e090fe444bb383359132bda9
+      internalID: 1468993436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9946ceece42ce1e448e2a3e1eed59632
+      internalID: -1929549727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e7ddc01f03d16438278f387eeeba26
+      internalID: 1868649327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_14
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a55c5cbce9fc3ef44a873d730fc7bd0a
+      internalID: 1129422632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: con_mix 1_15
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecf041f9058e81b4caee917d5c70aea5
+      internalID: -1391183969
       vertices: []
       indices: 
       edges: []
@@ -316,12 +484,20 @@ TextureImporter:
     nameFileIdTable:
       con_mix 1_0: 231430529
       con_mix 1_1: 2088732211
+      con_mix 1_10: -973515666
+      con_mix 1_11: 1468993436
+      con_mix 1_12: -1929549727
+      con_mix 1_13: 1868649327
+      con_mix 1_14: 1129422632
+      con_mix 1_15: -1391183969
       con_mix 1_2: 496846268
       con_mix 1_3: 2126223223
       con_mix 1_4: 1386086235
       con_mix 1_5: -1425256487
       con_mix 1_6: 1740441706
       con_mix 1_7: -920705123
+      con_mix 1_8: -1460418841
+      con_mix 1_9: -557147640
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

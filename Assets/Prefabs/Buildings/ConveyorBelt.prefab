@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 8259029153256206588}
   detectionTarget: {fileID: 3340834524443799422}
-  CurveInputPoint: {fileID: 2840674634281213047}
+  curveInputPoint: {fileID: 2840674634281213047}
   CurveOutputPoint: {fileID: 2681316488396241188}
   canMove: 0
 --- !u!65 &1739319636690671521
@@ -397,6 +397,7 @@ MonoBehaviour:
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
+  isReversed: 0
 --- !u!65 &2076708097867504305
 BoxCollider:
   m_ObjectHideFlags: 0

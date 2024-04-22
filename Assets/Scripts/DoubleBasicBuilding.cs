@@ -1,18 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 
-public enum doubleType
-{
-    widthType,
-    lengthType
-}
-
 public class DoubleBasicBuilding : MonoBehaviour
 {
     #region Variables
     [SerializeField] bool isRotated;
-    [SerializeField] bool isReversed;
-    public doubleType doubleType;
+    public bool isReversed;
     public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Animator animator;
@@ -85,8 +78,8 @@ public class DoubleBasicBuilding : MonoBehaviour
             isRotated = !isRotated;
 
             ShowEffect();
-            firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform);
-            secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform);
+            firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform, true);
+            secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform, true);
 
             if (canExchange)
                 ExchangeBuildings();
