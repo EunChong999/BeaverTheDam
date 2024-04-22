@@ -119,19 +119,19 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         // 마우스 좌클릭
         if (UnityEngine.Input.GetMouseButtonDown(0) && !isRotating)
         {
-            DirectRotation(false, targetAngle, transform);
+            DirectRotation(false, targetAngle, transform, true);
         }
 
         // 마우스 우클릭
         else if (UnityEngine.Input.GetMouseButtonDown(1) && !isRotating)
         {
-            DirectRotation(true, targetAngle, transform);
+            DirectRotation(true, targetAngle, transform, true);
         }
 
         // 마우스 휠클릭
         else if (UnityEngine.Input.GetMouseButtonDown(2) && !isRotating)
         {
-            ChangeDirectionType();
+            ChangeDirectionType(true);
         }
     }
 

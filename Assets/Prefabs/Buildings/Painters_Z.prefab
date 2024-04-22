@@ -387,7 +387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 6645662977023849326}
   detectionTarget: {fileID: 7273417601893845247}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &6262911799686051281
@@ -542,7 +542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4689441142570067589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.5, z: 0.25}
+  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -886,7 +886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5470730857478406618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -910,7 +910,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRotated: 0
   isReversed: 0
-  doubleType: 0
   buildings:
   - {fileID: 6946044648685095488}
   - {fileID: 4689441142570067589}
@@ -943,7 +942,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 1}
-  m_Center: {x: 0.25, y: 0.5, z: 0.25}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &1695314357732711061
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1240,7 +1239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946044648685095488}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.75, y: 0.5, z: 0.25}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1409,7 +1408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7553520198681215448}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 0, y: 0.70000005, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1.4250001, y: 1.4249998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1638,7 +1637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 2730211793010495831}
   detectionTarget: {fileID: 8331959294836361108}
-  CurveInputPoint: {fileID: 3857814923673693825}
+  curveInputPoint: {fileID: 3857814923673693825}
   CurveOutputPoint: {fileID: 346758887255521312}
   canMove: 0
 --- !u!65 &1238898671519897307

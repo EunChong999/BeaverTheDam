@@ -68,26 +68,51 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 잘려진 스프라이트로 변경해주는 함수
     /// </summary>
-    private void ChangeToCuttedSprites(bool isXType, bool isInput)
+    private void ChangeToCuttedSprites(bool isXType, bool isInput, bool isReversed)
     {
-        if (isXType && isInput  == true)
+        if (isReversed)
         {
-            spriteRenderer.sprite = cuttedSprites[3];
-        }
+            if (isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[3];
+            }
 
-        if (!isXType && isInput == true)
-        {
-            spriteRenderer.sprite = cuttedSprites[0];
-        }
+            if (!isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[0];
+            }
 
-        if (isXType && isInput == false)
-        {
-            spriteRenderer.sprite = cuttedSprites[2];
-        }
+            if (isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[2];
+            }
 
-        if (!isXType && isInput == false)
+            if (!isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[1];
+            }
+        }
+        else
         {
-            spriteRenderer.sprite = cuttedSprites[1];
+            if (isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[2];
+            }
+
+            if (!isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[1];
+            }
+
+            if (isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[3];
+            }
+
+            if (!isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[0];
+            }
         }
     }
 
@@ -109,11 +134,11 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 스프라이트를 자르는 함수
     /// </summary>
-    public void CutSprite(bool isXType, bool cutterType)
+    public void CutSprite(bool isXType, bool cutterType, bool isReversed)
     {
         if (!isCutted)
         {
-            ChangeToCuttedSprites(isXType, cutterType);
+            ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
             if (isPainted)
             {
@@ -146,9 +171,9 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 잘려진 스프라이트를 반환하는 함수
     /// </summary>
-    public SpriteRenderer ApplyCutSprite(bool isXType, bool cutterType)
+    public SpriteRenderer ApplyCutSprite(bool isXType, bool cutterType, bool isReversed)
     {
-        ChangeToCuttedSprites(isXType, cutterType);
+        ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
         if (isPainted)
         {

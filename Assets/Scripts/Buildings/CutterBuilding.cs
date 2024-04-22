@@ -19,6 +19,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     [SerializeField] bool isXType;
     [SerializeField] bool isInput;
 
+    DoubleBasicBuilding doubleBasicBuilding;
     GameObject itemTemp;
     Transform itemTransform;
     Transform startPos;
@@ -45,6 +46,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         waitForSpawnSeconds = new WaitForSeconds(spawnTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
+        doubleBasicBuilding = transform.parent.GetComponent<DoubleBasicBuilding>();
     }
 
     public void Input()
@@ -114,10 +116,10 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         }
         else
         {
-            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
             ApplyStoreItemImg(itemSpriteRenderer);
 
-            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput, doubleBasicBuilding.isReversed);
             partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
         }
 
@@ -174,8 +176,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput);
-        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput);
+        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
+        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;

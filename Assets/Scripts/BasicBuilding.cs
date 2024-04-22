@@ -90,11 +90,13 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation(bool isRight, float targetAngle, Transform transform)
+    public void DirectRotation(bool isRight, float targetAngle, Transform transform, bool isShowEffect)
     {
         if (canRotate)
         {
-            ShowEffect();
+            if (isShowEffect)
+                ShowEffect();
+
             StartCoroutine(RotateTransform(isRight, targetAngle, transform));
         }
     }
@@ -154,26 +156,24 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전 타입을 변경하는 함수
     /// </summary>
-    protected void ChangeDirectionType()
+    protected void ChangeDirectionType(bool isShowEffect)
     {
-        ShowEffect();
-
         if (movementType == movementType.curveType)
         {
             if (directionType == directionType.rightType)
             {
                 directionType = directionType.leftType;
-                DirectRotation(true, 90, pointTransform);
+                DirectRotation(true, 90, pointTransform, isShowEffect);
             }
             else
             {
                 directionType = directionType.rightType;
-                DirectRotation(true, -90, pointTransform);
+                DirectRotation(true, -90, pointTransform, isShowEffect);
             }
         }
         else
         {
-            DirectRotation(true, 180, transform);
+            DirectRotation(true, 180, transform, isShowEffect);
         }
     }
 

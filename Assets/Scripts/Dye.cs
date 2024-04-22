@@ -71,8 +71,6 @@ public class Dye : MonoBehaviour
             }
         }
 
-        Debug.Log("»Æ¿Œ");
-
         isMixed = false;
     }
 

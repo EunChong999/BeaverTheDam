@@ -123,13 +123,13 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         // 마우스 좌클릭 또는 우클릭
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
         {
-            DirectRotation(false, targetAngle, transform);
+            DirectRotation(false, targetAngle, transform, true);
         }
 
         // 마우스 휠클릭
         else if (Input.GetMouseButtonDown(2))
         {
-            ChangeDirectionType();
+            ChangeDirectionType(true);
         }
     }
 
