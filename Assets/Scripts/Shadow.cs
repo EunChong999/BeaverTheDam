@@ -33,26 +33,26 @@ public class Shadow : MonoBehaviour
         }
     }
 
-    public void CutSprite(bool isXType, cutterType cutterType)
+    public void CutSprite(bool isXType, bool isInput)
     {
         if (!isCutted)
         {
-            if (isXType && cutterType == cutterType.inputType)
+            if (isXType && isInput == true)
             {
                 curSprite = cuttedSprites[3];
             }
 
-            if (!isXType && cutterType == cutterType.inputType)
+            if (!isXType && isInput == true)
             {
                 curSprite = cuttedSprites[0];
             }
 
-            if (isXType && cutterType == cutterType.outputType)
+            if (isXType && isInput == false)
             {
                 curSprite = cuttedSprites[2];
             }
 
-            if (!isXType && cutterType == cutterType.outputType)
+            if (!isXType && isInput == false)
             {
                 curSprite = cuttedSprites[1];
             }

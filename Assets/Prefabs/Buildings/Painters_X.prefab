@@ -406,7 +406,6 @@ MonoBehaviour:
   itemTransform: {fileID: 0}
   dye: {fileID: 0}
   partnerBuilding: {fileID: 4321023408828802398}
-  painterType: 0
   floatTime: 1
   arriveTime: 0.45
   spawnTime: 1.5
@@ -415,6 +414,7 @@ MonoBehaviour:
   sendTime: 0.75
   height: 10
   speed: 1.5
+  isInput: 1
 --- !u!65 &2203901654993504437
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1383,7 +1383,6 @@ MonoBehaviour:
   itemTransform: {fileID: 0}
   dye: {fileID: 0}
   partnerBuilding: {fileID: 7310264912493936394}
-  painterType: 1
   floatTime: 1
   arriveTime: 0.45
   spawnTime: 1.5
@@ -1392,6 +1391,7 @@ MonoBehaviour:
   sendTime: 0.75
   height: 10
   speed: 1.5
+  isInput: 0
 --- !u!65 &3182950771455834596
 BoxCollider:
   m_ObjectHideFlags: 0

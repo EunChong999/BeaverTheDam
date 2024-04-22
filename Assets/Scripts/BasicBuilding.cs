@@ -182,6 +182,12 @@ public class BasicBuilding : MonoBehaviour
     /// </summary>
     public void ApplyStoreItemImg(SpriteRenderer spriteRenderer)
     {
+        if (spriteRenderer == null)
+        {
+            itemPanelSpriteRenderer.sprite = null;
+            return;
+        }
+
         itemPanelSpriteRenderer.sprite = spriteRenderer.sprite;
         itemPanelSpriteRenderer.color = spriteRenderer.color;
     }

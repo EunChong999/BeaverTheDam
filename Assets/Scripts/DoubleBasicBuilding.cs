@@ -1,18 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 
-public enum doubleType
-{
-    widthType,
-    lengthType
-}
-
 public class DoubleBasicBuilding : MonoBehaviour
 {
     #region Variables
     [SerializeField] bool isRotated;
     [SerializeField] bool isReversed;
-    public doubleType doubleType;
     public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Animator animator;

@@ -14,10 +14,10 @@ public class ItemPanel : MonoBehaviour
     private void Start()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        backspriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        mySpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
 
-        mySpriteRenderer.color = BuildingManager.instance.itemPanelColor;
-        backspriteRenderer.color = BuildingManager.instance.itemPanelColor;
+        backspriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
     }
 
     private void Update()

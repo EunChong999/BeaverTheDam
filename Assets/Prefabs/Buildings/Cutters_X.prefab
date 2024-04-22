@@ -771,7 +771,6 @@ MonoBehaviour:
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   partnerBuilding: {fileID: 8728020536288518684}
-  cutterType: 0
   floatTime: 1
   arriveTime: 0.45
   spawnTime: 1.5
@@ -780,6 +779,7 @@ MonoBehaviour:
   height: 10
   speed: 1.5
   isXType: 1
+  isInput: 1
 --- !u!65 &8315561065706595157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1018,7 +1018,6 @@ MonoBehaviour:
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   partnerBuilding: {fileID: 4188098765104816584}
-  cutterType: 1
   floatTime: 1
   arriveTime: 0.45
   spawnTime: 1.5
@@ -1027,6 +1026,7 @@ MonoBehaviour:
   height: 10
   speed: 1.5
   isXType: 1
+  isInput: 0
 --- !u!65 &8568577955455266421
 BoxCollider:
   m_ObjectHideFlags: 0

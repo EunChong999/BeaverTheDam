@@ -2,12 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum painterType
-{
-    inputType,
-    outputType
-}
-
 public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
@@ -19,7 +13,6 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     [HideInInspector] public Dye dye;
 
     [SerializeField] PainterBuilding partnerBuilding;
-    [SerializeField] private painterType painterType;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
     [SerializeField] float spawnTime;
@@ -28,6 +21,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     [SerializeField] float sendTime;
     [SerializeField] float height;
     [SerializeField] float speed;
+    [SerializeField] bool isInput;
 
     GameObject itemTemp;
     Transform startPos;
@@ -70,7 +64,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                 itemTemp == null &&
                 !isRotating)
             {
-                if (painterType == painterType.outputType)
+                if (isInput == false)
                 {
                     if (pointingPoint.itemTransform.CompareTag("Dye"))
                     {
@@ -160,7 +154,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         canRotate = true;
         yield return waitForReturnSeconds;
 
-        if (painterType == painterType.outputType)
+        if (isInput == false)
         {
             partnerBuilding.itemTemp = null;
             partnerBuilding.point.itemTransform = null;
@@ -179,7 +173,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             !point.hitTransform.GetComponent<Point>().isItemExist &&
             !isStoring &&
             partnerBuilding.itemTemp != null &&
-            painterType == painterType.outputType)
+            isInput == false)
         {
             hitTemp = point.hitTransform;
             isArrived = false;
