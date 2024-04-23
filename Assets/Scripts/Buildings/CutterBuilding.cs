@@ -11,7 +11,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     [SerializeField] CutterBuilding partnerBuilding;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
-    [SerializeField] float spawnTime;
+    [SerializeField] float throwTime;
     [SerializeField] float returnTime;
     [SerializeField] float storeTime;
     [SerializeField] float height;
@@ -26,7 +26,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     Transform endPos;
     SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
-    WaitForSeconds waitForSpawnSeconds;
+    WaitForSeconds waitForThrowSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
     Vector3 centerPoint;
@@ -43,13 +43,13 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
-        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
+        waitForThrowSeconds = new WaitForSeconds(throwTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
         doubleBasicBuilding = transform.parent.GetComponent<DoubleBasicBuilding>();
     }
 
-    public void Input()
+    public IEnumerator Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -70,6 +70,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
                     canRotate = false;
                     itemTransform = pointingPoint.itemTransform;
                     itemTemp = itemTransform.gameObject;
+                    yield return waitForThrowSeconds;
                     StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                     StartCoroutine(ThrowItem(itemTransform));
                     StartCoroutine(WaitForInput());
@@ -196,7 +197,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     private void Update()
     {
         if (isInput == true)
-            Input();
+            StartCoroutine(Input());
 
         Output();
     }

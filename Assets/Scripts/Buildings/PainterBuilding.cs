@@ -15,6 +15,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     [SerializeField] PainterBuilding partnerBuilding;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
+    [SerializeField] float throwTime;
     [SerializeField] float spawnTime;
     [SerializeField] float returnTime;
     [SerializeField] float storeTime;
@@ -29,6 +30,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     Transform hitTemp;
     SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
+    WaitForSeconds waitForThrowSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
     WaitForSeconds waitForSendSeconds;
@@ -47,12 +49,13 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
+        waitForThrowSeconds = new WaitForSeconds(throwTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
         waitForSendSeconds = new WaitForSeconds(sendTime);
     }
 
-    public void Input()
+    public IEnumerator Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -76,6 +79,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         itemTemp = itemTransform.gameObject;
                         startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                         endPos = pointTransform;
+                        yield return waitForThrowSeconds;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitForInput());
@@ -93,6 +97,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         canRotate = false;
                         itemTransform = pointingPoint.itemTransform;
                         itemTemp = itemTransform.gameObject;
+                        yield return waitForThrowSeconds;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitForInput());
@@ -224,7 +229,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     private void Update()
     {
-        Input();
+        StartCoroutine(Input());
         Output();
     }
 

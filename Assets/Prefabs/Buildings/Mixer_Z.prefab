@@ -186,6 +186,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 6474692189414064365}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 0.5
@@ -1095,6 +1096,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 750404665061624309}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 0.5
@@ -1304,7 +1306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 6474692189414064365}
   detectionTarget: {fileID: 6512919817098524648}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &6625279466999874341
@@ -1564,7 +1566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 750404665061624309}
   detectionTarget: {fileID: 1291783040667253751}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &2713602803095825795
