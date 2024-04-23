@@ -120,9 +120,6 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
 
     public IEnumerator WaitForOutput()
     {
-        Destroy(partnerBuilding.itemTemp);
-        Destroy(partnerBuilding.itemTransform.gameObject);
-
         itemSpriteRenderer = null;
         partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
 
@@ -130,8 +127,10 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         isArrived = true;
         canRotate = true;
         yield return waitForReturnSeconds;
+        Destroy(partnerBuilding.itemTemp);
+        Destroy(partnerBuilding.itemTransform.gameObject);
         isReturned = false;
-        itemTemp = null;
+        itemTemp = null; 
     }
 
     public void Output()
