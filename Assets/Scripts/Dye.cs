@@ -13,7 +13,7 @@ public enum syntheticColorType
 {
     orange,
     green,
-    magenta
+    purple
 }
 
 public class Dye : MonoBehaviour
@@ -58,8 +58,8 @@ public class Dye : MonoBehaviour
             case 2:
             {
                 spriteRenderer.sprite = syntheticSprites[1];
-                syntheticColorType = syntheticColorType.magenta;
-                myColor = syntheticColors[(int)syntheticColorType.magenta];
+                syntheticColorType = syntheticColorType.purple;
+                myColor = syntheticColors[(int)syntheticColorType.purple];
                 break;
             }
             case 3:
