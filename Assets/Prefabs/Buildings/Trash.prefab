@@ -529,7 +529,7 @@ MonoBehaviour:
   buildingType: 1
   movementType: 0
   directionType: 1
-  itemType: 1
+  interactionType: 1
   rotationTime: 0.15
   directionTime: 0.25
   direction: {fileID: 1600895799732392494}

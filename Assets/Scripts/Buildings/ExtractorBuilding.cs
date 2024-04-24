@@ -46,7 +46,8 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         if (!isRotating &&
             point.canMove &&
             !isSpawned &&
-            !point.hitTransform.GetComponent<Point>().isItemExist)
+            !point.hitTransform.GetComponent<Point>().isItemExist &&
+            point.hitTransform.GetComponent<Point>().transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
         {
             isArrived = false;
             SendItem();
@@ -120,10 +121,16 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         if (isRotating)
             return;
 
-        // 마우스 좌클릭 또는 우클릭
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+        // 마우스 우클릭
+        if (Input.GetMouseButtonDown(0))
         {
             DirectRotation(false, targetAngle, transform, true);
+        }
+
+        // 마우스 좌클릭 
+        else if (Input.GetMouseButtonDown(1))
+        {
+            DirectRotation(true, targetAngle, transform, true);
         }
 
         // 마우스 휠클릭

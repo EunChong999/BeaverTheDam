@@ -124,14 +124,17 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     #region Events
     private void OnMouseOver()
     {
-        // 마우스 좌클릭
-        if (UnityEngine.Input.GetMouseButtonDown(0) && !isRotating)
+        if (isRotating)
+            return;
+
+        // 마우스 우클릭
+        if (UnityEngine.Input.GetMouseButtonDown(0))
         {
             DirectRotation(false, targetAngle, transform, true);
         }
 
-        // 마우스 우클릭
-        else if (UnityEngine.Input.GetMouseButtonDown(1) && !isRotating)
+        // 마우스 좌클릭 
+        else if (UnityEngine.Input.GetMouseButtonDown(1))
         {
             DirectRotation(true, targetAngle, transform, true);
         }

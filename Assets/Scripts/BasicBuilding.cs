@@ -20,7 +20,7 @@ public enum directionType
     rightType,
 }
 
-public enum itemType
+public enum interactionType
 {
     storeType,
     carryType
@@ -36,7 +36,7 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public movementType movementType;
     public directionType directionType;
-    public itemType itemType;
+    public interactionType interactionType;
     public float rotationTime = 0.15f;
     public float directionTime = 0.25f;
     public GameObject direction;
@@ -83,7 +83,7 @@ public class BasicBuilding : MonoBehaviour
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
 
-        if (itemType == itemType.storeType)
+        if (interactionType == interactionType.storeType)
             itemPanelSpriteRenderer = itemPanel.GetComponent<SpriteRenderer>();
     }
 
@@ -205,7 +205,7 @@ public class BasicBuilding : MonoBehaviour
     {
         direction.SetActive(true);
 
-        if (itemType == itemType.storeType)
+        if (interactionType == interactionType.storeType)
             itemPanel.SetActive(false);
     }
 
@@ -213,7 +213,7 @@ public class BasicBuilding : MonoBehaviour
     {
         direction.SetActive(false);
 
-        if (itemType == itemType.storeType)
+        if (interactionType == interactionType.storeType)
             itemPanel.SetActive(true);
     }
     #endregion
