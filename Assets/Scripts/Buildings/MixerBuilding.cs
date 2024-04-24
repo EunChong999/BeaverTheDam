@@ -11,6 +11,7 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     [SerializeField] MixerBuilding partnerBuilding;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
+    [SerializeField] float throwTime;
     [SerializeField] float spawnTime;
     [SerializeField] float returnTime;
     [SerializeField] float storeTime;
@@ -20,12 +21,11 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     [SerializeField] bool isInput;
 
     GameObject itemTemp;
-    Transform itemTransform;
     Transform startPos;
     Transform endPos;
     SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
-    WaitForSeconds waitForSpawnSeconds;
+    WaitForSeconds waitForThrowSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
     Vector3 centerPoint;
@@ -42,12 +42,12 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
-        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
+        waitForThrowSeconds = new WaitForSeconds(throwTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
     }
 
-    public void Input()
+    public IEnumerator Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -65,10 +65,10 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
                     isStoring = true;
                     isArrived = false;
                     canRotate = false;
-                    itemTransform = pointingPoint.itemTransform;
-                    itemTemp = itemTransform.gameObject;
+                    itemTemp = pointingPoint.itemTransform.gameObject;
+                    yield return waitForThrowSeconds;
                     StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-                    StartCoroutine(ThrowItem(itemTransform));
+                    StartCoroutine(ThrowItem(itemTemp.transform));
                     StartCoroutine(WaitForInput());
                     isRemoved = true;
                 }
@@ -106,7 +106,7 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     {
         yield return waitForArriveSeconds;
 
-        itemSpriteRenderer = itemTransform.GetComponent<Item>().spriteRenderer;
+        itemSpriteRenderer = itemTemp.GetComponent<Item>().spriteRenderer;
         ApplyStoreItemImg(itemSpriteRenderer);
 
         isArrived = true;
@@ -128,7 +128,6 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         canRotate = true;
         yield return waitForReturnSeconds;
         Destroy(partnerBuilding.itemTemp);
-        Destroy(partnerBuilding.itemTransform.gameObject);
         isReturned = false;
         itemTemp = null; 
     }
@@ -162,12 +161,11 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
 
         itemTemp.SetActive(true);
         itemTemp.GetComponent<Dye>().MixColor(itemTemp.GetComponent<Dye>().basicColorType, partnerBuilding.itemTemp.GetComponent<Dye>().basicColorType);
-        itemTransform = itemTemp.transform;
-        itemTransform.GetComponent<Item>().ShowEffect(true);
+        itemTemp.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
         endPos = point.hitTransform;
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
-        StartCoroutine(ThrowItem(itemTransform));
+        StartCoroutine(ThrowItem(itemTemp.transform));
         StartCoroutine(WaitForOutput());
     }
     #endregion
@@ -179,7 +177,7 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
 
     private void Update()
     {
-        Input();
+        StartCoroutine(Input());
 
         if (isInput == false)
             Output();

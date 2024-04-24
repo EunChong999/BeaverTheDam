@@ -397,6 +397,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 4690622402295152769}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 0.5
@@ -1204,6 +1205,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 7672206216808741932}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 0.5

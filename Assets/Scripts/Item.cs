@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -19,6 +20,7 @@ public class Item : MonoBehaviour
     [HideInInspector] public bool isXCombined;
     [HideInInspector] public bool isZCutted;
     [HideInInspector] public bool isXCutted;
+    [HideInInspector] public bool canInput;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;

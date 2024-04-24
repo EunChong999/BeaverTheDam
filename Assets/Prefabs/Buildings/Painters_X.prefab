@@ -166,7 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRotated: 0
   isReversed: 0
-  doubleType: 1
   buildings:
   - {fileID: 7706433532640648314}
   - {fileID: 1713190175408512980}
@@ -275,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 4321023408828802398}
   detectionTarget: {fileID: 8797424596425485343}
-  CurveInputPoint: {fileID: 8032512624367757683}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 2651196263143606639}
   canMove: 0
 --- !u!65 &8190968458789116379
@@ -408,6 +407,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 4321023408828802398}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 2.75
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 7310264912493936394}
   detectionTarget: {fileID: 3085032997181916279}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &2015586017717439770
@@ -1383,6 +1383,7 @@ MonoBehaviour:
   partnerBuilding: {fileID: 7310264912493936394}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   spawnTime: 1.5
   returnTime: 0.1
   storeTime: 2.75

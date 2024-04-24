@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8271863952089269976}
   - component: {fileID: 8922622133874635902}
   - component: {fileID: 5486368156647645492}
-  - component: {fileID: 6972131961223761594}
   - component: {fileID: 9050419071681707003}
   m_Layer: 7
   m_Name: Red Dye
@@ -66,6 +65,7 @@ MonoBehaviour:
   isXCombined: 0
   isZCutted: 0
   isXCutted: 0
+  canInput: 0
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 1
@@ -99,33 +99,6 @@ MonoBehaviour:
   - {r: 0.78144646, g: 0, b: 1, a: 1}
   myColor: {r: 0, g: 0, b: 0, a: 0}
   spriteRenderer: {fileID: 4725108808863434905}
---- !u!54 &6972131961223761594
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2227569820614700556}
-  serializedVersion: 4
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!65 &9050419071681707003
 BoxCollider:
   m_ObjectHideFlags: 0

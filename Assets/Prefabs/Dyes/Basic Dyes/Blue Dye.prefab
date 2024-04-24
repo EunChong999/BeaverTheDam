@@ -203,7 +203,6 @@ GameObject:
   - component: {fileID: 7453373355999984618}
   - component: {fileID: 1993922912183602721}
   - component: {fileID: 6061657130355856068}
-  - component: {fileID: 957299346055177143}
   - component: {fileID: 4026665626696480091}
   m_Layer: 7
   m_Name: Blue Dye
@@ -258,6 +257,7 @@ MonoBehaviour:
   isXCombined: 0
   isZCutted: 0
   isXCutted: 0
+  canInput: 0
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 1
@@ -291,33 +291,6 @@ MonoBehaviour:
   - {r: 0.78144646, g: 0, b: 1, a: 1}
   myColor: {r: 0, g: 0, b: 0, a: 0}
   spriteRenderer: {fileID: 5842498974077481259}
---- !u!54 &957299346055177143
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7544624345907486123}
-  serializedVersion: 4
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!65 &4026665626696480091
 BoxCollider:
   m_ObjectHideFlags: 0

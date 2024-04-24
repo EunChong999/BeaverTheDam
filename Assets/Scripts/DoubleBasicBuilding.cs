@@ -91,10 +91,10 @@ public class DoubleBasicBuilding : MonoBehaviour
         firstBuilding.direction.SetActive(true);
         secondBuilding.direction.SetActive(true);
 
-        if (firstBuilding.itemType == itemType.storeType)
+        if (firstBuilding.interactionType == interactionType.storeType)
             firstBuilding.itemPanel.SetActive(false);
 
-        if (secondBuilding.itemType == itemType.storeType)
+        if (secondBuilding.interactionType == interactionType.storeType)
             secondBuilding.itemPanel.SetActive(false);
     }
 
@@ -103,10 +103,10 @@ public class DoubleBasicBuilding : MonoBehaviour
         firstBuilding.direction.SetActive(false);
         secondBuilding.direction.SetActive(false);
 
-        if (firstBuilding.itemType == itemType.storeType)
+        if (firstBuilding.interactionType == interactionType.storeType)
             firstBuilding.itemPanel.SetActive(true);
 
-        if (secondBuilding.itemType == itemType.storeType)
+        if (secondBuilding.interactionType == interactionType.storeType)
             secondBuilding.itemPanel.SetActive(true);
     }
     #endregion

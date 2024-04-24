@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 664323672746903740}
   detectionTarget: {fileID: 8125926655593067689}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &1186424128198554489
@@ -528,7 +528,7 @@ MonoBehaviour:
   buildingType: 1
   movementType: 0
   directionType: 1
-  itemType: 1
+  interactionType: 1
   rotationTime: 0.15
   directionTime: 0.25
   direction: {fileID: 1600895799732392494}
@@ -552,6 +552,7 @@ MonoBehaviour:
   pointingPoint: {fileID: 0}
   floatTime: 1
   arriveTime: 0.45
+  throwTime: 0.25
   height: 10
   speed: 1.5
 --- !u!65 &6781667883752262806
