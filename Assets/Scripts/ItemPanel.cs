@@ -8,14 +8,25 @@ public class ItemPanel : MonoBehaviour
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
 
+    SpriteRenderer mySpriteRenderer;
+    SpriteRenderer backspriteRenderer;
+
     private void Start()
     {
-        GetComponent<SpriteRenderer>().color = BuildingManager.instance.itemPanelColor;
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = BuildingManager.instance.itemPanelColor;
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        mySpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+
+        backspriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
     }
 
     private void Update()
     {
+        if (mySpriteRenderer.sprite != null)
+            transform.GetChild(0).gameObject.SetActive(true);
+        else
+            transform.GetChild(0).gameObject.SetActive(false);
+
         float x = transform.position.x;
         float y = Mathf.Sin(Time.time * frequency) * amplitude;
         float z = transform.position.z;

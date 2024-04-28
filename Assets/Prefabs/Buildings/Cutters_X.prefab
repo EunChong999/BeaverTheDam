@@ -719,7 +719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3481245557005016029}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.5, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -770,15 +770,15 @@ MonoBehaviour:
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   partnerBuilding: {fileID: 8728020536288518684}
-  cutterType: 0
   floatTime: 1
-  arriveTime: 0.5
-  spawnTime: 1.5
+  arriveTime: 0.45
+  throwTime: 0.25
   returnTime: 0.1
   storeTime: 0.5
   height: 10
   speed: 1.5
   isXType: 1
+  isInput: 1
 --- !u!65 &8315561065706595157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -839,7 +839,7 @@ GameObject:
   - component: {fileID: 412313067439392209}
   - component: {fileID: 8281866514289047975}
   - component: {fileID: 8642297634602792752}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cutters_X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,7 +854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3668047555144249544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -878,7 +878,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRotated: 0
   isReversed: 0
-  doubleType: 1
   buildings:
   - {fileID: 3481245557005016029}
   - {fileID: 3898749057899404724}
@@ -911,7 +910,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 2}
-  m_Center: {x: 0.25, y: 0.5, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8642297634602792752
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -966,7 +965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3898749057899404724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.5, z: -0.25}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1017,15 +1016,15 @@ MonoBehaviour:
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
   partnerBuilding: {fileID: 4188098765104816584}
-  cutterType: 1
   floatTime: 1
-  arriveTime: 0.5
-  spawnTime: 1.5
+  arriveTime: 0.45
+  throwTime: 0.25
   returnTime: 0.1
   storeTime: 0.5
   height: 10
   speed: 1.5
   isXType: 1
+  isInput: 0
 --- !u!65 &8568577955455266421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1287,7 +1286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6371658116299632147}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: 0, y: 0.70000005, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4250001, y: 1.4249998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1580,7 +1579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 4188098765104816584}
   detectionTarget: {fileID: 1063482743541945269}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &3809708474152083509
@@ -1755,7 +1754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 8728020536288518684}
   detectionTarget: {fileID: 5834637471601856435}
-  CurveInputPoint: {fileID: 0}
+  curveInputPoint: {fileID: 0}
   CurveOutputPoint: {fileID: 0}
   canMove: 0
 --- !u!65 &4562264266229963420

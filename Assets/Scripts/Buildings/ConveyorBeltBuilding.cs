@@ -8,10 +8,25 @@ public class ConveyorBeltBuilding : BasicBuilding
 
     [Space(10)]
 
+    [SerializeField] bool isReversed;
+
     private bool canPlay;
     private int rotationAngle;
     #endregion
     #region Functions
+    public override void InitSettings()
+    {
+        base.InitSettings();
+
+        if (isReversed)
+        {
+            ChangeDirectionType(false);
+
+            if (movementType == movementType.curveType)
+                detector.ExchangeDetector();
+        }
+    }
+
     /// <summary>
     /// 트레일러의 방향을 바꾸는 함수
     /// </summary>
@@ -112,19 +127,19 @@ public class ConveyorBeltBuilding : BasicBuilding
         // 마우스 좌클릭
         if (Input.GetMouseButtonDown(0) && !isRotating)
         {
-            DirectRotation(false, targetAngle, transform);
+            DirectRotation(false, targetAngle, transform, true);
         }
 
         // 마우스 우클릭
         else if (Input.GetMouseButtonDown(1) && !isRotating)
         {
-            DirectRotation(true, targetAngle, transform);
+            DirectRotation(true, targetAngle, transform, true);
         }
 
         // 마우스 휠클릭
         else if (Input.GetMouseButtonDown(2) && !isRotating)
         {
-            ChangeDirectionType();
+            ChangeDirectionType(true);
 
             if (movementType == movementType.curveType)
                 detector.ExchangeDetector();

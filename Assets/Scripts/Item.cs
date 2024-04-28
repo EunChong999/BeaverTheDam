@@ -1,22 +1,26 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    #region Variables
     public bool isCutted;
     public bool isPainted;
     public bool isMoving;
+    public Shadow shadow;
     public Transform spriteTransform;
-    public Point curPoint;
     public SpriteRenderer spriteRenderer;
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
-    public Sprite[] cuttedReplaceSprite;
+    public Sprite[] cuttedReplaceSprites;
 
-    Sequence itemScaleSequence;
-    Vector3 originScale;
+    [HideInInspector] public Point curPoint;
+    [HideInInspector] public bool isZCombined;
+    [HideInInspector] public bool isXCombined;
+    [HideInInspector] public bool isZCutted;
+    [HideInInspector] public bool isXCutted;
+    [HideInInspector] public bool canInput;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -24,17 +28,21 @@ public class Item : MonoBehaviour
     [SerializeField] Ease startScaleEase;
     [SerializeField] Ease endScaleEase;
 
-    private void OnEnable()
-    {
-        originScale = spriteTransform.localScale;
-    }
-
+    Sequence itemScaleSequence;
+    Vector3 originScale;
+    #endregion
     #region Functions
+    /// <summary>
+    /// 이동 시작
+    /// </summary>
     public void EnMove()
     {
         isMoving = true;
     }
 
+    /// <summary>
+    /// 이동 해체
+    /// </summary>
     public void UnMove()
     {
         isMoving = false;
@@ -59,133 +67,128 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void CutSprite(bool isXType, cutterType cutterType)
+    /// <summary>
+    /// 잘려진 스프라이트로 변경해주는 함수
+    /// </summary>
+    private void ChangeToCuttedSprites(bool isXType, bool isInput, bool isReversed)
     {
-        if (!isCutted)
+        if (isReversed)
         {
-            if (isXType && cutterType == cutterType.inputType)
+            if (isXType && isInput == true)
             {
                 spriteRenderer.sprite = cuttedSprites[3];
             }
 
-            if (!isXType && cutterType == cutterType.inputType)
+            if (!isXType && isInput == true)
             {
                 spriteRenderer.sprite = cuttedSprites[0];
             }
 
-            if (isXType && cutterType == cutterType.outputType)
+            if (isXType && isInput == false)
             {
                 spriteRenderer.sprite = cuttedSprites[2];
             }
 
-            if (!isXType && cutterType == cutterType.outputType)
+            if (!isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[1];
+            }
+        }
+        else
+        {
+            if (isXType && isInput == true)
+            {
+                spriteRenderer.sprite = cuttedSprites[2];
+            }
+
+            if (!isXType && isInput == true)
             {
                 spriteRenderer.sprite = cuttedSprites[1];
             }
 
+            if (isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[3];
+            }
+
+            if (!isXType && isInput == false)
+            {
+                spriteRenderer.sprite = cuttedSprites[0];
+            }
+        }
+    }
+
+    /// <summary>
+    /// 잘려진 대체 스프라이트로 변경해주는 함수
+    /// </summary>
+    private void ChangeToCuttedReplaceSprites()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (spriteRenderer.sprite == cuttedSprites[i])
+            {
+                spriteRenderer.sprite = cuttedReplaceSprites[i];
+                break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 스프라이트를 자르는 함수
+    /// </summary>
+    public void CutSprite(bool isXType, bool cutterType, bool isReversed)
+    {
+        if (!isCutted)
+        {
+            ChangeToCuttedSprites(isXType, cutterType, isReversed);
+
             if (isPainted)
             {
-                if (spriteRenderer.sprite == cuttedSprites[0])
-                {
-                    spriteRenderer.sprite = cuttedReplaceSprite[0];
-                }
-
-                if (spriteRenderer.sprite == cuttedSprites[1])
-                {
-                    spriteRenderer.sprite = cuttedReplaceSprite[1];
-                }
-
-                if (spriteRenderer.sprite == cuttedSprites[2])
-                {
-                    spriteRenderer.sprite = cuttedReplaceSprite[2];
-                }
-
-                if (spriteRenderer.sprite == cuttedSprites[3])
-                {
-                    spriteRenderer.sprite = cuttedReplaceSprite[3];
-                }
+                ChangeToCuttedReplaceSprites();
             }
 
             isCutted = true;
         }
     }
 
+    /// <summary>
+    /// 스프라이트를 칠하는 함수
+    /// </summary>
     public void PaintSprite(Color color)
     {
-        spriteRenderer.sprite = replaceSprite;
+        spriteRenderer.color = color;
 
         if (isCutted)
         {
-            if (spriteRenderer.sprite == cuttedSprites[0])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[0];
-            }
-
-            if (spriteRenderer.sprite == cuttedSprites[1])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[1];
-            }
-
-            if (spriteRenderer.sprite == cuttedSprites[2])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[2];
-            }
-
-            if (spriteRenderer.sprite == cuttedSprites[3])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[3];
-            }
+            ChangeToCuttedReplaceSprites();
+        }
+        else
+        {
+            spriteRenderer.sprite = replaceSprite;
         }
 
         isPainted = true;
     }
 
-    public Sprite ApplyCutSprites(bool isXType, cutterType cutterType)
+    /// <summary>
+    /// 잘려진 스프라이트를 반환하는 함수
+    /// </summary>
+    public SpriteRenderer ApplyCutSprite(bool isXType, bool cutterType, bool isReversed)
     {
-        if (isXType && cutterType == cutterType.inputType)
-        {
-            spriteRenderer.sprite = cuttedSprites[3];
-        }
-
-        if (!isXType && cutterType == cutterType.inputType)
-        {
-            spriteRenderer.sprite = cuttedSprites[0];
-        }
-
-        if (isXType && cutterType == cutterType.outputType)
-        {
-            spriteRenderer.sprite = cuttedSprites[2];
-        }
-
-        if (!isXType && cutterType == cutterType.outputType)
-        {
-            spriteRenderer.sprite = cuttedSprites[1];
-        }
+        ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
         if (isPainted)
         {
-            if (spriteRenderer.sprite == cuttedSprites[0])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[0];
-            }
-
-            if (spriteRenderer.sprite == cuttedSprites[1])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[1];
-            }
-
-            if (spriteRenderer.sprite == cuttedSprites[2])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[2];
-            }
-
-            if (spriteRenderer.sprite == cuttedSprites[3])
-            {
-                spriteRenderer.sprite = cuttedReplaceSprite[3];
-            }
+            ChangeToCuttedReplaceSprites();
         }
 
-        return spriteRenderer.sprite;
+        return spriteRenderer;
+    }
+    #endregion
+    #region Events
+    private void OnEnable()
+    {
+        originScale = spriteTransform.localScale;
     }
     #endregion
 }

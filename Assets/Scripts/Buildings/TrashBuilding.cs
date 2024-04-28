@@ -11,6 +11,7 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
 
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
+    [SerializeField] float throwTime;
     [SerializeField] float height;
     [SerializeField] float speed;
 
@@ -22,6 +23,7 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     Transform startPos;
     Transform endPos;
     WaitForSeconds waitForArriveSeconds;
+    WaitForSeconds waitForThrowSeconds;
     bool isArrived;
     bool isRemoved;
 
@@ -34,12 +36,13 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
+        waitForThrowSeconds = new WaitForSeconds(throwTime);
     }
 
     /// <summary>
     /// 아이템을 발사하는 함수
     /// </summary>
-    public void Input()
+    public IEnumerator Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -47,12 +50,14 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
                 pointingPoint.canMove &&
                 !isRemoved &&
                 pointingPoint.isItemExist &&
-                !pointingPoint.itemTransform.GetComponent<Item>().isMoving)
+                !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
+                itemTransform == null)
             {
                 isArrived = false;
                 itemTransform = pointingPoint.itemTransform;
                 startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                 endPos = pointTransform;
+                yield return waitForThrowSeconds;
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitForInput());
@@ -101,7 +106,10 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         yield return waitForArriveSeconds;
         isArrived = true;
         point.isItemExist = false;
-        Destroy(itemTransform.gameObject);
+
+        if (itemTransform != null)
+            Destroy(itemTransform.gameObject);
+
         isRemoved = false;
     }
 
@@ -116,22 +124,25 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     #region Events
     private void OnMouseOver()
     {
-        // 마우스 좌클릭
-        if (UnityEngine.Input.GetMouseButtonDown(0) && !isRotating)
-        {
-            DirectRotation(false, targetAngle, transform);
-        }
+        if (isRotating)
+            return;
 
         // 마우스 우클릭
-        else if (UnityEngine.Input.GetMouseButtonDown(1) && !isRotating)
+        if (UnityEngine.Input.GetMouseButtonDown(0))
         {
-            DirectRotation(true, targetAngle, transform);
+            DirectRotation(false, targetAngle, transform, true);
+        }
+
+        // 마우스 좌클릭 
+        else if (UnityEngine.Input.GetMouseButtonDown(1))
+        {
+            DirectRotation(true, targetAngle, transform, true);
         }
 
         // 마우스 휠클릭
         else if (UnityEngine.Input.GetMouseButtonDown(2) && !isRotating)
         {
-            ChangeDirectionType();
+            ChangeDirectionType(true);
         }
     }
 
@@ -142,7 +153,7 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
 
     private void Update()
     {
-        Input();
+        StartCoroutine(Input());
         PlayAnimation();
     }
 

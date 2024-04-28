@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 8259029153256206588}
   detectionTarget: {fileID: 3340834524443799422}
-  CurveInputPoint: {fileID: 2840674634281213047}
+  curveInputPoint: {fileID: 2840674634281213047}
   CurveOutputPoint: {fileID: 2681316488396241188}
   canMove: 0
 --- !u!65 &1739319636690671521
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 8259029153256206588}
   - component: {fileID: 2076708097867504305}
   - component: {fileID: -6079029594059074078}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConveyorBelt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,11 +375,11 @@ MonoBehaviour:
   buildingType: 0
   movementType: 0
   directionType: 1
-  itemType: 1
+  interactionType: 1
   rotationTime: 0.15
   directionTime: 0.25
   direction: {fileID: 6685390884688556496}
-  productPanel: {fileID: 0}
+  itemPanel: {fileID: 0}
   spriteTransform: {fileID: 1439644759351956998}
   pointTransform: {fileID: 4331647266431212208}
   detector: {fileID: 4816736890718021626}
@@ -397,6 +397,7 @@ MonoBehaviour:
   spriteAnimator: {fileID: 0}
   point: {fileID: 0}
   pointingPoint: {fileID: 0}
+  isReversed: 0
 --- !u!65 &2076708097867504305
 BoxCollider:
   m_ObjectHideFlags: 0

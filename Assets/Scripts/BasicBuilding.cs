@@ -20,7 +20,7 @@ public enum directionType
     rightType,
 }
 
-public enum itemType
+public enum interactionType
 {
     storeType,
     carryType
@@ -36,7 +36,7 @@ public class BasicBuilding : MonoBehaviour
     public buildingType buildingType;
     public movementType movementType;
     public directionType directionType;
-    public itemType itemType;
+    public interactionType interactionType;
     public float rotationTime = 0.15f;
     public float directionTime = 0.25f;
     public GameObject direction;
@@ -83,18 +83,20 @@ public class BasicBuilding : MonoBehaviour
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
 
-        if (itemType == itemType.storeType)
+        if (interactionType == interactionType.storeType)
             itemPanelSpriteRenderer = itemPanel.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
     /// 회전에 대한 전체적인 동작을 지시하는 함수
     /// </summary>
-    public void DirectRotation(bool isRight, float targetAngle, Transform transform)
+    public void DirectRotation(bool isRight, float targetAngle, Transform transform, bool isShowEffect)
     {
         if (canRotate)
         {
-            ShowEffect();
+            if (isShowEffect)
+                ShowEffect();
+
             StartCoroutine(RotateTransform(isRight, targetAngle, transform));
         }
     }
@@ -154,35 +156,40 @@ public class BasicBuilding : MonoBehaviour
     /// <summary>
     /// 회전 타입을 변경하는 함수
     /// </summary>
-    protected void ChangeDirectionType()
+    protected void ChangeDirectionType(bool isShowEffect)
     {
-        ShowEffect();
-
         if (movementType == movementType.curveType)
         {
             if (directionType == directionType.rightType)
             {
                 directionType = directionType.leftType;
-                DirectRotation(true, 90, pointTransform);
+                DirectRotation(true, 90, pointTransform, isShowEffect);
             }
             else
             {
                 directionType = directionType.rightType;
-                DirectRotation(true, -90, pointTransform);
+                DirectRotation(true, -90, pointTransform, isShowEffect);
             }
         }
         else
         {
-            DirectRotation(true, 180, transform);
+            DirectRotation(true, 180, transform, isShowEffect);
         }
     }
 
     /// <summary>
     /// 저장할 아이템의 이미지를 적용하는 함수
     /// </summary>
-    public void ApplyStoreItemImg(Sprite sprite)
+    public void ApplyStoreItemImg(SpriteRenderer spriteRenderer)
     {
-        itemPanelSpriteRenderer.sprite = sprite;
+        if (spriteRenderer == null)
+        {
+            itemPanelSpriteRenderer.sprite = null;
+            return;
+        }
+
+        itemPanelSpriteRenderer.sprite = spriteRenderer.sprite;
+        itemPanelSpriteRenderer.color = spriteRenderer.color;
     }
 
     /// <summary>
@@ -198,7 +205,7 @@ public class BasicBuilding : MonoBehaviour
     {
         direction.SetActive(true);
 
-        if (itemType == itemType.storeType)
+        if (interactionType == interactionType.storeType)
             itemPanel.SetActive(false);
     }
 
@@ -206,7 +213,7 @@ public class BasicBuilding : MonoBehaviour
     {
         direction.SetActive(false);
 
-        if (itemType == itemType.storeType)
+        if (interactionType == interactionType.storeType)
             itemPanel.SetActive(true);
     }
     #endregion

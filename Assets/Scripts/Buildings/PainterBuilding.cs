@@ -2,12 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public enum painterType
-{
-    inputType,
-    outputType
-}
-
 public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
@@ -15,32 +9,34 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     [Space(10)]
 
-    public Transform itemTransform;
+    [HideInInspector] public Transform itemTransform;
+    [HideInInspector] public Dye dye;
 
     [SerializeField] PainterBuilding partnerBuilding;
-    [SerializeField] private painterType painterType;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
+    [SerializeField] float throwTime;
     [SerializeField] float spawnTime;
     [SerializeField] float returnTime;
     [SerializeField] float storeTime;
     [SerializeField] float sendTime;
     [SerializeField] float height;
     [SerializeField] float speed;
+    [SerializeField] bool isInput;
 
     GameObject itemTemp;
     Transform startPos;
     Transform endPos;
     Transform hitTemp;
-    Sprite itemSprite;
+    SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
+    WaitForSeconds waitForThrowSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
     WaitForSeconds waitForSendSeconds;
     Vector3 centerPoint;
     Vector3 startRelCenter;
     Vector3 endRelCenter;
-    Color colorTemp;
     float startTime;
     bool isArrived;
     bool isReturned;
@@ -53,12 +49,13 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
+        waitForThrowSeconds = new WaitForSeconds(throwTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
         waitForSendSeconds = new WaitForSeconds(sendTime);
     }
 
-    public void Input()
+    public IEnumerator Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -70,7 +67,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                 itemTemp == null &&
                 !isRotating)
             {
-                if (painterType == painterType.outputType)
+                if (isInput == false)
                 {
                     if (pointingPoint.itemTransform.CompareTag("Dye"))
                     {
@@ -78,9 +75,11 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         isArrived = false;
                         canRotate = false;
                         itemTransform = pointingPoint.itemTransform;
+                        dye = itemTransform.GetComponent<Dye>();
                         itemTemp = itemTransform.gameObject;
                         startPos = pointingPoint.transform.parent.GetComponent<BasicBuilding>().pointTransform;
                         endPos = pointTransform;
+                        yield return waitForThrowSeconds;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitForInput());
@@ -98,6 +97,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                         canRotate = false;
                         itemTransform = pointingPoint.itemTransform;
                         itemTemp = itemTransform.gameObject;
+                        yield return waitForThrowSeconds;
                         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                         StartCoroutine(ThrowItem(itemTransform));
                         StartCoroutine(WaitForInput());
@@ -139,9 +139,9 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         yield return waitForArriveSeconds;
 
         if (itemTransform != null)
-            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().spriteRenderer;
 
-        ApplyStoreItemImg(itemSprite);
+        ApplyStoreItemImg(itemSpriteRenderer);
 
         isArrived = true;
         canRotate = true;
@@ -159,7 +159,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         canRotate = true;
         yield return waitForReturnSeconds;
 
-        if (painterType == painterType.outputType)
+        if (isInput == false)
         {
             partnerBuilding.itemTemp = null;
             partnerBuilding.point.itemTransform = null;
@@ -178,7 +178,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             !point.hitTransform.GetComponent<Point>().isItemExist &&
             !isStoring &&
             partnerBuilding.itemTemp != null &&
-            painterType == painterType.outputType)
+            isInput == false)
         {
             hitTemp = point.hitTransform;
             isArrived = false;
@@ -201,13 +201,13 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         if (point.hitTransform != null && point.hitTransform == hitTemp)
         {
             point.hitTransform.GetComponent<Point>().isItemExist = true;
-
-            colorTemp = itemTransform.GetComponent<Item>().spriteRenderer.color;
             itemTemp = partnerBuilding.itemTemp;
             itemTemp.SetActive(true);
-            itemTemp.GetComponent<Item>().PaintSprite(Color.green);
+
+            if (dye != null)
+                itemTemp.GetComponent<Item>().PaintSprite(dye.myColor);
+
             itemTransform = itemTemp.transform;
-            itemTransform.GetComponent<Item>().spriteRenderer.color = colorTemp;
             itemTransform.GetComponent<Item>().ShowEffect(true);
             startPos = pointTransform;
             endPos = point.hitTransform;
@@ -229,7 +229,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     private void Update()
     {
-        Input();
+        StartCoroutine(Input());
         Output();
     }
 

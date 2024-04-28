@@ -1,12 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-public enum cutterType
-{
-    inputType,
-    outputType
-}
-
 public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
@@ -15,23 +9,24 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     [Space(10)]
 
     [SerializeField] CutterBuilding partnerBuilding;
-    [SerializeField] cutterType cutterType;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
-    [SerializeField] float spawnTime;
+    [SerializeField] float throwTime;
     [SerializeField] float returnTime;
     [SerializeField] float storeTime;
     [SerializeField] float height;
     [SerializeField] float speed;
     [SerializeField] bool isXType;
+    [SerializeField] bool isInput;
 
+    DoubleBasicBuilding doubleBasicBuilding;
     GameObject itemTemp;
     Transform itemTransform;
     Transform startPos;
     Transform endPos;
-    Sprite itemSprite;
+    SpriteRenderer itemSpriteRenderer;
     WaitForSeconds waitForArriveSeconds;
-    WaitForSeconds waitForSpawnSeconds;
+    WaitForSeconds waitForThrowSeconds;
     WaitForSeconds waitForReturnSeconds;
     WaitForSeconds waitForStoreSeconds;
     Vector3 centerPoint;
@@ -42,19 +37,19 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     bool isReturned;
     bool isRemoved;
     bool isStoring;
-
     #endregion
     #region Functions
     public override void InitSettings()
     {
         base.InitSettings();
         waitForArriveSeconds = new WaitForSeconds(arriveTime);
-        waitForSpawnSeconds = new WaitForSeconds(spawnTime);
+        waitForThrowSeconds = new WaitForSeconds(throwTime);
         waitForReturnSeconds = new WaitForSeconds(returnTime);
         waitForStoreSeconds = new WaitForSeconds(storeTime);
+        doubleBasicBuilding = transform.parent.GetComponent<DoubleBasicBuilding>();
     }
 
-    public void Input()
+    public IEnumerator Input()
     {
         if (pointingPoint != null && pointingPoint.hitTransform != null && pointingPoint.itemTransform != null)
         {
@@ -75,6 +70,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
                     canRotate = false;
                     itemTransform = pointingPoint.itemTransform;
                     itemTemp = itemTransform.gameObject;
+                    yield return waitForThrowSeconds;
                     StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                     StartCoroutine(ThrowItem(itemTransform));
                     StartCoroutine(WaitForInput());
@@ -114,18 +110,18 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     {
         yield return waitForArriveSeconds;
 
-        if (!itemTransform.GetComponent<Item>().isCutted)
+        if (itemTransform.GetComponent<Item>().isCutted)
         {
-            itemSprite = itemTransform.GetComponent<Item>().ApplyCutSprites(isXType, cutterType);
-            ApplyStoreItemImg(itemSprite);
-
-            itemSprite = itemTransform.GetComponent<Item>().ApplyCutSprites(partnerBuilding.isXType, partnerBuilding.cutterType);
-            partnerBuilding.ApplyStoreItemImg(itemSprite);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().spriteRenderer;
+            ApplyStoreItemImg(itemSpriteRenderer);
         }
         else
         {
-            itemSprite = itemTransform.GetComponent<Item>().spriteRenderer.sprite;
-            ApplyStoreItemImg(itemSprite);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
+            ApplyStoreItemImg(itemSpriteRenderer);
+
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput, doubleBasicBuilding.isReversed);
+            partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
         }
 
         isArrived = true;
@@ -135,7 +131,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         isRemoved = false;
         yield return waitForStoreSeconds;
 
-        if (cutterType == cutterType.inputType && !itemTemp.GetComponent<Item>().isCutted)
+        if (isInput == true && !itemTemp.GetComponent<Item>().isCutted)
         {
             partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
             partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
@@ -181,7 +177,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CutSprite(isXType, cutterType);
+        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
+        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
@@ -199,8 +196,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
 
     private void Update()
     {
-        if (cutterType == cutterType.inputType)
-            Input();
+        if (isInput == true)
+            StartCoroutine(Input());
 
         Output();
     }
