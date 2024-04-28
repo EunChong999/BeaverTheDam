@@ -33,53 +33,28 @@ public class Shadow : MonoBehaviour
         }
     }
 
-    public void CutSprite(bool isXType, bool isInput, bool isReversed)
+    public void CutSprite(bool isXType, bool isInput)
     {
         if (!isCutted)
         {
-            if (isReversed)
+            if (isXType && isInput == true)
             {
-                if (isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[3];
-                }
-
-                if (!isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[0];
-                }
-
-                if (isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[2];
-                }
-
-                if (!isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[1];
-                }
+                curSprite = cuttedSprites[2];
             }
-            else
+
+            if (!isXType && isInput == true)
             {
-                if (isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[2];
-                }
+                curSprite = cuttedSprites[1];
+            }
 
-                if (!isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[1];
-                }
+            if (isXType && isInput == false)
+            {
+                curSprite = cuttedSprites[3];
+            }
 
-                if (isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[3];
-                }
-
-                if (!isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[0];
-                }
+            if (!isXType && isInput == false)
+            {
+                curSprite = cuttedSprites[0];
             }
 
             spriteRenderer.sprite = curSprite;
