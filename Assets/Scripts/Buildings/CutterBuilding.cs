@@ -117,10 +117,10 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         }
         else
         {
-            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
             ApplyStoreItemImg(itemSpriteRenderer);
 
-            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput, doubleBasicBuilding.isStartReversed);
             partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
         }
 
@@ -177,8 +177,8 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput);
-        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput);
+        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
+        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;

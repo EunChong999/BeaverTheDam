@@ -4,9 +4,11 @@ using UnityEngine;
 public class DoubleBasicBuilding : MonoBehaviour
 {
     #region Variables
+    public GameObject[] buildings;
+    public bool isStartReversed;
+
     [SerializeField] bool isStartRotated;
     [SerializeField] bool isRotated;
-    public GameObject[] buildings;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Animator animator;
     [SerializeField] bool canExchange;
@@ -73,6 +75,11 @@ public class DoubleBasicBuilding : MonoBehaviour
             animator.SetFloat("Rotated", 1);
         else
             animator.SetFloat("Rotated", -1);
+
+        if (isStartReversed)
+            animator.SetFloat("Reversed", 1);
+        else
+            animator.SetFloat("Reversed", -1);
     }
 
     private void OnMouseOver()
