@@ -88,7 +88,6 @@ public class Dye : MonoBehaviour
         {
             // 합성 색상 설정
             spriteRenderer.sprite = syntheticSprites[(int)resultColor];
-            Debug.Log((int)resultColor);
             syntheticColorType = resultColor;
             myColor = syntheticColors[(int)resultColor];
         }
