@@ -121,6 +121,11 @@ public class BasicBuilding : MonoBehaviour
         directionScaleSequence = DOTween.Sequence().SetAutoKill(true)
         .Append(direction.transform.DOScale(new Vector3(direction.transform.localScale.x / 1.5f, direction.transform.localScale.y / 1.25f, direction.transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(direction.transform.DOScale(directionOriginScale, endScaleTime).SetEase(endScaleEase));
+
+        if (pointTransform.GetComponent<Point>().itemTransform != null && pointTransform.parent.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
+        {
+            pointTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().ShowEffect(false);
+        }
     }
 
     /// <summary>
