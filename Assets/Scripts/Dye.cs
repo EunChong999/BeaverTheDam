@@ -21,17 +21,14 @@ public class Dye : MonoBehaviour
 {
     public basicColorType basicColorType;
     public syntheticColorType syntheticColorType;
-    public Sprite[] syntheticSprites;
-    public Color[] basicColors;
-    public Color[] syntheticColors;
     public Color myColor;
+    private Sprite[] syntheticSprites;
+    private Color[] basicColors;
+    private Color[] syntheticColors;
 
     [SerializeField] SpriteRenderer spriteRenderer;
 
     bool isMixed;
-
-    // 딕셔너리를 사용하여 기본 색상 조합에 대한 항목 저장
-    Dictionary<string, syntheticColorType> colorCombinationDict = new Dictionary<string, syntheticColorType>();
 
     private void Start()
     {
@@ -43,26 +40,10 @@ public class Dye : MonoBehaviour
     // 기본 색상 조합에 대한 딕셔너리 초기화
     void InitColorCombinations()
     {
-        // 가능한 모든 기본 색상 조합에 대한 항목 추가
-        AddColorCombination(basicColorType.red, basicColorType.yellow, syntheticColorType.orange);
-        AddColorCombination(basicColorType.yellow, basicColorType.red, syntheticColorType.orange);
-        AddColorCombination(basicColorType.red, basicColorType.blue, syntheticColorType.purple);
-        AddColorCombination(basicColorType.blue, basicColorType.red, syntheticColorType.purple);
-        AddColorCombination(basicColorType.yellow, basicColorType.blue, syntheticColorType.green);
-        AddColorCombination(basicColorType.blue, basicColorType.yellow, syntheticColorType.green);
-    }
-
-    // 딕셔너리에 색상 조합 추가
-    void AddColorCombination(basicColorType firstColor, basicColorType secondColor, syntheticColorType resultColor)
-    {
-        // 조합된 색상 이름 생성
-        StringBuilder combinationKey = new StringBuilder();
-        combinationKey.Append(firstColor.ToString());
-        combinationKey.Append("_");
-        combinationKey.Append(secondColor.ToString());
-
-        // 딕셔너리에 추가
-        colorCombinationDict.Add(combinationKey.ToString(), resultColor);
+        // 스프라이트 및 색상 추가
+        syntheticSprites = DyeManager.instance.syntheticSprites;
+        basicColors = DyeManager.instance.basicColors;
+        syntheticColors = DyeManager.instance.syntheticColors;
     }
 
     public void MixColor(basicColorType firstColor, basicColorType secondColor)
@@ -84,7 +65,7 @@ public class Dye : MonoBehaviour
         combinationKey.Append(secondColor.ToString());
 
         // 딕셔너리에서 해당 조합의 합성 색상을 찾음
-        if (colorCombinationDict.TryGetValue(combinationKey.ToString(), out syntheticColorType resultColor))
+        if (DyeManager.instance.colorCombinationDict.TryGetValue(combinationKey.ToString(), out syntheticColorType resultColor))
         {
             // 합성 색상 설정
             spriteRenderer.sprite = syntheticSprites[(int)resultColor];
