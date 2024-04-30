@@ -201,7 +201,7 @@ public class BasicBuilding : MonoBehaviour
     }
     #endregion
     #region Events
-    private void OnEnable()
+    virtual protected void Start()
     {
         BuildingManager.instance.buildingCount++;
     }

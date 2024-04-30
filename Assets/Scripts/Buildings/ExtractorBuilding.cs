@@ -140,8 +140,9 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 
