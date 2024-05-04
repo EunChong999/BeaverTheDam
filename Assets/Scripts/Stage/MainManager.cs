@@ -8,9 +8,11 @@ public class MainManager : Manager
     [SerializeField] Transform endCard;
     [SerializeField] Transform[] star;
     [SerializeField] GameObject nextStage;
+    [SerializeField] UICurveCount UICurve;
     public int clearScore;
     public int rotateCount;
     public int StageIndex;
+    [SerializeField] GameObject[] Maps;
     public static MainManager instance {get; private set;}
     private void Awake()
     {
@@ -26,8 +28,14 @@ public class MainManager : Manager
         {
             star[i].localScale = Vector3.zero;
         }
+        UICurve.SetCurveCount(rotateCount);
     }
     public void AddRotateCount() => rotateCount++;
+    public void SetCurveCount()
+    {
+        rotateCount--;
+        UICurve.SetCurveCount(rotateCount);
+    }
     public void Cancel()
     {
         SceneMove(Scenes.SelectScene);
