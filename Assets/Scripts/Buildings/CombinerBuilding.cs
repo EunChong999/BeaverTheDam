@@ -162,7 +162,7 @@ public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuil
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CombineSprite();
+        itemTemp.GetComponent<Item>().CombineSprite(isXType, itemTemp.GetComponent<Item>().spriteRenderer.color, partnerBuilding.itemTemp.GetComponent<Item>().spriteRenderer.color);
         itemTemp.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
         endPos = point.hitTransform;

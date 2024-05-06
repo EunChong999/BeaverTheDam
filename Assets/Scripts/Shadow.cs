@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class Shadow : MonoBehaviour
 {
     public bool isCutted;
+    public SpriteRenderer spriteRenderer;
+    public Sprite sprite;
 
     [SerializeField] Transform buildingTransform;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite sprite;
     [SerializeField] Sprite curSprite;
     [SerializeField] Sprite[] cuttedSprites;
  
