@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
 {
-    [SerializeField] Transform firSpriteTransform;
-    [SerializeField] Transform secSpriteTransform;
-    [SerializeField] Transform backSpriteTransform;
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
 
     SpriteRenderer myFirSpriteRenderer;
-    SpriteRenderer mySecSpriteRenderer;
     SpriteRenderer backspriteRenderer;
+
+    [HideInInspector] public Transform spriteTransform;
+    [HideInInspector] public Transform backSpriteTransform;
+
+    private void Awake()
+    {
+        spriteTransform = transform.GetChild(0);
+        backSpriteTransform = transform.GetChild(1);
+    }
 
     private void Start()
     {
-        myFirSpriteRenderer = firSpriteTransform.GetComponent<SpriteRenderer>();
+        myFirSpriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
         myFirSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
 
-        mySecSpriteRenderer = secSpriteTransform.GetComponent<SpriteRenderer>();
-        mySecSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
-
-        backspriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        backspriteRenderer = backSpriteTransform.GetComponent<SpriteRenderer>();
         backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
     }
 
@@ -41,6 +43,7 @@ public class ItemPanel : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.localRotation = firSpriteTransform.localRotation;
+        spriteTransform.rotation = Quaternion.Euler(30, 45, 0);
+        backSpriteTransform.rotation = Quaternion.Euler(30, 45, 0);
     }
 }

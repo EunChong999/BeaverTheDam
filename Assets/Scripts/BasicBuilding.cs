@@ -84,7 +84,7 @@ public class BasicBuilding : MonoBehaviour
         point = pointTransform.GetComponent<Point>();
 
         if (interactionType == interactionType.storeType)
-            itemPanelSpriteRenderer = itemPanel.GetComponent<SpriteRenderer>();
+            itemPanelSpriteRenderer = itemPanel.GetComponent<ItemPanel>().spriteTransform.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>

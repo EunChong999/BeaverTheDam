@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
@@ -9,20 +10,20 @@ public class Item : MonoBehaviour
     public bool isPainted;
     public bool isMoving;
     public bool isCombined;
-    public bool isDivided;
     public Shadow shadow;
     public Transform spriteTransform;
+    public GameObject xSpriteObj;
+    public GameObject zSpriteObj;
     public SpriteRenderer spriteRenderer;
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
     public Sprite[] cuttedReplaceSprites;
 
     [HideInInspector] public Point curPoint;
-    [HideInInspector] public bool isZCombined;
-    [HideInInspector] public bool isXCombined;
-    [HideInInspector] public bool isZCutted;
-    [HideInInspector] public bool isXCutted;
     [HideInInspector] public bool canInput;
+
+    [HideInInspector] public Color firstColor;
+    [HideInInspector] public Color secondColor;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -142,14 +143,8 @@ public class Item : MonoBehaviour
     {
         if (!isCutted)
         {
-            //if (isCombined)
-            //{
-            //    DivideSprite();
-
-            //    isCutted = true;
-
-            //    return;
-            //}
+            xSpriteObj.SetActive(false);
+            zSpriteObj.SetActive(false);
 
             ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
@@ -158,6 +153,7 @@ public class Item : MonoBehaviour
                 ChangeToCuttedReplaceSprites();
             }
 
+            isCombined = false;
             isCutted = true;
         }
     }
@@ -199,12 +195,31 @@ public class Item : MonoBehaviour
     /// <summary>
     /// 잘려진 스프라이트를 결합하는 함수 
     /// </summary>
-    public void CombineSprite()
+    public void CombineSprite(bool isXType, Color firstColor, Color secondColor)
     {
-        Debug.Log("결합 확인");
+        spriteRenderer.sprite = null;
+        shadow.isCutted = false;
 
-        isCutted = false;
+        this.firstColor = firstColor;
+        this.secondColor = secondColor;
+
+        if (isXType)
+        {
+            xSpriteObj.SetActive(true);
+            xSpriteObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = firstColor;
+            xSpriteObj.transform.GetChild(1).GetComponent<SpriteRenderer>().color = secondColor;
+            zSpriteObj.SetActive(false);
+        }
+        else
+        {
+            xSpriteObj.SetActive(false);
+            zSpriteObj.SetActive(true);
+            zSpriteObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = firstColor;
+            zSpriteObj.transform.GetChild(1).GetComponent<SpriteRenderer>().color = secondColor;
+        }
+
         isCombined = true;
+        isCutted = false;
     }
 
     /// <summary>
