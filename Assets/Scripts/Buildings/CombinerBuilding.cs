@@ -4,7 +4,7 @@ using UnityEngine;
 public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
-    [Header("MixerBuilding")]
+    [Header("CombinerBuilding")]
 
     [Space(10)]
 
