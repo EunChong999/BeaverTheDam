@@ -189,8 +189,9 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     }
     #endregion
     #region Events
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 

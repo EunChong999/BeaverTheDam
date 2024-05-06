@@ -201,6 +201,11 @@ public class BasicBuilding : MonoBehaviour
     }
     #endregion
     #region Events
+    virtual protected void Start()
+    {
+        BuildingManager.instance.buildingCount++;
+    }
+
     private void OnMouseEnter()
     {
         direction.SetActive(true);

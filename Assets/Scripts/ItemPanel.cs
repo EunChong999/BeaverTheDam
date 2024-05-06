@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
 {
-    [SerializeField] Transform spriteTransform;
+    [SerializeField] Transform firSpriteTransform;
+    [SerializeField] Transform secSpriteTransform;
+    [SerializeField] Transform backSpriteTransform;
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
 
-    SpriteRenderer mySpriteRenderer;
+    SpriteRenderer myFirSpriteRenderer;
+    SpriteRenderer mySecSpriteRenderer;
     SpriteRenderer backspriteRenderer;
 
     private void Start()
     {
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
-        mySpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+        myFirSpriteRenderer = firSpriteTransform.GetComponent<SpriteRenderer>();
+        myFirSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+
+        mySecSpriteRenderer = secSpriteTransform.GetComponent<SpriteRenderer>();
+        mySecSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
 
         backspriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
         backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
@@ -22,10 +28,10 @@ public class ItemPanel : MonoBehaviour
 
     private void Update()
     {
-        if (mySpriteRenderer.sprite != null)
-            transform.GetChild(0).gameObject.SetActive(true);
+        if (myFirSpriteRenderer.sprite != null)
+            backSpriteTransform.gameObject.SetActive(true);
         else
-            transform.GetChild(0).gameObject.SetActive(false);
+            backSpriteTransform.gameObject.SetActive(false);
 
         float x = transform.position.x;
         float y = Mathf.Sin(Time.time * frequency) * amplitude;
@@ -35,6 +41,6 @@ public class ItemPanel : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.localRotation = spriteTransform.localRotation;
+        transform.localRotation = firSpriteTransform.localRotation;
     }
 }

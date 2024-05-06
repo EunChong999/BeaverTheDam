@@ -8,6 +8,8 @@ public class Item : MonoBehaviour
     public bool isCutted;
     public bool isPainted;
     public bool isMoving;
+    public bool isCombined;
+    public bool isDivided;
     public Shadow shadow;
     public Transform spriteTransform;
     public SpriteRenderer spriteRenderer;
@@ -140,6 +142,15 @@ public class Item : MonoBehaviour
     {
         if (!isCutted)
         {
+            //if (isCombined)
+            //{
+            //    DivideSprite();
+
+            //    isCutted = true;
+
+            //    return;
+            //}
+
             ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
             if (isPainted)
@@ -185,9 +196,23 @@ public class Item : MonoBehaviour
         return spriteRenderer;
     }
 
+    /// <summary>
+    /// 잘려진 스프라이트를 결합하는 함수 
+    /// </summary>
     public void CombineSprite()
     {
+        Debug.Log("결합 확인");
 
+        isCutted = false;
+        isCombined = true;
+    }
+
+    /// <summary>
+    /// 결합된 스프라이트를 분할하는 함수
+    /// </summary>
+    public void DivideSprite()
+    {
+        Debug.Log("분할 확인");
     }
     #endregion
     #region Events

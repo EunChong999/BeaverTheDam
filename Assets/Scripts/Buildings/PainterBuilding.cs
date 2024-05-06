@@ -222,8 +222,9 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     }
     #endregion
     #region Events
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 

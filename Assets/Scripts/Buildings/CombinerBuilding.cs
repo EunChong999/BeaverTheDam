@@ -4,7 +4,7 @@ using UnityEngine;
 public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
-    [Header("MixerBuilding")]
+    [Header("CombinerBuilding")]
 
     [Space(10)]
 
@@ -172,8 +172,9 @@ public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuil
     }
     #endregion
     #region Events
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 
