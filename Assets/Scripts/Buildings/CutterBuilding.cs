@@ -143,13 +143,7 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
 
         if (isInput)
         {
-            if (itemTransform.GetComponent<Item>().isCombined)
-            {
-                partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
-                partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
-                partnerBuilding.itemTemp.GetComponent<Item>().UnMove();
-            }
-            else if (!itemTemp.GetComponent<Item>().isCutted)
+            if (itemTransform.GetComponent<Item>().isCombined || !itemTemp.GetComponent<Item>().isCutted)
             {
                 partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
                 partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;

@@ -474,6 +474,7 @@ MonoBehaviour:
   isCutted: 0
   isPainted: 0
   isMoving: 0
+  isCombined: 0
   shadow: {fileID: 2220677437763547572}
   spriteTransform: {fileID: 159132853655487175}
   xSpriteObj: {fileID: 2214261386615576918}
@@ -491,11 +492,9 @@ MonoBehaviour:
   - {fileID: -1562656868, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   - {fileID: -1192081027, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   curPoint: {fileID: 0}
-  isZCombined: 0
-  isXCombined: 0
-  isZCutted: 0
-  isXCutted: 0
   canInput: 0
+  firstColor: {r: 0, g: 0, b: 0, a: 0}
+  secondColor: {r: 0, g: 0, b: 0, a: 0}
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 1
@@ -520,7 +519,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3599715686501872217
 GameObject:
