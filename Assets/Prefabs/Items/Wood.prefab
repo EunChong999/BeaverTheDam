@@ -72,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
-  m_Sprite: {fileID: -1478775193, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: -1562656868, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,8 +156,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
-  m_Sprite: {fileID: -1600591439, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: -1192081027, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 1261009898, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  m_Sprite: {fileID: -1409564195, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -298,9 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCutted: 0
-  buildingTransform: {fileID: 1303141631943159099}
   spriteRenderer: {fileID: 7282168954956761357}
   sprite: {fileID: 21300000, guid: 74d70bca7c2ca7e439b4faf3a4362bf6, type: 3}
+  buildingTransform: {fileID: 1303141631943159099}
   curSprite: {fileID: 0}
   cuttedSprites:
   - {fileID: 796748638, guid: 03f338814a92d7840a5123010ce2caff, type: 3}
@@ -382,7 +382,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992455070689535350}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -415,7 +415,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2214261386615576918}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -474,8 +474,11 @@ MonoBehaviour:
   isCutted: 0
   isPainted: 0
   isMoving: 0
+  isCombined: 0
   shadow: {fileID: 2220677437763547572}
   spriteTransform: {fileID: 159132853655487175}
+  xSpriteObj: {fileID: 2214261386615576918}
+  zSpriteObj: {fileID: 1992455070689535350}
   spriteRenderer: {fileID: 7204287765081671397}
   replaceSprite: {fileID: 21300000, guid: d69127b6b49649a40932cc32152f6a27, type: 3}
   cuttedSprites:
@@ -489,11 +492,9 @@ MonoBehaviour:
   - {fileID: -1562656868, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   - {fileID: -1192081027, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   curPoint: {fileID: 0}
-  isZCombined: 0
-  isXCombined: 0
-  isZCutted: 0
-  isXCutted: 0
   canInput: 0
+  firstColor: {r: 0, g: 0, b: 0, a: 0}
+  secondColor: {r: 0, g: 0, b: 0, a: 0}
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 1
@@ -593,7 +594,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 2136776076, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
+  m_Sprite: {fileID: -1591933598, guid: 9ac96497b8ca7c54b95a3366a1f78e8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -634,8 +635,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8849972585763007905}
-  - {fileID: 2557679469672146022}
   - {fileID: 95900344681376431}
+  - {fileID: 2557679469672146022}
   m_Father: {fileID: 1303141631943159099}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}

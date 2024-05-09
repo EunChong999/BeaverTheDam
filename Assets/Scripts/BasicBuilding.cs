@@ -84,7 +84,7 @@ public class BasicBuilding : MonoBehaviour
         point = pointTransform.GetComponent<Point>();
 
         if (interactionType == interactionType.storeType)
-            itemPanelSpriteRenderer = itemPanel.GetComponent<SpriteRenderer>();
+            itemPanelSpriteRenderer = itemPanel.GetComponent<ItemPanel>().spriteTransform.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -122,7 +122,7 @@ public class BasicBuilding : MonoBehaviour
         .Append(direction.transform.DOScale(new Vector3(direction.transform.localScale.x / 1.5f, direction.transform.localScale.y / 1.25f, direction.transform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(direction.transform.DOScale(directionOriginScale, endScaleTime).SetEase(endScaleEase));
 
-        if (pointTransform.GetComponent<Point>().itemTransform != null)
+        if (pointTransform.GetComponent<Point>().itemTransform != null && pointTransform.parent.transform.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
         {
             pointTransform.GetComponent<Point>().itemTransform.GetComponent<Item>().ShowEffect(false);
         }
@@ -201,6 +201,11 @@ public class BasicBuilding : MonoBehaviour
     }
     #endregion
     #region Events
+    virtual protected void Start()
+    {
+        BuildingManager.instance.buildingCount++;
+    }
+
     private void OnMouseEnter()
     {
         direction.SetActive(true);

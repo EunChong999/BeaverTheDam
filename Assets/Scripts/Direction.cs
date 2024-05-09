@@ -7,6 +7,7 @@ public class Direction : MonoBehaviour
     [SerializeField] BasicBuilding basicBuilding;
     [SerializeField] Sprite[] sprites;
     [SerializeField] Transform spriteTransform;
+    [SerializeField] bool isFrontReversed;
 
     SpriteRenderer spriteRenderer;
 
@@ -52,40 +53,84 @@ public class Direction : MonoBehaviour
         {
             if (directionType == directionType.rightType)
             {
-                if (rotationToInt >= 0 && rotationToInt < 90)
+                if (isFrontReversed)
                 {
-                    spriteRenderer.sprite = sprites[2];
+                    if (rotationToInt >= 0 && rotationToInt < 90)
+                    {
+                        spriteRenderer.sprite = sprites[5];
+                    }
+                    else if (rotationToInt >= 90 && rotationToInt < 180)
+                    {
+                        spriteRenderer.sprite = sprites[8];
+                    }
+                    else if (rotationToInt >= 180 && rotationToInt < 270)
+                    {
+                        spriteRenderer.sprite = sprites[10];
+                    }
+                    else if (rotationToInt >= 270 && rotationToInt < 360)
+                    {
+                        spriteRenderer.sprite = sprites[3];
+                    }
                 }
-                else if (rotationToInt >= 90 && rotationToInt < 180)
+                else
                 {
-                    spriteRenderer.sprite = sprites[11];
-                }
-                else if (rotationToInt >= 180 && rotationToInt < 270)
-                {
-                    spriteRenderer.sprite = sprites[9];
-                }
-                else if (rotationToInt >= 270 && rotationToInt < 360)
-                {
-                    spriteRenderer.sprite = sprites[4];
+                    if (rotationToInt >= 0 && rotationToInt < 90)
+                    {
+                        spriteRenderer.sprite = sprites[2];
+                    }
+                    else if (rotationToInt >= 90 && rotationToInt < 180)
+                    {
+                        spriteRenderer.sprite = sprites[11];
+                    }
+                    else if (rotationToInt >= 180 && rotationToInt < 270)
+                    {
+                        spriteRenderer.sprite = sprites[9];
+                    }
+                    else if (rotationToInt >= 270 && rotationToInt < 360)
+                    {
+                        spriteRenderer.sprite = sprites[4];
+                    }
                 }
             }
             else
             {
-                if (rotationToInt >= 0 && rotationToInt < 90)
+                if (isFrontReversed)
                 {
-                    spriteRenderer.sprite = sprites[8];
+                    if (rotationToInt >= 0 && rotationToInt < 90)
+                    {
+                        spriteRenderer.sprite = sprites[11];
+                    }
+                    else if (rotationToInt >= 90 && rotationToInt < 180)
+                    {
+                        spriteRenderer.sprite = sprites[9];
+                    }
+                    else if (rotationToInt >= 180 && rotationToInt < 270)
+                    {
+                        spriteRenderer.sprite = sprites[4];
+                    }
+                    else if (rotationToInt >= 270 && rotationToInt < 360)
+                    {
+                        spriteRenderer.sprite = sprites[2];
+                    }
                 }
-                else if (rotationToInt >= 90 && rotationToInt < 180)
+                else
                 {
-                    spriteRenderer.sprite = sprites[10];
-                }
-                else if (rotationToInt >= 180 && rotationToInt < 270)
-                {
-                    spriteRenderer.sprite = sprites[3];
-                }
-                else if (rotationToInt >= 270 && rotationToInt < 360)
-                {
-                    spriteRenderer.sprite = sprites[5];
+                    if (rotationToInt >= 0 && rotationToInt < 90)
+                    {
+                        spriteRenderer.sprite = sprites[8];
+                    }
+                    else if (rotationToInt >= 90 && rotationToInt < 180)
+                    {
+                        spriteRenderer.sprite = sprites[10];
+                    }
+                    else if (rotationToInt >= 180 && rotationToInt < 270)
+                    {
+                        spriteRenderer.sprite = sprites[3];
+                    }
+                    else if (rotationToInt >= 270 && rotationToInt < 360)
+                    {
+                        spriteRenderer.sprite = sprites[5];
+                    }
                 }
             }
         }

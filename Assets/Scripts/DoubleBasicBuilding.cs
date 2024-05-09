@@ -4,9 +4,11 @@ using UnityEngine;
 public class DoubleBasicBuilding : MonoBehaviour
 {
     #region Variables
-    [SerializeField] bool isRotated;
-    public bool isReversed;
     public GameObject[] buildings;
+    public bool isStartReversed;
+
+    [SerializeField] bool isStartRotated;
+    [SerializeField] bool isRotated;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Animator animator;
     [SerializeField] bool canExchange;
@@ -36,6 +38,20 @@ public class DoubleBasicBuilding : MonoBehaviour
         .Append(spriteTransform.DOScale(new Vector3(spriteTransform.localScale.x / 1.5f, spriteTransform.localScale.y / 1.25f, spriteTransform.localScale.z / 1.5f), startScaleTime).SetEase(startScaleEase))
         .Append(spriteTransform.DOScale(originScale, endScaleTime).SetEase(endScaleEase));
     }
+
+    private void Rotate(bool canShowEffect)
+    {
+        isRotated = !isRotated;
+
+        if (canShowEffect)
+            ShowEffect();
+
+        firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform, true);
+        secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform, true);
+
+        if (canExchange)
+            ExchangeBuildings();
+    }
     #endregion
     #region Events
     private void Start()
@@ -45,13 +61,12 @@ public class DoubleBasicBuilding : MonoBehaviour
 
         originScale = spriteTransform.localScale;
 
-        if (!isReversed)
+        if (!isStartRotated)
         {
             return;
         }
 
-        if (canExchange)
-            ExchangeBuildings();
+        Rotate(false);
     }
 
     private void Update()
@@ -61,7 +76,7 @@ public class DoubleBasicBuilding : MonoBehaviour
         else
             animator.SetFloat("Rotated", -1);
 
-        if (isReversed)
+        if (isStartReversed)
             animator.SetFloat("Reversed", 1);
         else
             animator.SetFloat("Reversed", -1);
@@ -75,14 +90,7 @@ public class DoubleBasicBuilding : MonoBehaviour
             !firstBuilding.isRotating &&
             !secondBuilding.isRotating)
         {
-            isRotated = !isRotated;
-
-            ShowEffect();
-            firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform, true);
-            secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform, true);
-
-            if (canExchange)
-                ExchangeBuildings();
+            Rotate(true);
         }
     }
 

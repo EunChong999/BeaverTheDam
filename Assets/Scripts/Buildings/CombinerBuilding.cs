@@ -4,7 +4,7 @@ using UnityEngine;
 public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuilding, IOutputableBuilding
 {
     #region Variables
-    [Header("MixerBuilding")]
+    [Header("CombinerBuilding")]
 
     [Space(10)]
 
@@ -162,6 +162,7 @@ public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuil
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
+        itemTemp.GetComponent<Item>().CombineSprite(isXType, itemTemp.GetComponent<Item>().spriteRenderer.color, partnerBuilding.itemTemp.GetComponent<Item>().spriteRenderer.color);
         itemTemp.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
         endPos = point.hitTransform;
@@ -171,8 +172,9 @@ public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuil
     }
     #endregion
     #region Events
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 

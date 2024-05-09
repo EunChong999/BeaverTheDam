@@ -146,8 +146,9 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 
