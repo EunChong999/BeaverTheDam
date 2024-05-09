@@ -84,7 +84,7 @@ public class SelectManager : Manager
             var text = chapterTextBtn[i].transform.GetChild(0).GetComponent<Text>();
             text.color = i == curChapter ? Color.white : Color.grey;
         }
-        var pos = new Vector2(curChapter * -150,curChapter * -75);
+        var pos = new Vector2(curChapter * -150,(curChapter * -75) -200);
         print(pos);
         chapterTextBtnTransform.DOLocalMove(pos,0.5f);
     }
