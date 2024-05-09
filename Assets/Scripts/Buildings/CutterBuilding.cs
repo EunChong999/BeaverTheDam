@@ -110,17 +110,27 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     {
         yield return waitForArriveSeconds;
 
-        if (itemTransform.GetComponent<Item>().isCutted)
+        if (itemTransform.GetComponent<Item>().isCombined)
+        {
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
+            itemSpriteRenderer.color = itemTransform.GetComponent<Item>().firstColor;
+            ApplyStoreItemImg(itemSpriteRenderer);
+
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput, doubleBasicBuilding.isStartReversed);
+            itemSpriteRenderer.color = itemTransform.GetComponent<Item>().secondColor;
+            partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
+        }
+        else if (itemTransform.GetComponent<Item>().isCutted)
         {
             itemSpriteRenderer = itemTransform.GetComponent<Item>().spriteRenderer;
             ApplyStoreItemImg(itemSpriteRenderer);
         }
         else
         {
-            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
             ApplyStoreItemImg(itemSpriteRenderer);
 
-            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput, doubleBasicBuilding.isReversed);
+            itemSpriteRenderer = itemTransform.GetComponent<Item>().ApplyCutSprite(partnerBuilding.isXType, partnerBuilding.isInput, doubleBasicBuilding.isStartReversed);
             partnerBuilding.ApplyStoreItemImg(itemSpriteRenderer);
         }
 
@@ -131,11 +141,14 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         isRemoved = false;
         yield return waitForStoreSeconds;
 
-        if (isInput == true && !itemTemp.GetComponent<Item>().isCutted)
+        if (isInput)
         {
-            partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
-            partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
-            partnerBuilding.itemTemp.GetComponent<Item>().UnMove();
+            if (itemTransform.GetComponent<Item>().isCombined || !itemTemp.GetComponent<Item>().isCutted)
+            {
+                partnerBuilding.itemTransform = Instantiate(itemTransform, pointTransform.position, Quaternion.identity).transform;
+                partnerBuilding.itemTemp = partnerBuilding.itemTransform.gameObject;
+                partnerBuilding.itemTemp.GetComponent<Item>().UnMove();
+            }
         }
 
         isStoring = false;
@@ -177,8 +190,12 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
         point.hitTransform.GetComponent<Point>().isItemExist = true;
 
         itemTemp.SetActive(true);
-        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
-        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput, doubleBasicBuilding.isReversed);
+
+        if (itemTemp.GetComponent<Item>().isCombined && isInput)
+            itemTemp.GetComponent<Item>().spriteRenderer.color = itemTransform.GetComponent<Item>().firstColor;
+
+        itemTemp.GetComponent<Item>().CutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
+        itemTemp.GetComponent<Item>().shadow.CutSprite(isXType, isInput, doubleBasicBuilding.isStartReversed);
         itemTransform = itemTemp.transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         startPos = pointTransform;
@@ -189,8 +206,9 @@ public class CutterBuilding : BasicBuilding, ISendableBuilding, IInputableBuildi
     }
     #endregion
     #region Events
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
     }
 

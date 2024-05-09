@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
 {
-    [SerializeField] Transform spriteTransform;
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
 
-    SpriteRenderer mySpriteRenderer;
+    SpriteRenderer myFirSpriteRenderer;
     SpriteRenderer backspriteRenderer;
+
+    [HideInInspector] public Transform spriteTransform;
+    [HideInInspector] public Transform backSpriteTransform;
+
+    private void Awake()
+    {
+        spriteTransform = transform.GetChild(0);
+        backSpriteTransform = transform.GetChild(1);
+    }
 
     private void Start()
     {
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
-        mySpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+        myFirSpriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
+        myFirSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
 
-        backspriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        backspriteRenderer = backSpriteTransform.GetComponent<SpriteRenderer>();
         backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
     }
 
     private void Update()
     {
-        if (mySpriteRenderer.sprite != null)
-            transform.GetChild(0).gameObject.SetActive(true);
+        if (myFirSpriteRenderer.sprite != null)
+            backSpriteTransform.gameObject.SetActive(true);
         else
-            transform.GetChild(0).gameObject.SetActive(false);
+            backSpriteTransform.gameObject.SetActive(false);
 
         float x = transform.position.x;
         float y = Mathf.Sin(Time.time * frequency) * amplitude;
@@ -35,6 +43,7 @@ public class ItemPanel : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.localRotation = spriteTransform.localRotation;
+        spriteTransform.rotation = Quaternion.Euler(30, 45, 0);
+        backSpriteTransform.rotation = Quaternion.Euler(30, 45, 0);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public enum basicColorType
 {
@@ -12,26 +13,37 @@ public enum basicColorType
 public enum syntheticColorType
 {
     orange,
-    green,
-    purple
+    purple,
+    green
 }
 
 public class Dye : MonoBehaviour
 {
     public basicColorType basicColorType;
     public syntheticColorType syntheticColorType;
-    public Sprite[] syntheticSprites;
-    public Color[] basicColors;
-    public Color[] syntheticColors;
     public Color myColor;
+    private Sprite[] syntheticSprites;
+    private Color[] basicColors;
+    private Color[] syntheticColors;
 
     [SerializeField] SpriteRenderer spriteRenderer;
 
     bool isMixed;
- 
+
     private void Start()
     {
+        // 초기화할 때 딕셔너리에 기본 색상 조합에 대한 항목 추가
+        InitColorCombinations();
         ChangeToBasicColor();
+    }
+
+    // 기본 색상 조합에 대한 딕셔너리 초기화
+    void InitColorCombinations()
+    {
+        // 스프라이트 및 색상 추가
+        syntheticSprites = DyeManager.instance.syntheticSprites;
+        basicColors = DyeManager.instance.basicColors;
+        syntheticColors = DyeManager.instance.syntheticColors;
     }
 
     public void MixColor(basicColorType firstColor, basicColorType secondColor)
@@ -46,29 +58,19 @@ public class Dye : MonoBehaviour
             return;
         }
 
-        switch ((int)firstColor + (int)secondColor)
+        // 조합된 색상 이름 생성
+        StringBuilder combinationKey = new StringBuilder();
+        combinationKey.Append(firstColor.ToString());
+        combinationKey.Append("_");
+        combinationKey.Append(secondColor.ToString());
+
+        // 딕셔너리에서 해당 조합의 합성 색상을 찾음
+        if (DyeManager.instance.colorCombinationDict.TryGetValue(combinationKey.ToString(), out syntheticColorType resultColor))
         {
-            case 1:
-            {
-                spriteRenderer.sprite = syntheticSprites[0];
-                syntheticColorType = syntheticColorType.orange;
-                myColor = syntheticColors[(int)syntheticColorType.orange];
-                break;
-            }
-            case 2:
-            {
-                spriteRenderer.sprite = syntheticSprites[1];
-                syntheticColorType = syntheticColorType.purple;
-                myColor = syntheticColors[(int)syntheticColorType.purple];
-                break;
-            }
-            case 3:
-            {
-                spriteRenderer.sprite = syntheticSprites[2];
-                syntheticColorType = syntheticColorType.green;
-                myColor = syntheticColors[(int)syntheticColorType.green];
-                break;
-            }
+            // 합성 색상 설정
+            spriteRenderer.sprite = syntheticSprites[(int)resultColor];
+            syntheticColorType = resultColor;
+            myColor = syntheticColors[(int)resultColor];
         }
 
         isMixed = false;
@@ -79,20 +81,14 @@ public class Dye : MonoBehaviour
         switch (basicColorType)
         {
             case basicColorType.red:
-            {
                 myColor = basicColors[(int)basicColorType.red];
                 break;
-            }
             case basicColorType.yellow:
-            {
                 myColor = basicColors[(int)basicColorType.yellow];
                 break;
-            }
             case basicColorType.blue:
-            {
                 myColor = basicColors[(int)basicColorType.blue];
                 break;
-            }
         }
     }
 }

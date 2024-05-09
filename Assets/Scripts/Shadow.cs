@@ -7,10 +7,10 @@ using UnityEngine.UI;
 public class Shadow : MonoBehaviour
 {
     public bool isCutted;
+    public SpriteRenderer spriteRenderer;
+    public Sprite sprite;
 
     [SerializeField] Transform buildingTransform;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Sprite sprite;
     [SerializeField] Sprite curSprite;
     [SerializeField] Sprite[] cuttedSprites;
  
@@ -37,49 +37,53 @@ public class Shadow : MonoBehaviour
     {
         if (!isCutted)
         {
+            if (isXType && isInput == true)
+            {
+                curSprite = cuttedSprites[3];
+            }
+
+            if (!isXType && isInput == true)
+            {
+                curSprite = cuttedSprites[0];
+            }
+
+            if (isXType && isInput == false)
+            {
+                curSprite = cuttedSprites[2];
+            }
+
+            if (!isXType && isInput == false)
+            {
+                curSprite = cuttedSprites[1];
+            }
+
+            spriteRenderer.sprite = curSprite;
+
+            isCutted = true;
+
             if (isReversed)
             {
-                if (isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[3];
-                }
-
-                if (!isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[0];
-                }
-
-                if (isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[2];
-                }
-
-                if (!isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[1];
-                }
+                return;
             }
-            else
+
+            if (isXType && isInput == true)
             {
-                if (isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[2];
-                }
+                curSprite = cuttedSprites[2];
+            }
 
-                if (!isXType && isInput == true)
-                {
-                    curSprite = cuttedSprites[1];
-                }
+            if (!isXType && isInput == true)
+            {
+                curSprite = cuttedSprites[1];
+            }
 
-                if (isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[3];
-                }
+            if (isXType && isInput == false)
+            {
+                curSprite = cuttedSprites[3];
+            }
 
-                if (!isXType && isInput == false)
-                {
-                    curSprite = cuttedSprites[0];
-                }
+            if (!isXType && isInput == false)
+            {
+                curSprite = cuttedSprites[0];
             }
 
             spriteRenderer.sprite = curSprite;

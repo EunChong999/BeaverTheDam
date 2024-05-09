@@ -146,8 +146,9 @@ public class ConveyorBeltBuilding : BasicBuilding
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         InitSettings();
         SetTrailerType();
     }

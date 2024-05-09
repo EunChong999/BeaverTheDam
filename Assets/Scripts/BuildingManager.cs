@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
+    public int buildingCount;
     public float standardHeight;
     public float speed;
     public Vector3 originScale;

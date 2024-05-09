@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
@@ -8,19 +9,21 @@ public class Item : MonoBehaviour
     public bool isCutted;
     public bool isPainted;
     public bool isMoving;
+    public bool isCombined;
     public Shadow shadow;
     public Transform spriteTransform;
+    public GameObject xSpriteObj;
+    public GameObject zSpriteObj;
     public SpriteRenderer spriteRenderer;
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
     public Sprite[] cuttedReplaceSprites;
 
     [HideInInspector] public Point curPoint;
-    [HideInInspector] public bool isZCombined;
-    [HideInInspector] public bool isXCombined;
-    [HideInInspector] public bool isZCutted;
-    [HideInInspector] public bool isXCutted;
     [HideInInspector] public bool canInput;
+
+    [HideInInspector] public Color firstColor;
+    [HideInInspector] public Color secondColor;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -72,49 +75,49 @@ public class Item : MonoBehaviour
     /// </summary>
     private void ChangeToCuttedSprites(bool isXType, bool isInput, bool isReversed)
     {
+        if (isXType && isInput == true)
+        {
+            spriteRenderer.sprite = cuttedSprites[3];
+        }
+
+        if (!isXType && isInput == true)
+        {
+            spriteRenderer.sprite = cuttedSprites[0];
+        }
+
+        if (isXType && isInput == false)
+        {
+            spriteRenderer.sprite = cuttedSprites[2];
+        }
+
+        if (!isXType && isInput == false)
+        {
+            spriteRenderer.sprite = cuttedSprites[1];
+        }
+
         if (isReversed)
         {
-            if (isXType && isInput == true)
-            {
-                spriteRenderer.sprite = cuttedSprites[3];
-            }
-
-            if (!isXType && isInput == true)
-            {
-                spriteRenderer.sprite = cuttedSprites[0];
-            }
-
-            if (isXType && isInput == false)
-            {
-                spriteRenderer.sprite = cuttedSprites[2];
-            }
-
-            if (!isXType && isInput == false)
-            {
-                spriteRenderer.sprite = cuttedSprites[1];
-            }
+            return;
         }
-        else
+
+        if (isXType && isInput == true)
         {
-            if (isXType && isInput == true)
-            {
-                spriteRenderer.sprite = cuttedSprites[2];
-            }
+            spriteRenderer.sprite = cuttedSprites[2];
+        }
 
-            if (!isXType && isInput == true)
-            {
-                spriteRenderer.sprite = cuttedSprites[1];
-            }
+        if (!isXType && isInput == true)
+        {
+            spriteRenderer.sprite = cuttedSprites[1];
+        }
 
-            if (isXType && isInput == false)
-            {
-                spriteRenderer.sprite = cuttedSprites[3];
-            }
+        if (isXType && isInput == false)
+        {
+            spriteRenderer.sprite = cuttedSprites[3];
+        }
 
-            if (!isXType && isInput == false)
-            {
-                spriteRenderer.sprite = cuttedSprites[0];
-            }
+        if (!isXType && isInput == false)
+        {
+            spriteRenderer.sprite = cuttedSprites[0];
         }
     }
 
@@ -140,6 +143,9 @@ public class Item : MonoBehaviour
     {
         if (!isCutted)
         {
+            xSpriteObj.SetActive(false);
+            zSpriteObj.SetActive(false);
+
             ChangeToCuttedSprites(isXType, cutterType, isReversed);
 
             if (isPainted)
@@ -147,6 +153,7 @@ public class Item : MonoBehaviour
                 ChangeToCuttedReplaceSprites();
             }
 
+            isCombined = false;
             isCutted = true;
         }
     }
@@ -183,6 +190,44 @@ public class Item : MonoBehaviour
         }
 
         return spriteRenderer;
+    }
+
+    /// <summary>
+    /// 잘려진 스프라이트를 결합하는 함수 
+    /// </summary>
+    public void CombineSprite(bool isXType, Color firstColor, Color secondColor)
+    {
+        spriteRenderer.sprite = null;
+        shadow.isCutted = false;
+
+        this.firstColor = firstColor;
+        this.secondColor = secondColor;
+
+        if (isXType)
+        {
+            xSpriteObj.SetActive(true);
+            xSpriteObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = firstColor;
+            xSpriteObj.transform.GetChild(1).GetComponent<SpriteRenderer>().color = secondColor;
+            zSpriteObj.SetActive(false);
+        }
+        else
+        {
+            xSpriteObj.SetActive(false);
+            zSpriteObj.SetActive(true);
+            zSpriteObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = firstColor;
+            zSpriteObj.transform.GetChild(1).GetComponent<SpriteRenderer>().color = secondColor;
+        }
+
+        isCombined = true;
+        isCutted = false;
+    }
+
+    /// <summary>
+    /// 결합된 스프라이트를 분할하는 함수
+    /// </summary>
+    public void DivideSprite()
+    {
+        Debug.Log("분할 확인");
     }
     #endregion
     #region Events
