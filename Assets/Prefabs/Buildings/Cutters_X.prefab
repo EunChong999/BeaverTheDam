@@ -378,10 +378,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfbd40b2fab9524099b40220470c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteTransform: {fileID: 5724972022487642766}
-  backSpriteTransform: {fileID: 707236183298252599}
   amplitude: 0.1
   frequency: 5
+  spriteTransform: {fileID: 5724972022487642766}
+  backSpriteTransform: {fileID: 707236183298252599}
 --- !u!1 &3025180080744393559
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,10 +428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfbd40b2fab9524099b40220470c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteTransform: {fileID: 4348738433871954664}
-  backSpriteTransform: {fileID: 4627400190548227914}
   amplitude: 0.1
   frequency: 5
+  spriteTransform: {fileID: 4348738433871954664}
+  backSpriteTransform: {fileID: 4627400190548227914}
 --- !u!1 &3195528191496233252
 GameObject:
   m_ObjectHideFlags: 0
