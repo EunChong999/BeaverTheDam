@@ -127,7 +127,10 @@ public class MixerBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         isArrived = true;
         canRotate = true;
         yield return waitForReturnSeconds;
-        Destroy(partnerBuilding.itemTemp);
+
+        partnerBuilding.itemTemp.SetActive(false);
+        partnerBuilding.itemTemp = null;
+
         isReturned = false;
         itemTemp = null; 
     }

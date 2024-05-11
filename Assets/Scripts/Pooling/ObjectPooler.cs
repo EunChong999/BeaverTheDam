@@ -6,6 +6,7 @@ public class ObjectPooler : MonoBehaviour
 {
     [SerializeField] private float initTime;
     private WaitForSeconds waitForInit;
+    public bool canSpawn;
 
     // 풀 클래스
     [System.Serializable]
@@ -53,6 +54,8 @@ public class ObjectPooler : MonoBehaviour
     {
         yield return waitForInit;
 
+        canSpawn = true;
+
         // 풀 딕셔너리에 인스턴스 생성
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
@@ -89,7 +92,7 @@ public class ObjectPooler : MonoBehaviour
         if (!poolDictionary.ContainsKey(tag))
         {
             // 경고 메시지 출력
-            //Debug.LogWarning("Pool with tag " + tag + "doesn't excist.");
+            Debug.LogWarning("Pool with tag " + tag + "doesn't excist.");
 
             // 널값 반환
             return null;
@@ -111,10 +114,10 @@ public class ObjectPooler : MonoBehaviour
         IPooledObject pooledObj = objectToSpawn.GetComponent<IPooledObject>();
 
         // 풀링된 오브젝트에 대한 함수가 할당되었을 경우
-        //if (pooledObj != null)
-        //{
-        //    pooledObj.OnObjectSpawn();
-        //}
+        if (pooledObj != null)
+        {
+            pooledObj.OnObjectSpawn();
+        }
 
         // 생성 오브젝트를 풀 딕셔너리에 저장
         poolDictionary[tag].Enqueue(objectToSpawn);
