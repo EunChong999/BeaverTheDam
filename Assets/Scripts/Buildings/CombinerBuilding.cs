@@ -128,7 +128,8 @@ public class CombinerBuilding : BasicBuilding, ISendableBuilding, IInputableBuil
         canRotate = true;
         yield return waitForReturnSeconds;
 
-        Destroy(partnerBuilding.itemTemp);
+        partnerBuilding.itemTemp.SetActive(false);
+        partnerBuilding.itemTemp = null;
 
         isReturned = false;
         itemTemp = null;

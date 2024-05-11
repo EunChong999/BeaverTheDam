@@ -47,7 +47,8 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
             point.canMove &&
             !isSpawned &&
             !point.hitTransform.GetComponent<Point>().isItemExist &&
-            point.hitTransform.GetComponent<Point>().transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.movableType)
+            point.hitTransform.GetComponent<Point>().transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.movableType &&
+            ObjectPooler.Instance.canSpawn)
         {
             isArrived = false;
             SendItem();
@@ -65,7 +66,7 @@ public class ExtractorBuilding : BasicBuilding, ISendableBuilding, IOutputableBu
         startPos = pointTransform;
         endPos = point.hitTransform;
         animator.SetTrigger("Spawn");
-        itemTransform = Instantiate(item, pointTransform.position, Quaternion.identity).transform;
+        itemTransform = ObjectPooler.Instance.SpawnFromPool(item.name, pointTransform.position, Quaternion.identity).transform;
         itemTransform.GetComponent<Item>().ShowEffect(true);
         StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
         StartCoroutine(ThrowItem(itemTransform));

@@ -19,6 +19,8 @@ public class Item : MonoBehaviour, IPooledObject
     public Sprite[] cuttedSprites;
     public Sprite[] cuttedReplaceSprites;
 
+    private Sprite spriteTemp;
+
     [HideInInspector] public Point curPoint;
     [HideInInspector] public bool canInput;
 
@@ -38,12 +40,17 @@ public class Item : MonoBehaviour, IPooledObject
 
     private void SaveSettings()
     {
-
+        spriteTemp = spriteRenderer.sprite;
     }
 
     private void Init()
     {
-
+        spriteRenderer.sprite = spriteTemp;
+        isCutted = false;
+        isMoving = false;
+        isPainted = false;
+        isCombined = false;
+        Debug.Log("»Æ¿Œ");
     }
 
     /// <summary>
@@ -240,7 +247,7 @@ public class Item : MonoBehaviour, IPooledObject
     #endregion
     #region Events
 
-    private void Start()
+    private void Awake()
     {
         SaveSettings();
     }
