@@ -20,6 +20,7 @@ public class Item : MonoBehaviour, IPooledObject
     public Sprite[] cuttedReplaceSprites;
 
     private Sprite spriteTemp;
+    private Color spriteColorTemp;
 
     [HideInInspector] public Point curPoint;
     [HideInInspector] public bool canInput;
@@ -41,16 +42,17 @@ public class Item : MonoBehaviour, IPooledObject
     private void SaveSettings()
     {
         spriteTemp = spriteRenderer.sprite;
+        spriteColorTemp = spriteRenderer.color;
     }
 
     private void Init()
     {
         spriteRenderer.sprite = spriteTemp;
+        spriteRenderer.color = spriteColorTemp;
         isCutted = false;
         isMoving = false;
         isPainted = false;
         isCombined = false;
-        Debug.Log("»Æ¿Œ");
     }
 
     /// <summary>
