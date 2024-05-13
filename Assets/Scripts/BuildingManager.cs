@@ -8,6 +8,7 @@ public class BuildingManager : MonoBehaviour
     public int buildingCount;
     public float standardHeight;
     public float speed;
+    public float maxDistance;
     public Vector3 originScale;
     public Color directionColor;
     public Color itemPanelColor;

@@ -39,8 +39,7 @@ public class ObjectPooler : MonoBehaviour
     private List<Pool> pools;
 
     // 이름과 큐가 쌍을 이루는 딕셔너리 
-    [SerializeField]
-    private Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Start()
     {
@@ -96,6 +95,12 @@ public class ObjectPooler : MonoBehaviour
 
             // 널값 반환
             return null;
+        }
+
+        // 활성화된 오브젝트 건너뛰기
+        while (poolDictionary[tag].Peek().activeSelf)
+        {
+            poolDictionary[tag].Dequeue();
         }
 
         // 생성 오브젝트에 풀 저장
