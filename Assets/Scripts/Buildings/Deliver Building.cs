@@ -9,6 +9,7 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     [Space(10)]
 
+    [SerializeField] Delivers delivers;
     [SerializeField] float floatTime;
     [SerializeField] float arriveTime;
     [SerializeField] float throwTime;
@@ -25,7 +26,7 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     WaitForSeconds waitForArriveSeconds;
     WaitForSeconds waitForThrowSeconds;
     bool isArrived;
-    bool isRemoved;
+    bool isDelivered;
 
     #endregion
     #region Functions
@@ -48,9 +49,10 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         {
             if (pointingPoint.hitTransform.Equals(pointTransform) &&
                 pointingPoint.canMove &&
-                !isRemoved &&
+                !isDelivered &&
                 pointingPoint.isItemExist &&
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
+                pointingPoint.transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.movableType &&
                 itemTransform == null)
             {
                 isArrived = false;
@@ -61,7 +63,7 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                 StartCoroutine(GetCenter(Vector3.up / (height * Vector3.Distance(startPos.position, endPos.position))));
                 StartCoroutine(ThrowItem(itemTransform));
                 StartCoroutine(WaitForInput());
-                isRemoved = true;
+                isDelivered = true;
             }
         }
     }
@@ -110,10 +112,11 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         if (itemTransform != null)
         {
             itemTransform.gameObject.SetActive(false);
+            delivers.AcceptItem(itemTransform.gameObject.name);
             itemTransform = null;
         }
 
-        isRemoved = false;
+        isDelivered = false;
     }
 
     /// <summary>
@@ -125,30 +128,6 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     }
     #endregion
     #region Events
-    private void OnMouseOver()
-    {
-        if (isRotating)
-            return;
-
-        // 마우스 우클릭
-        if (UnityEngine.Input.GetMouseButtonDown(0))
-        {
-            DirectRotation(false, targetAngle, transform, true);
-        }
-
-        // 마우스 좌클릭 
-        else if (UnityEngine.Input.GetMouseButtonDown(1))
-        {
-            DirectRotation(true, targetAngle, transform, true);
-        }
-
-        // 마우스 휠클릭
-        else if (UnityEngine.Input.GetMouseButtonDown(2) && !isRotating)
-        {
-            ChangeDirectionType(true);
-        }
-    }
-
     protected override void Start()
     {
         base.Start();
@@ -157,6 +136,7 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
 
     private void Update()
     {
+        DirectRotation(false, targetAngle, transform, false);
         StartCoroutine(Input());
         PlayAnimation();
     }
