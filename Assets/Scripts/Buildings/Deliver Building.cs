@@ -112,7 +112,7 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
         if (itemTransform != null)
         {
             itemTransform.gameObject.SetActive(false);
-            delivers.AcceptItem(itemTransform.gameObject.name);
+            delivers.AcceptItem(itemTransform.gameObject);
             itemTransform = null;
         }
 

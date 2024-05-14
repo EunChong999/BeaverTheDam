@@ -8,21 +8,20 @@ public class Delivers : MonoBehaviour
     public int targetCount;
 
     [SerializeField] GameObject requireItem;
+    [SerializeField] GameObject[] requireItems;
     [SerializeField] SpriteRenderer mySpriteRenderer;
     [SerializeField] DeliverBuilding[] deliverBuildings;
     [SerializeField] TextMeshPro text;
 
-    public void AcceptItem(string name)
+    public void AcceptItem(GameObject item)
     {
-        if (name.Replace("(Clone)", "") != requireItem.name) 
-            return;
-
         if (targetCount <= 0)
             return;
 
-        targetCount--;
+        if (item.name.Replace("(Clone)", "") != requireItem.name)
+            return;
 
-        Debug.Log("È®ÀÎ");
+        targetCount--;
     }
     
     private void Start()

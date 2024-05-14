@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour
 {
+    [SerializeField] InputControls inputActions;
+
+    public List<SpriteRenderer> spriteRenderers;
     public int buildingCount;
     public float standardHeight;
     public float speed;
-    public float maxDistance;
     public Vector3 originScale;
     public Color directionColor;
     public Color itemPanelColor;
@@ -18,5 +20,10 @@ public class BuildingManager : MonoBehaviour
     void Awake()
     {
         instance = this; 
+    }
+
+    private void Update()
+    {
+
     }
 }
