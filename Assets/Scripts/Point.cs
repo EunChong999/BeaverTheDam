@@ -22,7 +22,6 @@ public class Point : MonoBehaviour
 
     private void Start()
     {
-        maxDistance = BuildingManager.instance.maxDistance;
         canPlay = true;
     }
 
