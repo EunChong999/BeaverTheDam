@@ -65,12 +65,10 @@ public class ItemPanel : MonoBehaviour
         backSpriteTransform.rotation = Quaternion.Euler(30, 45, 0);
     }
 
-    // SpriteRenderer 배열을 선언합니다.
     private SpriteRenderer[] spriteRenderers;
 
     void CollectSpriteRenderers()
     {
-        // 현재 게임 오브젝트와 그 자식 오브젝트들의 SpriteRenderer를 모두 찾습니다.
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
 
         foreach (SpriteRenderer renderer in spriteRenderers)
