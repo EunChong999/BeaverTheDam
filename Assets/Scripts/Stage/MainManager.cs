@@ -30,11 +30,20 @@ public class MainManager : Manager
         }
         UICurve.SetCurveCount(rotateCount);
     }
+    public void InitSystem()
+    {
+        
+    }
     public void AddRotateCount() => rotateCount++;
-    public void SetCurveCount()
+    public void MinusCurveCount()
     {
         rotateCount--;
         UICurve.SetCurveCount(rotateCount);
+        if(rotateCount <= 0)
+        {
+            clearScore = 0;
+            End();
+        }
     }
     public void Cancel()
     {
