@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Title/TouchToStart.cs.meta
+guid: c6079cd109c6b2345af64dc156d83783
+========
+guid: 9141e4f8146d7b043955dc3f87466aff
+>>>>>>>> origin/main:Assets/Scripts/Buildings/BalancerBuilding.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
