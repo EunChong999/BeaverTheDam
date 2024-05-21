@@ -15,8 +15,16 @@ public class Delivers : MonoBehaviour
 
     public void AcceptItem(GameObject item)
     {
+        if (targetCount <= 1)
+        {
+            MainManager.instance.clearScore = 3;
+            MainManager.instance.End();
+        }
+
         if (targetCount <= 0)
+        {
             return;
+        }
 
         if (item.name.Replace("(Clone)", "") != requireItem.name)
             return;
