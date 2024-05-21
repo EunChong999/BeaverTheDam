@@ -98,6 +98,11 @@ public class BasicBuilding : MonoBehaviour
                 ShowEffect();
 
             StartCoroutine(RotateTransform(isRight, targetAngle, transform));
+
+            if (gameObject.name.Contains("Deliver"))
+                return;
+
+            MainManager.instance.MinusCurveCount();
         }
     }
 
