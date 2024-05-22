@@ -108,7 +108,11 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         point.isItemExist = false;
 
         if (itemTransform != null)
-            Destroy(itemTransform.gameObject);
+        {
+            itemTransform.gameObject.SetActive(false);
+            //ObjectPooler.Instance.poolDictionary[itemTransform.gameObject.name].Enqueue(itemTransform.gameObject);
+            itemTransform = null;
+        }
 
         isRemoved = false;
     }

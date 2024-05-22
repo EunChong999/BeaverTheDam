@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ItemPanel : MonoBehaviour
 {
+    [SerializeField] bool isDistinct;
+
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
+
+    [SerializeField] Transform firSpriteTransform;
+    [SerializeField] Transform secSpriteTransform;
 
     SpriteRenderer myFirSpriteRenderer;
     SpriteRenderer backspriteRenderer;
@@ -22,10 +27,16 @@ public class ItemPanel : MonoBehaviour
     private void Start()
     {
         myFirSpriteRenderer = spriteTransform.GetComponent<SpriteRenderer>();
-        myFirSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
-
         backspriteRenderer = backSpriteTransform.GetComponent<SpriteRenderer>();
-        backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+
+        if (!isDistinct)
+        {
+            myFirSpriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+            backspriteRenderer.material.color = BuildingManager.instance.itemPanelColor;
+        }
+
+        // 자식 오브젝트의 SpriteRenderer를 찾아 배열에 넣습니다.
+        CollectSpriteRenderers();
     }
 
     private void Update()
@@ -44,6 +55,25 @@ public class ItemPanel : MonoBehaviour
     private void LateUpdate()
     {
         spriteTransform.rotation = Quaternion.Euler(30, 45, 0);
+
+        if (firSpriteTransform != null)
+            firSpriteTransform.rotation = Quaternion.Euler(30, 45, 0);
+
+        if (secSpriteTransform != null)
+            secSpriteTransform.rotation = Quaternion.Euler(30, 45, 0);
+
         backSpriteTransform.rotation = Quaternion.Euler(30, 45, 0);
+    }
+
+    private SpriteRenderer[] spriteRenderers;
+
+    void CollectSpriteRenderers()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (SpriteRenderer renderer in spriteRenderers)
+        {
+            BuildingManager.instance.spriteRenderers.Add(renderer);
+        }
     }
 }

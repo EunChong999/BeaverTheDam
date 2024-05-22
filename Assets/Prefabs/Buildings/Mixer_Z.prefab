@@ -1823,7 +1823,7 @@ MonoBehaviour:
   isRotated: 0
   spriteTransform: {fileID: 3026609874152860521}
   animator: {fileID: 1362770468115568718}
-  canExchange: 0
+  canExchange: 1
   originScale: {x: 0, y: 0, z: 0}
   targetAngle: 180
   startScaleTime: 0.1

@@ -17,11 +17,16 @@ public enum syntheticColorType
     green
 }
 
-public class Dye : MonoBehaviour
+public class Dye : MonoBehaviour, IPooledObject
 {
     public basicColorType basicColorType;
     public syntheticColorType syntheticColorType;
     public Color myColor;
+
+    private basicColorType basicColorTypeTemp;
+    private syntheticColorType syntheticColorTypeTemp;
+    private Color myColorTemp;
+
     private Sprite[] syntheticSprites;
     private Color[] basicColors;
     private Color[] syntheticColors;
@@ -30,8 +35,23 @@ public class Dye : MonoBehaviour
 
     bool isMixed;
 
+    private void SaveSettings()
+    {
+        basicColorTypeTemp = basicColorType;
+        syntheticColorTypeTemp = syntheticColorType;
+        myColorTemp = myColor;
+    }
+
+    private void Init()
+    {
+        basicColorType = basicColorTypeTemp;
+        syntheticColorType = syntheticColorTypeTemp;
+        myColor = myColorTemp;
+    }
+
     private void Start()
     {
+        SaveSettings();
         // 초기화할 때 딕셔너리에 기본 색상 조합에 대한 항목 추가
         InitColorCombinations();
         ChangeToBasicColor();
@@ -90,5 +110,10 @@ public class Dye : MonoBehaviour
                 myColor = basicColors[(int)basicColorType.blue];
                 break;
         }
+    }
+
+    public void OnObjectSpawn()
+    {
+        Init();
     }
 }

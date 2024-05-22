@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, IPooledObject
 {
     #region Variables
     public bool isCutted;
@@ -18,6 +18,9 @@ public class Item : MonoBehaviour
     public Sprite replaceSprite;
     public Sprite[] cuttedSprites;
     public Sprite[] cuttedReplaceSprites;
+
+    private Sprite spriteTemp;
+    private Color spriteColorTemp;
 
     [HideInInspector] public Point curPoint;
     [HideInInspector] public bool canInput;
@@ -35,6 +38,23 @@ public class Item : MonoBehaviour
     Vector3 originScale;
     #endregion
     #region Functions
+
+    private void SaveSettings()
+    {
+        spriteTemp = spriteRenderer.sprite;
+        spriteColorTemp = spriteRenderer.color;
+    }
+
+    private void Init()
+    {
+        spriteRenderer.sprite = spriteTemp;
+        spriteRenderer.color = spriteColorTemp;
+        isCutted = false;
+        isMoving = false;
+        isPainted = false;
+        isCombined = false;
+    }
+
     /// <summary>
     /// 이동 시작
     /// </summary>
@@ -222,15 +242,18 @@ public class Item : MonoBehaviour
         isCutted = false;
     }
 
-    /// <summary>
-    /// 결합된 스프라이트를 분할하는 함수
-    /// </summary>
-    public void DivideSprite()
+    public void OnObjectSpawn()
     {
-        Debug.Log("분할 확인");
+        Init();
     }
     #endregion
     #region Events
+
+    private void Awake()
+    {
+        SaveSettings();
+    }
+
     private void OnEnable()
     {
         originScale = spriteTransform.localScale;

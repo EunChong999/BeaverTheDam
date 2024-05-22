@@ -46,8 +46,8 @@ public class DoubleBasicBuilding : MonoBehaviour
         if (canShowEffect)
             ShowEffect();
 
-        firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform, true);
-        secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform, true);
+        firstBuilding.DirectRotation(false, targetAngle, firstBuilding.transform, canShowEffect);
+        secondBuilding.DirectRotation(false, targetAngle, secondBuilding.transform, canShowEffect);
 
         if (canExchange)
             ExchangeBuildings();
