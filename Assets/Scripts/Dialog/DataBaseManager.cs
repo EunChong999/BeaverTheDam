@@ -69,10 +69,12 @@ public class DataBaseManager : MonoBehaviour
         stageData = new StageData[column.Length];
         for(int i = 0; i < column.Length; i++)
         {
+            stageData[i] = new StageData();
             var row = column[i].Split(",");
-            for(int j = 0; j < row.Length; j++)
+            stageData[i].StarTimer = new float[row.Length - 1];
+            for(int j = 1; j < row.Length; j++)
             {
-                stageData[i].StarTimer[j] = float.Parse(row[1 + i]);
+                stageData[i].StarTimer[j - 1] = float.Parse(row[j]);
             }
         }
 
