@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[System.Serializable]
+public class StageData
+{
+    public float[] StarTimer;
+}
 public class DataBaseManager : MonoBehaviour
 {
     public static DataBaseManager instance { get; private set; }
@@ -15,11 +20,13 @@ public class DataBaseManager : MonoBehaviour
 
     public readonly string ADDRESS = "https://docs.google.com/spreadsheets/d/1BbJ6btodZXZCIMzK0Sj2fd0S1ngLJ9iXDCivDr7C6BQ";
     public readonly string RANGE = "A2:E";
-    public readonly long SHEET_ID = 1042825153;
+    public readonly long[] SHEET_ID = { 1042825153, 1383170883};
+
+    public StageData[] stageData;
 
     private void Awake()
     {
-        StartCoroutine(LoadData());
+        StartCoroutine(DialogLoadData());
     }
     private void Start()
     {
@@ -37,9 +44,9 @@ public class DataBaseManager : MonoBehaviour
 
         return dialogueList.ToArray();
     }
-    private IEnumerator LoadData()
+    private IEnumerator DialogLoadData()
     {
-        UnityWebRequest www = UnityWebRequest.Get(DialogueEvent.GetCSVAddress(ADDRESS, RANGE, SHEET_ID));
+        UnityWebRequest www = UnityWebRequest.Get(DialogueEvent.GetCSVAddress(ADDRESS, RANGE, SHEET_ID[0]));
         yield return www.SendWebRequest();
 
         csv_File = www.downloadHandler.text;
@@ -50,6 +57,25 @@ public class DataBaseManager : MonoBehaviour
         {
             dialogueDic.Add(i + 1, dialogues[i]);
         }
+        StartCoroutine(StageLoadData());
+    }
+    private IEnumerator StageLoadData()
+    {
+        UnityWebRequest www = UnityWebRequest.Get(DialogueEvent.GetCSVAddress(ADDRESS, RANGE, SHEET_ID[1]));
+        yield return www.SendWebRequest();
+
+        var data = www.downloadHandler.text;
+        var column = data.Split("\n");
+        stageData = new StageData[column.Length];
+        for(int i = 0; i < column.Length; i++)
+        {
+            var row = column[i].Split(",");
+            for(int j = 0; j < row.Length; j++)
+            {
+                stageData[i].StarTimer[j] = float.Parse(row[1 + i]);
+            }
+        }
+
         isFinish = true;
     }
 }
