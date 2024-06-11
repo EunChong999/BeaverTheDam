@@ -102,7 +102,7 @@ public class BasicBuilding : MonoBehaviour
             if (gameObject.name.Contains("Deliver"))
                 return;
 
-            MainManager.instance.MinusCurveCount();
+            //MainManager.instance.MinusCurveCount();
         }
     }
 

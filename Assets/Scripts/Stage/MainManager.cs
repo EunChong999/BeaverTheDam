@@ -29,7 +29,12 @@ public class MainManager : Manager
             star[i].localScale = Vector3.zero;
         }
         UICurve.SetCurveCount(rotateCount);
+
+        Instantiate(Maps[StageIndex]).SetActive(true);
+
+        StartCoroutine(MinusTime());
     }
+
     public void InitSystem()
     {
         
@@ -43,6 +48,21 @@ public class MainManager : Manager
         {
             clearScore = 0;
             End();
+        }
+    }
+    IEnumerator MinusTime()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            rotateCount--;
+            UICurve.SetCurveCount(rotateCount);
+            if (rotateCount <= 0)
+            {
+                clearScore = 0;
+                End();
+                yield break;
+            }
         }
     }
     public void Cancel()

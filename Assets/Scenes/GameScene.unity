@@ -1168,7 +1168,8 @@ MonoBehaviour:
   clearScore: 0
   rotateCount: 30
   StageIndex: 0
-  Maps: []
+  Maps:
+  - {fileID: 1715612036}
 --- !u!4 &726222231
 Transform:
   m_ObjectHideFlags: 0
@@ -2171,6 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csv_File: 
+  stageData: []
 --- !u!4 &1042540897
 Transform:
   m_ObjectHideFlags: 0
@@ -3171,6 +3173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage 01
       objectReference: {fileID: 0}
+    - target: {fileID: 7339910054145982554, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3179,6 +3185,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
+--- !u!1 &1715612036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7339910054145982554, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
+  m_PrefabInstance: {fileID: 1715612035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1756444567
 GameObject:
   m_ObjectHideFlags: 0
