@@ -18,7 +18,13 @@ public class TouchToStart : Manager
         touchText.anchoredPosition = curPos + new Vector2(0, Mathf.Sin(Time.time * speed) * range);
         if (Input.GetMouseButtonDown(0))
         {
-            SceneMove(Scenes.SelectScene);
+            SceneAnim.instance.AnimOn(true);
+            StartCoroutine(SceneMove());
         }
+    }
+    IEnumerator SceneMove()
+    {
+        yield return new WaitForSeconds(2);
+        SceneMove(Scenes.SelectScene);
     }
 }
