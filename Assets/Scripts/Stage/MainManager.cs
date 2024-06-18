@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class MainManager : Manager
 {
@@ -12,7 +13,20 @@ public class MainManager : Manager
     public int clearScore;
     public int rotateCount;
     public int StageIndex;
-    [SerializeField] GameObject[] Maps;
+
+    [Serializable]
+    public struct MapData
+    {
+        public GameObject map;
+        public int limitTime1;
+        public int limitTime2;
+        public int limitTime3;
+        public int countTime1;
+        public int countTime2;
+        public int countTime3;
+    }
+
+    public MapData[] Maps;
     public static MainManager instance {get; private set;}
     private void Awake()
     {
@@ -30,7 +44,7 @@ public class MainManager : Manager
         }
         UICurve.SetCurveCount(rotateCount);
 
-        Instantiate(Maps[StageIndex]).SetActive(true);
+        Instantiate(Maps[StageIndex].map).SetActive(true);
 
         StartCoroutine(MinusTime());
     }

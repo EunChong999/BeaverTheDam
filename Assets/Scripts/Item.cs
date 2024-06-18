@@ -258,5 +258,10 @@ public class Item : MonoBehaviour, IPooledObject
     {
         originScale = spriteTransform.localScale;
     }
+
+    private void OnDisable()
+    {
+        
+    }
     #endregion
 }
