@@ -24,7 +24,7 @@ public class Delivers : MonoBehaviour
                     MainManager.instance.clearScore = 3;
                 else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.limitTime2)
                     MainManager.instance.clearScore = 2;
-                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.limitTime3)
+                else 
                     MainManager.instance.clearScore = 1;
             }
             else if (MainManager.instance.curStage.type == MapType.countType)
@@ -33,7 +33,7 @@ public class Delivers : MonoBehaviour
                     MainManager.instance.clearScore = 3;
                 else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.count2)
                     MainManager.instance.clearScore = 2;
-                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.count3)
+                else 
                     MainManager.instance.clearScore = 1;
             }
 

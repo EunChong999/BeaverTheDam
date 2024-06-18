@@ -30,10 +30,8 @@ public class MainManager : Manager
         public GameObject map;
         public int limitTime1;
         public int limitTime2;
-        public int limitTime3;
         public int count1;
         public int count2;
-        public int count3;
     }
 
     public MapData[] Maps;
@@ -56,7 +54,6 @@ public class MainManager : Manager
         integratedCount = curStage.entireCount;
         UICurve.SetCurveCount(integratedCount);
 
-        SceneAnim.instance.AnimOn(false);
         Instantiate(curStage.map).SetActive(true);
 
         if (curStage.type == MapType.timeType)
@@ -101,9 +98,12 @@ public class MainManager : Manager
     }
     IEnumerator CancelAnim()
     {
-        SceneAnim.instance.AnimOn(true);
-        yield return new WaitForSeconds(0.8f);
-        SceneMove(Scenes.SelectScene);  
+        if (SceneAnim.instance.canAnim)
+        {
+            SceneAnim.instance.AnimOn();
+            yield return new WaitForSeconds(0.5f);
+            SceneMove(Scenes.SelectScene);
+        }
     }
     public void StartStage(bool isRetry)
     {

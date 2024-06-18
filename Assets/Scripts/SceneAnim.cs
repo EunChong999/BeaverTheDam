@@ -9,20 +9,26 @@ public class SceneAnim : MonoBehaviour
     public static SceneAnim instance {get; private set;}
     [SerializeField] Sprite[] sprites;
     Image sp;
-    private void Start()
+    public bool canAnim = true;
+
+    private void Awake()
     {
-        if(instance != null) Destroy(gameObject);
-        instance = this;
+        if (instance != null) Destroy(gameObject);
+        else
+            while (instance == null) 
+                instance = this;
+
         DontDestroyOnLoad(transform.parent);
 
         sp = GetComponent<Image>();
     }
-    public void AnimOn(bool isClose)
+    public void AnimOn()
     {
-        if(isClose)
-        StartCoroutine(AnimClose());
-        else
-        StartCoroutine(AnimOpen());
+        if (canAnim)
+        {
+            StartCoroutine(AnimClose());
+            canAnim = false;
+        }
     }
     IEnumerator AnimClose()
     {
@@ -33,8 +39,12 @@ public class SceneAnim : MonoBehaviour
             sp.sprite = sprites[i];
             var a = Mathf.InverseLerp(sprites.Length - 1, 0, i);
             sp.color = new Color(1,1,1,a);
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(AnimOpen());
     }
     IEnumerator AnimOpen()
     {
@@ -43,7 +53,9 @@ public class SceneAnim : MonoBehaviour
             sp.sprite = sprites[i];
             var a = Mathf.InverseLerp(sprites.Length - 1, 0, i);
             sp.color = new Color(1,1,1,a);
-            yield return new WaitForSeconds(0.02f);
+            yield return new WaitForSeconds(0.01f);
         }
+
+        canAnim = true;    
     }
 }

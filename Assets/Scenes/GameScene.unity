@@ -1165,10 +1165,8 @@ MonoBehaviour:
     map: {fileID: 0}
     limitTime1: 0
     limitTime2: 0
-    limitTime3: 0
     count1: 0
     count2: 0
-    count3: 0
   endCard: {fileID: 400829853}
   star:
   - {fileID: 1570941365}
@@ -1182,24 +1180,20 @@ MonoBehaviour:
   Maps:
   - entireLimitTime: 60
     entireCount: 30
-    type: 1
-    map: {fileID: 7339910054145982554, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
-    limitTime1: 30
-    limitTime2: 20
-    limitTime3: 10
-    count1: 20
-    count2: 15
-    count3: 10
-  - entireLimitTime: 60
-    entireCount: 30
     type: 0
     map: {fileID: 7339910054145982554, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
     limitTime1: 30
     limitTime2: 20
-    limitTime3: 10
     count1: 20
     count2: 15
-    count3: 10
+  - entireLimitTime: 60
+    entireCount: 30
+    type: 0
+    map: {fileID: 1477269548453424688, guid: 1ebdc1256ffc1be4aa7d5ff1b86d4dd8, type: 3}
+    limitTime1: 30
+    limitTime2: 20
+    count1: 20
+    count2: 15
 --- !u!4 &726222231
 Transform:
   m_ObjectHideFlags: 0
@@ -1262,7 +1256,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754366412}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2698,7 +2692,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.83
+  orthographic size: 6
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -2845,8 +2839,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 150}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 256, y: 128}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1437500339
 MonoBehaviour:
@@ -2868,7 +2862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c81f68c53a279b449bcc21bacfb9b9c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3354,7 +3348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3362,11 +3356,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 70
+    m_Font: {fileID: 12800000, guid: a6064c9ba88af0c438dddfbd58a4f0be, type: 3}
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 7
+    m_MinSize: 3
     m_MaxSize: 72
     m_Alignment: 4
     m_AlignByGeometry: 0

@@ -12,13 +12,16 @@ public class ESC : Manager
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneAnim.instance.AnimOn(true);
-            StartCoroutine(SceneMove());
+            if (SceneAnim.instance.canAnim)
+            {
+                SceneAnim.instance.AnimOn();
+                StartCoroutine(SceneMove());
+            }
         }
     }
     IEnumerator SceneMove()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         SceneMove(Scenes.Title);
     }
 }
