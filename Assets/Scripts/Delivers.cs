@@ -45,7 +45,7 @@ public class Delivers : MonoBehaviour
             return;
         }
 
-        if (item.name.Replace("(Clone)", "") != requireItem.name)
+        if (item.name.Replace("(Clone)", "") != requireItem.name || item.GetComponent<Item>().firstColor != requireItem.GetComponent<Item>().firstColor)
             return;
 
         targetCount--;
