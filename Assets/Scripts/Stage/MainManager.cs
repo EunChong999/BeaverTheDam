@@ -107,9 +107,20 @@ public class MainManager : Manager
     }
     public void StartStage(bool isRetry)
     {
-        if (!isRetry) PlayerPrefs.SetInt("SelectIndex", StageIndex + 1);
-        SceneMove(Scenes.MainScene);
+        StartCoroutine(InitStage(isRetry));
     }
+
+    IEnumerator InitStage(bool isRetry)
+    {
+        if (SceneAnim.instance.canAnim)
+        {
+            SceneAnim.instance.AnimOn();
+            yield return new WaitForSeconds(0.5f);
+            if (!isRetry) PlayerPrefs.SetInt("SelectIndex", StageIndex + 1);
+            SceneMove(Scenes.MainScene);
+        }
+    }
+
     public void End()
     {
         StartCoroutine(EndMove());
