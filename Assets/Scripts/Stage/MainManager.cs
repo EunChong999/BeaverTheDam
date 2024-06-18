@@ -56,10 +56,7 @@ public class MainManager : Manager
         integratedCount = curStage.entireCount;
         UICurve.SetCurveCount(integratedCount);
 
-<<<<<<< HEAD
-        StartCoroutine(MinusTime());
         SceneAnim.instance.AnimOn(false);
-=======
         Instantiate(curStage.map).SetActive(true);
 
         if (curStage.type == MapType.timeType)
@@ -71,7 +68,6 @@ public class MainManager : Manager
         {
             integratedCount = curStage.entireCount;
         }
->>>>>>> EunChong
     }
 
     public void AddRotateCount() => integratedCount++;
@@ -106,7 +102,7 @@ public class MainManager : Manager
     IEnumerator CancelAnim()
     {
         SceneAnim.instance.AnimOn(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.8f);
         SceneMove(Scenes.SelectScene);  
     }
     public void StartStage(bool isRetry)

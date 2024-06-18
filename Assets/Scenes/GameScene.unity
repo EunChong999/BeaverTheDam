@@ -1182,7 +1182,7 @@ MonoBehaviour:
   Maps:
   - entireLimitTime: 60
     entireCount: 30
-    type: 0
+    type: 1
     map: {fileID: 7339910054145982554, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
     limitTime1: 30
     limitTime2: 20
