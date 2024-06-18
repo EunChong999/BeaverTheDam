@@ -4,26 +4,36 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
+public enum MapType
+{
+    timeType,
+    countType
+}
+
 public class MainManager : Manager
 {
+    public MapData curStage;
     [SerializeField] Transform endCard;
     [SerializeField] Transform[] star;
     [SerializeField] GameObject nextStage;
     [SerializeField] UICurveCount UICurve;
     public int clearScore;
-    public int rotateCount;
+    public int integratedCount;
     public int StageIndex;
 
     [Serializable]
     public struct MapData
     {
+        public int entireLimitTime;
+        public int entireCount;
+        public MapType type;
         public GameObject map;
         public int limitTime1;
         public int limitTime2;
         public int limitTime3;
-        public int countTime1;
-        public int countTime2;
-        public int countTime3;
+        public int count1;
+        public int count2;
+        public int count3;
     }
 
     public MapData[] Maps;
@@ -35,30 +45,36 @@ public class MainManager : Manager
     private void Start()
     {
         StageIndex = PlayerPrefs.GetInt("SelectIndex");
-        print(StageIndex);
         endCard.localScale = Vector3.zero;
         nextStage.SetActive(StageIndex < PlayerPrefs.GetInt("MaxIndex"));
         for (int i = 0; i < star.Length; i++)
         {
             star[i].localScale = Vector3.zero;
         }
-        UICurve.SetCurveCount(rotateCount);
 
-        Instantiate(Maps[StageIndex].map).SetActive(true);
+        curStage = Maps[StageIndex];
+        integratedCount = curStage.entireCount;
+        UICurve.SetCurveCount(integratedCount);
 
-        StartCoroutine(MinusTime());
+        Instantiate(curStage.map).SetActive(true);
+
+        if (curStage.type == MapType.timeType)
+        {
+            integratedCount = curStage.entireLimitTime;
+            StartCoroutine(MinusTime());
+        }
+        else if (curStage.type == MapType.countType)
+        {
+            integratedCount = curStage.entireCount;
+        }
     }
 
-    public void InitSystem()
-    {
-        
-    }
-    public void AddRotateCount() => rotateCount++;
+    public void AddRotateCount() => integratedCount++;
     public void MinusCurveCount()
     {
-        rotateCount--;
-        UICurve.SetCurveCount(rotateCount);
-        if(rotateCount <= 0)
+        integratedCount--;
+        UICurve.SetCurveCount(integratedCount);
+        if(integratedCount <= 0)
         {
             clearScore = 0;
             End();
@@ -69,9 +85,8 @@ public class MainManager : Manager
         while (true)
         {
             yield return new WaitForSeconds(1);
-            rotateCount--;
-            UICurve.SetCurveCount(rotateCount);
-            if (rotateCount <= 0)
+            integratedCount--;
+            if (integratedCount <= 0)
             {
                 clearScore = 0;
                 End();
