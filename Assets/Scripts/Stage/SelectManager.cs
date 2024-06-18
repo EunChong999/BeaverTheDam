@@ -23,6 +23,7 @@ public class SelectManager : Manager
     int curChapter;
     private void Start()
     {
+        SceneAnim.instance.AnimOn(false);
         clearIndex = PlayerPrefs.GetInt("CanSelectIndex");
         curChapter = PlayerPrefs.GetInt("curChapter");
         maxChapter = buttons.Length - 1;
@@ -53,7 +54,7 @@ public class SelectManager : Manager
                     {
                         PlayerPrefs.SetInt("SelectIndex", numj + max);
                         PlayerPrefs.SetInt("curChapter", curChapter);
-                        StageStart();
+                        StartCoroutine(StageStart());
                     }
                 });
                 buttons[numi].button[numj].image.color = canSelect ? new Color(1, 1, 1, 1) : new Color(0.5f, 0.5f, 0.5f, 1);
@@ -68,8 +69,10 @@ public class SelectManager : Manager
             chapterTextBtn[num].onClick.AddListener(() => ChapterMove(num - curChapter));
         }
     }
-    public void StageStart()
+    IEnumerator StageStart()
     {
+        SceneAnim.instance.AnimOn(true);
+        yield return new WaitForSeconds(2);
         SceneMove(Scenes.MainScene);
     }
     public void ChapterMove(int addIndex)

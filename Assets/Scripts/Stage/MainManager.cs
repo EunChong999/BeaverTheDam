@@ -33,6 +33,7 @@ public class MainManager : Manager
         Instantiate(Maps[StageIndex]).SetActive(true);
 
         StartCoroutine(MinusTime());
+        SceneAnim.instance.AnimOn(false);
     }
 
     public void InitSystem()
@@ -67,7 +68,13 @@ public class MainManager : Manager
     }
     public void Cancel()
     {
-        SceneMove(Scenes.SelectScene);
+        StartCoroutine(CancelAnim());
+    }
+    IEnumerator CancelAnim()
+    {
+        SceneAnim.instance.AnimOn(true);
+        yield return new WaitForSeconds(2);
+        SceneMove(Scenes.SelectScene);  
     }
     public void StartStage(bool isRetry)
     {
