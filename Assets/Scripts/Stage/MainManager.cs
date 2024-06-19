@@ -13,6 +13,8 @@ public enum MapType
 public class MainManager : Manager
 {
     public MapData curStage;
+    [SerializeField] GameObject clearUI;
+    [SerializeField] GameObject failUI;
     [SerializeField] Transform endCard;
     [SerializeField] Transform[] star;
     [SerializeField] GameObject nextStage;
@@ -30,10 +32,8 @@ public class MainManager : Manager
         public GameObject map;
         public int limitTime1;
         public int limitTime2;
-        public int limitTime3;
         public int count1;
         public int count2;
-        public int count3;
     }
 
     public MapData[] Maps;
@@ -56,10 +56,6 @@ public class MainManager : Manager
         integratedCount = curStage.entireCount;
         UICurve.SetCurveCount(integratedCount);
 
-<<<<<<< HEAD
-        StartCoroutine(MinusTime());
-        SceneAnim.instance.AnimOn(false);
-=======
         Instantiate(curStage.map).SetActive(true);
 
         if (curStage.type == MapType.timeType)
@@ -71,7 +67,6 @@ public class MainManager : Manager
         {
             integratedCount = curStage.entireCount;
         }
->>>>>>> EunChong
     }
 
     public void AddRotateCount() => integratedCount++;
@@ -82,7 +77,7 @@ public class MainManager : Manager
         if(integratedCount <= 0)
         {
             clearScore = 0;
-            End();
+            End(false);
         }
     }
     IEnumerator MinusTime()
@@ -94,7 +89,7 @@ public class MainManager : Manager
             if (integratedCount <= 0)
             {
                 clearScore = 0;
-                End();
+                End(false);
                 yield break;
             }
         }
@@ -105,19 +100,48 @@ public class MainManager : Manager
     }
     IEnumerator CancelAnim()
     {
-        SceneAnim.instance.AnimOn(true);
-        yield return new WaitForSeconds(2);
-        SceneMove(Scenes.SelectScene);  
+        if (SceneAnim.instance.canAnim)
+        {
+            SceneAnim.instance.AnimOn();
+            yield return new WaitForSeconds(0.5f);
+            SceneMove(Scenes.SelectScene);
+        }
     }
     public void StartStage(bool isRetry)
     {
-        if (!isRetry) PlayerPrefs.SetInt("SelectIndex", StageIndex + 1);
-        SceneMove(Scenes.MainScene);
+        StartCoroutine(InitStage(isRetry));
     }
-    public void End()
+
+    IEnumerator InitStage(bool isRetry)
+    {
+        if (SceneAnim.instance.canAnim)
+        {
+            SceneAnim.instance.AnimOn();
+            yield return new WaitForSeconds(0.5f);
+            if (!isRetry) PlayerPrefs.SetInt("SelectIndex", StageIndex + 1);
+            SceneMove(Scenes.MainScene);
+        }
+    }
+
+    public void End(bool isCleared)
     {
         StartCoroutine(EndMove());
-        var clearindex = StageIndex + 1;
+
+        var clearindex = 0;
+
+        if (isCleared)
+        {
+            clearindex = StageIndex + 1;
+
+            clearUI.SetActive(true);
+            failUI.SetActive(false);
+        }
+        else
+        {
+            clearUI.SetActive(false);
+            failUI.SetActive(true);
+        }
+
         if (clearindex > PlayerPrefs.GetInt("CanSelectIndex") && StageIndex < PlayerPrefs.GetInt("MaxIndex"))
             PlayerPrefs.SetInt("CanSelectIndex", clearindex);
     }
