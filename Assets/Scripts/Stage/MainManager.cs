@@ -13,6 +13,8 @@ public enum MapType
 public class MainManager : Manager
 {
     public MapData curStage;
+    [SerializeField] GameObject clearUI;
+    [SerializeField] GameObject failUI;
     [SerializeField] Transform endCard;
     [SerializeField] Transform[] star;
     [SerializeField] GameObject nextStage;
@@ -75,7 +77,7 @@ public class MainManager : Manager
         if(integratedCount <= 0)
         {
             clearScore = 0;
-            End();
+            End(false);
         }
     }
     IEnumerator MinusTime()
@@ -87,7 +89,7 @@ public class MainManager : Manager
             if (integratedCount <= 0)
             {
                 clearScore = 0;
-                End();
+                End(false);
                 yield break;
             }
         }
@@ -121,10 +123,25 @@ public class MainManager : Manager
         }
     }
 
-    public void End()
+    public void End(bool isCleared)
     {
         StartCoroutine(EndMove());
-        var clearindex = StageIndex + 1;
+
+        var clearindex = 0;
+
+        if (isCleared)
+        {
+            clearindex = StageIndex + 1;
+
+            clearUI.SetActive(true);
+            failUI.SetActive(false);
+        }
+        else
+        {
+            clearUI.SetActive(false);
+            failUI.SetActive(true);
+        }
+
         if (clearindex > PlayerPrefs.GetInt("CanSelectIndex") && StageIndex < PlayerPrefs.GetInt("MaxIndex"))
             PlayerPrefs.SetInt("CanSelectIndex", clearindex);
     }

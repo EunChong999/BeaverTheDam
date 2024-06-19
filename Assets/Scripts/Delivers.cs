@@ -37,7 +37,7 @@ public class Delivers : MonoBehaviour
                     MainManager.instance.clearScore = 1;
             }
 
-            MainManager.instance.End();
+            MainManager.instance.End(true);
         }
 
         if (targetCount <= 0)
