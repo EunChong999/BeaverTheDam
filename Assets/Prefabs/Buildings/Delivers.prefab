@@ -500,6 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 902247122495921285}
   - component: {fileID: 3059540362388315961}
+  - component: {fileID: 4408048539119633975}
   m_Layer: 9
   m_Name: Delivers
   m_TagString: Untagged
@@ -526,7 +527,7 @@ Transform:
   - {fileID: 7548125279740892965}
   - {fileID: 1823166317443953757}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3059540362388315961
 MonoBehaviour:
@@ -541,6 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCount: 3
+  checker: {fileID: 4408048539119633975}
   requireItem: {fileID: 2966546741620583150, guid: a4b4b5363f4bbbf43a4832a42251a7b1, type: 3}
   requireItems: []
   mySpriteRenderer: {fileID: 6308546024165765564}
@@ -550,6 +552,19 @@ MonoBehaviour:
   - {fileID: 6575487173184866648}
   - {fileID: 8851885872068202151}
   text: {fileID: 1925467692491420104}
+--- !u!114 &4408048539119633975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976591191572905957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56db87687e6ed94a830a50b66f1f8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1487245878758996313
 GameObject:
   m_ObjectHideFlags: 0

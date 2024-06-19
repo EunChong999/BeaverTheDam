@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Delivers : MonoBehaviour
 {
     public int targetCount;
 
+    [SerializeField] TargetItemChecker checker;
     [SerializeField] GameObject requireItem;
     [SerializeField] GameObject[] requireItems;
     [SerializeField] SpriteRenderer mySpriteRenderer;
@@ -45,8 +43,15 @@ public class Delivers : MonoBehaviour
             return;
         }
 
-        if (item.name.Replace("(Clone)", "") != requireItem.name || item.GetComponent<Item>().firstColor != requireItem.GetComponent<Item>().firstColor)
+        if (item.name.Replace("(Clone)", "") != requireItem.name)
             return;
+
+        if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString())
+        {
+            Debug.Log(item.GetComponent<Item>().spriteRenderer.color);
+            Debug.Log(checker.targetColor);
+            return;
+        }
 
         targetCount--;
     }
