@@ -46,12 +46,17 @@ public class Delivers : MonoBehaviour
         if (item.name.Replace("(Clone)", "") != requireItem.name)
             return;
 
-        if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString())
-        {
-            Debug.Log(item.GetComponent<Item>().spriteRenderer.color);
-            Debug.Log(checker.targetColor);
-            return;
-        }
+        if (checker.isCutted && checker.isPainted)
+            if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString() || !item.GetComponent<Item>().isCutted)
+                return;
+
+        if (checker.isPainted)
+            if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString())
+                return;
+
+        if (checker.isCutted)
+            if (!item.GetComponent<Item>().isCutted)
+                return;
 
         targetCount--;
     }

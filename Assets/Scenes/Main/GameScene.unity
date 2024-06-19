@@ -1242,7 +1242,7 @@ MonoBehaviour:
     count1: 30
     count2: 20
   - entireLimitTime: 60
-    entireCount: 30
+    entireCount: 70
     type: 1
     map: {fileID: 7339910054145982554, guid: 0c59f3af770d17942984708bf41b83fb, type: 3}
     limitTime1: 30
@@ -1250,7 +1250,7 @@ MonoBehaviour:
     count1: 20
     count2: 15
   - entireLimitTime: 60
-    entireCount: 30
+    entireCount: 80
     type: 1
     map: {fileID: 7339910054145982554, guid: cd23dae638f549547a466d4b90577ec7, type: 3}
     limitTime1: 30
