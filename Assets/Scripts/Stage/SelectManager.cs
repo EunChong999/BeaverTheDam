@@ -80,8 +80,8 @@ public class SelectManager : Manager
     public void ChapterMove(int addIndex)
     {
         curChapter += addIndex;
-        //chapterBtn[0].gameObject.SetActive(curChapter > 0);
-        //chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
+        chapterBtn[0].gameObject.SetActive(curChapter > 0);
+        chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
         btnTransform.DOLocalMove(new Vector2(curChapter * -1920,(curChapter * -1120) + 90), 0.5f).SetEase(Ease.InOutQuad);
         terrainTransform.DOLocalMove(new Vector2(curChapter * -3,(curChapter *-1.75f) + 0.15f), 0.5f).SetEase(Ease.InOutQuad);
         for(int i = 0; i < chapterTextBtn.Length; i++)
