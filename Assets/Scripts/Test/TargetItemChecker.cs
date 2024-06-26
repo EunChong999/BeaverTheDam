@@ -4,15 +4,7 @@ using UnityEngine;
 
 public class TargetItemChecker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool isPainted;
+    public bool isCutted;
+    public Color targetColor;
 }

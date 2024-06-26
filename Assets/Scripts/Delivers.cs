@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Delivers : MonoBehaviour
 {
     public int targetCount;
 
+    [SerializeField] TargetItemChecker checker;
     [SerializeField] GameObject requireItem;
     [SerializeField] GameObject[] requireItems;
     [SerializeField] SpriteRenderer mySpriteRenderer;
@@ -47,6 +45,18 @@ public class Delivers : MonoBehaviour
 
         if (item.name.Replace("(Clone)", "") != requireItem.name || item.GetComponent<Item>().firstColor != requireItem.GetComponent<Item>().firstColor)
             return;
+
+        if (checker.isCutted && checker.isPainted)
+            if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString() || !item.GetComponent<Item>().isCutted)
+                return;
+
+        if (checker.isPainted)
+            if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString())
+                return;
+
+        if (checker.isCutted)
+            if (!item.GetComponent<Item>().isCutted)
+                return;
 
         targetCount--;
     }
