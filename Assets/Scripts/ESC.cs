@@ -22,6 +22,6 @@ public class ESC : Manager
     IEnumerator SceneMove()
     {
         yield return new WaitForSeconds(0.5f);
-        SceneMove(Scenes.Title);
+        SceneMove(scenes);
     }
 }

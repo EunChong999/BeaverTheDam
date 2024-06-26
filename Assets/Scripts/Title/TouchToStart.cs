@@ -11,6 +11,7 @@ public class TouchToStart : Manager
     private void Start()
     {
         touchText = GetComponent<RectTransform>();
+        touchText.anchoredPosition = GetComponent<UIInitializer>().pos;
         curPos = touchText.anchoredPosition;
     }
     private void Update()
