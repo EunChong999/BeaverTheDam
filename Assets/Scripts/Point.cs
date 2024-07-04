@@ -98,12 +98,11 @@ public class Point : MonoBehaviour
 
         if (hitTransform != null && !transform.GetComponent<Item>().isMoving && canMove && isMovable)
         {
-            StartCoroutine(CarryItem(itemTransform, hitTransform));
-            itemTransform.GetComponent<Item>().EnMove();
-
             if (this.transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.fixedType)
                 return;
 
+            StartCoroutine(CarryItem(itemTransform, hitTransform));
+            itemTransform.GetComponent<Item>().EnMove();
             hitTransform.GetComponent<Point>().isItemExist = true;
         }
     }
