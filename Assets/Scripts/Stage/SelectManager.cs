@@ -19,6 +19,7 @@ public class SelectManager : Manager
     [SerializeField] Button[] chapterTextBtn;
     public int clearIndex;
     public int maxChapter;
+    bool isChapterMoving;
 
     int curChapter;
     private void Start()
@@ -26,10 +27,12 @@ public class SelectManager : Manager
         clearIndex = PlayerPrefs.GetInt("CanSelectIndex");
         curChapter = PlayerPrefs.GetInt("curChapter");
         maxChapter = buttons.Length - 1;
-        print(clearIndex);
         InitStageButton();
         btnTransform.DOLocalMoveX(curChapter * -1920, 0);
         ChapterMove(0);
+
+        chapterBtn[0].gameObject.SetActive(curChapter > 0);
+        chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
     }
     public void ClearReset()
     {
@@ -79,9 +82,21 @@ public class SelectManager : Manager
     }
     public void ChapterMove(int addIndex)
     {
+        if (isChapterMoving)
+            return;
+
+        if (addIndex.Equals(0))
+            return;
+
+        isChapterMoving = true;
+
         curChapter += addIndex;
-        //chapterBtn[0].gameObject.SetActive(curChapter > 0);
-        //chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
+
+        chapterBtn[0].gameObject.SetActive(false);
+        chapterBtn[1].gameObject.SetActive(false);
+
+
+
         btnTransform.DOLocalMove(new Vector2(curChapter * -1920,(curChapter * -1120) + 90), 0.5f).SetEase(Ease.InOutQuad);
         terrainTransform.DOLocalMove(new Vector2(curChapter * -3,(curChapter *-1.75f) + 0.15f), 0.5f).SetEase(Ease.InOutQuad);
         for(int i = 0; i < chapterTextBtn.Length; i++)
@@ -89,8 +104,15 @@ public class SelectManager : Manager
             var text = chapterTextBtn[i].transform.GetChild(0).GetComponent<Text>();
             text.color = i == curChapter ? Color.white : Color.grey;
         }
-        var pos = new Vector2(curChapter * -150,(curChapter * -75) -200);
-        print(pos);
+        var pos = new Vector3(curChapter * -150,(curChapter * -75) -200);
         chapterTextBtnTransform.DOLocalMove(pos,0.5f);
+        Invoke(nameof(ReleaseChapterMove), 0.5f);
+    }
+
+    void ReleaseChapterMove()
+    {
+        isChapterMoving = false;
+        chapterBtn[0].gameObject.SetActive(curChapter > 0);
+        chapterBtn[1].gameObject.SetActive(curChapter < maxChapter);
     }
 }

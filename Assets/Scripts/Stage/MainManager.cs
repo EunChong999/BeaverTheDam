@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using TMPro;
 
 public enum MapType
 {
@@ -13,6 +14,7 @@ public enum MapType
 public class MainManager : Manager
 {
     public MapData curStage;
+    [SerializeField] TextMeshProUGUI limitTypeText;
     [SerializeField] GameObject clearUI;
     [SerializeField] GameObject failUI;
     [SerializeField] Transform endCard;
@@ -62,11 +64,16 @@ public class MainManager : Manager
         {
             integratedCount = curStage.entireLimitTime;
             StartCoroutine(MinusTime());
+            limitTypeText.text = "TIME LIMIT";
         }
-        else if (curStage.type == MapType.countType)
+        
+        if (curStage.type == MapType.countType)
         {
             integratedCount = curStage.entireCount;
+            limitTypeText.text = "COUNT LIMIT";
         }
+
+        UICurve.SetCurveCount(integratedCount);
     }
 
     public void AddRotateCount() => integratedCount++;
@@ -86,6 +93,7 @@ public class MainManager : Manager
         {
             yield return new WaitForSeconds(1);
             integratedCount--;
+            UICurve.SetCurveCount(integratedCount);
             if (integratedCount <= 0)
             {
                 clearScore = 0;
