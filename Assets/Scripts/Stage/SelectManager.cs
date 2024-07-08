@@ -44,7 +44,7 @@ public class SelectManager : Manager
     public void ClearReset()
     {
         PlayerPrefs.SetInt("CanSelectIndex",0);
-        SceneMove(Scenes.SelectScene);
+        SceneLoad(Scenes.SelectScene);
     }
     public void InitStageButton()
     {
@@ -84,7 +84,7 @@ public class SelectManager : Manager
         {
             SceneAnim.instance.AnimOn();
             yield return new WaitForSeconds(0.5f);
-            SceneMove(Scenes.MainScene);
+            SceneLoad(Scenes.MainScene);
         }
     }
     public void ChapterMove(int addIndex)

@@ -29,6 +29,6 @@ public class TouchToStart : Manager
     IEnumerator SceneMove()
     {
         yield return new WaitForSeconds(0.5f);
-        SceneMove(Scenes.SelectScene);
+        SceneLoad(Scenes.SelectScene);
     }
 }
