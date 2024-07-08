@@ -1306,9 +1306,9 @@ MonoBehaviour:
   integratedCount: 0
   StageIndex: 0
   Maps:
-  - entireLimitTime: 10
+  - entireLimitTime: 45
     entireCount: 35
-    type: 1
+    type: 0
     map: {fileID: 7757680054129064755, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
     limitTime1: 30
     limitTime2: 20

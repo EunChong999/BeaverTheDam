@@ -110,7 +110,6 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
         if (itemTransform != null)
         {
             itemTransform.gameObject.SetActive(false);
-            //ObjectPooler.Instance.poolDictionary[itemTransform.gameObject.name].Enqueue(itemTransform.gameObject);
             itemTransform = null;
         }
 

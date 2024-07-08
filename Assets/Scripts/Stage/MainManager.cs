@@ -24,6 +24,7 @@ public class MainManager : Manager
     public int clearScore;
     public int integratedCount;
     public int StageIndex;
+    [HideInInspector] public bool isEnd;
 
     [Serializable]
     public struct MapData
@@ -32,10 +33,11 @@ public class MainManager : Manager
         public int entireCount;
         public MapType type;
         public GameObject map;
-        public int limitTime1;
-        public int limitTime2;
-        public int count1;
-        public int count2;
+        public int stars;
+        public int timeLimit1;
+        public int timeLimit2;
+        public int countLimit1;
+        public int countLimit2;
     }
 
     public MapData[] Maps;
@@ -133,6 +135,8 @@ public class MainManager : Manager
 
     public void End(bool isCleared)
     {
+        isEnd = true;
+
         StartCoroutine(EndMove());
 
         var clearindex = 0;
