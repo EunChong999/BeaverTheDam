@@ -52,7 +52,6 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
                 !isDelivered &&
                 pointingPoint.isItemExist &&
                 !pointingPoint.itemTransform.GetComponent<Item>().isMoving &&
-                pointingPoint.transform.parent.GetComponent<BasicBuilding>().buildingType == buildingType.movableType &&
                 itemTransform == null)
             {
                 isArrived = false;
@@ -106,6 +105,10 @@ public class DeliverBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     public IEnumerator WaitForInput()
     {
         yield return waitForArriveSeconds;
+
+        if (MainManager.instance.isEnd)
+            yield break;
+
         isArrived = true;
         point.isItemExist = false;
 
