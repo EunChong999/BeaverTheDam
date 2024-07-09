@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Delivers : MonoBehaviour
@@ -43,20 +44,23 @@ public class Delivers : MonoBehaviour
             return;
         }
 
-        if (item.name.Replace("(Clone)", "") != requireItem.name)
-            return;
-
         if (checker.isCutted && checker.isPainted)
-            if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString() || !item.GetComponent<Item>().isCutted)
+        {
+            if (item.GetComponent<Item>().myColorType != checker.targetColor || !item.GetComponent<Item>().isCutted)
+            {
                 return;
+            }
+        }
+        else
+        {
+            if (checker.isPainted)
+                if (item.GetComponent<Item>().myColorType != checker.targetColor)
+                    return;
 
-        if (checker.isPainted)
-            if (item.GetComponent<Item>().spriteRenderer.color.ToString() != checker.targetColor.ToString())
-                return;
-
-        if (checker.isCutted)
-            if (!item.GetComponent<Item>().isCutted)
-                return;
+            if (checker.isCutted)
+                if (!item.GetComponent<Item>().isCutted)
+                    return;
+        }
 
         targetCount--;
     }

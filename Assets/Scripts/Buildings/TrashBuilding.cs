@@ -127,6 +127,9 @@ public class TrashBuilding : BasicBuilding, ISendableBuilding, IInputableBuildin
     #region Events
     private void OnMouseOver()
     {
+        if (!CanRotation())
+            return;
+
         if (isRotating)
             return;
 

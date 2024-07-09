@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
+public enum allColorType
+{
+    red,
+    yellow,
+    blue,
+    orange,
+    purple,
+    green
+}
+
 public class DyeManager : MonoBehaviour
 {
     public Sprite[] syntheticSprites;

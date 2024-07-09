@@ -122,8 +122,11 @@ public class ConveyorBeltBuilding : BasicBuilding
     }
     #endregion
     #region Events
-    private void OnMouseOver()
+    public void OnMouseOver()
     {
+        if (!CanRotation())
+            return;
+
         // 마우스 좌클릭
         if (Input.GetMouseButtonDown(0) && !isRotating)
         {

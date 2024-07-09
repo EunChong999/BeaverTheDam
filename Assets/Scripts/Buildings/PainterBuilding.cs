@@ -205,7 +205,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
             itemTemp.SetActive(true);
 
             if (dye != null)
-                itemTemp.GetComponent<Item>().PaintSprite(dye.myColor);
+                itemTemp.GetComponent<Item>().PaintSprite(dye.myColor, dye.myColorType);
 
             itemTransform = itemTemp.transform;
             itemTransform.GetComponent<Item>().ShowEffect(true);

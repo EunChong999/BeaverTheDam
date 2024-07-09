@@ -214,6 +214,9 @@ public class BasicBuilding : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        if (!CanRotation())
+            return;
+
         direction.SetActive(true);
 
         if (interactionType == interactionType.storeType)
@@ -222,10 +225,21 @@ public class BasicBuilding : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (!CanRotation())
+            return;
+
         direction.SetActive(false);
 
         if (interactionType == interactionType.storeType)
             itemPanel.SetActive(true);
+    }
+
+    protected bool CanRotation()
+    {
+        if (DialogSystem.instance != null && !DialogSystem.instance.isDialogSystemEnded)
+            return false;
+        else 
+            return true;
     }
     #endregion
 }

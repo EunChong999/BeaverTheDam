@@ -5,14 +5,17 @@ using TMPro;
 
 public class DialogSystem : MonoBehaviour
 {
+	[HideInInspector]
+	public static DialogSystem instance;
 	[SerializeField]
-	private int branch;
+	private string branch;
 	[SerializeField]
 	private DialogDB dialogDB;
 	[SerializeField]
 	private	Speaker[]		speakers;					// 대화에 참여하는 캐릭터들의 UI 배열
 	[SerializeField]
-	private	DialogData[]	dialogs;					// 현재 분기의 대사 목록 배열
+	private	DialogData[]	dialogs;                    // 현재 분기의 대사 목록 배열
+	public bool isDialogSystemEnded;
 	[SerializeField]
 	private	bool			isAutoStart = true;			// 자동 시작 여부
 	private	bool			isFirst = true;				// 최초 1회만 호출하기 위한 변수
@@ -28,6 +31,8 @@ public class DialogSystem : MonoBehaviour
 
 	private void Setup()
 	{
+		instance = this;
+
 		int index = 0;
 		for (int i = 0; i < dialogDB.Entities.Count; i++)
 		{
@@ -44,7 +49,7 @@ public class DialogSystem : MonoBehaviour
 		{
 			SetActiveObjects(speakers[i], false);
 			// 캐릭터 이미지는 보이도록 설정
-			speakers[i].spriteRenderer.gameObject.SetActive(true);
+			speakers[i].characterImage.gameObject.SetActive(true);
 		}
 	}
 
@@ -91,7 +96,7 @@ public class DialogSystem : MonoBehaviour
 				{
 					SetActiveObjects(speakers[i], false);
 					// SetActiveObjects()에 캐릭터 이미지를 보이지 않게 하는 부분이 없기 때문에 별도로 호출
-					speakers[i].spriteRenderer.gameObject.SetActive(false);
+					speakers[i].characterImage.gameObject.SetActive(false);
 				}
 
 				return true;
@@ -131,9 +136,9 @@ public class DialogSystem : MonoBehaviour
 		speaker.objectArrow.SetActive(false);
 
 		// 캐릭터 알파 값 변경
-		Color color = speaker.spriteRenderer.color;
+		Color color = speaker.characterImage.color;
 		color.a = visible == true ? 1 : 0.2f;
-		speaker.spriteRenderer.color = color;
+		speaker.characterImage.color = color;
 	}
 
 	private IEnumerator OnTypingText()
@@ -157,12 +162,23 @@ public class DialogSystem : MonoBehaviour
 		// 대사가 완료되었을 때 출력되는 커서 활성화
 		speakers[currentSpeakerIndex].objectArrow.SetActive(true);
 	}
+
+    public void EndDialogSystem()
+    {
+		foreach (Speaker speaker in speakers)
+		{
+			speaker.speackerSelf.SetActive(false);
+		}
+
+		isDialogSystemEnded = true;
+    }
 }
 
 [System.Serializable]
 public struct Speaker
 {
-	public	SpriteRenderer	spriteRenderer;		// 캐릭터 이미지 (청자/화자 알파값 제어)
+	public  GameObject speackerSelf;
+	public	Image	characterImage;		// 캐릭터 이미지 (청자/화자 알파값 제어)
 	public	Image			imageDialog;		// 대화창 Image UI
 	public	TextMeshProUGUI	textName;			// 현재 대사중인 캐릭터 이름 출력 Text UI
 	public	TextMeshProUGUI	textDialogue;		// 현재 대사 출력 Text UI

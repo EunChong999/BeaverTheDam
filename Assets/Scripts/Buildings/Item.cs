@@ -27,6 +27,7 @@ public class Item : MonoBehaviour, IPooledObject
 
     [HideInInspector] public Color firstColor;
     [HideInInspector] public Color secondColor;
+    public allColorType myColorType;
 
     [SerializeField] float startScaleTime;
     [SerializeField] float endScaleTime;
@@ -181,9 +182,10 @@ public class Item : MonoBehaviour, IPooledObject
     /// <summary>
     /// 스프라이트를 칠하는 함수
     /// </summary>
-    public void PaintSprite(Color color)
+    public void PaintSprite(Color color, allColorType allColorType)
     {
         spriteRenderer.color = color;
+        myColorType = allColorType;
 
         if (isCutted)
         {

@@ -21,6 +21,7 @@ public class Dye : MonoBehaviour, IPooledObject
 {
     [SerializeField] bool isBasicColor;
 
+    public allColorType myColorType;
     public basicColorType basicColorType;
     public syntheticColorType syntheticColorType;
     public Color myColor;

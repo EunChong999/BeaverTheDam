@@ -52,6 +52,14 @@ public class DoubleBasicBuilding : MonoBehaviour
         if (canExchange)
             ExchangeBuildings();
     }
+
+    protected bool CanRotation()
+    {
+        if (DialogSystem.instance != null && !DialogSystem.instance.isDialogSystemEnded)
+            return false;
+        else
+            return true;
+    }
     #endregion
     #region Events
     private void Start()
@@ -84,6 +92,9 @@ public class DoubleBasicBuilding : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if (!CanRotation())
+            return;
+
         if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) &&
             firstBuilding.canRotate &&
             secondBuilding.canRotate &&
