@@ -114,7 +114,7 @@ public class MainManager : Manager
         {
             SceneAnim.instance.AnimOn();
             yield return new WaitForSeconds(0.5f);
-            SceneMove(Scenes.SelectScene);
+            SceneLoad(Scenes.SelectScene);
         }
     }
     public void StartStage(bool isRetry)
@@ -129,7 +129,7 @@ public class MainManager : Manager
             SceneAnim.instance.AnimOn();
             yield return new WaitForSeconds(0.5f);
             if (!isRetry) PlayerPrefs.SetInt("SelectIndex", StageIndex + 1);
-            SceneMove(Scenes.MainScene);
+            SceneLoad(Scenes.MainScene);
         }
     }
 

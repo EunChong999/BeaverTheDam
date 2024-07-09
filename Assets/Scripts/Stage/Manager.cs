@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour
 
     public Scenes scenes;
 
-    public virtual void SceneMove(Scenes moveScene)
+    public virtual void SceneLoad(Scenes moveScene)
     {
         SceneManager.LoadScene((int)moveScene);
     }
