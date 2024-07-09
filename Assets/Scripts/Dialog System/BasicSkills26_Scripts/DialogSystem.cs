@@ -6,6 +6,10 @@ using TMPro;
 public class DialogSystem : MonoBehaviour
 {
 	[SerializeField]
+	private int branch;
+	[SerializeField]
+	private DialogDB dialogDB;
+	[SerializeField]
 	private	Speaker[]		speakers;					// 대화에 참여하는 캐릭터들의 UI 배열
 	[SerializeField]
 	private	DialogData[]	dialogs;					// 현재 분기의 대사 목록 배열
@@ -24,6 +28,17 @@ public class DialogSystem : MonoBehaviour
 
 	private void Setup()
 	{
+		int index = 0;
+		for (int i = 0; i < dialogDB.Entities.Count; i++)
+		{
+			if (dialogDB.Entities[i].branch == branch)
+			{
+				dialogs[index].name = dialogDB.Entities[i].name;
+				dialogs[index].dialogue = dialogDB.Entities[i].dialog;
+				index++;
+			}
+		}
+
 		// 모든 대화 관련 게임오브젝트 비활성화
 		for ( int i = 0; i < speakers.Length; ++ i )
 		{
@@ -128,7 +143,7 @@ public class DialogSystem : MonoBehaviour
 		isTypingEffect = true;
 
 		// 텍스트를 한글자씩 타이핑치듯 재생
-		while ( index < dialogs[currentDialogIndex].dialogue.Length )
+		while ( index <= dialogs[currentDialogIndex].dialogue.Length )
 		{
 			speakers[currentSpeakerIndex].textDialogue.text = dialogs[currentDialogIndex].dialogue.Substring(0, index);
 
