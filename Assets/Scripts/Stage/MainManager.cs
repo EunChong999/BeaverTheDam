@@ -144,7 +144,7 @@ public class MainManager : Manager
 
         int clearindex = 0;
 
-        if (isCleared && PlayerPrefs.GetInt("CanSelectIndex") < Maps.Length - 1)
+        if (isCleared && StageIndex < Maps.Length - 1)
         {
             clearindex = StageIndex + 1;
 
