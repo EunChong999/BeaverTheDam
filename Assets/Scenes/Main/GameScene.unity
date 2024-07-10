@@ -1153,8 +1153,8 @@ MonoBehaviour:
     type: 0
     map: {fileID: 7757680054129064755, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
     stars: 0
-    timeLimit1: 0
-    timeLimit2: 0
+    timeLimit1: 30
+    timeLimit2: 15
     countLimit1: 0
     countLimit2: 0
   - entireLimitTime: 60
@@ -1164,33 +1164,33 @@ MonoBehaviour:
     stars: 0
     timeLimit1: 0
     timeLimit2: 0
-    countLimit1: 0
-    countLimit2: 0
+    countLimit1: 30
+    countLimit2: 15
   - entireLimitTime: 60
     entireCount: 90
     type: 0
     map: {fileID: 3919333268608230747, guid: 5382a8647ba1f9e40a997ef03da45575, type: 3}
     stars: 0
-    timeLimit1: 0
-    timeLimit2: 0
+    timeLimit1: 40
+    timeLimit2: 20
     countLimit1: 0
     countLimit2: 0
   - entireLimitTime: 60
-    entireCount: 70
+    entireCount: 75
     type: 1
     map: {fileID: 7339910054145982554, guid: 0c59f3af770d17942984708bf41b83fb, type: 3}
     stars: 0
     timeLimit1: 0
     timeLimit2: 0
-    countLimit1: 0
-    countLimit2: 0
+    countLimit1: 50
+    countLimit2: 25
   - entireLimitTime: 60
     entireCount: 80
     type: 0
     map: {fileID: 7339910054145982554, guid: cd23dae638f549547a466d4b90577ec7, type: 3}
     stars: 0
-    timeLimit1: 0
-    timeLimit2: 0
+    timeLimit1: 40
+    timeLimit2: 20
     countLimit1: 0
     countLimit2: 0
 --- !u!4 &726222231

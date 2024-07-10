@@ -152,6 +152,7 @@ MonoBehaviour:
   canInput: 0
   firstColor: {r: 0, g: 0, b: 0, a: 0}
   secondColor: {r: 0, g: 0, b: 0, a: 0}
+  myColorType: 0
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 1
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBasicColor: 1
+  myColorType: 1
   basicColorType: 1
   syntheticColorType: 0
   myColor: {r: 0, g: 0, b: 0, a: 0}

@@ -6,5 +6,5 @@ public class TargetItemChecker : MonoBehaviour
 {
     public bool isPainted;
     public bool isCutted;
-    public Color targetColor;
+    public allColorType targetColor;
 }

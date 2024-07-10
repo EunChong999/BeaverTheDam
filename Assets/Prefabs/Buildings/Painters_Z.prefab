@@ -577,6 +577,7 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 0
   isItemExist: 0
+  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
 --- !u!65 &7960071277475435742
@@ -784,8 +785,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfbd40b2fab9524099b40220470c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDistinct: 0
   amplitude: 0.1
   frequency: 5
+  firSpriteTransform: {fileID: 0}
+  secSpriteTransform: {fileID: 0}
   spriteTransform: {fileID: 0}
   backSpriteTransform: {fileID: 4271317177346487369}
 --- !u!1 &5391855003187315719
@@ -1308,6 +1312,7 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 0
   isItemExist: 0
+  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
 --- !u!65 &4310803559463836431
@@ -1654,8 +1659,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfbd40b2fab9524099b40220470c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDistinct: 0
   amplitude: 0.1
   frequency: 5
+  firSpriteTransform: {fileID: 0}
+  secSpriteTransform: {fileID: 0}
   spriteTransform: {fileID: 0}
   backSpriteTransform: {fileID: 7775833483779559128}
 --- !u!1 &8077853065642563687

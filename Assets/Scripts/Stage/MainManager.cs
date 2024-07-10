@@ -93,6 +93,9 @@ public class MainManager : Manager
     {
         while (true)
         {
+            while (DialogSystem.instance != null && !DialogSystem.instance.isDialogSystemEnded)
+                yield return null;
+
             yield return new WaitForSeconds(1);
             integratedCount--;
             UICurve.SetCurveCount(integratedCount);
@@ -139,9 +142,9 @@ public class MainManager : Manager
 
         StartCoroutine(EndMove());
 
-        var clearindex = 0;
+        int clearindex = 0;
 
-        if (isCleared)
+        if (isCleared && StageIndex < Maps.Length - 1)
         {
             clearindex = StageIndex + 1;
 

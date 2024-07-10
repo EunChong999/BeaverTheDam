@@ -3,7 +3,7 @@ using System;
 [System.Serializable]
 public class DialogDBEntity 
 {
-    public int    branch;
+    public string branch;
     public string name;
     public string dialog;
 }

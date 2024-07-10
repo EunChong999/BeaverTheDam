@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCutted: 0
-  buildingTransform: {fileID: 6914407472084211174}
   spriteRenderer: {fileID: 4976805472428071022}
   sprite: {fileID: 21300000, guid: 74d70bca7c2ca7e439b4faf3a4362bf6, type: 3}
+  buildingTransform: {fileID: 6914407472084211174}
   curSprite: {fileID: 0}
   cuttedSprites:
   - {fileID: 796748638, guid: 03f338814a92d7840a5123010ce2caff, type: 3}
@@ -157,8 +157,11 @@ MonoBehaviour:
   isCutted: 0
   isPainted: 0
   isMoving: 0
+  isCombined: 0
   shadow: {fileID: 7895604038907116567}
   spriteTransform: {fileID: 5347443384859416961}
+  xSpriteObj: {fileID: 0}
+  zSpriteObj: {fileID: 0}
   spriteRenderer: {fileID: 8438796474880134785}
   replaceSprite: {fileID: 21300000, guid: d69127b6b49649a40932cc32152f6a27, type: 3}
   cuttedSprites:
@@ -168,11 +171,10 @@ MonoBehaviour:
   - {fileID: 1261009898, guid: 71c5487eccf007b4db8aeb5d03ef0c96, type: 3}
   cuttedReplaceSprites: []
   curPoint: {fileID: 0}
-  isZCombined: 0
-  isXCombined: 0
-  isZCutted: 0
-  isXCutted: 0
   canInput: 0
+  firstColor: {r: 0, g: 0, b: 0, a: 0}
+  secondColor: {r: 0, g: 0, b: 0, a: 0}
+  myColorType: 0
   startScaleTime: 0.05
   endScaleTime: 1
   rotationEase: 1
@@ -190,20 +192,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bb44d0b130f8024bb886066c85d963c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBasicColor: 0
+  myColorType: 3
   basicColorType: 0
   syntheticColorType: 0
-  syntheticSprites:
-  - {fileID: -311718763, guid: b47153f9ce6f93846af53667d3b3b636, type: 3}
-  - {fileID: 1340480457, guid: b47153f9ce6f93846af53667d3b3b636, type: 3}
-  - {fileID: -1391635400, guid: b47153f9ce6f93846af53667d3b3b636, type: 3}
-  basicColors:
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0.9914521, g: 1, b: 0, a: 1}
-  - {r: 0.15294118, g: 0.7176471, b: 0.9176471, a: 1}
-  syntheticColors:
-  - {r: 1, g: 0.60045624, b: 0, a: 1}
-  - {r: 0.78144646, g: 0, b: 1, a: 1}
-  - {r: 0.5294118, g: 0.9176471, b: 0.15294118, a: 1}
   myColor: {r: 0, g: 0, b: 0, a: 0}
   spriteRenderer: {fileID: 8438796474880134785}
 --- !u!65 &6970094314374776172
