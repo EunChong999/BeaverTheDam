@@ -107,7 +107,7 @@ public class Point : MonoBehaviour
         }
     }
 
-    public void DoneMove(Transform transform)
+    public void DoneMove()
     {
         canPlay = true;
         isItemExist = false;
@@ -119,7 +119,7 @@ public class Point : MonoBehaviour
         if (!obj.CompareTag("Item") && !obj.CompareTag("Dye"))
             return;
 
-        DoneMove(obj.transform);
+        DoneMove();
     }
 
     private void OnTriggerStay(Collider obj)
