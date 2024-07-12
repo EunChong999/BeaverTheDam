@@ -15,22 +15,14 @@ public class PlacementSystem : MonoBehaviour
 
     private void Update()
     {
-        // 마우스 위치에서 레이를 쏩니다.
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // MeshCollider와의 충돌 여부를 확인합니다.
-        if (meshCollider.Raycast(ray, out hit, Mathf.Infinity))
-        {
-            Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-            cellIndicator.transform.position = grid.CellToWorld(gridPosition);
-        }
-        else
-        {
-            // 마우스 커서가 MeshCollider 밖에 있는 경우
-            Debug.Log("Mouse is outside the MeshCollider");
-        }
+        if (!meshCollider.Raycast(ray, out hit, Mathf.Infinity))
+            return;
 
+        Vector3 mousePosition = inputManager.GetSelectedMapPosition();
+        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        cellIndicator.transform.position = grid.CellToWorld(gridPosition);
     }
 }
