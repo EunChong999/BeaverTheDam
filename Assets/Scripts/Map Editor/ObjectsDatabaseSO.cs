@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class ObjectsDatabaseOS : ScriptableObject
+public class ObjectsDatabaseSO : ScriptableObject
 {
     public List<ObjectData> objectsData;
 }
