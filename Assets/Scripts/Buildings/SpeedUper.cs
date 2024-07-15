@@ -12,19 +12,19 @@ public class SpeedUper : MonoBehaviour
 
     public void OnSpeedUp()
     {
-        switch(BuildingManager.instance.speed)
+        switch(Time.timeScale)
         {
-            case 2:
+            case 1:
                 myImage.sprite = sprites[1];
-                BuildingManager.instance.speed = 4;
+                Time.timeScale = 2;
                 break;
-            case 4:
+            case 2:
                 myImage.sprite = sprites[2];
-                BuildingManager.instance.speed = 6;
+                Time.timeScale = 3;
                 break;
-            case 6:
+            case 3:
                 myImage.sprite = sprites[0];
-                BuildingManager.instance.speed = 2;
+                Time.timeScale = 1;
                 break;
         }
     }

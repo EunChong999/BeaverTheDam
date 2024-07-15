@@ -140,6 +140,8 @@ public class MainManager : Manager
     {
         isEnd = true;
 
+        Time.timeScale = 1;
+
         StartCoroutine(EndMove());
 
         int clearindex = 0;
