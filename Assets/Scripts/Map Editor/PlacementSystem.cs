@@ -79,7 +79,7 @@ public class PlacementSystem : MonoBehaviour
             floorData : 
             furnitureData;
 
-        return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
+        return selectedData.CanPlaceObjectAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
     }
 
     private void StopPlacement()
@@ -95,6 +95,7 @@ public class PlacementSystem : MonoBehaviour
     {
         if (selectedObjectIndex < 0)
             return;
+
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
