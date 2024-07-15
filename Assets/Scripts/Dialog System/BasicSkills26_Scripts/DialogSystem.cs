@@ -15,6 +15,8 @@ public class DialogSystem : MonoBehaviour
 	private	Speaker[]		speakers;					// 대화에 참여하는 캐릭터들의 UI 배열
 	[SerializeField]
 	private	DialogData[]	dialogs;                    // 현재 분기의 대사 목록 배열
+	[SerializeField]
+	private Image blockImage;
 	public bool isDialogSystemEnded;
 	[SerializeField]
 	private	bool			isAutoStart = true;			// 자동 시작 여부
@@ -137,7 +139,7 @@ public class DialogSystem : MonoBehaviour
 
 		// 캐릭터 알파 값 변경
 		Color color = speaker.characterImage.color;
-		color.a = visible == true ? 1 : 0.2f;
+		color.a = visible == true ? 1 : 0;
 		speaker.characterImage.color = color;
 	}
 
@@ -165,6 +167,8 @@ public class DialogSystem : MonoBehaviour
 
     public void EndDialogSystem()
     {
+		blockImage.gameObject.SetActive(false);
+
 		foreach (Speaker speaker in speakers)
 		{
 			speaker.speackerSelf.SetActive(false);
