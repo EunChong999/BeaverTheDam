@@ -15,7 +15,7 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        gridSize = new GridSize(21, 21); 
+        gridSize = new(); 
         placementValidator = new PlacementValidator(gridSize);
     }
 

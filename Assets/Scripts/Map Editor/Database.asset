@@ -19,8 +19,8 @@ MonoBehaviour:
     <Prefab>k__BackingField: {fileID: 3006559261481458628, guid: d48310432cdfa0142a6a1e57fcfa5d4c, type: 3}
   - <Name>k__BackingField: Chair
     <ID>k__BackingField: 1
-    <Size>k__BackingField: {x: 2, y: 1}
-    <Prefab>k__BackingField: {fileID: 7623407040731499573, guid: 4f669e4f76c5f4948be706bd96889842, type: 3}
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 4572876218406535608, guid: 7dda484c2a060b343a9b7445e1834fd5, type: 3}
   - <Name>k__BackingField: Big Bad
     <ID>k__BackingField: 2
     <Size>k__BackingField: {x: 2, y: 2}
