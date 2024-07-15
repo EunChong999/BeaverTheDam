@@ -29,14 +29,17 @@ public class GridData
         {
             for (int y = 0; y < objectSize.y; y++)
             {
-                returnVal.Add(gridPosition + new Vector3Int(x, 0, y));
+                returnVal.Add(gridPosition + new Vector3Int(x, y, 0));
             }
         }
         return returnVal;
     }
 
-    public bool CanPlaceObejctAt(Vector3Int gridPosition, Vector2Int objectSize)
+    public bool CanPlaceObjectAt(Vector3Int gridPosition, Vector2Int objectSize)
     {
+        if (!GridManager.instance.TryPlaceObject(gridPosition, objectSize))
+            return false;
+
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
         foreach (var pos in positionToOccupy)
         {
