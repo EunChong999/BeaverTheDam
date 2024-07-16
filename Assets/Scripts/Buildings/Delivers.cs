@@ -17,20 +17,20 @@ public class Delivers : MonoBehaviour
     {
         if (targetCount <= 1)
         {
-            if (MainManager.instance.curStage.type == MapType.timeType)
+            if (MainManager.instance.curStage.type == MapType.time)
             {
-                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.timeLimit1)
+                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstTimeLimit)
                     MainManager.instance.clearScore = 3;
-                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.timeLimit2)
+                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondTimeLimit)
                     MainManager.instance.clearScore = 2;
                 else 
                     MainManager.instance.clearScore = 1;
             }
-            else if (MainManager.instance.curStage.type == MapType.countType)
+            else if (MainManager.instance.curStage.type == MapType.count)
             {
-                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.countLimit1)
+                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstCountLimit)
                     MainManager.instance.clearScore = 3;
-                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.countLimit2)
+                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondCountLimit)
                     MainManager.instance.clearScore = 2;
                 else 
                     MainManager.instance.clearScore = 1;

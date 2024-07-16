@@ -6,5 +6,5 @@ using UnityEngine;
 [ExcelAsset]
 public class DialogDB : ScriptableObject
 {
-	public List<DialogDBEntity> Entities;
+	public List<DialogDBEntity> Entites;
 }

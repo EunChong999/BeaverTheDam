@@ -1275,15 +1275,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenes: 0
   curStage:
-    entireLimitTime: 0
-    entireCount: 0
-    type: 0
     map: {fileID: 0}
+    branch: 
+    type: 0
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
     stars: 0
-    timeLimit1: 0
-    timeLimit2: 0
-    countLimit1: 0
-    countLimit2: 0
+  stageDB: {fileID: 11400000, guid: 7bc3031ea110a2844ab70ada1d35ae8a, type: 2}
   limitTypeText: {fileID: 1410776576}
   clearUI: {fileID: 1688397855}
   failUI: {fileID: 129940643}
@@ -1299,51 +1300,51 @@ MonoBehaviour:
   StageIndex: 0
   isEnd: 0
   Maps:
-  - entireLimitTime: 45
-    entireCount: 35
+  - map: {fileID: 7757680054129064755, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
+    branch: STAGE_1
     type: 0
-    map: {fileID: 7757680054129064755, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
     stars: 0
-    timeLimit1: 30
-    timeLimit2: 15
-    countLimit1: 0
-    countLimit2: 0
-  - entireLimitTime: 60
-    entireCount: 45
+  - map: {fileID: 8795605627285144268, guid: 68a7049c17e3bea46b7f553099417b82, type: 3}
+    branch: STAGE_2
     type: 1
-    map: {fileID: 8795605627285144268, guid: 68a7049c17e3bea46b7f553099417b82, type: 3}
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
     stars: 0
-    timeLimit1: 0
-    timeLimit2: 0
-    countLimit1: 30
-    countLimit2: 15
-  - entireLimitTime: 60
-    entireCount: 90
+  - map: {fileID: 3919333268608230747, guid: 5382a8647ba1f9e40a997ef03da45575, type: 3}
+    branch: STAGE_3
     type: 0
-    map: {fileID: 3919333268608230747, guid: 5382a8647ba1f9e40a997ef03da45575, type: 3}
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
     stars: 0
-    timeLimit1: 40
-    timeLimit2: 20
-    countLimit1: 0
-    countLimit2: 0
-  - entireLimitTime: 60
-    entireCount: 75
+  - map: {fileID: 7339910054145982554, guid: 0c59f3af770d17942984708bf41b83fb, type: 3}
+    branch: STAGE_4
     type: 1
-    map: {fileID: 7339910054145982554, guid: 0c59f3af770d17942984708bf41b83fb, type: 3}
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
     stars: 0
-    timeLimit1: 0
-    timeLimit2: 0
-    countLimit1: 50
-    countLimit2: 25
-  - entireLimitTime: 60
-    entireCount: 80
+  - map: {fileID: 7339910054145982554, guid: cd23dae638f549547a466d4b90577ec7, type: 3}
+    branch: STAGE_5
     type: 0
-    map: {fileID: 7339910054145982554, guid: cd23dae638f549547a466d4b90577ec7, type: 3}
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
     stars: 0
-    timeLimit1: 40
-    timeLimit2: 20
-    countLimit1: 0
-    countLimit2: 0
 --- !u!4 &726222231
 Transform:
   m_ObjectHideFlags: 0

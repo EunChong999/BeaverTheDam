@@ -168,7 +168,7 @@ public class ExcelImporter : AssetPostprocessor
 		return entity;
 	}
 
-	static object GetEntityListFromSheet(ISheet sheet, Type entityType)
+    static object GetEntityListFromSheet(ISheet sheet, Type entityType)
 	{
 		List<string> excelColumnNames = GetFieldNamesFromSheetHeader(sheet);
 

@@ -7,13 +7,15 @@ using TMPro;
 
 public enum MapType
 {
-    timeType,
-    countType
+    time,
+    count
 }
 
 public class MainManager : Manager
 {
     public MapData curStage;
+    [SerializeField]
+    private StageDB stageDB;
     [SerializeField] TextMeshProUGUI limitTypeText;
     [SerializeField] GameObject clearUI;
     [SerializeField] GameObject failUI;
@@ -29,22 +31,22 @@ public class MainManager : Manager
     [Serializable]
     public struct MapData
     {
-        public int entireLimitTime;
-        public int entireCount;
-        public MapType type;
         public GameObject map;
+        public string branch;
+        public MapType type;
+        public int entireLimitAmount;
+        public int firstTimeLimit;
+        public int secondTimeLimit;
+        public int firstCountLimit;
+        public int secondCountLimit;
         public int stars;
-        public int timeLimit1;
-        public int timeLimit2;
-        public int countLimit1;
-        public int countLimit2;
     }
-
+    
     public MapData[] Maps;
     public static MainManager instance {get; private set;}
     private void Awake()
     {
-        instance = this;
+        SetUp();
     }
     private void Start()
     {
@@ -57,25 +59,44 @@ public class MainManager : Manager
         }
 
         curStage = Maps[StageIndex];
-        integratedCount = curStage.entireCount;
+        integratedCount = curStage.entireLimitAmount;
         UICurve.SetCurveCount(integratedCount);
 
         Instantiate(curStage.map).SetActive(true);
 
-        if (curStage.type == MapType.timeType)
+        if (curStage.type == MapType.time)
         {
-            integratedCount = curStage.entireLimitTime;
             StartCoroutine(MinusTime());
             limitTypeText.text = "TIME LIMIT";
         }
         
-        if (curStage.type == MapType.countType)
+        if (curStage.type == MapType.count)
         {
-            integratedCount = curStage.entireCount;
             limitTypeText.text = "COUNT LIMIT";
         }
 
         UICurve.SetCurveCount(integratedCount);
+    }
+
+    public void SetUp()
+    {
+        instance = this;
+
+        int index = 0;
+        for (int i = 0; i < Maps.Length; i++)
+        {
+            if (stageDB.Entites[i].branch == Maps[index].branch)
+            {
+                Maps[index].type = (MapType)Enum.Parse(typeof(MapType), stageDB.Entites[i].limit_type);
+                Maps[index].entireLimitAmount = stageDB.Entites[i].limit_amount;
+                Maps[index].firstTimeLimit = stageDB.Entites[i].first_limit;
+                Maps[index].firstCountLimit = stageDB.Entites[i].first_limit;
+                Maps[index].secondTimeLimit = stageDB.Entites[i].second_limit;
+                Maps[index].secondCountLimit = stageDB.Entites[i].second_limit;
+                Maps[index].stars = stageDB.Entites[i].stars;
+                index++;
+            }
+        }
     }
 
     public void AddRotateCount() => integratedCount++;

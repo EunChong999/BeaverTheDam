@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 324e3634c947dbd45aaff90a7c9f7244, type: 3}
   m_Name: DialogDB
   m_EditorClassIdentifier: 
-  Entities:
+  Entites:
   - branch: STAGE_1
     name: "\uD1A0\uB07C"
     dialog: "\uC548\uB155\uD558\uC138\uC694, \uB310\uC744 \uC9D3\uACE0 \uC788\uB294
