@@ -7,4 +7,5 @@ public class StageDBEntity
     public int first_limit;
     public int second_limit;
     public int stars;
+    public bool clear;
 }

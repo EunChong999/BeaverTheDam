@@ -102,6 +102,8 @@ public class BasicBuilding : MonoBehaviour
             if (gameObject.name.Contains("Deliver"))
                 return;
 
+            MainManager.instance.test.Play();
+
             if (MainManager.instance.curStage.type == MapType.count)
                 MainManager.instance.MinusCurveCount();
         }
