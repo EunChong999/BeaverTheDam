@@ -140,8 +140,6 @@ public class MainManager : Manager
     {
         isEnd = true;
 
-        Time.timeScale = 1;
-
         StartCoroutine(EndMove());
 
         int clearindex = 0;
@@ -164,7 +162,10 @@ public class MainManager : Manager
     }
     IEnumerator EndMove()
     {
+        Time.timeScale = 1;
+
         yield return endCard.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).WaitForCompletion();
+
         for (int i = 0; i < clearScore; i++)
         {
             yield return star[i].DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).WaitForCompletion();
