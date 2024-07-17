@@ -42,7 +42,7 @@ MonoBehaviour:
     stars: 0
     clear: 0
   - branch: STAGE_5
-    limit_amount: 50
+    limit_amount: 500
     limit_type: time
     first_limit: 20
     second_limit: 10

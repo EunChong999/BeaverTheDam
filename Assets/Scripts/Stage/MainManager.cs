@@ -98,13 +98,13 @@ public class MainManager : Manager
         {
             if (stageDB.Entites[i].branch == Maps[index].branch)
             {
-                Maps[index].type = (MapType)Enum.Parse(typeof(MapType), stageDB.Entites[i].limit_type);
-                Maps[index].entireLimitAmount = stageDB.Entites[i].limit_amount;
-                Maps[index].firstTimeLimit = stageDB.Entites[i].first_limit;
-                Maps[index].firstCountLimit = stageDB.Entites[i].first_limit;
-                Maps[index].secondTimeLimit = stageDB.Entites[i].second_limit;
-                Maps[index].secondCountLimit = stageDB.Entites[i].second_limit;
-                Maps[index].stars = stageDB.Entites[i].stars;
+                Maps[index].type = (MapType)Enum.Parse(typeof(MapType), ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 1));
+                Maps[index].entireLimitAmount = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 2));
+                Maps[index].firstTimeLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
+                Maps[index].firstCountLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
+                Maps[index].secondTimeLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
+                Maps[index].secondCountLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
+                Maps[index].stars = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 5));
                 index++;
             }
         }
@@ -242,7 +242,7 @@ public class MainManager : Manager
 
         int clearIndex = 0;
 
-        if ((isCleared && StageIndex < Maps.Length - 1) || Maps[StageIndex].isCleared)
+        if ((isCleared || Maps[StageIndex].isCleared) && StageIndex < Maps.Length - 1)
         {
             clearIndex = StageIndex + 1;
             UpdateExcelFile(ExcelFilePaths.StageFilePath, "Entites", StageIndex + 1, 6, "TRUE");
