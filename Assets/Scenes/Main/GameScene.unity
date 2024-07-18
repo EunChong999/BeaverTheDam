@@ -1797,7 +1797,7 @@ MonoBehaviour:
   StageIndex: 0
   isEnd: 0
   Maps:
-  - map: {fileID: 8795605627285144268, guid: 68a7049c17e3bea46b7f553099417b82, type: 3}
+  - map: {fileID: 8795605627285144268, guid: d7f0fe05cad5ffd4cbe23383c2107b67, type: 3}
     branch: STAGE_1
     type: 0
     entireLimitAmount: 0
@@ -1807,7 +1807,7 @@ MonoBehaviour:
     secondCountLimit: 0
     stars: 0
     isCleared: 0
-  - map: {fileID: 3919333268608230747, guid: 5382a8647ba1f9e40a997ef03da45575, type: 3}
+  - map: {fileID: 3919333268608230747, guid: 68a7049c17e3bea46b7f553099417b82, type: 3}
     branch: STAGE_2
     type: 1
     entireLimitAmount: 0
@@ -1827,7 +1827,7 @@ MonoBehaviour:
     secondCountLimit: 0
     stars: 0
     isCleared: 0
-  - map: {fileID: 6285900577659335506, guid: 7f4925809f09bfc40802fa1a4d3278a5, type: 3}
+  - map: {fileID: 8746955974595013206, guid: 7f4925809f09bfc40802fa1a4d3278a5, type: 3}
     branch: STAGE_4
     type: 1
     entireLimitAmount: 0
@@ -1837,7 +1837,7 @@ MonoBehaviour:
     secondCountLimit: 0
     stars: 0
     isCleared: 0
-  - map: {fileID: 7339910054145982554, guid: 0c59f3af770d17942984708bf41b83fb, type: 3}
+  - map: {fileID: 7339910054145982554, guid: cd23dae638f549547a466d4b90577ec7, type: 3}
     branch: STAGE_5
     type: 0
     entireLimitAmount: 0
@@ -1847,7 +1847,7 @@ MonoBehaviour:
     secondCountLimit: 0
     stars: 0
     isCleared: 0
-  - map: {fileID: 7339910054145982554, guid: cd23dae638f549547a466d4b90577ec7, type: 3}
+  - map: {fileID: 3856685219961897255, guid: 8fa5fac1f9f4da54eaa31a2066446fad, type: 3}
     branch: STAGE_6
     type: 0
     entireLimitAmount: 0

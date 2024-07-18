@@ -179,6 +179,7 @@ public class MainManager : Manager
     public void AddRotateCount() => integratedCount++;
     public void MinusCurveCount()
     {
+        Debug.Log("È®ÀÎ");
         integratedCount--;
         UICurve.SetCurveCount(integratedCount);
         if(integratedCount <= 0)

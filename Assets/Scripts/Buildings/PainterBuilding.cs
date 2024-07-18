@@ -37,7 +37,7 @@ public class PainterBuilding : BasicBuilding, ISendableBuilding, IInputableBuild
     Vector3 centerPoint;
     Vector3 startRelCenter;
     Vector3 endRelCenter;
-    float startTime;
+    readonly float startTime;
     bool isArrived;
     bool isReturned;
     bool isRemoved;
