@@ -19,35 +19,35 @@ MonoBehaviour:
     first_limit: 20
     second_limit: 10
     stars: 0
-    clear: 1
+    clear: 0
   - branch: STAGE_2
     limit_amount: 60
     limit_type: count
     first_limit: 20
     second_limit: 10
     stars: 0
-    clear: 1
+    clear: 0
   - branch: STAGE_3
     limit_amount: 60
     limit_type: time
     first_limit: 20
     second_limit: 10
     stars: 0
-    clear: 1
+    clear: 0
   - branch: STAGE_4
     limit_amount: 60
     limit_type: count
     first_limit: 20
     second_limit: 10
     stars: 0
-    clear: 1
+    clear: 0
   - branch: STAGE_5
     limit_amount: 60
     limit_type: time
     first_limit: 20
     second_limit: 10
     stars: 0
-    clear: 1
+    clear: 0
   - branch: STAGE_6
     limit_amount: 60
     limit_type: count
