@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class DialogSystem : MonoBehaviour
 {
@@ -12,8 +13,10 @@ public class DialogSystem : MonoBehaviour
 	[SerializeField]
 	private DialogDB dialogDB;
 	[SerializeField]
-	private	Speaker[]		speakers;					// 대화에 참여하는 캐릭터들의 UI 배열
-	[SerializeField]
+	private	Speaker[]		speakers;                   // 대화에 참여하는 캐릭터들의 UI 배열
+    [SerializeField]
+    private MapProfile[] mapProfiles;                 // 대화에 참여하는 캐릭터들의 UI 배열
+    [SerializeField]
 	private	DialogData[]	dialogs;                    // 현재 분기의 대사 목록 배열
 	[SerializeField]
 	private Image blockImage;
@@ -28,12 +31,34 @@ public class DialogSystem : MonoBehaviour
 
 	private void Awake()
 	{
-		Setup();
+        instance = this;
 	}
 
-	private void Setup()
+    private void Start()
+    {
+        Setup();
+    }
+
+    private void Setup()
 	{
-		instance = this;
+		branch = string.Empty;
+		branch = $"STAGE_{MainManager.instance.StageIndex + 1}";
+
+		if (MainManager.instance.StageIndex >= 0 && MainManager.instance.StageIndex <= 4) 
+		{
+			speakers[1].textName.text = mapProfiles[0].NPCName;
+			speakers[1].characterImage.sprite = mapProfiles[0].NPCSprite;
+		}
+		else if (MainManager.instance.StageIndex >= 5 && MainManager.instance.StageIndex <= 9)
+        {
+            speakers[1].textName.text = mapProfiles[1].NPCName;
+            speakers[1].characterImage.sprite = mapProfiles[1].NPCSprite;
+        }
+		else if (MainManager.instance.StageIndex >= 10 && MainManager.instance.StageIndex <= 14)
+        {
+            speakers[1].textName.text = mapProfiles[2].NPCName;
+            speakers[1].characterImage.sprite = mapProfiles[2].NPCSprite;
+        }
 
 		int index = 0;
 		for (int i = 0; i < dialogDB.Entites.Count; i++)
@@ -196,5 +221,12 @@ public struct DialogData
 	public	string	name;			// 캐릭터 이름
 	[TextArea(3, 5)]
 	public	string	dialogue;		// 대사
+}
+
+[System.Serializable]
+public struct MapProfile
+{
+	public Sprite NPCSprite;
+	public string NPCName; 
 }
 

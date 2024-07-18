@@ -28,7 +28,6 @@ public class SelectManager : Manager
         curChapter = PlayerPrefs.GetInt("curChapter");
         maxChapter = buttons.Length - 1;
         InitStageButton();
-        btnTransform.DOLocalMoveX(curChapter * -1920, 0);
 
         for (int i = 0; i < chapterTextBtn.Length; i++)
         {
@@ -72,9 +71,9 @@ public class SelectManager : Manager
         }
         PlayerPrefs.SetInt("MaxIndex", maxIndex);
 
-        for(int i = 0; i < chapterTextBtn.Length; i++)
+        for (int i = 0; i < chapterTextBtn.Length; i++) 
         {
-            var num = i;
+            int num = i;
             chapterTextBtn[num].onClick.AddListener(() => ChapterMove(num - curChapter));
         }
     }
