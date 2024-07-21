@@ -372,8 +372,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfbd40b2fab9524099b40220470c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDistinct: 0
   amplitude: 0.1
   frequency: 5
+  firSpriteTransform: {fileID: 0}
+  secSpriteTransform: {fileID: 0}
   spriteTransform: {fileID: 0}
   backSpriteTransform: {fileID: 6459391745008532478}
 --- !u!1 &2663433395259517169
@@ -403,7 +406,7 @@ Transform:
   m_GameObject: {fileID: 2663433395259517169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2101902489752372263}
@@ -883,8 +886,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bfbd40b2fab9524099b40220470c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDistinct: 0
   amplitude: 0.1
   frequency: 5
+  firSpriteTransform: {fileID: 0}
+  secSpriteTransform: {fileID: 0}
   spriteTransform: {fileID: 0}
   backSpriteTransform: {fileID: 8351592283128439362}
 --- !u!1 &4985298576444742565
@@ -1368,7 +1374,7 @@ Transform:
   m_GameObject: {fileID: 6338043977204515156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2360722684639514104}

@@ -28,7 +28,6 @@ public class SelectManager : Manager
         curChapter = PlayerPrefs.GetInt("curChapter");
         maxChapter = buttons.Length - 1;
         InitStageButton();
-        btnTransform.DOLocalMoveX(curChapter * -1920, 0);
 
         for (int i = 0; i < chapterTextBtn.Length; i++)
         {
@@ -72,9 +71,9 @@ public class SelectManager : Manager
         }
         PlayerPrefs.SetInt("MaxIndex", maxIndex);
 
-        for(int i = 0; i < chapterTextBtn.Length; i++)
+        for (int i = 0; i < chapterTextBtn.Length; i++) 
         {
-            var num = i;
+            int num = i;
             chapterTextBtn[num].onClick.AddListener(() => ChapterMove(num - curChapter));
         }
     }
@@ -92,25 +91,40 @@ public class SelectManager : Manager
         if (isChapterMoving)
             return;
 
-        if (addIndex.Equals(0))
-            return;
-
         isChapterMoving = true;
 
         curChapter += addIndex;
 
         chapterBtn[0].gameObject.SetActive(false);
         chapterBtn[1].gameObject.SetActive(false);
-        btnTransform.DOLocalMove(new Vector2(curChapter * -1920,(curChapter * -1120) + 90), 0.5f).SetEase(Ease.InOutQuad);
-        terrainTransform.DOLocalMove(new Vector2(curChapter * -3,(curChapter *-1.75f) + 0.15f), 0.5f).SetEase(Ease.InOutQuad);
+
+        if (addIndex.Equals(0))
+        {
+            btnTransform.DOLocalMove(new Vector2(curChapter * -1920, (curChapter * -1120) + 90), 0).SetEase(Ease.InOutQuad);
+            terrainTransform.DOLocalMove(new Vector2(curChapter * -3, (curChapter * -1.75f) + 0.15f), 0).SetEase(Ease.InOutQuad);
+        }
+        else
+        {
+            btnTransform.DOLocalMove(new Vector2(curChapter * -1920, (curChapter * -1120) + 90), 0.5f).SetEase(Ease.InOutQuad);
+            terrainTransform.DOLocalMove(new Vector2(curChapter * -3, (curChapter * -1.75f) + 0.15f), 0.5f).SetEase(Ease.InOutQuad);
+        }
+
         for(int i = 0; i < chapterTextBtn.Length; i++)
         {
             var text = chapterTextBtn[i].transform.GetChild(0).GetComponent<Text>();
             text.color = i == curChapter ? Color.white : Color.grey;
         }
         var pos = new Vector3(curChapter * -150,(curChapter * -75) -200);
-        chapterTextBtnTransform.DOLocalMove(pos,0.5f);
-        Invoke(nameof(ReleaseChapterMove), 0.5f);
+
+        if (addIndex.Equals(0))
+            chapterTextBtnTransform.DOLocalMove(pos, 0);
+        else
+            chapterTextBtnTransform.DOLocalMove(pos, 0.5f);
+
+        if (addIndex.Equals(0))
+            ReleaseChapterMove();
+        else
+            Invoke(nameof(ReleaseChapterMove), 0.5f);
     }
 
     void ReleaseChapterMove()

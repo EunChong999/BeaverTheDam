@@ -14,6 +14,7 @@ public class ESC : Manager
         {
             if (SceneAnim.instance.canAnim)
             {
+                Time.timeScale = 1;
                 SceneAnim.instance.AnimOn();
                 StartCoroutine(SceneMove());
             }

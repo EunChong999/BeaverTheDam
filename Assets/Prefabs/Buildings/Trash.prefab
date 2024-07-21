@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 146048699094021565}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6592887672983351718}
@@ -53,6 +53,7 @@ MonoBehaviour:
   originScale: {x: 1, y: 1, z: 1}
   isMovable: 0
   isItemExist: 0
+  isStopped: 0
   itemTransform: {fileID: 0}
   hitTransform: {fileID: 0}
 --- !u!65 &2513637673661219576
@@ -323,6 +324,7 @@ MonoBehaviour:
   - {fileID: -1009097987, guid: 1429c1f2fc5dcae4e91d701962f276e7, type: 3}
   - {fileID: 627325513, guid: 1429c1f2fc5dcae4e91d701962f276e7, type: 3}
   spriteTransform: {fileID: 3240011183385960952}
+  isFrontReversed: 0
 --- !u!212 &6048742481984229381
 SpriteRenderer:
   m_ObjectHideFlags: 0

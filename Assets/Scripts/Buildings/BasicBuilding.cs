@@ -79,7 +79,10 @@ public class BasicBuilding : MonoBehaviour
         waitForRotationSeconds = new WaitForSeconds(rotationTime);
         waitForDirectionSeconds = new WaitForSeconds(directionTime);
         spriteOriginScale = spriteTransform.localScale;
-        directionOriginScale = direction.transform.localScale;
+
+        if (direction != null)
+            directionOriginScale = direction.transform.localScale;
+
         spriteAnimator = spriteTransform.GetComponent<Animator>();
         point = pointTransform.GetComponent<Point>();
 
@@ -94,16 +97,16 @@ public class BasicBuilding : MonoBehaviour
     {
         if (canRotate)
         {
-            if (isShowEffect)
-                ShowEffect();
-
             StartCoroutine(RotateTransform(isRight, targetAngle, transform));
 
-            if (gameObject.name.Contains("Deliver"))
-                return;
+            if (isShowEffect)
+            {
+                ShowEffect();
+                MainManager.instance.test.Play();
 
-            if (MainManager.instance.curStage.type == MapType.countType)
-                MainManager.instance.MinusCurveCount();
+                if (MainManager.instance.curStage.type == MapType.count)
+                    MainManager.instance.MinusCurveCount();
+            }
         }
     }
 
@@ -217,7 +220,8 @@ public class BasicBuilding : MonoBehaviour
         if (!CanRotation())
             return;
 
-        direction.SetActive(true);
+        if (direction != null)
+            direction.SetActive(true);
 
         if (interactionType == interactionType.storeType)
             itemPanel.SetActive(false);
@@ -228,7 +232,8 @@ public class BasicBuilding : MonoBehaviour
         if (!CanRotation())
             return;
 
-        direction.SetActive(false);
+        if (direction != null)
+            direction.SetActive(false);
 
         if (interactionType == interactionType.storeType)
             itemPanel.SetActive(true);
