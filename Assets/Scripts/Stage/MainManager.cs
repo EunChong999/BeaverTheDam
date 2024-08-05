@@ -236,9 +236,13 @@ public class MainManager : Manager
 
     public void End(bool isCleared)
     {
+        StartCoroutine(EndMove(isCleared));
+    }
+    IEnumerator EndMove(bool isCleared)
+    {
         isEnd = true;
 
-        StartCoroutine(EndMove());
+        Time.timeScale = 1;
 
         int clearIndex = 0;
 
@@ -252,16 +256,14 @@ public class MainManager : Manager
         }
         else
         {
+            clearScore = 0;
+
             clearUI.SetActive(false);
             failUI.SetActive(true);
         }
 
         if (clearIndex > PlayerPrefs.GetInt("CanSelectIndex") && StageIndex < PlayerPrefs.GetInt("MaxIndex"))
             PlayerPrefs.SetInt("CanSelectIndex", clearIndex);
-    }
-    IEnumerator EndMove()
-    {
-        Time.timeScale = 1;
 
         yield return endCard.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).WaitForCompletion();
 

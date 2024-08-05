@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class DeliversManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] 
+    private Delivers[] delivers;
+    bool isEnded;
+
+    private void Update()
     {
-        
+        if (!isEnded)
+            CheckAllDeliversAccept();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CheckAllDeliversAccept()
     {
-        
+        foreach (var deliver in delivers)
+        {
+            if (!deliver.isAllAccepted)
+            {
+                return;
+            }
+        }
+
+        if (MainManager.instance.curStage.type == MapType.time)
+        {
+            if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstTimeLimit)
+                MainManager.instance.clearScore = 3;
+            else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondTimeLimit)
+                MainManager.instance.clearScore = 2;
+            else
+                MainManager.instance.clearScore = 1;
+        }
+        else if (MainManager.instance.curStage.type == MapType.count)
+        {
+            if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstCountLimit)
+                MainManager.instance.clearScore = 3;
+            else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondCountLimit)
+                MainManager.instance.clearScore = 2;
+            else
+                MainManager.instance.clearScore = 1;
+        }
+
+        MainManager.instance.End(true);
+
+        isEnded = true;
     }
 }

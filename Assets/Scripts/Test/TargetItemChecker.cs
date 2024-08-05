@@ -6,5 +6,6 @@ public class TargetItemChecker : MonoBehaviour
 {
     public bool isPainted;
     public bool isCutted;
+    public bool isMixed;
     public allColorType targetColor;
 }

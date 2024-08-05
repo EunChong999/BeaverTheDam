@@ -57,7 +57,7 @@ public class Dye : MonoBehaviour, IPooledObject
         SaveSettings();
         // 초기화할 때 딕셔너리에 기본 색상 조합에 대한 항목 추가
         InitColorCombinations();
-        ChangeToBasicColor();
+        ChangeColor();
     }
 
     // 기본 색상 조합에 대한 딕셔너리 초기화
@@ -93,13 +93,15 @@ public class Dye : MonoBehaviour, IPooledObject
             // 합성 색상 설정
             spriteRenderer.sprite = syntheticSprites[(int)resultColor];
             syntheticColorType = resultColor;
+            isBasicColor = false;
+            ChangeColor();
             myColor = syntheticColors[(int)resultColor];
         }
 
         isMixed = false;
     }
 
-    public void ChangeToBasicColor()
+    public void ChangeColor()
     {
         if (isBasicColor)
         {
@@ -107,12 +109,15 @@ public class Dye : MonoBehaviour, IPooledObject
             {
                 case basicColorType.red:
                     myColor = basicColors[(int)basicColorType.red];
+                    myColorType = allColorType.red; 
                     break;
                 case basicColorType.yellow:
                     myColor = basicColors[(int)basicColorType.yellow];
+                    myColorType = allColorType.yellow;
                     break;
                 case basicColorType.blue:
                     myColor = basicColors[(int)basicColorType.blue];
+                    myColorType = allColorType.blue;
                     break;
             }
         }
@@ -122,12 +127,15 @@ public class Dye : MonoBehaviour, IPooledObject
             {
                 case syntheticColorType.green:
                     myColor = syntheticColors[(int)syntheticColorType.green];
+                    myColorType = allColorType.green;
                     break;
                 case syntheticColorType.purple:
                     myColor = syntheticColors[(int)syntheticColorType.purple];
+                    myColorType = allColorType.purple;
                     break;
                 case syntheticColorType.orange:
                     myColor = syntheticColors[(int)syntheticColorType.orange];
+                    myColorType = allColorType.orange;
                     break;
             }
         }
