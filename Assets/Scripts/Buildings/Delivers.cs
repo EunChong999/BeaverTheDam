@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Delivers : MonoBehaviour
@@ -17,7 +16,34 @@ public class Delivers : MonoBehaviour
 
     public void AcceptItem(GameObject item)
     {
-        if (targetCount <= 1)
+        if (isAllAccepted)
+            return;
+
+        if (checker.isCutted && checker.isPainted)
+        {
+            if (item.GetComponent<Item>().myColorType != checker.targetColor || !item.GetComponent<Item>().isCutted)
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (checker.isMixed)
+                if (item.GetComponent<Dye>().myColorType != checker.targetColor)
+                    return;
+
+            if (checker.isPainted)
+                if (item.GetComponent<Item>().myColorType != checker.targetColor)
+                    return;
+
+            if (checker.isCutted)
+                if (!item.GetComponent<Item>().isCutted)
+                    return;
+        }
+
+        targetCount--;
+
+        if (targetCount <= 0)
         {
             isAllAccepted = true;
 
@@ -45,35 +71,6 @@ public class Delivers : MonoBehaviour
 
             MainManager.instance.End(true);
         }
-
-        if (targetCount <= 0)
-        {
-            return;
-        }
-
-        if (checker.isCutted && checker.isPainted)
-        {
-            if (item.GetComponent<Item>().myColorType != checker.targetColor || !item.GetComponent<Item>().isCutted)
-            {
-                return;
-            }
-        }
-        else
-        {
-            if (checker.isMixed)
-                if (item.GetComponent<Dye>().myColorType != checker.targetColor)
-                    return;
-
-            if (checker.isPainted)
-                if (item.GetComponent<Item>().myColorType != checker.targetColor)
-                    return;
-
-            if (checker.isCutted)
-                if (!item.GetComponent<Item>().isCutted)
-                    return;
-        }
-
-        targetCount--;
     }
     
     private void Start()
