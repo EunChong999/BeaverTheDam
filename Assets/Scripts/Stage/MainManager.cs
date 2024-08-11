@@ -7,7 +7,6 @@ using TMPro;
 using System.IO;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using Unity.VisualScripting;
 
 public enum MapType
 {
@@ -58,7 +57,7 @@ public class MainManager : Manager
     {
         for (int i = 0; i < Maps.Length; i++)
         {
-            Maps[i].isCleared = StringToBoolConverter.Convert(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 6));
+            Maps[i].isCleared = StringToBoolConverter.Convert(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 6));
         }
 
         StageIndex = PlayerPrefs.GetInt("SelectIndex");
@@ -98,81 +97,15 @@ public class MainManager : Manager
         {
             if (stageDB.Entites[i].branch == Maps[index].branch)
             {
-                Maps[index].type = (MapType)Enum.Parse(typeof(MapType), ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 1));
-                Maps[index].entireLimitAmount = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 2));
-                Maps[index].firstTimeLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
-                Maps[index].firstCountLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
-                Maps[index].secondTimeLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
-                Maps[index].secondCountLimit = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
-                Maps[index].stars = int.Parse(ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 5));
+                Maps[index].type = (MapType)Enum.Parse(typeof(MapType), ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 1));
+                Maps[index].entireLimitAmount = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 2));
+                Maps[index].firstTimeLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
+                Maps[index].firstCountLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
+                Maps[index].secondTimeLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
+                Maps[index].secondCountLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
+                Maps[index].stars = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 5));
                 index++;
             }
-        }
-    }
-
-    private string ReadExcelFile(string filePath, string sheetName, int rowIndex, int colIndex)
-    {
-        // 파일이 존재하는지 확인
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError($"File not found: {filePath}");
-            return null;
-        }
-
-        string cellValue = null;
-
-        // 파일을 읽어들이기
-        using (FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-        {
-            IWorkbook workbook = new XSSFWorkbook(stream);
-            ISheet sheet = workbook.GetSheet(sheetName);
-
-            if (sheet != null)
-            {
-                IRow row = sheet.GetRow(rowIndex);
-                if (row != null)
-                {
-                    ICell cell = row.GetCell(colIndex);
-                    if (cell != null)
-                    {
-                        cellValue = cell.ToString();
-                    }
-                }
-            }
-        }
-
-        return cellValue;
-    }
-
-    private void UpdateExcelFile(string filePath, string sheetName, int rowIndex, int colIndex, string value)
-    {
-        // 파일이 존재하는지 확인
-        if (!File.Exists(filePath))
-        {
-            Debug.LogError($"File not found: {filePath}");
-            return;
-        }
-
-        IWorkbook workbook;
-        ISheet sheet;
-
-        // 파일을 읽어들이기
-        using (FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-        {
-            workbook = new XSSFWorkbook(stream);
-            sheet = workbook.GetSheet(sheetName) ?? workbook.CreateSheet(sheetName);
-        }
-
-        // 셀 값 업데이트
-        IRow row = sheet.GetRow(rowIndex) ?? sheet.CreateRow(rowIndex);
-        ICell cell = row.GetCell(colIndex) ?? row.CreateCell(colIndex);
-        cell.SetCellValue(value);
-
-        // 메모리 스트림을 사용하여 파일 쓰기
-        using (MemoryStream memoryStream = new MemoryStream())
-        {
-            workbook.Write(memoryStream, true);
-            File.WriteAllBytes(filePath, memoryStream.ToArray());
         }
     }
 
@@ -249,7 +182,7 @@ public class MainManager : Manager
         if ((isCleared || Maps[StageIndex].isCleared) && StageIndex < Maps.Length - 1)
         {
             clearIndex = StageIndex + 1;
-            UpdateExcelFile(ExcelFilePaths.StageFilePath, "Entites", StageIndex + 1, 6, "TRUE");
+            ExcelFilePaths.UpdateExcelFile(ExcelFilePaths.StageFilePath, "Entites", StageIndex + 1, 6, "TRUE");
 
             clearUI.SetActive(true);
             failUI.SetActive(false);
