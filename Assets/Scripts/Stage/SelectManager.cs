@@ -24,6 +24,7 @@ public class SelectManager : Manager
     int curChapter;
     private void Start()
     {
+        PlayerPrefs.SetInt("CanSelectIndex", 6);
         clearIndex = PlayerPrefs.GetInt("CanSelectIndex");
         maxChapter = buttons.Length - 1;
         InitStageButton();

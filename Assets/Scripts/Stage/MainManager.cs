@@ -62,7 +62,7 @@ public class MainManager : Manager
 
         StageIndex = PlayerPrefs.GetInt("SelectIndex");
         endCard.localScale = Vector3.zero;
-        nextStage.SetActive(StageIndex < PlayerPrefs.GetInt("MaxIndex"));
+        nextStage.SetActive(StageIndex < Maps.Length);
         for (int i = 0; i < star.Length; i++)
         {
             star[i].localScale = Vector3.zero;
@@ -189,8 +189,8 @@ public class MainManager : Manager
             failUI.SetActive(true);
         }
 
-        if (clearIndex > PlayerPrefs.GetInt("CanSelectIndex") && StageIndex < PlayerPrefs.GetInt("MaxIndex"))
-            PlayerPrefs.SetInt("CanSelectIndex", clearIndex);
+        //if (clearIndex > PlayerPrefs.GetInt("CanSelectIndex") && StageIndex < PlayerPrefs.GetInt("MaxIndex"))
+        //    PlayerPrefs.SetInt("CanSelectIndex", clearIndex);
 
         StartCoroutine(EndMove());
     }
