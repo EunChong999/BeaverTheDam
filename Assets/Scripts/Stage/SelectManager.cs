@@ -25,7 +25,6 @@ public class SelectManager : Manager
     private void Start()
     {
         clearIndex = PlayerPrefs.GetInt("CanSelectIndex");
-        curChapter = PlayerPrefs.GetInt("curChapter");
         maxChapter = buttons.Length - 1;
         InitStageButton();
 
@@ -61,7 +60,6 @@ public class SelectManager : Manager
                     if (canSelect)
                     {
                         PlayerPrefs.SetInt("SelectIndex", numj + max);
-                        PlayerPrefs.SetInt("curChapter", curChapter);
                         StartCoroutine(StageStart());
                     }
                 });

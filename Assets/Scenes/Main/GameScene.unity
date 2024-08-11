@@ -1857,6 +1857,16 @@ MonoBehaviour:
     secondCountLimit: 0
     stars: 0
     isCleared: 0
+  - map: {fileID: 7035831907051142136, guid: 0c6811c21d5b00f479ef168f3741c60d, type: 3}
+    branch: STAGE_7
+    type: 0
+    entireLimitAmount: 0
+    firstTimeLimit: 0
+    secondTimeLimit: 0
+    firstCountLimit: 0
+    secondCountLimit: 0
+    stars: 0
+    isCleared: 0
 --- !u!4 &726222231
 Transform:
   m_ObjectHideFlags: 0

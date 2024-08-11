@@ -1,11 +1,12 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Delivers : MonoBehaviour
 {
     public int targetCount;
+    public bool isAllAccepted;
 
+    [SerializeField] DeliversManager manager;
     [SerializeField] TargetItemChecker checker;
     [SerializeField] GameObject requireItem;
     [SerializeField] GameObject[] requireItems;
@@ -15,34 +16,8 @@ public class Delivers : MonoBehaviour
 
     public void AcceptItem(GameObject item)
     {
-        if (targetCount <= 1)
-        {
-            if (MainManager.instance.curStage.type == MapType.time)
-            {
-                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstTimeLimit)
-                    MainManager.instance.clearScore = 3;
-                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondTimeLimit)
-                    MainManager.instance.clearScore = 2;
-                else 
-                    MainManager.instance.clearScore = 1;
-            }
-            else if (MainManager.instance.curStage.type == MapType.count)
-            {
-                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstCountLimit)
-                    MainManager.instance.clearScore = 3;
-                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondCountLimit)
-                    MainManager.instance.clearScore = 2;
-                else 
-                    MainManager.instance.clearScore = 1;
-            }
-
-            MainManager.instance.End(true);
-        }
-
-        if (targetCount <= 0)
-        {
+        if (isAllAccepted)
             return;
-        }
 
         if (checker.isCutted && checker.isPainted)
         {
@@ -53,6 +28,10 @@ public class Delivers : MonoBehaviour
         }
         else
         {
+            if (checker.isMixed)
+                if (item.GetComponent<Dye>().myColorType != checker.targetColor)
+                    return;
+
             if (checker.isPainted)
                 if (item.GetComponent<Item>().myColorType != checker.targetColor)
                     return;
@@ -63,6 +42,35 @@ public class Delivers : MonoBehaviour
         }
 
         targetCount--;
+
+        if (targetCount <= 0)
+        {
+            isAllAccepted = true;
+
+            if (manager != null)
+                return;
+
+            if (MainManager.instance.curStage.type == MapType.time)
+            {
+                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstTimeLimit)
+                    MainManager.instance.clearScore = 3;
+                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondTimeLimit)
+                    MainManager.instance.clearScore = 2;
+                else
+                    MainManager.instance.clearScore = 1;
+            }
+            else if (MainManager.instance.curStage.type == MapType.count)
+            {
+                if (MainManager.instance.integratedCount >= MainManager.instance.curStage.firstCountLimit)
+                    MainManager.instance.clearScore = 3;
+                else if (MainManager.instance.integratedCount >= MainManager.instance.curStage.secondCountLimit)
+                    MainManager.instance.clearScore = 2;
+                else
+                    MainManager.instance.clearScore = 1;
+            }
+
+            MainManager.instance.End(true);
+        }
     }
     
     private void Start()
