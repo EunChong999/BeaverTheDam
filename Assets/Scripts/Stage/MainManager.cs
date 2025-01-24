@@ -18,7 +18,6 @@ public class MainManager : Manager
 {
     public AudioSource test;
     public MapData curStage;
-    [SerializeField]
     private StageDB stageDB;
     [SerializeField] TextMeshProUGUI limitTypeText;
     [SerializeField] GameObject clearUI;
@@ -57,7 +56,7 @@ public class MainManager : Manager
     {
         for (int i = 0; i < Maps.Length; i++)
         {
-            Maps[i].isCleared = StringToBoolConverter.Convert(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 6));
+            Maps[i].isCleared = stageDB.Entites[i].clear; 
         }
 
         StageIndex = PlayerPrefs.GetInt("SelectIndex");
@@ -92,18 +91,20 @@ public class MainManager : Manager
     {
         instance = this;
 
+        stageDB = Resources.Load<StageDB>("StageDB");
+        
         int index = 0;
         for (int i = 0; i < Maps.Length; i++)
         {
             if (stageDB.Entites[i].branch == Maps[index].branch)
             {
-                Maps[index].type = (MapType)Enum.Parse(typeof(MapType), ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 1));
-                Maps[index].entireLimitAmount = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 2));
-                Maps[index].firstTimeLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
-                Maps[index].firstCountLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 3));
-                Maps[index].secondTimeLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
-                Maps[index].secondCountLimit = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 4));
-                Maps[index].stars = int.Parse(ExcelFilePaths.ReadExcelFile(ExcelFilePaths.StageFilePath, "Entites", i + 1, 5));
+                Maps[index].type = (MapType)Enum.Parse(typeof(MapType),stageDB.Entites[i].limit_type);
+                Maps[index].entireLimitAmount = Convert.ToInt32(stageDB.Entites[i].limit_amount);
+                Maps[index].firstTimeLimit = Convert.ToInt32(stageDB.Entites[i].first_limit);
+                Maps[index].firstCountLimit = Convert.ToInt32(stageDB.Entites[i].first_limit);
+                Maps[index].secondTimeLimit = Convert.ToInt32(stageDB.Entites[i].second_limit);
+                Maps[index].secondCountLimit = Convert.ToInt32(stageDB.Entites[i].second_limit);
+                Maps[index].stars = Convert.ToInt32(stageDB.Entites[i].stars);
                 index++;
             }
         }
@@ -178,7 +179,7 @@ public class MainManager : Manager
         if ((isCleared || Maps[StageIndex].isCleared) && StageIndex < Maps.Length - 1)
         {
             clearIndex = StageIndex + 1;
-            ExcelFilePaths.UpdateExcelFile(ExcelFilePaths.StageFilePath, "Entites", StageIndex + 1, 6, "TRUE");
+            stageDB.Entites[StageIndex + 1].clear = true;
 
             clearUI.SetActive(true);
             failUI.SetActive(false);
